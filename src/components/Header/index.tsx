@@ -1,6 +1,5 @@
-import React from 'react';
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Icon from '../Icon';
 import Badge from '../Badge';
 
@@ -59,20 +58,10 @@ const MessageButton = styled.button`
 `;
 
 interface HeaderProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Header = ({ onClick }: HeaderProps) => {
-  const navigate = useNavigate();
-
-  const handleGoToAlert = () => {
-    navigate('/alert');
-  };
-
-  const handleGoToDM = () => {
-    navigate('/message');
-  };
-
   return (
     <Layout>
       <LeftLayout>
@@ -89,21 +78,25 @@ const Header = ({ onClick }: HeaderProps) => {
         )}
       </LeftLayout>
       <RightLayout>
-        <AlertButton onClick={handleGoToAlert}>
+        <AlertButton>
           <Badge dot={true}>
+            <Link to='/alert'>
+              <Icon
+                name={'notifications'}
+                color={'#fff'}
+                size={'23'}
+              />
+            </Link>
+          </Badge>
+        </AlertButton>
+        <MessageButton>
+          <Link to='/message'>
             <Icon
-              name={'notifications'}
+              name={'chat'}
               color={'#fff'}
               size={'23'}
             />
-          </Badge>
-        </AlertButton>
-        <MessageButton onClick={handleGoToDM}>
-          <Icon
-            name={'chat'}
-            color={'#fff'}
-            size={'23'}
-          />
+          </Link>
         </MessageButton>
       </RightLayout>
     </Layout>
