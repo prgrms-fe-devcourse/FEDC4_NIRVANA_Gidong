@@ -7,7 +7,7 @@ const BadgeContainer = styled.div`
 
 const Super = styled.sup`
   position: absolute;
-  top: 3px;
+  top: 2px;
   right: 3px;
   font-size: 5px;
   background-color: #ff9900;
