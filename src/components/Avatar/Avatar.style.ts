@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { setCenter } from '@/styles/flex';
 
 interface AvatarContainerProps {
   size: number;
@@ -22,4 +23,12 @@ export const AvatarImage = styled.img<AvatarImageProps>`
   object-fit: cover;
   src: ${(props) => props.src};
   alt: ${(props) => props.alt};
+`;
+
+export const AvatarText = styled.div`
+  ${setCenter}
+  font-size: 2rem;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right, #ff5858, #f857a6);
 `;

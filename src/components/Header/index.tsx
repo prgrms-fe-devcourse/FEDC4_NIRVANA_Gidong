@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../Icon';
-import Badge from '../Badge';
+import { DotBadge } from '../Badge';
 
 import logo from '../../assets/logo.svg';
 
@@ -90,13 +90,16 @@ const Header = ({ onClick }: HeaderProps) => {
       </LeftLayout>
       <RightLayout>
         <AlertButton onClick={handleGoToAlert}>
-          <Badge dot={true}>
+          <DotBadge
+            dot={true}
+            color='#ff9900'
+            position='top'>
             <Icon
               name={'notifications'}
               color={'#fff'}
               size={'23'}
             />
-          </Badge>
+          </DotBadge>
         </AlertButton>
         <MessageButton onClick={handleGoToDM}>
           <Icon
