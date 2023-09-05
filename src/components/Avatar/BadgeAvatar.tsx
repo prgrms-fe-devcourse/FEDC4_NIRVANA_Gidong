@@ -11,8 +11,8 @@ interface BadgeAvatarProps {
 const BadgeAvatar = ({ alt, src, size, online }: BadgeAvatarProps) => {
   return (
     <DotBadge
+      color={online ? 'greenVivid' : 'white500'}
       dot={true}
-      color={online ? '#2ed573' : '#bebdbd'}
       position='bottom'
       badgeSize={10}>
       <Avatar

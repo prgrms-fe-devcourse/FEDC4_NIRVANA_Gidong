@@ -34,7 +34,7 @@ export const Super = styled.sup<SuperProps>`
     }
   }}
   right: 3px;
-  background-color: ${(props) => props.color};
+  background-color: ${({ theme, color }) => theme[color]};
   color: #fff;
   &.dot {
     padding: 0;
