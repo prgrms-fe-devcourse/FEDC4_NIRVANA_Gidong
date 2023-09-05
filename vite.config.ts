@@ -7,24 +7,24 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [
-      { find: '@', replacement: path.resolve(__dirname, 'src') },
+      { find: '@', replacement: 'src' },
       {
         find: '@components',
-        replacement: path.resolve(__dirname, 'src/components')
+        replacement: 'src/components'
       },
-      { find: '@utils', replacement: path.resolve(__dirname, '/src/utils') },
-      { find: '@hooks', replacement: path.resolve(__dirname, '/src/hooks') },
-      { find: '@pages', replacement: path.resolve(__dirname, '/src/pages') },
-      { find: '@assets', replacement: path.resolve(__dirname, '/src/assets') },
-      { find: '@types', replacement: path.resolve(__dirname, '/src/types') },
+      { find: '@utils', replacement: '/src/utils' },
+      { find: '@hooks', replacement: '/src/hooks' },
+      { find: '@pages', replacement: '/src/pages' },
+      { find: '@assets', replacement: '/src/assets' },
+      { find: '@types', replacement: '/src/types' },
       {
         find: '@constants',
-        replacement: path.resolve(__dirname, '/src/constants')
+        replacement: '/src/constants'
       },
-      { find: '@styles', replacement: path.resolve(__dirname, '/src/styles') },
+      { find: '@styles', replacement: '/src/styles' },
       {
         find: '@colors',
-        replacement: path.resolve(__dirname, '/src/styles/colors')
+        replacement: '/src/styles/colors'
       }
     ]
   }
