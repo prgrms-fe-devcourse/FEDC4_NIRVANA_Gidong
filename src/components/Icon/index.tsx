@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 import { GOOGLE_ICON_CLASSNAME } from '../../constants/Components';
 
-const StyledIcon = styled.span<{ size: string; color: string }>`
+const StyledIcon = styled.span<{ size: number; color: string }>`
   color: ${({ theme, color }) => theme[color]};
   font-size: ${({ size }) => size}px;
 `;
 
 interface IconProps {
-  size: string;
+  size: number;
   name: string;
   color: string;
 }
