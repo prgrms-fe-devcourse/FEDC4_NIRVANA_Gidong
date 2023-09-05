@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { setCenter } from '@/styles/flex';
+import { flexSetCenter } from '@styles/flex';
 
 interface AvatarContainerProps {
   size: number;
@@ -26,7 +26,7 @@ export const AvatarImage = styled.img<AvatarImageProps>`
 `;
 
 export const AvatarText = styled.div`
-  ${setCenter}
+  ${flexSetCenter};
   font-size: 2rem;
   width: 100%;
   height: 100%;

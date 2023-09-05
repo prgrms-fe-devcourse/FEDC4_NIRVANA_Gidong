@@ -1,6 +1,5 @@
-import React from 'react';
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Icon from '../Icon';
 import { DotBadge } from '../Badge';
 
@@ -59,20 +58,10 @@ const MessageButton = styled.button`
 `;
 
 interface HeaderProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Header = ({ onClick }: HeaderProps) => {
-  const navigate = useNavigate();
-
-  const handleGoToAlert = () => {
-    navigate('/alert');
-  };
-
-  const handleGoToDM = () => {
-    navigate('/message');
-  };
-
   return (
     <Layout>
       <LeftLayout>
@@ -89,24 +78,29 @@ const Header = ({ onClick }: HeaderProps) => {
         )}
       </LeftLayout>
       <RightLayout>
-        <AlertButton onClick={handleGoToAlert}>
+        <AlertButton>
           <DotBadge
             dot={true}
             color='#ff9900'
-            position='top'>
+            position='top'
+            badgeSize={5}>
+            <Link to='/alert'>
+              <Icon
+                name={'notifications'}
+                color={'#ff123'}
+                size={'23'}
+              />
+            </Link>
+          </DotBadge>
+        </AlertButton>
+        <MessageButton>
+          <Link to='/message'>
             <Icon
-              name={'notifications'}
+              name={'chat'}
               color={'#fff'}
               size={'23'}
             />
-          </DotBadge>
-        </AlertButton>
-        <MessageButton onClick={handleGoToDM}>
-          <Icon
-            name={'chat'}
-            color={'#fff'}
-            size={'23'}
-          />
+          </Link>
         </MessageButton>
       </RightLayout>
     </Layout>
