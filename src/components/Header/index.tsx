@@ -78,44 +78,29 @@ const Header = ({ onClick }: HeaderProps) => {
         )}
       </LeftLayout>
       <RightLayout>
-<<<<<<< HEAD
         <AlertButton>
-          <Badge dot={true}>
-            <Link to='/alert'>
-              <Icon
-                name={'notifications'}
-                color={'#fff'}
-                size={'23'}
-              />
-            </Link>
-          </Badge>
-        </AlertButton>
-        <MessageButton>
-          <Link to='/message'>
-=======
-        <AlertButton onClick={handleGoToAlert}>
           <DotBadge
             dot={true}
             color='#ff9900'
-            position='top'>
->>>>>>> fde888f573dfbb653586b2fcfdda0d43d793a22e
+            position='top'
+            badgeSize={5}>
+            <Link to='/alert'>
+              <Icon
+                name={'notifications'}
+                color={'#ff123'}
+                size={'23'}
+              />
+            </Link>
+          </DotBadge>
+        </AlertButton>
+        <MessageButton>
+          <Link to='/message'>
             <Icon
               name={'chat'}
               color={'#fff'}
               size={'23'}
             />
-<<<<<<< HEAD
           </Link>
-=======
-          </DotBadge>
-        </AlertButton>
-        <MessageButton onClick={handleGoToDM}>
-          <Icon
-            name={'chat'}
-            color={'#fff'}
-            size={'23'}
-          />
->>>>>>> fde888f573dfbb653586b2fcfdda0d43d793a22e
         </MessageButton>
       </RightLayout>
     </Layout>
