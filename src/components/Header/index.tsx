@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import Icon from '../Icon';
-import Badge from '../Badge';
+import { DotBadge } from '../Badge';
 
 import logo from '../../assets/logo.svg';
 
@@ -78,6 +78,7 @@ const Header = ({ onClick }: HeaderProps) => {
         )}
       </LeftLayout>
       <RightLayout>
+<<<<<<< HEAD
         <AlertButton>
           <Badge dot={true}>
             <Link to='/alert'>
@@ -91,12 +92,30 @@ const Header = ({ onClick }: HeaderProps) => {
         </AlertButton>
         <MessageButton>
           <Link to='/message'>
+=======
+        <AlertButton onClick={handleGoToAlert}>
+          <DotBadge
+            dot={true}
+            color='#ff9900'
+            position='top'>
+>>>>>>> fde888f573dfbb653586b2fcfdda0d43d793a22e
             <Icon
               name={'chat'}
               color={'#fff'}
               size={'23'}
             />
+<<<<<<< HEAD
           </Link>
+=======
+          </DotBadge>
+        </AlertButton>
+        <MessageButton onClick={handleGoToDM}>
+          <Icon
+            name={'chat'}
+            color={'#fff'}
+            size={'23'}
+          />
+>>>>>>> fde888f573dfbb653586b2fcfdda0d43d793a22e
         </MessageButton>
       </RightLayout>
     </Layout>
