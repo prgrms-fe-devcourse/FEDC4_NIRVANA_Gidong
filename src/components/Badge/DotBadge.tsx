@@ -1,4 +1,4 @@
-import { BadgeContainer, Super } from './DotBadge.style.';
+import { BadgeContainer, Super } from './DotBadge.style';
 
 interface BadgeProps {
   children: React.ReactNode;
