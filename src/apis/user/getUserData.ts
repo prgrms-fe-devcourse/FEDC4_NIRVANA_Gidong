@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { User } from '../../types/User';
 import { API_BASE_URL } from '../../constants/Api';
 
 const getUserData = async (userId: string) => {
