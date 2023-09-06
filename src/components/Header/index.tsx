@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
 import Icon from '../Icon';
+import Link from '../Link';
 import { DotBadge } from '../Badge';
 
 import logo from '../../assets/logo.svg';
 
 const Layout = styled.div`
   height: 50px;
+  width: 390px;
   background-color: #47346d;
   display: flex;
   justify-content: space-between;
@@ -68,37 +69,39 @@ const Header = ({ onClick }: HeaderProps) => {
         {onClick ? (
           <BackButton onClick={onClick}>
             <Icon
-              name={'arrow_back_ios'}
-              color={'#fff'}
-              size={'23'}
+              name='arrow_back_ios'
+              color='white'
+              size={23}
             />
           </BackButton>
         ) : (
-          <Logo></Logo>
+          <Logo />
         )}
       </LeftLayout>
       <RightLayout>
         <AlertButton>
           <DotBadge
             dot={true}
-            color='#ff9900'
+            color='orange'
             position='top'
             badgeSize={5}>
-            <Link to='/alert'>
+            <Link
+              pageLink='/alert'
+              size='23'>
               <Icon
-                name={'notifications'}
-                color={'#ff123'}
-                size={'23'}
+                name='notifications'
+                color='white'
+                size={23}
               />
             </Link>
           </DotBadge>
         </AlertButton>
         <MessageButton>
-          <Link to='/message'>
+          <Link pageLink='/message'>
             <Icon
-              name={'chat'}
-              color={'#fff'}
-              size={'23'}
+              name='chat'
+              color='white'
+              size={23}
             />
           </Link>
         </MessageButton>

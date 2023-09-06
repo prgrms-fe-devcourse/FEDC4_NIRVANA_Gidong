@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/landing';
 import Layout from './pages/layout';
+import Profile from './pages/profile';
 
 function App() {
   return (
@@ -13,6 +14,10 @@ function App() {
       <Route
         path='/landing'
         element={<LandingPage />}
+      />
+      <Route
+        path='/profile'
+        element={<Profile />}
       />
     </Routes>
   );
