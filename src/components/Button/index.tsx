@@ -6,10 +6,11 @@ const StyledButton = styled.button<{
   dark: boolean;
   bold: boolean;
 }>`
-  border: 0;
   cursor: pointer;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
+  border: ${({ theme, dark }) =>
+    dark ? 0 : `0.5px solid ${theme['greyLight']}`};
   background-color: ${({ theme, dark }) =>
     dark ? theme['purpleDark'] : theme['white']};
   color: ${({ theme, dark }) => (dark ? theme['white'] : theme['black'])};
@@ -21,9 +22,9 @@ const StyledButton = styled.button<{
 interface ButtonProps {
   width: number;
   height: number;
-  label?: string;
-  handleClick: () => void;
   dark: boolean;
+  label?: string;
+  handleClick?: () => void;
   bold: boolean;
 }
 
