@@ -15,7 +15,7 @@ const AlertBackground = styled.div<{ width: number; height: number }>`
 const IconWrapper = styled.div<{ emojiSize: number }>`
   width: 100%;
   height: 50%;
-  font-size: ${({ emojiSize }) => emojiSize}px;
+  font-size: ${({ emojiSize }) => emojiSize}rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +54,7 @@ const Alert = ({
   emoji,
   emojiSize = 70,
   content,
-  contentFontSize = 16,
+  contentFontSize = 1,
   buttonLabel,
   nextPageLink
 }: Partial<AlertProps>) => {
