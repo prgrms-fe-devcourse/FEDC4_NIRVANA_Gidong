@@ -29,82 +29,56 @@ const LeftLayout = styled.div`
 `;
 const RightLayout = styled.div`
   display: flex;
-`;
+  align-items: center;
 
-const BackButton = styled.div`
-  background: none;
-  border: none;
-  outline: none;
-  &:before {
-    width: 14px;
-    height: 14px;
-    padding-right: 5px;
+  & > div {
+    margin-right: 15px;
   }
 `;
 
-const AlertButton = styled.button`
-  background: none;
-  border: none;
-  outline: none;
-  display: flex;
-  align-items: center;
-`;
-const MessageButton = styled.button`
-  background: none;
-  border: none;
-  outline: none;
-  align-items: center;
-  display: flex;
-  align-items: center;
-`;
-
 interface HeaderProps {
-  onClick?: () => void;
+  backLink?: string;
 }
 
-const Header = ({ onClick }: HeaderProps) => {
+const Header = ({ backLink }: HeaderProps) => {
   return (
     <Layout>
       <LeftLayout>
-        {onClick ? (
-          <BackButton onClick={onClick}>
+        {backLink ? (
+          <Link pageLink=''>
             <Icon
               name='arrow_back_ios'
               color='white'
               size={23}
             />
-          </BackButton>
+          </Link>
         ) : (
           <Logo />
         )}
       </LeftLayout>
       <RightLayout>
-        <AlertButton>
-          <DotBadge
-            dot={true}
-            color='orange'
-            position='top'
-            badgeSize={5}>
-            <Link
-              pageLink='/alert'
-              size='23'>
-              <Icon
-                name='notifications'
-                color='white'
-                size={23}
-              />
-            </Link>
-          </DotBadge>
-        </AlertButton>
-        <MessageButton>
-          <Link pageLink='/message'>
+        <DotBadge
+          dot={true}
+          color='orange'
+          position='top'
+          badgeSize={5}>
+          <Link
+            pageLink='/alert'
+            size='23'>
             <Icon
-              name='chat'
+              name='notifications'
               color='white'
               size={23}
             />
           </Link>
-        </MessageButton>
+        </DotBadge>
+        <Link pageLink='/message'>
+          <Icon
+            name='chat'
+            color='white'
+            size={23}
+          />
+        </Link>
       </RightLayout>
     </Layout>
   );
