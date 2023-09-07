@@ -1,4 +1,4 @@
-import { UserIdSpan } from './UserText.style';
+import { UserIdSpan } from './UserId.style';
 
 interface UserIdInfo {
   email: string;
