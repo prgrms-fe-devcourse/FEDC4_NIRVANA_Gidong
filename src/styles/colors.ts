@@ -13,6 +13,8 @@ export const color: IColor = {
   white600: '#e4e4e4',
   white500: '#d9d9d9',
   black: '#000000',
+  black250: '#00000040',
+  black600: '#00000099',
   greyLight: '#7e7e7e',
   linearGradientPurple:
     'linear-gradient(160deg, #2a2427 0%, #47346d 50%, #7e4ea4 75%, #b796d0 100%)',
