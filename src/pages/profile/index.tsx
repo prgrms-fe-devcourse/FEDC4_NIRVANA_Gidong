@@ -1,23 +1,28 @@
-//필요한 데이터
-//UserID, followers, followings, meditation횟수, posts
-//내 프로필인지? => param으로 받은 id와 전역상태의 id가 같은지 비교
-//최근 5개의 meditation기록 => 무한스크롤 => react-query
-//DM아이콘 => DM페이지로 이동
-//프로필 사진 => 프로필 사진 변경
-//프로필 수정 버튼 => 프로필 수정 페이지로 이동
-
-import { useParams } from 'react-router-dom';
-import { Avatar } from '../../components/Avatar';
+// import { useParams } from 'react-router-dom';
+// import { useQuery } from 'react-query';
+// import { getUserData } from '@/apis/user/getUserData';
+import { ProfileContainer } from './styles';
+import ProfileInfo from './components/ProfileInfo';
 
 const Profile = () => {
-  const { userId } = useParams<{ userId: string }>();
+  // const { userId } = useParams<{ userId: string }>();
+
+  // const { data, isLoading, isError, error } = useQuery(
+  //   ['userData', userId],
+  //   () => getUserData(userId),
+  //   { enabled: !!userId }
+  // );
+  // console.log(data, isLoading, isError, error);
 
   return (
-    <Avatar
-      size={70}
-      src='https://avatars.githubusercontent.com/u/48426991?v=4'
-      alt='test'
-    />
+    <ProfileContainer>
+      <ProfileInfo
+        email='test@email.com'
+        fullName='testMan'
+        avatarImgSrc='https://avatars.githubusercontent.com/u/76855211?v=4'
+        meditationStack={50}
+      />
+    </ProfileContainer>
   );
 };
 
