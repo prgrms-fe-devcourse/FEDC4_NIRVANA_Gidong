@@ -1,6 +1,16 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import Button from '../Button';
 import Link from '../Link';
+
+const DeemBackground = styled.div<{ disabled: boolean }>`
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme['black600']};
+  display: ${({ disabled }) => (disabled ? 'none' : 'flex')};
+  justify-content: center;
+  align-items: center;
+`;
 
 const AlertBackground = styled.div<{ width: number; height: number }>`
   width: ${({ width }) => width}px;
@@ -26,7 +36,7 @@ const ContentWrapper = styled.div<{ contentFontSize: number }>`
   height: 50%;
   text-align: center;
   font-weight: bold;
-  font-size: ${({ contentFontSize }) => contentFontSize}px;
+  font-size: ${({ contentFontSize }) => contentFontSize}rem;
   position: relative;
 `;
 
@@ -52,32 +62,46 @@ const Alert = ({
   width = 330,
   height = 390,
   emoji,
-  emojiSize = 70,
+  emojiSize = 4.5,
   content,
   contentFontSize = 1,
   buttonLabel,
   nextPageLink
 }: Partial<AlertProps>) => {
+  const [disabled, setDisabled] = useState(false);
+
   return (
-    <AlertBackground
-      width={width}
-      height={height}>
-      <IconWrapper emojiSize={emojiSize}>{emoji}</IconWrapper>
-      <ContentWrapper contentFontSize={contentFontSize}>
-        {content}
-        <NavButtonWrapper>
-          <Link pageLink={nextPageLink}>
-            <Button
-              width={300}
-              height={50}
-              dark={true}
-              bold={true}
-              label={buttonLabel}
-            />
-          </Link>
-        </NavButtonWrapper>
-      </ContentWrapper>
-    </AlertBackground>
+    <DeemBackground disabled={disabled}>
+      <AlertBackground
+        width={width}
+        height={height}>
+        <IconWrapper emojiSize={emojiSize}>{emoji}</IconWrapper>
+        <ContentWrapper contentFontSize={contentFontSize}>
+          {content}
+          <NavButtonWrapper onClick={() => setDisabled(true)}>
+            {nextPageLink ? (
+              <Link pageLink={nextPageLink}>
+                <Button
+                  width={300}
+                  height={50}
+                  dark={true}
+                  bold={true}
+                  label={buttonLabel}
+                />
+              </Link>
+            ) : (
+              <Button
+                width={300}
+                height={50}
+                dark={true}
+                bold={true}
+                label={buttonLabel}
+              />
+            )}
+          </NavButtonWrapper>
+        </ContentWrapper>
+      </AlertBackground>
+    </DeemBackground>
   );
 };
 export default Alert;
