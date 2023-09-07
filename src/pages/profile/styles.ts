@@ -18,5 +18,7 @@ export const ProfileContainer = styled.div`
 export const ProfileBackgroundContainer = styled.div`
   height: 100px;
   width: 100%;
-  background-color: aliceblue;
+  background-color: ${({ theme }) => theme['purpleDarker']};
+  position: relative;
+  overflow: hidden;
 `;
