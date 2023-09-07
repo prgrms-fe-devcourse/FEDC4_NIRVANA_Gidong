@@ -17,14 +17,14 @@ function App() {
                 path='/landing'
                 element={<LandingPage />}
               />
+              <Route
+                path='/profile/:userId'
+                element={<Profile />}
+              />
             </Route>
             <Route
               path='/'
               element={<LandingPage />}
-            />
-            <Route
-              path='/profile/:userId'
-              element={<Profile />}
             />
           </Routes>
         </RecoilRoot>
