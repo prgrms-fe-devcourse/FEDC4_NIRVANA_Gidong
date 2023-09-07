@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '@components/Button';
 import UserInput from '@components/UserInput';
+import Alert from '@/components/Alert';
 import { isEmailOk, isNicknameOk, isPasswordOk } from './validations';
 import { signUpUser } from '@/apis/user/getUserData';
 import { USERINPUT } from './constants';
@@ -16,11 +18,13 @@ const SignUp = () => {
   const [email, setEmail] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<boolean>(false);
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
-
+  const navigate = useNavigate();
   let timer = 0;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     const { name, value } = event.target;
 
     if (timer) {
@@ -56,12 +60,22 @@ const SignUp = () => {
       passwordConfirm &&
       password === passwordConfirm
     ) {
-      signUpUser({ email, password, fullName: nickname });
+      signUpUser({ email, password, fullName: nickname })
+        .then(() => navigate('/login'))
+        // TODO: 회원가입 성공시 로그인 페이지로 이동할 수 있는 Alert
+        .catch((error) => {
+          console.log(error);
+          setError(true);
+          // TODO: 이메일 중복 오류시 이메일 중복 오류 Alert
+        });
     }
+
+    return;
   };
 
   return (
     <SignUpContainer>
+      {error && <Alert />}
       <LogoContainer>
         <Logo />
       </LogoContainer>
@@ -115,7 +129,7 @@ const SignUp = () => {
             height={42}
             bold={false}
             dark={false}
-            handleClick={() => handleSubmit}
+            handleClick={() => navigate('/landing')}
           />
           <Button
             label='회원가입'
