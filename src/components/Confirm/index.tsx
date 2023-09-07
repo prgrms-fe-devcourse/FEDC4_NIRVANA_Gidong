@@ -3,16 +3,24 @@ import Button from '../Button';
 import Link from '../Link';
 import { useState } from 'react';
 
+const DeemBackground = styled.div<{ disabled: boolean }>`
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme['black600']};
+  display: ${({ disabled }) => (disabled ? 'none' : 'flex')};
+  justify-content: center;
+  align-items: center;
+`;
+
 const ConfirmBackground = styled.div<{
-  disabled: boolean;
   width: number;
   height: number;
 }>`
-  display: ${({ disabled }) => (disabled ? 'none' : 'flex')};
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   background-color: ${({ theme }) => theme['white']};
   border-radius: 10px;
+  display: flex;
   flex-direction: column;
   align-items: center;
 `;
@@ -20,7 +28,7 @@ const ConfirmBackground = styled.div<{
 const IconWrapper = styled.div<{ emojiSize: number }>`
   width: 100%;
   height: 50%;
-  font-size: ${({ emojiSize }) => emojiSize}px;
+  font-size: ${({ emojiSize }) => emojiSize}rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +39,7 @@ const ContentWrapper = styled.div<{ contentFontSize: number }>`
   height: 50%;
   text-align: center;
   font-weight: bold;
-  font-size: ${({ contentFontSize }) => contentFontSize}px;
+  font-size: ${({ contentFontSize }) => contentFontSize}rem;
   position: relative;
 `;
 
@@ -61,40 +69,41 @@ const Alert = ({
   width = 330,
   height = 390,
   emoji,
-  emojiSize = 70,
+  emojiSize = 4.5,
   content,
-  contentFontSize = 16,
+  contentFontSize = 1,
   nextPageLink
 }: Partial<AlertProps>) => {
   const [disabled, setDisabled] = useState(false);
   return (
-    <ConfirmBackground
-      disabled={disabled}
-      width={width}
-      height={height}>
-      <IconWrapper emojiSize={emojiSize}>{emoji}</IconWrapper>
-      <ContentWrapper contentFontSize={contentFontSize}>
-        {content}
-        <NavButtonWrapper>
-          <Button
-            handleClick={() => setDisabled(true)}
-            width={120}
-            height={50}
-            dark={false}
-            bold={false}
-            label={'취소'}></Button>
-          <Link pageLink={nextPageLink}>
+    <DeemBackground disabled={disabled}>
+      <ConfirmBackground
+        width={width}
+        height={height}>
+        <IconWrapper emojiSize={emojiSize}>{emoji}</IconWrapper>
+        <ContentWrapper contentFontSize={contentFontSize}>
+          {content}
+          <NavButtonWrapper>
             <Button
+              handleClick={() => setDisabled(true)}
               width={120}
               height={50}
-              dark={true}
-              bold={true}
-              label={'확인'}
-            />
-          </Link>
-        </NavButtonWrapper>
-      </ContentWrapper>
-    </ConfirmBackground>
+              dark={false}
+              bold={false}
+              label={'취소'}></Button>
+            <Link pageLink={nextPageLink}>
+              <Button
+                width={120}
+                height={50}
+                dark={true}
+                bold={true}
+                label={'확인'}
+              />
+            </Link>
+          </NavButtonWrapper>
+        </ContentWrapper>
+      </ConfirmBackground>
+    </DeemBackground>
   );
 };
 export default Alert;
