@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
-const StyledNavLink = styled(NavLink)<{ size: string; color: string }>`
+const StyledNavLink = styled(NavLink)<{ size: number; color: string }>`
   color: ${({ theme, color }) => theme[color]};
   font-size: ${({ size }) => size}px;
   text-decoration: none;
@@ -15,14 +15,14 @@ const StyledNavLink = styled(NavLink)<{ size: string; color: string }>`
 interface LinkProps {
   children: React.ReactNode;
   pageLink: string;
-  size: string;
+  size: number;
   color: string;
 }
 
 const Link = ({
   children,
   pageLink,
-  size = '14',
+  size = 14,
   color = '#000'
 }: Partial<LinkProps>) => {
   return (
