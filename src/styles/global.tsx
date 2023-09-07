@@ -6,6 +6,8 @@ const style = css`
   }
   #root {
     font-family: 'Pretendard Variable', sans-serif;
+    width: 100vw;
+    height: 100vh;
   }
 `;
 const GlobalStyle = () => {
