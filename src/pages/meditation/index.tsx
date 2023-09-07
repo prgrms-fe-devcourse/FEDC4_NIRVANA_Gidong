@@ -8,8 +8,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 758px;
-  width: 390px;
+  height: 100%;
+  width: 100%;
   background: ${({ theme }) => theme['linearGradientPurple']};
 `;
 const Meditation = () => {
