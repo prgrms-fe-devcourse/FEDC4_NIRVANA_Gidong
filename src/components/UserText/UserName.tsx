@@ -1,5 +1,4 @@
-
-import { UserNameSpan } from './UserText.style';
+import { UserNameSpan } from './UserName.style';
 
 interface UserNameInfo {
   children: React.ReactNode;
