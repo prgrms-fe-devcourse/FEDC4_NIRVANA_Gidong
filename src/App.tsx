@@ -4,8 +4,7 @@ import LandingPage from './pages/landing';
 import Layout from './pages/layout';
 import Profile from './pages/profile';
 import SignUp from './pages/signup';
-import { QueryClientProvider } from 'react-query';
-import { queryClient } from './apis/queryClient';
+import { queryClient, QueryClientProvider } from './apis/queryClient';
 
 function App() {
   return (
@@ -17,6 +16,10 @@ function App() {
               <Route
                 path='/landing'
                 element={<LandingPage />}
+              />
+              <Route
+                path='/profile/:userId'
+                element={<Profile />}
               />
             </Route>
             <Route
