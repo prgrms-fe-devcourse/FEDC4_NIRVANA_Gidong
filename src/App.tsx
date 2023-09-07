@@ -3,6 +3,7 @@ import { RecoilRoot } from 'recoil';
 import LandingPage from './pages/landing';
 import Layout from './pages/layout';
 import Profile from './pages/profile';
+import SignUp from './pages/signup';
 import { queryClient, QueryClientProvider } from './apis/queryClient';
 
 function App() {
@@ -24,6 +25,14 @@ function App() {
             <Route
               path='/'
               element={<LandingPage />}
+            />
+            <Route
+              path='/signup'
+              element={<SignUp />}
+            />
+            <Route
+              path='/profile/:userId'
+              element={<Profile />}
             />
           </Routes>
         </RecoilRoot>

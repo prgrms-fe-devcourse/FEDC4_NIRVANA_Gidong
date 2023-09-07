@@ -9,7 +9,8 @@ const SignUpLabel = styled.label`
 `;
 
 const SignUpInput = styled.input`
-  width: 270px;
+  box-sizing: border-box;
+  width: 300px;
   height: 45px;
   padding-left: 10px;
   border: 0.5px solid #7e7e7e;
@@ -45,6 +46,7 @@ interface UserInputProps {
   successMessage: string;
   successColor: string;
   errorColor: string;
+  show: boolean;
 }
 
 const UserInput = ({
@@ -57,15 +59,17 @@ const UserInput = ({
   successMessage,
   successColor,
   errorColor,
+  show = false,
   handleChange
 }: Partial<UserInputProps>) => {
   return (
     <InputContainer>
       <SignUpLabel>
         {title}
-        {success ? (
+        {show && success && (
           <SignUpSuccess color={successColor}>{successMessage}</SignUpSuccess>
-        ) : (
+        )}
+        {show && !success && (
           <SignUpError color={errorColor}>{errorMessage}</SignUpError>
         )}
       </SignUpLabel>
