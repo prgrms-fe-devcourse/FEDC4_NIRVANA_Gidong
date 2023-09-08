@@ -6,11 +6,11 @@ interface ProfileTabsItemProps {
 
 export const ProfileTabsContainer = styled.div`
   display: flex;
-  height: 50px;
   margin-top: 10px;
 `;
 
 export const ProfileTabsItem = styled.div<ProfileTabsItemProps>`
+  height: 50px;
   border-bottom: 3px solid
     ${({ selected, theme }) =>
       selected ? theme['purpleVivid'] : 'transparent'};

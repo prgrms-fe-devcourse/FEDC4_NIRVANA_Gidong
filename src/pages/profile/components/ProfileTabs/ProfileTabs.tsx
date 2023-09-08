@@ -1,6 +1,7 @@
 import { ProfileTabsContainer, ProfileTabsItem } from './ProfileTabs.style';
-import { useTabs } from '../../hooks/useTabs';
 import { PROFILE_TABS } from '../../constants/profileTabs';
+import { useRecoilState } from 'recoil';
+import { selectedTabNameState } from '../../states/selectedTabName';
 
 interface Tab {
   tabName: string;
@@ -25,14 +26,16 @@ const ProfileTabs = ({
     { tabName: PROFILE_TABS.INFO, title: '명상정보' }
   ];
 
-  const [selectedTabName, handleTabClick] = useTabs(profileTabs);
+  const [selectedTabName, setSelectedTabName] =
+    useRecoilState(selectedTabNameState);
+
   return (
     <ProfileTabsContainer>
       {profileTabs?.map((tab) => (
         <ProfileTabsItem
           key={tab.tabName}
           selected={tab.tabName === selectedTabName}
-          onClick={() => handleTabClick(tab.tabName)}>
+          onClick={() => setSelectedTabName(tab.tabName)}>
           <strong>{tab.title}</strong>
         </ProfileTabsItem>
       ))}
