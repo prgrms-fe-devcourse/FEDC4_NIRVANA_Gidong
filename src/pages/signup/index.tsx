@@ -5,7 +5,7 @@ import UserInput from '@components/UserInput';
 import Alert from '@/components/Alert';
 import { isEmailOk, isNicknameOk, isPasswordOk } from './validations';
 import { signUpUser } from '@/apis/user/getUserData';
-import { USERINPUT } from './constants';
+import { USERINPUT, MODAL } from './constants';
 import {
   SignUpForm,
   ButtonContainer,
@@ -18,8 +18,9 @@ const SignUp = () => {
   const [email, setEmail] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<boolean>(false);
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
+  const [emailError, setEmailError] = useState<boolean>(false);
+  const [signupSuccess, setSignupSuccess] = useState<boolean>(false);
   const navigate = useNavigate();
   let timer = 0;
 
@@ -61,12 +62,10 @@ const SignUp = () => {
       password === passwordConfirm
     ) {
       signUpUser({ email, password, fullName: nickname })
-        .then(() => navigate('/login'))
-        // TODO: 회원가입 성공시 로그인 페이지로 이동할 수 있는 Alert
+        .then(() => setSignupSuccess(true))
         .catch((error) => {
           console.log(error);
-          setError(true);
-          // TODO: 이메일 중복 오류시 이메일 중복 오류 Alert
+          setEmailError(true);
         });
     }
 
@@ -75,10 +74,26 @@ const SignUp = () => {
 
   return (
     <SignUpContainer>
-      {error && <Alert />}
       <LogoContainer>
         <Logo />
       </LogoContainer>
+
+      {emailError && (
+        <Alert
+          emoji={MODAL.ERROR.EMOJI}
+          content={MODAL.ERROR.CONTENT}
+          buttonLabel={MODAL.ERROR.LABEL}
+        />
+      )}
+      {signupSuccess && (
+        <Alert
+          emoji={MODAL.SUCCESS.EMOJI}
+          content={MODAL.SUCCESS.CONTENT}
+          buttonLabel={MODAL.SUCCESS.LABEL}
+          nextPageLink='/login'
+        />
+      )}
+
       <SignUpForm onSubmit={handleSubmit}>
         <UserInput
           name={USERINPUT.EMAIL.NAME}

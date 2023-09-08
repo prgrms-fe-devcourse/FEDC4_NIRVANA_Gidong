@@ -31,4 +31,17 @@ const USERINPUT = {
   }
 };
 
-export { USERINPUT };
+const MODAL = {
+  ERROR: {
+    EMOJI: '🚨',
+    CONTENT: '이미 존재하는 이메일이에요!',
+    LABEL: '확인'
+  },
+  SUCCESS: {
+    EMOJI: '🥳',
+    CONTENT: '나르바나에 오신것을 환영해요!',
+    LABEL: '로그인하러가기'
+  }
+};
+
+export { USERINPUT, MODAL };
