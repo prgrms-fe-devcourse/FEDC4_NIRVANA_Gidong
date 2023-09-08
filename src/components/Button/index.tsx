@@ -1,10 +1,7 @@
 import styled from '@emotion/styled';
 
 const StyledButton = styled.button<
-  Pick<
-    ButtonProps,
-    'width' | 'height' | 'dark' | 'bold' | 'borderRadius' | 'fontSize'
-  >
+  Omit<ButtonProps, 'handleClick' | 'children'>
 >`
   cursor: pointer;
   width: ${({ width }) => width}px;
@@ -25,11 +22,11 @@ const StyledButton = styled.button<
 interface ButtonProps {
   width: number;
   height: number;
+  bold?: boolean;
   children?: React.ReactNode | string;
   dark?: boolean;
   label?: string;
   handleClick?: () => void;
-  bold: boolean;
   borderRadius?: number;
   fontSize?: number;
 }
