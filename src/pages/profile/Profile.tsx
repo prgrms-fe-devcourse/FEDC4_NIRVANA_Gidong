@@ -6,9 +6,10 @@ import {
   ProfilePage,
   ProfileBackgroundContainer
 } from './styles';
-import ProfileInfo from './components/ProfileInfo';
-import ProfileBackground from './components/ProfileBackground';
-import ProfileConfig from './components/ProfileConfig';
+import { ProfileInfo } from './components/ProfileInfo';
+import { ProfileBackground } from './components/ProfileBackground';
+import { ProfileConfig } from './components/ProfileConfig';
+import { ProfileNavigation } from './components/ProfileNavigation';
 
 const Profile = () => {
   // const { userId } = useParams<{ userId: string }>();
@@ -33,6 +34,7 @@ const Profile = () => {
           meditationStack={50}
         />
         <ProfileConfig />
+        <ProfileNavigation />
       </ProfileContainer>
     </ProfilePage>
   );

@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const ProfileConfigContainer = styled.div`
   height: 82px;
-  background-color: aquamarine;
 `;
 
 export const ProfileConfigButtonGroup = styled.div`

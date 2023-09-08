@@ -1,4 +1,4 @@
-import { ProfileBackgroundImg } from './styles';
+import { ProfileBackgroundImg } from './ProfileBackground.style';
 
 interface ProfileBackgroundProps {
   src: string;

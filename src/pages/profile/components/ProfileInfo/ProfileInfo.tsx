@@ -1,11 +1,11 @@
 import { Avatar } from '@/components/Avatar';
-import { StackBadge } from '@/components/Badge/StackBadge';
+import { StackBadge } from '@/components/Badge';
 import {
   ProfileInfoContainer,
   ProfileInfoNameAndBadge,
   ProfileAvatarContainer,
   ProfileEmailContainer
-} from './styles';
+} from './ProfileInfo.style';
 import { UserId, UserName } from '@/components/UserText';
 
 interface ProfileInfoProps {

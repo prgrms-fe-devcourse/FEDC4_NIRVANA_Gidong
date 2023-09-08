@@ -1,5 +1,8 @@
 import Button from '@/components/Button';
-import { ProfileConfigButtonGroup, ProfileConfigContainer } from './styles';
+import {
+  ProfileConfigButtonGroup,
+  ProfileConfigContainer
+} from './ProfileConfig.style';
 import Icon from '@/components/Icon';
 
 const ProfileConfig = () => {
