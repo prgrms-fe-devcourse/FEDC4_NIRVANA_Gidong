@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import { ProfileConfigButtonGroup, ProfileConfigContainer } from './styles';
+import Icon from '@/components/Icon';
 
 const ProfileConfig = () => {
   return (
@@ -8,25 +9,31 @@ const ProfileConfig = () => {
         <Button
           width={30}
           height={30}
-          dark={false}
           bold={true}
-          label='DM'
-          borderRadius={30}
-        />
+          borderRadius={30}>
+          <Icon
+            name='send'
+            size={20}
+            color='greyLight'
+          />
+        </Button>
         <Button
           width={30}
           height={30}
-          dark={false}
           bold={true}
-          label='설정'
-          borderRadius={30}
-        />
+          borderRadius={30}>
+          <Icon
+            name='settings'
+            size={20}
+            color='greyLight'
+          />
+        </Button>
         <Button
+          label='수정하기'
           width={68}
           height={30}
-          dark={false}
           bold={true}
-          label='수정하기'
+          fontSize={12}
           borderRadius={30}
         />
       </ProfileConfigButtonGroup>
