@@ -19,8 +19,8 @@ const SignUp = () => {
   const [nickname, setNickname] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
-  const [emailError, setEmailError] = useState<boolean>(false);
-  const [signupSuccess, setSignupSuccess] = useState<boolean>(false);
+  const [emailErrorCatched, setEmailErrorCatched] = useState<boolean>(false);
+  const [signupSucceed, setSignupSucceed] = useState<boolean>(false);
   const navigate = useNavigate();
   let timer = 0;
 
@@ -62,10 +62,10 @@ const SignUp = () => {
       password === passwordConfirm
     ) {
       signUpUser({ email, password, fullName: nickname })
-        .then(() => setSignupSuccess(true))
+        .then(() => setSignupSucceed(true))
         .catch((error) => {
           console.log(error);
-          setEmailError(true);
+          setEmailErrorCatched(true);
         });
     }
 
@@ -78,14 +78,14 @@ const SignUp = () => {
         <Logo />
       </LogoContainer>
 
-      {emailError && (
+      {emailErrorCatched && (
         <Alert
           emoji={MODAL.ERROR.EMOJI}
           content={MODAL.ERROR.CONTENT}
           buttonLabel={MODAL.ERROR.LABEL}
         />
       )}
-      {signupSuccess && (
+      {signupSucceed && (
         <Alert
           emoji={MODAL.SUCCESS.EMOJI}
           content={MODAL.SUCCESS.CONTENT}
