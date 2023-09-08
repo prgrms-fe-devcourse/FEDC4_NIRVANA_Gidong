@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 
-interface ProfileNavigationItemProps {
+interface ProfileTabsItemProps {
   selected: boolean;
 }
 
-export const ProfileNavigationContainer = styled.div`
+export const ProfileTabsContainer = styled.div`
   display: flex;
   height: 50px;
   margin-top: 10px;
 `;
 
-export const ProfileNavigationItem = styled.div<ProfileNavigationItemProps>`
+export const ProfileTabsItem = styled.div<ProfileTabsItemProps>`
   border-bottom: 3px solid
     ${({ selected, theme }) =>
       selected ? theme['purpleVivid'] : 'transparent'};

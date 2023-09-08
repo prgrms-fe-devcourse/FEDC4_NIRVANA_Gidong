@@ -1,7 +1,4 @@
-import {
-  ProfileNavigationContainer,
-  ProfileNavigationItem
-} from './ProfileTabs.style';
+import { ProfileTabsContainer, ProfileTabsItem } from './ProfileTabs.style';
 import { useTabs } from '../../hooks/useTabs';
 import { PROFILE_TABS } from '../../constants/profileTabs';
 
@@ -10,17 +7,17 @@ interface Tab {
   title: string;
 }
 
-interface ProfileNavigationProps {
+interface ProfileTabsProps {
   totalMeditation: number;
   totalFollowing: number;
   totalFollower: number;
 }
 
-const ProfileNavigation = ({
+const ProfileTabs = ({
   totalMeditation,
   totalFollowing,
   totalFollower
-}: ProfileNavigationProps) => {
+}: ProfileTabsProps) => {
   const profileTabs: Tab[] = [
     { tabName: PROFILE_TABS.MEDITATION, title: `${totalMeditation}번 명상` },
     { tabName: PROFILE_TABS.FOLLOWING, title: `${totalFollowing} 팔로잉` },
@@ -30,17 +27,17 @@ const ProfileNavigation = ({
 
   const [selectedTabName, handleTabClick] = useTabs(profileTabs);
   return (
-    <ProfileNavigationContainer>
+    <ProfileTabsContainer>
       {profileTabs?.map((tab) => (
-        <ProfileNavigationItem
+        <ProfileTabsItem
           key={tab.tabName}
           selected={tab.tabName === selectedTabName}
           onClick={() => handleTabClick(tab.tabName)}>
           <strong>{tab.title}</strong>
-        </ProfileNavigationItem>
+        </ProfileTabsItem>
       ))}
-    </ProfileNavigationContainer>
+    </ProfileTabsContainer>
   );
 };
 
-export default ProfileNavigation;
+export default ProfileTabs;
