@@ -5,7 +5,7 @@ import {
   ProfileContainer,
   ProfilePage,
   ProfileBackgroundContainer
-} from './styles';
+} from './Profile.style';
 import { ProfileInfo } from './components/ProfileInfo';
 import { ProfileBackground } from './components/ProfileBackground';
 import { ProfileConfig } from './components/ProfileConfig';
@@ -34,7 +34,11 @@ const Profile = () => {
           meditationStack={50}
         />
         <ProfileConfig />
-        <ProfileNavigation />
+        <ProfileNavigation
+          totalMeditation={10}
+          totalFollower={30}
+          totalFollowing={300}
+        />
       </ProfileContainer>
     </ProfilePage>
   );
