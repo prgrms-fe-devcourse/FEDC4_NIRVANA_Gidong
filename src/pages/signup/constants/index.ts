@@ -1,4 +1,4 @@
-const USERINPUT = {
+const USER_INPUT = {
   EMAIL: {
     NAME: 'email',
     PLACE_HOLDER: '이메일을 입력해주세요.',
@@ -44,4 +44,4 @@ const MODAL = {
   }
 };
 
-export { USERINPUT, MODAL };
+export { USER_INPUT, MODAL };
