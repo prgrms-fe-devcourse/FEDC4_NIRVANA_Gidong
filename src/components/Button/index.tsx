@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
-const StyledButton = styled.button<{
-  width: number;
-  height: number;
-  dark: boolean;
-  bold: boolean;
-}>`
+const StyledButton = styled.button<
+  Pick<
+    ButtonProps,
+    'width' | 'height' | 'dark' | 'bold' | 'borderRadius' | 'fontSize'
+  >
+>`
   cursor: pointer;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
@@ -15,34 +15,46 @@ const StyledButton = styled.button<{
     dark ? theme['purpleDark'] : theme['white']};
   color: ${({ theme, dark }) => (dark ? theme['white'] : theme['black'])};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
-  border-radius: 10px;
-  font-size: 1rem;
+  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : 10)}px;
+  font-size: ${({ fontSize }) => (fontSize ? fontSize : 16)}px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 interface ButtonProps {
   width: number;
   height: number;
-  dark: boolean;
+  children?: React.ReactNode | string;
+  dark?: boolean;
   label?: string;
   handleClick?: () => void;
   bold: boolean;
+  borderRadius?: number;
+  fontSize?: number;
 }
 
 const Button = ({
   width,
   height,
-  label,
+  children,
   handleClick,
+  label,
   dark,
-  bold
+  bold,
+  borderRadius,
+  fontSize
 }: ButtonProps) => (
   <StyledButton
     width={width}
     height={height}
     onClick={handleClick}
     dark={dark}
-    bold={bold}>
+    bold={bold}
+    borderRadius={borderRadius}
+    fontSize={fontSize}>
     {label}
+    {children}
   </StyledButton>
 );
 
