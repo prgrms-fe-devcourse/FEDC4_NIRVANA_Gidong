@@ -5,7 +5,7 @@ import UserInput from '@components/UserInput';
 import Alert from '@/components/Alert';
 import { isEmailOk, isNicknameOk, isPasswordOk } from './validations';
 import { signUpUser } from '@/apis/user/getUserData';
-import { USERINPUT } from './constants';
+import { USER_INPUT, MODAL } from './constants';
 import {
   SignUpForm,
   ButtonContainer,
@@ -18,8 +18,9 @@ const SignUp = () => {
   const [email, setEmail] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<boolean>(false);
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
+  const [emailErrorCatched, setEmailErrorCatched] = useState<boolean>(false);
+  const [signupSucceed, setSignupSucceed] = useState<boolean>(false);
   const navigate = useNavigate();
   let timer = 0;
 
@@ -61,12 +62,10 @@ const SignUp = () => {
       password === passwordConfirm
     ) {
       signUpUser({ email, password, fullName: nickname })
-        .then(() => navigate('/login'))
-        // TODO: 회원가입 성공시 로그인 페이지로 이동할 수 있는 Alert
+        .then(() => setSignupSucceed(true))
         .catch((error) => {
           console.log(error);
-          setError(true);
-          // TODO: 이메일 중복 오류시 이메일 중복 오류 Alert
+          setEmailErrorCatched(true);
         });
     }
 
@@ -75,50 +74,66 @@ const SignUp = () => {
 
   return (
     <SignUpContainer>
-      {error && <Alert />}
       <LogoContainer>
         <Logo />
       </LogoContainer>
+
+      {emailErrorCatched && (
+        <Alert
+          emoji={MODAL.ERROR.EMOJI}
+          content={MODAL.ERROR.CONTENT}
+          buttonLabel={MODAL.ERROR.LABEL}
+        />
+      )}
+      {signupSucceed && (
+        <Alert
+          emoji={MODAL.SUCCESS.EMOJI}
+          content={MODAL.SUCCESS.CONTENT}
+          buttonLabel={MODAL.SUCCESS.LABEL}
+          nextPageLink='/login'
+        />
+      )}
+
       <SignUpForm onSubmit={handleSubmit}>
         <UserInput
-          name={USERINPUT.EMAIL.NAME}
-          placeholder={USERINPUT.EMAIL.PLACE_HOLDER}
-          title={USERINPUT.EMAIL.TITLE}
+          name={USER_INPUT.EMAIL.NAME}
+          placeholder={USER_INPUT.EMAIL.PLACE_HOLDER}
+          title={USER_INPUT.EMAIL.TITLE}
           success={isEmailOk(email)}
-          errorMessage={USERINPUT.EMAIL.ERROR_MESSAGE}
-          successMessage={USERINPUT.EMAIL.SUCCESS_MESSAGE}
+          errorMessage={USER_INPUT.EMAIL.ERROR_MESSAGE}
+          successMessage={USER_INPUT.EMAIL.SUCCESS_MESSAGE}
           handleChange={handleInputChange}
           show={email.length > 0}
         />
         <UserInput
-          name={USERINPUT.NICKNAME.NAME}
-          placeholder={USERINPUT.NICKNAME.PLACE_HOLDER}
-          title={USERINPUT.NICKNAME.TITLE}
+          name={USER_INPUT.NICKNAME.NAME}
+          placeholder={USER_INPUT.NICKNAME.PLACE_HOLDER}
+          title={USER_INPUT.NICKNAME.TITLE}
           success={isNicknameOk(nickname)}
-          errorMessage={USERINPUT.NICKNAME.ERROR_MESSAGE}
-          successMessage={USERINPUT.NICKNAME.SUCCESS_MESSAGE}
+          errorMessage={USER_INPUT.NICKNAME.ERROR_MESSAGE}
+          successMessage={USER_INPUT.NICKNAME.SUCCESS_MESSAGE}
           handleChange={handleInputChange}
           show={nickname.length > 0}
         />
         <UserInput
-          name={USERINPUT.PASSWORD.NAME}
-          type={USERINPUT.PASSWORD.TYPE}
-          placeholder={USERINPUT.PASSWORD.PLACE_HOLDER}
-          title={USERINPUT.PASSWORD.TITLE}
+          name={USER_INPUT.PASSWORD.NAME}
+          type={USER_INPUT.PASSWORD.TYPE}
+          placeholder={USER_INPUT.PASSWORD.PLACE_HOLDER}
+          title={USER_INPUT.PASSWORD.TITLE}
           success={isPasswordOk(password)}
-          errorMessage={USERINPUT.PASSWORD.ERROR_MESSAGE}
-          successMessage={USERINPUT.PASSWORD.SUCCESS_MESSAGE}
+          errorMessage={USER_INPUT.PASSWORD.ERROR_MESSAGE}
+          successMessage={USER_INPUT.PASSWORD.SUCCESS_MESSAGE}
           handleChange={handleInputChange}
           show={password.length > 0}
         />
         <UserInput
-          name={USERINPUT.PASSWORD_CONFIRM.NAME}
-          type={USERINPUT.PASSWORD_CONFIRM.TYPE}
-          placeholder={USERINPUT.PASSWORD_CONFIRM.PLACE_HOLDER}
-          title={USERINPUT.PASSWORD_CONFIRM.TITLE}
+          name={USER_INPUT.PASSWORD_CONFIRM.NAME}
+          type={USER_INPUT.PASSWORD_CONFIRM.TYPE}
+          placeholder={USER_INPUT.PASSWORD_CONFIRM.PLACE_HOLDER}
+          title={USER_INPUT.PASSWORD_CONFIRM.TITLE}
           success={isPasswordOk(password) && password === passwordConfirm}
-          errorMessage={USERINPUT.PASSWORD_CONFIRM.ERROR_MESSAGE}
-          successMessage={USERINPUT.PASSWORD_CONFIRM.SUCCESS_MESSAGE}
+          errorMessage={USER_INPUT.PASSWORD_CONFIRM.ERROR_MESSAGE}
+          successMessage={USER_INPUT.PASSWORD_CONFIRM.SUCCESS_MESSAGE}
           handleChange={handleInputChange}
           show={passwordConfirm.length > 0}
         />
