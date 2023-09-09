@@ -1,3 +1,4 @@
-import ProfileNavigation from './ProfileTabs';
+import ProfileTabs from './ProfileTabs';
+import ProfileTabItem from './ProfileTabItem';
 
-export { ProfileNavigation };
+export { ProfileTabs, ProfileTabItem };
