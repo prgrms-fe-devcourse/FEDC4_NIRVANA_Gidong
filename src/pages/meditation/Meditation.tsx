@@ -1,18 +1,9 @@
-import styled from '@emotion/styled';
 import MeditationTimer from '@pages/meditation/components/MeditationTimer';
 import MeditationCounter from '@pages/meditation/components/MeditaionCounter';
 import MeditationLabel from '@pages/meditation/components/MeditationLabel';
+import { Container } from '@pages/meditation/Meditation.style';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  background: ${({ theme }) => theme['linearGradientPurple']};
-`;
-const Meditation = () => {
+export const Meditation = () => {
   return (
     <>
       <Container>
@@ -23,5 +14,3 @@ const Meditation = () => {
     </>
   );
 };
-
-export default Meditation;
