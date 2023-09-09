@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 import Icon from '@components/Icon';
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { meditationTime } from '@pages/meditation/components/MeditationTimer';
+import { useState, useEffect } from 'react';
+
+const FIVE_MINUTES_IN_SECONDS = 300;
+const BUTTON_SIZE = 90;
 
 const CounterContainer = styled.div`
   display: flex;
@@ -20,8 +25,6 @@ const CounterText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 5px;
-  padding-right: 5px;
 `;
 
 const SetTimeButton = styled.button`
@@ -30,27 +33,57 @@ const SetTimeButton = styled.button`
   outline: none;
   cursor: pointer;
 `;
+
 const MeditationCounter = () => {
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useRecoilState(meditationTime);
+  const [timerStarted, setTimerStarted] = useState(false);
+
+  useEffect(() => {
+    const handleStartMeditation = () => {
+      setTimerStarted(true);
+    };
+
+    document.addEventListener('START-MEDITATION', handleStartMeditation);
+
+    return () => {
+      document.removeEventListener('START-MEDITATION', handleStartMeditation);
+    };
+  }, []);
+
+  const handleTime = (buttonType: string) => {
+    if (time === 0 && buttonType === 'sub') {
+      return;
+    } else {
+      if (buttonType === 'add') {
+        setTime(time + FIVE_MINUTES_IN_SECONDS);
+      } else {
+        setTime(time - FIVE_MINUTES_IN_SECONDS);
+      }
+    }
+  };
 
   return (
-    <CounterContainer>
-      <SetTimeButton onClick={() => setTime(time - 5)}>
-        <Icon
-          name={'chevron_left'}
-          size={100}
-          color={'white'}
-        />
-      </SetTimeButton>
-      <CounterText>{`${time} 분`}</CounterText>
-      <SetTimeButton onClick={() => setTime(time + 5)}>
-        <Icon
-          name={'chevron_right'}
-          size={100}
-          color={'white'}
-        />
-      </SetTimeButton>
-    </CounterContainer>
+    <>
+      {!timerStarted && (
+        <CounterContainer>
+          <SetTimeButton onClick={() => handleTime('sub')}>
+            <Icon
+              name={'chevron_left'}
+              size={BUTTON_SIZE}
+              color={'white'}
+            />
+          </SetTimeButton>
+          <CounterText>{`${time / 60} 분`}</CounterText>
+          <SetTimeButton onClick={() => handleTime('add')}>
+            <Icon
+              name={'chevron_right'}
+              size={BUTTON_SIZE}
+              color={'white'}
+            />
+          </SetTimeButton>
+        </CounterContainer>
+      )}
+    </>
   );
 };
 
