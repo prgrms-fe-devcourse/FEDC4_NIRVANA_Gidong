@@ -7,6 +7,8 @@ export const ProfilePage = styled.div`
 `;
 
 export const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   flex-grow: 1;
   padding: 0 26px;

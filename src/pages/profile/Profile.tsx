@@ -9,7 +9,9 @@ import {
 import { ProfileInfo } from './components/ProfileInfo';
 import { ProfileBackground } from './components/ProfileBackground';
 import { ProfileConfig } from './components/ProfileConfig';
-import { ProfileNavigation } from './components/ProfileNavigation';
+import { ProfileTabs, ProfileTabItem } from './components/ProfileTabs';
+import { ProfileCarousel } from './components/ProfileCarousel';
+import { PROFILE_TABS } from './constants/profileTabs';
 
 const Profile = () => {
   // const { userId } = useParams<{ userId: string }>();
@@ -34,11 +36,25 @@ const Profile = () => {
           meditationStack={50}
         />
         <ProfileConfig />
-        <ProfileNavigation
-          totalMeditation={10}
-          totalFollower={30}
-          totalFollowing={300}
-        />
+        <ProfileTabs>
+          <ProfileTabItem
+            title={`50번 ${PROFILE_TABS.MEDITATION}`}
+            index={0}
+          />
+          <ProfileTabItem
+            title={`50번 ${PROFILE_TABS.FOLLOWER}`}
+            index={1}
+          />
+          <ProfileTabItem
+            title={`50번 ${PROFILE_TABS.FOLLOWING}`}
+            index={2}
+          />
+          <ProfileTabItem
+            title={`${PROFILE_TABS.INFO}`}
+            index={3}
+          />
+        </ProfileTabs>
+        <ProfileCarousel totalIndex={PROFILE_TABS.TOTAL_INDEX} />
       </ProfileContainer>
     </ProfilePage>
   );
