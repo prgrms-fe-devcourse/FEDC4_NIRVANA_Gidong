@@ -5,6 +5,7 @@ import Layout from './pages/layout';
 import Profile from './pages/profile';
 import SignUp from './pages/signup';
 import LogIn from './pages/login';
+import Meditation from './pages/meditation';
 import { queryClient, QueryClientProvider } from './apis/queryClient';
 
 function App() {
@@ -15,8 +16,8 @@ function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route
-                path='/landing'
-                element={<LandingPage />}
+                path='/meditation'
+                element={<Meditation />}
               />
               <Route
                 path='/profile/:userId'
