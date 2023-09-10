@@ -1,20 +1,49 @@
-import styled from '@emotion/styled';
 import { FollowUserItem } from '../FollowUserItem';
 
-const FollowUserListLayout = styled.div``;
+const dumyData = [
+  {
+    _id: '1234',
+    fullName: '물푸른',
+    isOnline: true,
+    email: 'bluewater@naver.com',
+    image: 'https://picsum.photos/200/300'
+  },
+  {
+    _id: '12345',
+    fullName: '수연조',
+    isOnline: false,
+    email: 'suyeon@naver.com',
+    image: 'https://picsum.photos/200/300'
+  }
+];
 
-interface FollowUserList {
-  following: boolean;
+interface Data {
+  _id: string;
+  fullName: string;
+  isOnline: boolean;
+  email: string;
+  image: string;
 }
 
-const FollowUserList = ({ following = true }) => {
+interface FollowUserListProps {
+  following: boolean;
+  data?: Data[];
+}
+
+const FollowUserList = ({
+  following,
+  data = dumyData
+}: FollowUserListProps) => {
   return (
-    <FollowUserListLayout>
-      <FollowUserItem />
-      <FollowUserItem />
-      <FollowUserItem />
-      <FollowUserItem />
-    </FollowUserListLayout>
+    <div>
+      {data.map((element) => (
+        <FollowUserItem
+          data={element}
+          key={element._id}
+          following={following}
+        />
+      ))}
+    </div>
   );
 };
 export default FollowUserList;

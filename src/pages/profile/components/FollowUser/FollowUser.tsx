@@ -3,6 +3,7 @@ import { UserId, UserName } from '@/components/UserText';
 import { BadgeAvatar } from '@/components/Avatar';
 
 interface UserData {
+  _id: string;
   image: string;
   fullName: string;
   isOnline: boolean;
