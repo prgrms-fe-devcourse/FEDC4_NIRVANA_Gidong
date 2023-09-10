@@ -2,18 +2,24 @@ import { FollowUserItemLayout } from './FollowUserItem.style';
 import { FollowUser } from '../FollowUser';
 import { FollowButton } from '../FollowButton';
 
-const FollowUserItem = () => {
+// TODO : follow, following logic 추가될 예정
+
+interface FollowUserItemProps {
+  data: {
+    _id: string;
+    fullName: string;
+    isOnline: boolean;
+    email: string;
+    image: string;
+  };
+  following: boolean;
+}
+
+const FollowUserItem = ({ data, following }: FollowUserItemProps) => {
   return (
     <FollowUserItemLayout>
-      <FollowUser
-        userData={{
-          image: 'https://picsum.photos/200/300',
-          fullName: '물푸른',
-          isOnline: true,
-          email: 'blueWater@naver.com'
-        }}
-      />
-      <FollowButton />
+      <FollowUser userData={data} />
+      {following && <FollowButton />}
     </FollowUserItemLayout>
   );
 };
