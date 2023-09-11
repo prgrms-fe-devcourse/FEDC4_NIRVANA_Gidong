@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-export const ProfileConfigContainer = styled.div`
+export const ProfileHeaderSection = styled.div`
   height: 82px;
 `;
 
-export const ProfileConfigButtonGroup = styled.div`
+export const ProfileHeaderButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-top: 10px;

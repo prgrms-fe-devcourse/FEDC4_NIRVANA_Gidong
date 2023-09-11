@@ -1,14 +1,14 @@
 import { Button } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import {
-  ProfileConfigButtonGroup,
-  ProfileConfigContainer
-} from './ProfileConfig.style';
+  ProfileHeaderButtonContainer,
+  ProfileHeaderSection
+} from './ProfileHeader.style';
 
-const ProfileConfig = () => {
+const ProfileHeader = () => {
   return (
-    <ProfileConfigContainer>
-      <ProfileConfigButtonGroup>
+    <ProfileHeaderSection>
+      <ProfileHeaderButtonContainer>
         <Button
           width={30}
           height={30}
@@ -39,9 +39,9 @@ const ProfileConfig = () => {
           fontSize={12}
           borderRadius={30}
         />
-      </ProfileConfigButtonGroup>
-    </ProfileConfigContainer>
+      </ProfileHeaderButtonContainer>
+    </ProfileHeaderSection>
   );
 };
 
-export default ProfileConfig;
+export default ProfileHeader;

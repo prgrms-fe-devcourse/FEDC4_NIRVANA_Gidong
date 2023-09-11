@@ -8,7 +8,7 @@ import {
 } from './Profile.style';
 import { ProfileInfo } from './components/ProfileInfo';
 import { ProfileCover } from './components/ProfileBackground';
-import { ProfileConfig } from './components/ProfileConfig';
+import { ProfileHeader } from './components/ProfileHeader';
 import { ProfileTabs, ProfileTabItem } from './components/ProfileTabs';
 import { ProfileCarousel } from './components/ProfileCarousel';
 import { PROFILE_TABS } from './constants/profileTabs';
@@ -35,7 +35,7 @@ const Profile = () => {
           avatarImgSrc='https://avatars.githubusercontent.com/u/76855211?v=4'
           meditationStack={50}
         />
-        <ProfileConfig />
+        <ProfileHeader />
         <ProfileTabs>
           <ProfileTabItem
             title={`50 ${PROFILE_TABS.MEDITATION}`}
