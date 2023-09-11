@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@components/Button';
 import UserInput from '@components/UserInput';
-import Alert from '@/components/Alert';
+import { Alert } from '@/components/Alert';
 import { isEmailOk, isNicknameOk, isPasswordOk } from './validations';
 import { signUpUser } from '@/apis/user/getUserData';
 import { USER_INPUT, MODAL } from './constants';
