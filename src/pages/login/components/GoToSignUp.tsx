@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import Link from '@/components/Link';
-import Icon from '@/components/Icon';
+import { Link } from '@components/Link';
+import { Icon } from '@components/Icon';
 import { MESSAGE, LABEL } from '../constants';
 
 const GoToSignUpContainer = styled.div`

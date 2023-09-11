@@ -3,8 +3,8 @@ import { useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { logInUser } from '@/apis/user/getUserData';
 import { userState } from '@/states/userState';
-import Button from '@components/Button';
-import UserInput from '@components/UserInput';
+import { Button } from '@components/Button';
+import { UserInput } from '@components/UserInput';
 import { USER_INPUT } from './constants';
 import { GoToSignUp } from './components';
 import {
@@ -72,14 +72,14 @@ const Login = () => {
           title={USER_INPUT.EMAIL.TITLE}
           handleChange={handleInputChange}
           show={errorCatched}
-          errorMessage='이메일 또는 비밀번호를 확인해주세요.'
+          errorMessage={USER_INPUT.ERROR_MESSAGE}
         />
         <UserInput
           name={USER_INPUT.PASSWORD.NAME}
           placeholder={USER_INPUT.PASSWORD.PLACE_HOLDER}
           title={USER_INPUT.PASSWORD.TITLE}
           handleChange={handleInputChange}
-          type='password'
+          type={USER_INPUT.PASSWORD.TYPE}
         />
         <ButtonContainer>
           <Button
