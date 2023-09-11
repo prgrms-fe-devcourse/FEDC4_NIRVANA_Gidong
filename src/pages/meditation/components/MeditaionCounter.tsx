@@ -17,15 +17,18 @@ const CounterContainer = styled.div`
   justify-content: space-between;
   width: 300px;
   height: 100px;
-  color: ${({ theme }) => theme['white']};
+  color: ${({ theme }) => theme.color.white};
   font-size: 2rem;
 `;
 
 const CounterText = styled.div`
+  ${({ theme }) => theme.style.flexCenter};
+  background: none;
   width: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border: none;
+  outline: none;
+  padding-left: 5px;
+  padding-right: 5px;
 `;
 
 const SetTimeButton = styled.button`
@@ -36,7 +39,7 @@ const SetTimeButton = styled.button`
 `;
 
 const MeditationCounter = () => {
-  const [time, setTime] = useRecoilState(meditationTime);
+  const [time, setTime] = useRecoilState<number>(meditationTime);
   const [timerStarted, setTimerStarted] = useState(false);
   const [timerEnded, setTimerEnded] = useState(false);
 

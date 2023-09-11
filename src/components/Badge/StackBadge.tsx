@@ -7,3 +7,5 @@ interface StackBadgeProps {
 export const StackBadge = ({ stack }: StackBadgeProps) => {
   return <StackBadgeContainer>+{stack}D</StackBadgeContainer>;
 };
+
+export default StackBadge;

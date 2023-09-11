@@ -5,20 +5,16 @@ import formatTime from '@utils/formatTime';
 import Icon from '@components/Icon';
 
 const TimerContainer = styled.div`
-  display: flex;
+  ${({ theme }) => theme.style.flexCenter};
   width: 170px;
   height: 170px;
   border-radius: 50%;
-  background: ${({ theme }) => theme['linearGradientPurpleVivid']};
-  justify-content: center;
-  align-items: center;
+  background: ${({ theme }) => theme.color.linearGradientPurpleVivid};
   margin-top: 100px;
 `;
 
 const TimerElement = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.style.flexCenter};
   border: none;
   outline: none;
   cursor: pointer;
@@ -26,7 +22,7 @@ const TimerElement = styled.button`
   height: 150px;
   border-radius: 50%;
   background-color: #211730;
-  color: ${({ theme }) => theme['white']};
+  color: ${({ theme }) => theme.color.white};
   font-size: 1.5rem;
   font-weight: bold;
   &:hover {

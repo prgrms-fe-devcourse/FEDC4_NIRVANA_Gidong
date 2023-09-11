@@ -1,6 +1,11 @@
-import { HeaderLayout, Logo, LeftLayout, RightLayout } from './Header.style';
-import Icon from '@components/Icon';
-import Link from '@components/Link';
+import {
+  HeaderSection,
+  Logo,
+  LeftContainer,
+  RightContainer
+} from './Header.style';
+import { Icon } from '@components/Icon';
+import { Link } from '@components/Link';
 import { DotBadge } from '@components/Badge';
 
 interface HeaderProps {
@@ -9,8 +14,8 @@ interface HeaderProps {
 
 const Header = ({ backLink }: HeaderProps) => {
   return (
-    <HeaderLayout>
-      <LeftLayout>
+    <HeaderSection>
+      <LeftContainer>
         {backLink ? (
           <Link pageLink=''>
             <Icon
@@ -22,8 +27,8 @@ const Header = ({ backLink }: HeaderProps) => {
         ) : (
           <Logo />
         )}
-      </LeftLayout>
-      <RightLayout>
+      </LeftContainer>
+      <RightContainer>
         <DotBadge
           dot={true}
           color='orange'
@@ -46,8 +51,8 @@ const Header = ({ backLink }: HeaderProps) => {
             size={23}
           />
         </Link>
-      </RightLayout>
-    </HeaderLayout>
+      </RightContainer>
+    </HeaderSection>
   );
 };
 

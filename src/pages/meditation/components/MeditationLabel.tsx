@@ -7,9 +7,8 @@ import {
 } from '@pages/meditation/constants/meditation';
 
 const StyledMeditationLabel = styled.div`
-  display: flex;
-  justify-content: center;
-  color: ${({ theme }) => theme['white']};
+  ${({ theme }) => theme.style.flexJustifyCenter};
+  color: ${({ theme }) => theme.color.white};
   font-size: 1.2rem;
 `;
 

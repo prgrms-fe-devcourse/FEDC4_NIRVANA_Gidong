@@ -4,8 +4,9 @@ import LandingPage from './pages/landing';
 import Layout from './pages/layout';
 import Profile from './pages/profile';
 import SignUp from './pages/signup';
+import LogIn from './pages/login';
+import Meditation from './pages/meditation';
 import { queryClient, QueryClientProvider } from './apis/queryClient';
-import Meditation from '@pages/meditation';
 
 function App() {
   return (
@@ -32,8 +33,8 @@ function App() {
               element={<SignUp />}
             />
             <Route
-              path='/profile/:userId'
-              element={<Profile />}
+              path='/login'
+              element={<LogIn />}
             />
           </Routes>
         </RecoilRoot>
