@@ -23,6 +23,7 @@ const Logo = () => {
 
 const SignUpContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
+
   flex-direction: column;
   width: 100vw;
   height: 100vh;
