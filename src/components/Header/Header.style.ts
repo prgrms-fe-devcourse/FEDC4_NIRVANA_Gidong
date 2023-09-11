@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import logo from '@assets/logo.svg';
 
-export const HeaderLayout = styled.header`
+export const HeaderContainer = styled.header`
   height: 50px;
   background-color: ${({ theme }) => theme.purpleDark};
   display: flex;
@@ -18,11 +18,11 @@ export const Logo = styled.h1`
   height: 17px;
 `;
 
-export const LeftLayout = styled.div`
+export const LeftContainer = styled.div`
   display: flex;
   align-items: center;
 `;
-export const RightLayout = styled.div`
+export const RightContainer = styled.div`
   display: flex;
   align-items: center;
 
