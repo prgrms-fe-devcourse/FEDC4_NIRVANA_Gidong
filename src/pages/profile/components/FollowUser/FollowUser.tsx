@@ -1,34 +1,29 @@
-import { FollowUserLayout } from './FollowUser.style';
-import { UserId, UserName } from '@components/UserText';
-import { BadgeAvatar } from '@components/Avatar';
+import { Button as FollowButton } from '@components/Button';
+import { FollowUserContainer } from './FollowUser.style';
+import { FollowUserInfo } from '../FollowUserInfo';
+import { FollowUserData } from '../../types';
 
-interface UserData {
-  _id: string;
-  image: string;
-  fullName: string;
-  isOnline: boolean;
-  email: string;
+// TODO : follow, following logic 추가될 예정
+
+interface FollowUserItemProps {
+  data: FollowUserData;
+  following: boolean;
 }
 
-interface FollowUserProps {
-  userData: UserData;
-}
-
-const FollowUser = ({ userData }: FollowUserProps) => {
-  const { fullName, email, isOnline, image } = userData;
-
+const FollowUserItem = ({ data, following }: FollowUserItemProps) => {
   return (
-    <FollowUserLayout>
-      <BadgeAvatar
-        alt={fullName}
-        src={image}
-        size={39}
-        online={isOnline}
-      />
-      <UserId email={email} />
-      <UserName>{fullName}</UserName>
-    </FollowUserLayout>
+    <FollowUserContainer>
+      <FollowUserInfo userData={data} />
+      {following && (
+        <FollowButton
+          width={68}
+          height={30}
+          label='팔로우'
+          dark={true}
+          bold={true}
+        />
+      )}
+    </FollowUserContainer>
   );
 };
-
-export default FollowUser;
+export default FollowUserItem;
