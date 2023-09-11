@@ -18,6 +18,7 @@ import {
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [errorCatched, setErrorCatched] = useState<boolean>(false);
   const setUser = useSetRecoilState(userState);
   const navigate = useNavigate();
   let timer = 0;
@@ -45,11 +46,16 @@ const Login = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    logInUser({ email, password }).then((res) => {
-      const { user } = res.data;
-      setUser(user);
-      navigate('/meditation');
-    });
+    logInUser({ email, password })
+      .then((res) => {
+        const { user } = res.data;
+        setUser(user);
+        navigate('/meditation');
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorCatched(true);
+      });
     return;
   };
 
@@ -65,6 +71,8 @@ const Login = () => {
           placeholder={USER_INPUT.EMAIL.PLACE_HOLDER}
           title={USER_INPUT.EMAIL.TITLE}
           handleChange={handleInputChange}
+          show={errorCatched}
+          errorMessage='이메일 또는 비밀번호를 확인해주세요.'
         />
         <UserInput
           name={USER_INPUT.PASSWORD.NAME}
