@@ -1,6 +1,6 @@
 import { HeaderLayout, Logo, LeftLayout, RightLayout } from './Header.style';
-import Icon from '@components/Icon';
-import Link from '@components/Link';
+import { Icon } from '@components/Icon';
+import { Link } from '@components/Link';
 import { DotBadge } from '@components/Badge';
 
 interface HeaderProps {

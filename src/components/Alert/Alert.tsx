@@ -6,8 +6,8 @@ import {
   ContentWrapper,
   NavButtonWrapper
 } from './Alert.style';
-import Button from '../Button';
-import Link from '../Link';
+import { Button } from '../Button';
+import { Link } from '../Link';
 
 interface AlertProps {
   width: number;
