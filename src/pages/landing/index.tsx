@@ -6,7 +6,7 @@ import {
   Heading,
   PreviewLink,
   PreviewSpan,
-  LinkLayout
+  LinkContainer
 } from './style';
 
 const LandingPage = () => {
@@ -26,7 +26,7 @@ const LandingPage = () => {
             color='white'></Icon>
         </Link>
       </PreviewLink>
-      <LinkLayout>
+      <LinkContainer>
         <Link
           pageLink='/login'
           size={16}
@@ -53,7 +53,7 @@ const LandingPage = () => {
             bold={false}
           />
         </Link>
-      </LinkLayout>
+      </LinkContainer>
     </LandingMain>
   );
 };

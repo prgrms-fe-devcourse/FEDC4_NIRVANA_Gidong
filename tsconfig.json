@@ -16,7 +16,6 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./src/styles/*"],
@@ -25,7 +24,8 @@
       "@assets/*": ["./src/assets/*"],
       "@types/*": ["./src/types/*"],
       "@constants/*": ["./src/constants/*"],
-      "@colors/*": ["./src/colors/*"]
+      "@colors/*": ["./src/colors/*"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
