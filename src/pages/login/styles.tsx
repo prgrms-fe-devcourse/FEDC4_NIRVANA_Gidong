@@ -21,9 +21,8 @@ const Logo = () => {
   );
 };
 
-const SignUpContainer = styled.div`
+const LoginContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
-
   flex-direction: column;
   width: 100vw;
   height: 100vh;
@@ -31,23 +30,22 @@ const SignUpContainer = styled.div`
   background: ${({ theme }) => theme.color.linearGradientPurple};
 `;
 
-const SignUpForm = styled.form`
+const LoginForm = styled.form`
+  background-color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.style.flexCenter};
   flex-direction: column;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.color.white};
-  width: 325px;
-  height: 485px;
+  width: 330px;
+  height: 390px;
   padding: 25px 20px;
   border: 1px solid purple;
   border-radius: 10px;
 `;
 
 const ButtonContainer = styled.div`
-  display: flex;
-  width: 270px;
-  justify-content: space-between;
+  ${({ theme }) => theme.style.flexJustifyCenter};
+  width: 300px;
   margin-top: 15px;
 `;
 
-export { SignUpForm, ButtonContainer, SignUpContainer, LogoContainer, Logo };
+export { LoginForm, ButtonContainer, LoginContainer, LogoContainer, Logo };

@@ -1,5 +1,5 @@
-import Icon from '../Icon';
-import Link from '../Link';
+import { Icon } from '../Icon';
+import { Link } from '../Link';
 import { StyledFooter } from './Footer.style';
 
 const iconInfos = [

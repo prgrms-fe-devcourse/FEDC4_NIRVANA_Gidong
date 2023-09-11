@@ -13,11 +13,8 @@ export const ProfileAvatarContainer = styled.div`
 `;
 
 export const ProfileInfoNameAndBadge = styled.div`
-  > span {
-    margin-right: 3px;
-  }
-  display: flex;
-  align-items: center;
+  ${({ theme }) => theme.style.flexAlignCenter};
+  justify-content: space-between;
 `;
 
 export const ProfileEmailContainer = styled.div``;

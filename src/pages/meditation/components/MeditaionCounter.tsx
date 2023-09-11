@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Icon from '@components/Icon';
+import { Icon } from '@components/Icon';
 import { useState } from 'react';
 
 const CounterContainer = styled.div`
@@ -8,18 +8,16 @@ const CounterContainer = styled.div`
   justify-content: space-between;
   width: 300px;
   height: 100px;
-  color: ${({ theme }) => theme['white']};
+  color: ${({ theme }) => theme.color.white};
   font-size: 2rem;
 `;
 
 const CounterText = styled.div`
+  ${({ theme }) => theme.style.flexCenter};
   background: none;
   width: 120px;
   border: none;
   outline: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-left: 5px;
   padding-right: 5px;
 `;

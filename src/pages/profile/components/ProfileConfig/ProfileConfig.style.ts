@@ -9,7 +9,13 @@ export const ProfileConfigButtonGroup = styled.div`
   justify-content: flex-end;
   padding-top: 10px;
   > button {
+    ${({ theme }) => theme.style.flexCenter};
     margin-right: 6px;
+    &:first-child {
+      > span {
+        margin-left: 3px;
+      }
+    }
     &:last-child {
       margin-right: 0;
     }

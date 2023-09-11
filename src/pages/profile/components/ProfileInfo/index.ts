@@ -1,3 +1,3 @@
-import ProfileInfo from './profileInfo';
+import ProfileInfo from './ProfileInfo';
 
 export { ProfileInfo };
