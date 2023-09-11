@@ -9,11 +9,6 @@ const style = css`
     width: 100vw;
     height: 100vh;
   }
-
-  button {
-    border: none;
-    outline: none;
-  }
 `;
 const GlobalStyle = () => {
   return <Global styles={style} />;
