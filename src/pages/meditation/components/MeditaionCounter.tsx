@@ -19,10 +19,7 @@ const CounterContainer = styled.div`
 `;
 
 const CounterText = styled.div`
-  background: none;
   width: 120px;
-  border: none;
-  outline: none;
   display: flex;
   justify-content: center;
   align-items: center;
