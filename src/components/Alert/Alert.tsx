@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import {
-  DeemBackground,
-  AlertBackground,
-  IconWrapper,
-  ContentWrapper,
-  NavButtonWrapper
+  StyledDeemBackground,
+  StyledAlertBackground,
+  IconContainer,
+  ContentContainer,
+  NavButtonContainer
 } from './Alert.style';
 import { Button } from '../Button';
 import { Link } from '../Link';
@@ -33,14 +33,14 @@ const Alert = ({
   const [disabled, setDisabled] = useState(false);
 
   return (
-    <DeemBackground disabled={disabled}>
-      <AlertBackground
+    <StyledDeemBackground disabled={disabled}>
+      <StyledAlertBackground
         width={width}
         height={height}>
-        <IconWrapper emojiSize={emojiSize}>{emoji}</IconWrapper>
-        <ContentWrapper contentFontSize={contentFontSize}>
+        <IconContainer emojiSize={emojiSize}>{emoji}</IconContainer>
+        <ContentContainer contentFontSize={contentFontSize}>
           {content}
-          <NavButtonWrapper onClick={() => setDisabled(true)}>
+          <NavButtonContainer onClick={() => setDisabled(true)}>
             {nextPageLink ? (
               <Link pageLink={nextPageLink}>
                 <Button
@@ -60,10 +60,10 @@ const Alert = ({
                 label={buttonLabel}
               />
             )}
-          </NavButtonWrapper>
-        </ContentWrapper>
-      </AlertBackground>
-    </DeemBackground>
+          </NavButtonContainer>
+        </ContentContainer>
+      </StyledAlertBackground>
+    </StyledDeemBackground>
   );
 };
 export default Alert;
