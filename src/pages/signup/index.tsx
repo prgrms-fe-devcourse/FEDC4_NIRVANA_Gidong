@@ -144,7 +144,7 @@ const SignUp = () => {
             height={42}
             bold={false}
             dark={false}
-            handleClick={() => navigate('/landing')}
+            handleClick={() => navigate('/')}
           />
           <Button
             label='회원가입'
