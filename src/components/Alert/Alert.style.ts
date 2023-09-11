@@ -55,8 +55,5 @@ export const ContentContainer = styled.div<ContentContainerProps>`
 `;
 
 export const NavButtonContainer = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  ${({ theme }) => theme.style.absoluteCenter}
 `;
