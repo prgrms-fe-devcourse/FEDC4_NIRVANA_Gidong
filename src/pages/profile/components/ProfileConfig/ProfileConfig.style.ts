@@ -11,7 +11,7 @@ export const ProfileConfigButtonGroup = styled.div`
   > button {
     ${({ theme }) => theme.style.flexCenter};
     margin-right: 6px;
-    &:first-child {
+    &:first-of-type {
       > span {
         margin-left: 3px;
       }
