@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Button from '@components/Button';
-import UserInput from '@components/UserInput';
+import { Button } from '@components/Button';
+import { UserInput } from '@components/UserInput';
 import { USER_INPUT } from './constants';
 import { GoToSignUp } from './components';
 import {
