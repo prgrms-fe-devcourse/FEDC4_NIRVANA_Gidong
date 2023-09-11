@@ -16,5 +16,5 @@ export const StyledButton = styled.button<{
   color: ${({ theme, dark }) => (dark ? theme['white'] : theme['black'])};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 16px;
 `;
