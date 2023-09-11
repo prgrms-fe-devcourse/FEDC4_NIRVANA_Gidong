@@ -26,13 +26,13 @@ const Profile = () => {
   return (
     <ProfilePage>
       <ProfileCoverImageContainer>
-        <ProfileCover src='https://www.programiz.com/blog/content/images/2022/03/Banner-Image-1.png' />
+        <ProfileCover src={isLoading ? '' : data.cover} />
       </ProfileCoverImageContainer>
       <ProfileInfoContainer>
         <ProfileInfo
-          email='test@email.com'
-          fullName='testMan'
-          avatarImgSrc='https://avatars.githubusercontent.com/u/76855211?v=4'
+          email={isLoading ? '' : data.email}
+          fullName={isLoading ? '' : data.fullName}
+          avatarImgSrc={isLoading ? '' : data.image}
           meditationStack={50}
         />
         <ProfileHeader />
