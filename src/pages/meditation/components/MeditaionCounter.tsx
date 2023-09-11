@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Icon from '@components/Icon';
+import { Icon } from '@components/Icon';
 import { useState } from 'react';
 
 const CounterContainer = styled.div`
