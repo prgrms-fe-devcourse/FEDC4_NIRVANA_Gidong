@@ -3,6 +3,7 @@ import Icon from '@components/Icon';
 import { useRecoilState } from 'recoil';
 import { meditationTime } from '@pages/meditation/components/MeditationTimer';
 import { useState, useEffect } from 'react';
+import MeditationEndButton from '@pages/meditation/components/MeditationEndButton';
 
 const FIVE_MINUTES_IN_SECONDS = 300;
 const BUTTON_SIZE = 90;
@@ -37,16 +38,23 @@ const SetTimeButton = styled.button`
 const MeditationCounter = () => {
   const [time, setTime] = useRecoilState(meditationTime);
   const [timerStarted, setTimerStarted] = useState(false);
+  const [timerEnded, setTimerEnded] = useState(false);
 
   useEffect(() => {
     const handleStartMeditation = () => {
       setTimerStarted(true);
     };
 
+    const handleEndMeditation = () => {
+      setTimerEnded(true);
+    };
+
     document.addEventListener('START-MEDITATION', handleStartMeditation);
+    document.addEventListener('END-MEDITATION', handleEndMeditation);
 
     return () => {
       document.removeEventListener('START-MEDITATION', handleStartMeditation);
+      document.removeEventListener('END-MEDITATION', handleEndMeditation);
     };
   }, []);
 
@@ -83,6 +91,7 @@ const MeditationCounter = () => {
           </SetTimeButton>
         </CounterContainer>
       )}
+      {timerStarted && !timerEnded && <MeditationEndButton />}
     </>
   );
 };
