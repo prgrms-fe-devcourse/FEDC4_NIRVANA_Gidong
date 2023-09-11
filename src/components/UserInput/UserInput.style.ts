@@ -22,15 +22,15 @@ export const InputContainer = styled.div`
 `;
 
 export const SignUpError = styled.span`
+  color: ${({ theme }) => theme.color.redVivid};
   font-size: 10px;
   font-weight: 400;
-  color: ${({ theme }) => theme['redVivid']};
   margin-left: 10px;
 `;
 
 export const SignUpSuccess = styled.span`
+  color: ${({ theme }) => theme.color.greenVivid};
   font-size: 10px;
   font-weight: 400;
-  color: ${({ theme }) => theme['greenVivid']};
   margin-left: 10px;
 `;

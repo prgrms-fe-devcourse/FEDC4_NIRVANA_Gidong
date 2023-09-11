@@ -1,40 +1,3 @@
-<<<<<<< HEAD:src/components/UserInput/index.tsx
-import styled from '@emotion/styled';
-
-const SignUpLabel = styled.label`
-  ${({ theme }) => theme.style.flexAlignCenter};
-  font-weight: 700;
-  margin-left: 10px;
-  margin-bottom: 10px;
-`;
-
-const SignUpInput = styled.input`
-  box-sizing: border-box;
-  width: 300px;
-  height: 45px;
-  padding-left: 10px;
-  border: 0.5px solid #7e7e7e;
-  border-radius: 10px;
-`;
-
-const InputContainer = styled.div`
-  margin: 10px 0;
-`;
-
-const SignUpError = styled.span`
-  font-size: 10px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.color.redVivid};
-  margin-left: 10px;
-`;
-
-const SignUpSuccess = styled.span`
-  font-size: 10px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.color.greenVivid};
-  margin-left: 10px;
-`;
-=======
 import {
   SignUpLabel,
   SignUpInput,
@@ -42,7 +5,6 @@ import {
   SignUpError,
   SignUpSuccess
 } from './UserInput.style';
->>>>>>> 4b3fc75737adb4274f428deea06501ea85005841:src/components/UserInput/UserInput.tsx
 
 interface UserInputProps {
   name: string;
