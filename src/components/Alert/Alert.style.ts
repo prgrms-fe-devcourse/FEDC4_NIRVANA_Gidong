@@ -30,22 +30,19 @@ export const DeemBackground = styled.div<DeemBackgroundProps>`
 `;
 
 export const AlertBackground = styled.div<AlertBackgroundProps>`
+  ${({ theme }) => theme.style.flexAlignCenter}
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   background-color: ${({ theme }) => theme.color.white};
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 export const IconWrapper = styled.div<IconWrapperProps>`
+  ${({ theme }) => theme.style.flexCenter}
   width: 100%;
   height: 50%;
   font-size: ${({ emojiSize }) => emojiSize}rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const ContentWrapper = styled.div<ContentWrapperProps>`

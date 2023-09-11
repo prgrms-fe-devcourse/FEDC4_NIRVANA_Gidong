@@ -31,14 +31,12 @@ const SignUpContainer = styled.div`
 `;
 
 const SignUpForm = styled.form`
+  ${({ theme }) => theme.style.flexCenter};
+  flex-direction: column;
   box-sizing: border-box;
-  display: flex;
   background-color: ${({ theme }) => theme.color.white};
   width: 325px;
   height: 485px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 25px 20px;
   border: 1px solid purple;
   border-radius: 10px;

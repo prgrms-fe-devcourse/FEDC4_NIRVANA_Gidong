@@ -13,13 +13,11 @@ const CounterContainer = styled.div`
 `;
 
 const CounterText = styled.div`
+  ${({ theme }) => theme.style.flexCenter};
   background: none;
   width: 120px;
   border: none;
   outline: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-left: 5px;
   padding-right: 5px;
 `;

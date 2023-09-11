@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 
 const SignUpLabel = styled.label`
-  display: flex;
-  align-items: center;
+  ${({ theme }) => theme.style.flexAlignCenter};
   font-weight: 700;
   margin-left: 10px;
   margin-bottom: 10px;

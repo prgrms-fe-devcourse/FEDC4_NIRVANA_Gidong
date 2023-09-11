@@ -5,21 +5,18 @@ import { MESSAGE, LABEL } from '../constants';
 
 const GoToSignUpContainer = styled.div`
   margin-top: 30px;
-  display: flex;
+  ${({ theme }) => theme.style.flexAlignCenter};
   flex-direction: column;
-  align-items: center;
 `;
 
 const Message = styled.span`
-  font-size: 14px;
   color: ${({ theme }) => theme.color.greyLight};
+  font-size: 14px;
   margin-bottom: 10px;
 `;
 
 const LinkContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.style.flexCenter};
 `;
 
 const GoSignUp = () => {

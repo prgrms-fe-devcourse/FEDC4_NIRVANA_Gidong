@@ -1,12 +1,16 @@
 export const style = {
   flexCenter: `
   display: flex;
-  justify-contents: center;
-  align-items : center;
+  justify-content: center;
+  align-items: center;
   `,
   flexAlignCenter: `
   display : flex;
   align-items : center;
+  `,
+  flexJustifyCenter: `
+  display : flex;
+  justify-content : center;
   `,
   absoluteCenter: `
   position : absolute;

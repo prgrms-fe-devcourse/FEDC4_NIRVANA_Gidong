@@ -34,18 +34,15 @@ export const ConfirmBackground = styled.div<ConfirmBackgroundProps>`
   height: ${({ height }) => height}px;
   background-color: ${({ theme }) => theme.color.white};
   border-radius: 10px;
-  display: flex;
   flex-direction: column;
-  align-items: center;
+  ${({ theme }) => theme.style.flexAlignCenter}
 `;
 
 export const IconWrapper = styled.div<IconWrapperProps>`
   width: 100%;
   height: 50%;
   font-size: ${({ emojiSize }) => emojiSize}rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.style.flexCenter}
 `;
 
 export const ContentWrapper = styled.div<ContentWrapperProps>`

@@ -2,9 +2,8 @@ import styled from '@emotion/styled';
 import { FollowUser } from '@/components/User';
 
 const UserItemLayout = styled.div`
-  display: flex;
+  ${({ theme }) => theme.style.flexAlignCenter};
   justify-content: space-between;
-  align-items: center;
   padding: 0 14px;
   width: 338px;
   height: 80px;
@@ -15,7 +14,7 @@ const DotState = styled.span<{ online: boolean }>`
   width: 10px;
   height: 10px;
   background-color: ${({ online, theme }) =>
-    online ? theme.greenVivid : theme.greyLight};
+    online ? theme.color.greenVivid : theme.color.greyLight};
   border-radius: 15px;
 `;
 
