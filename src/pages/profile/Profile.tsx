@@ -1,6 +1,6 @@
-// import { useParams } from 'react-router-dom';
-// import { useQuery } from 'react-query';
-// import { getUserData } from '@/apis/user/getUserData';
+import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { getUserData } from '@/apis/user/getUserData';
 import {
   ProfileInfoContainer,
   ProfilePage,
@@ -14,14 +14,14 @@ import { ProfileCarousel } from './components/ProfileCarousel';
 import { PROFILE_TABS } from './constants/profileTabs';
 
 const Profile = () => {
-  // const { userId } = useParams<{ userId: string }>();
+  const { userId } = useParams<{ userId: string }>();
 
-  // const { data, isLoading, isError, error } = useQuery(
-  //   ['userData', userId],
-  //   () => getUserData(userId),
-  //   { enabled: !!userId }
-  // );
-  // console.log(data, isLoading, isError, error);
+  const { data, isLoading, isError, error } = useQuery(
+    ['userData', userId],
+    () => getUserData(userId),
+    { enabled: !!userId }
+  );
+  console.log(data, isLoading, isError, error);
 
   return (
     <ProfilePage>
@@ -38,15 +38,15 @@ const Profile = () => {
         <ProfileHeader />
         <ProfileTabs>
           <ProfileTabItem
-            title={`50 ${PROFILE_TABS.MEDITATION}`}
+            title={`${data?.posts.length} ${PROFILE_TABS.MEDITATION}`}
             index={0}
           />
           <ProfileTabItem
-            title={`50 ${PROFILE_TABS.FOLLOWER}`}
+            title={`${data?.following.length} ${PROFILE_TABS.FOLLOWER}`}
             index={1}
           />
           <ProfileTabItem
-            title={`50 ${PROFILE_TABS.FOLLOWING}`}
+            title={`${data?.followers.length} ${PROFILE_TABS.FOLLOWING}`}
             index={2}
           />
           <ProfileTabItem
