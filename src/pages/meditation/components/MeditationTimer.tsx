@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { atom, useRecoilState } from 'recoil';
 import { useState } from 'react';
 import formatTime from '@utils/formatTime';
+import Icon from '@components/Icon';
 
 const TimerContainer = styled.div`
   display: flex;
@@ -29,8 +30,16 @@ const TimerElement = styled.button`
   font-size: 1.5rem;
   font-weight: bold;
   &:hover {
-    opacity: 0.8;
+    filter: brightness(50%);
+    transition: 0.3s;
   }
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
 `;
 
 export const meditationTime = atom({
@@ -43,6 +52,7 @@ let timerId = 0;
 const MeditationTimer = () => {
   const [time, setTime] = useRecoilState(meditationTime);
   const [paused, setPaused] = useState(true);
+  const [hovered, setHovered] = useState(false);
 
   const startTimer = () => {
     if (time === 0) {
@@ -75,7 +85,22 @@ const MeditationTimer = () => {
 
   return (
     <TimerContainer>
-      <TimerElement onClick={startTimer}>{formatTime(time)}</TimerElement>
+      <TimerElement
+        onClick={() => toggleTimer()}
+        onMouseOver={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}>
+        <IconContainer>
+          {hovered ? (
+            <Icon
+              name={paused ? 'play_arrow' : 'pause'}
+              size={70}
+              color={'white'}
+            />
+          ) : (
+            formatTime(time)
+          )}
+        </IconContainer>
+      </TimerElement>
     </TimerContainer>
   );
 };
