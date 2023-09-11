@@ -4,7 +4,7 @@ interface ProfileTabsItemProps {
   selected: boolean;
 }
 
-export const ProfileTabItemDiv = styled.div<ProfileTabsItemProps>`
+export const ProfileTabItemContainer = styled.div<ProfileTabsItemProps>`
   height: 50px;
   border-bottom: 3px solid
     ${({ selected, theme }) =>

@@ -1,4 +1,4 @@
-import { ProfileTabItemDiv } from './ProfileTabItem.style';
+import { ProfileTabItemContainer } from './ProfileTabItem.style';
 import { useRecoilState } from 'recoil';
 import { selectedTabIndexState } from '../../states/selectedTabIndex';
 
@@ -12,11 +12,11 @@ const ProfileTabItem = ({ title, index }: ProfileTabItemProps) => {
     selectedTabIndexState
   );
   return (
-    <ProfileTabItemDiv
+    <ProfileTabItemContainer
       selected={index === selectedTabIndex}
       onClick={() => setSelectedTabIndex(index)}>
       {title}
-    </ProfileTabItemDiv>
+    </ProfileTabItemContainer>
   );
 };
 
