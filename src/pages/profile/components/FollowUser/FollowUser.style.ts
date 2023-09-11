@@ -1,18 +1,15 @@
 import styled from '@emotion/styled';
 
-export const FollowUserLayout = styled.div`
-  display: flex;
-  align-items: center;
-  & > div {
-    margin-right: 15px;
-  }
+export const FollowUserContainer = styled.div`
+  ${({ theme }) => theme.style.flexAlignCenter}
+  justify-content: space-between;
+  padding: 0 14px;
+  height: 80px;
+  border-bottom: 1px solid ${({ theme }) => theme.color.greyLight};
 
-  & > span:last-child {
-    margin-left: 2px;
-  }
-
-  & .dot {
-    bottom: 1px;
-    right: 1px;
+  & > button {
+    display: inline-block;
+    border-radius: 30px;
+    font-size: 12px;
   }
 `;

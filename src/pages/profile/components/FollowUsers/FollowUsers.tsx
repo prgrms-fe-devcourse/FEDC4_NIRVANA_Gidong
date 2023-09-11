@@ -1,4 +1,5 @@
-import { FollowUserItem } from '../FollowUserItem';
+import { FollowUser } from '../FollowUser';
+import { FollowUserData } from '../../types';
 
 const dumyData = [
   {
@@ -17,27 +18,16 @@ const dumyData = [
   }
 ];
 
-interface FollowUserData {
-  _id: string;
-  fullName: string;
-  isOnline: boolean;
-  email: string;
-  image: string;
-}
-
-interface FollowUserListProps {
+interface FollowUsersProps {
   following: boolean;
   data?: FollowUserData[];
 }
 
-const FollowUserList = ({
-  following,
-  data = dumyData
-}: FollowUserListProps) => {
+const FollowUsers = ({ following, data = dumyData }: FollowUsersProps) => {
   return (
     <div>
       {data.map((element) => (
-        <FollowUserItem
+        <FollowUser
           data={element}
           key={element._id}
           following={following}
@@ -46,4 +36,4 @@ const FollowUserList = ({
     </div>
   );
 };
-export default FollowUserList;
+export default FollowUsers;
