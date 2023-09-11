@@ -1,5 +1,5 @@
 import {
-  HeaderContainer,
+  HeaderSection,
   Logo,
   LeftContainer,
   RightContainer
@@ -14,7 +14,7 @@ interface HeaderProps {
 
 const Header = ({ backLink }: HeaderProps) => {
   return (
-    <HeaderContainer>
+    <HeaderSection>
       <LeftContainer>
         {backLink ? (
           <Link pageLink=''>
@@ -52,7 +52,7 @@ const Header = ({ backLink }: HeaderProps) => {
           />
         </Link>
       </RightContainer>
-    </HeaderContainer>
+    </HeaderSection>
   );
 };
 
