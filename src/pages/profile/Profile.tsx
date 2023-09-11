@@ -7,7 +7,6 @@ import { ProfileCover } from './components/ProfileCover';
 import { ProfileHeader } from './components/ProfileHeader';
 import { ProfileTabs, ProfileTabItem } from './components/ProfileTabs';
 import { ProfileCarousel } from './components/ProfileCarousel';
-import { PROFILE_TABS } from './constants/profileTabs';
 import { useTabItem } from './hooks/useTabItem';
 
 const Profile = () => {
@@ -38,11 +37,12 @@ const Profile = () => {
             <ProfileTabItem
               key={tabItem.label}
               title={`${tabItem.value} ${tabItem.label}`}
+              data={tabItem.data}
               index={index}
             />
           ))}
         </ProfileTabs>
-        <ProfileCarousel totalIndex={PROFILE_TABS.TOTAL_INDEX} />
+        <ProfileCarousel totalIndex={tabItems.length} />
       </ProfileInfoContainer>
     </ProfilePage>
   );
