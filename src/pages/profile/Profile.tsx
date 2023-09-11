@@ -38,15 +38,21 @@ const Profile = () => {
         <ProfileHeader />
         <ProfileTabs>
           <ProfileTabItem
-            title={`${data?.posts.length} ${PROFILE_TABS.MEDITATION}`}
+            title={`${isLoading ? 0 : data.posts.length} ${
+              PROFILE_TABS.MEDITATION
+            }`}
             index={0}
           />
           <ProfileTabItem
-            title={`${data?.following.length} ${PROFILE_TABS.FOLLOWER}`}
+            title={`${isLoading ? 0 : data.following.length} ${
+              PROFILE_TABS.FOLLOWER
+            }`}
             index={1}
           />
           <ProfileTabItem
-            title={`${data?.followers.length} ${PROFILE_TABS.FOLLOWING}`}
+            title={`${isLoading ? 0 : data.followers.length} ${
+              PROFILE_TABS.FOLLOWING
+            }`}
             index={2}
           />
           <ProfileTabItem
