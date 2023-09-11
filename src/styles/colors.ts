@@ -1,4 +1,8 @@
-export const color: IColor = {
+export interface Color {
+  [key: string]: string;
+}
+
+export const color: Color = {
   purpleDark: '#47346d',
   purpleDarker: '#272038',
   purpleLight: '#b796d0',
@@ -20,9 +24,3 @@ export const color: IColor = {
     'linear-gradient(160deg, #2a2427 0%, #47346d 50%, #7e4ea4 75%, #b796d0 100%)',
   linearGradientPurpleVivid: `linear-gradient(90deg, #47346d 0%, #5e12ff 100%)`
 };
-
-export interface IColor {
-  [key: string]: string;
-}
-
-export default color;
