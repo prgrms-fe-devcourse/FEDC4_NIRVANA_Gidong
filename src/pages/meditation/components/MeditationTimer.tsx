@@ -38,22 +38,39 @@ export const meditationTime = atom({
   default: 0
 });
 
+let timerId = 0;
+
 const MeditationTimer = () => {
   const [time, setTime] = useRecoilState(meditationTime);
+  const [paused, setPaused] = useState(true);
 
   const startTimer = () => {
-    const timer = setInterval(() => {
+    if (time === 0) {
+      return;
+    }
+    setPaused(false);
+
+    timerId = setInterval(() => {
       setTime((prevTime) => {
         if (prevTime > 0) {
           return prevTime - 1;
-        } else {
-          clearInterval(timer);
-          document.dispatchEvent(new Event('END-MEDITATION'));
-          return prevTime;
         }
+        clearInterval(timerId);
+        document.dispatchEvent(new Event('END-MEDITATION'));
+        return prevTime;
       });
     }, 1000);
+
     document.dispatchEvent(new Event('START-MEDITATION'));
+  };
+
+  const toggleTimer = () => {
+    if (!paused) {
+      clearInterval(timerId);
+      setPaused(true);
+    } else {
+      startTimer();
+    }
   };
 
   return (
