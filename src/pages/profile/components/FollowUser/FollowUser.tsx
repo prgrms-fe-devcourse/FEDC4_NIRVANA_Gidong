@@ -1,6 +1,6 @@
 import { FollowUserLayout } from './FollowUser.style';
-import { UserId, UserName } from '@/components/UserText';
-import { BadgeAvatar } from '@/components/Avatar';
+import { UserId, UserName } from '@components/UserText';
+import { BadgeAvatar } from '@components/Avatar';
 
 interface UserData {
   _id: string;

@@ -1,5 +1,5 @@
-import { Avatar } from '@/components/Avatar';
-import { StackBadge } from '@/components/Badge/StackBadge';
+import { Avatar } from '@components/Avatar';
+import { StackBadge } from '@components/Badge/StackBadge';
 import {
   ProfileInfoContainer,
   ProfileInfoNameAndBadge,

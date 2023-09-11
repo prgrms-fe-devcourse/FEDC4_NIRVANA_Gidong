@@ -17,7 +17,7 @@ const dumyData = [
   }
 ];
 
-interface Data {
+interface FollowUserData {
   _id: string;
   fullName: string;
   isOnline: boolean;
@@ -27,7 +27,7 @@ interface Data {
 
 interface FollowUserListProps {
   following: boolean;
-  data?: Data[];
+  data?: FollowUserData[];
 }
 
 const FollowUserList = ({
