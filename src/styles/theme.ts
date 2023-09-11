@@ -1,10 +1,6 @@
-import { Color, color } from './colors';
-import { Style, style } from './styles';
-
-interface Theme {
-  color: Color;
-  style: Style;
-}
+import { color } from './colors';
+import { style } from './styles';
+import { Theme } from '@emotion/react';
 
 const theme: Theme = {
   color,

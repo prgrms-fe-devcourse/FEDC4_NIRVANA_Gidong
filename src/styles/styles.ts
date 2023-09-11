@@ -1,8 +1,4 @@
-export interface Style {
-  [key: string]: string;
-}
-
-export const style: Style = {
+export const style = {
   flexCenter: `
   display: flex;
   justify-contents: center;

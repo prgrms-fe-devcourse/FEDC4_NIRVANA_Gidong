@@ -1,8 +1,4 @@
-export interface Color {
-  [key: string]: string;
-}
-
-export const color: Color = {
+export const color = {
   purpleDark: '#47346d',
   purpleDarker: '#272038',
   purpleLight: '#b796d0',
