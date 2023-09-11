@@ -48,8 +48,8 @@ const Login = () => {
     event.preventDefault();
     logInUser({ email, password })
       .then((res) => {
-        const { user } = res.data;
-        setUser(user);
+        const { user, token } = res.data;
+        setUser({ ...user, token });
         navigate('/meditation');
       })
       .catch((err) => {
