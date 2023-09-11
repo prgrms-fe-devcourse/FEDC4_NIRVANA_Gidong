@@ -8,7 +8,7 @@ const CounterContainer = styled.div`
   justify-content: space-between;
   width: 300px;
   height: 100px;
-  color: ${({ theme }) => theme['white']};
+  color: ${({ theme }) => theme.color.white};
   font-size: 2rem;
 `;
 

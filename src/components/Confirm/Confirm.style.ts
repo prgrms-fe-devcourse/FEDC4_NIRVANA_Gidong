@@ -23,7 +23,7 @@ export const DeemBackground = styled.div<DeemBackgroundProps>`
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme['black600']};
+  background-color: ${({ theme }) => theme.color.black600};
   display: ${({ disabled }) => (disabled ? 'none' : 'flex')};
   justify-content: center;
   align-items: center;
@@ -32,7 +32,7 @@ export const DeemBackground = styled.div<DeemBackgroundProps>`
 export const ConfirmBackground = styled.div<ConfirmBackgroundProps>`
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  background-color: ${({ theme }) => theme['white']};
+  background-color: ${({ theme }) => theme.color.white};
   border-radius: 10px;
   display: flex;
   flex-direction: column;

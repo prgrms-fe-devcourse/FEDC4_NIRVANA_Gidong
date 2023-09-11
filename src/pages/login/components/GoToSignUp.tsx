@@ -12,7 +12,7 @@ const GoToSignUpContainer = styled.div`
 
 const Message = styled.span`
   font-size: 14px;
-  color: ${({ theme }) => theme['greyLight']};
+  color: ${({ theme }) => theme.color.greyLight};
   margin-bottom: 10px;
 `;
 

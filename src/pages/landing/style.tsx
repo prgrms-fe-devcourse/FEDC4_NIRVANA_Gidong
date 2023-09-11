@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import logo from '../../assets/logo.svg';
 
 export const LandingMain = styled.main`
-  background: ${({ theme }) => theme['linearGradientPurple']};
+  background: ${({ theme }) => theme.color.linearGradientPurple};
   display: flex;
   height: 100vh;
   min-height: 844px;
@@ -38,13 +38,13 @@ export const PreviewLink = styled.div`
   align-items: center;
   margin-bottom: 26px;
   & > span {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.color.white};
     margin-bottom: 6px;
   }
 
   & > a {
     display: block;
-    border-bottom: 1px solid ${({ theme }) => theme.white};
+    border-bottom: 1px solid ${({ theme }) => theme.color.white};
     font-weight: 700;
     display: flex;
     align-items: center;

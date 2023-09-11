@@ -27,7 +27,7 @@ const LoginContainer = styled.div`
   width: 100vw;
   height: 100vh;
   background-image: url(${logo});
-  background: ${({ theme }) => theme['linearGradientPurple']};
+  background: ${({ theme }) => theme.color.linearGradientPurple};
   justify-content: center;
   align-items: center;
 `;
@@ -35,7 +35,7 @@ const LoginContainer = styled.div`
 const LoginForm = styled.form`
   box-sizing: border-box;
   display: flex;
-  background-color: ${({ theme }) => theme['white']};
+  background-color: ${({ theme }) => theme.color.white};
   width: 330px;
   height: 390px;
   flex-direction: column;

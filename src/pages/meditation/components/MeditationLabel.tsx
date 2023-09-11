@@ -4,7 +4,7 @@ import { useState } from 'react';
 const StyledMeditationLabel = styled.div`
   display: flex;
   justify-content: center;
-  color: ${({ theme }) => theme['white']};
+  color: ${({ theme }) => theme.color.white};
   font-size: 1.2rem;
 `;
 

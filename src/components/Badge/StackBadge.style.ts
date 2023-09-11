@@ -6,8 +6,8 @@ export const StackBadgeContainer = styled.div`
   justify-content: center;
   width: 50px;
   height: 20px;
-  background-color: ${({ theme }) => theme['purpleVivid']};
-  color: ${({ theme }) => theme['white']};
+  background-color: ${({ theme }) => theme.color.purpleVivid};
+  color: ${({ theme }) => theme.color.white};
   font-size: 0.875rem;
   border-radius: 30px;
 `;

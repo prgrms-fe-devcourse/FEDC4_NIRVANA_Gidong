@@ -24,14 +24,14 @@ const InputContainer = styled.div`
 const SignUpError = styled.span`
   font-size: 10px;
   font-weight: 400;
-  color: ${({ theme }) => theme['redVivid']};
+  color: ${({ theme }) => theme.color.redVivid};
   margin-left: 10px;
 `;
 
 const SignUpSuccess = styled.span`
   font-size: 10px;
   font-weight: 400;
-  color: ${({ theme }) => theme['greenVivid']};
+  color: ${({ theme }) => theme.color.greenVivid};
   margin-left: 10px;
 `;
 

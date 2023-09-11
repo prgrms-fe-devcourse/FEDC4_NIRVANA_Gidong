@@ -10,7 +10,7 @@ const Container = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  background: ${({ theme }) => theme['linearGradientPurple']};
+  background: ${({ theme }) => theme.color.linearGradientPurple};
 `;
 const Meditation = () => {
   return (

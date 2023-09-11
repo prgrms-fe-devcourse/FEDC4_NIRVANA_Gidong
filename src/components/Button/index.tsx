@@ -10,10 +10,10 @@ const StyledButton = styled.button<{
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   border: ${({ theme, dark }) =>
-    dark ? 0 : `0.5px solid ${theme['greyLight']}`};
+    dark ? 0 : `0.5px solid ${theme.color.greyLight}`};
   background-color: ${({ theme, dark }) =>
-    dark ? theme['purpleDark'] : theme['white']};
-  color: ${({ theme, dark }) => (dark ? theme['white'] : theme['black'])};
+    dark ? theme.color.purpleDark : theme.color.white};
+  color: ${({ theme, dark }) => (dark ? theme.color.white : theme.color.black)};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   border-radius: 10px;
   font-size: 1rem;
