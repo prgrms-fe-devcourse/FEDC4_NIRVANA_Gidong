@@ -16,11 +16,3 @@ export const ProfileInfoContainer = styled.div`
   bottom: 0;
   position: relative;
 `;
-
-export const ProfileCoverImageContainer = styled.div`
-  height: 100px;
-  width: 100%;
-  background-color: ${({ theme }) => theme['purpleDarker']};
-  position: relative;
-  overflow: hidden;
-`;

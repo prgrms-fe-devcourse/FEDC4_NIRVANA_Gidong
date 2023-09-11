@@ -1,13 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getUserData } from '@/apis/user/getUserData';
-import {
-  ProfileInfoContainer,
-  ProfilePage,
-  ProfileCoverImageContainer
-} from './Profile.style';
+import { ProfileInfoContainer, ProfilePage } from './Profile.style';
 import { ProfileInfo } from './components/ProfileInfo';
-import { ProfileCover } from './components/ProfileBackground';
+import { ProfileCover } from './components/ProfileCover';
 import { ProfileHeader } from './components/ProfileHeader';
 import { ProfileTabs, ProfileTabItem } from './components/ProfileTabs';
 import { ProfileCarousel } from './components/ProfileCarousel';
@@ -25,9 +21,7 @@ const Profile = () => {
 
   return (
     <ProfilePage>
-      <ProfileCoverImageContainer>
-        <ProfileCover src={isLoading ? '' : data.cover} />
-      </ProfileCoverImageContainer>
+      <ProfileCover src={isLoading ? '' : data.cover} />
       <ProfileInfoContainer>
         <ProfileInfo
           email={isLoading ? '' : data.email}
