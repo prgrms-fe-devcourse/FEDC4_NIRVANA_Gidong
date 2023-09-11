@@ -42,7 +42,7 @@ export const ConfirmBackground = styled.div<ConfirmBackgroundProps>`
 export const IconWrapper = styled.div<IconWrapperProps>`
   width: 100%;
   height: 50%;
-  font-size: ${({ emojiSize }) => emojiSize}rem;
+  font-size: ${({ emojiSize }) => emojiSize}px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,7 +53,7 @@ export const ContentWrapper = styled.div<ContentWrapperProps>`
   height: 50%;
   text-align: center;
   font-weight: bold;
-  font-size: ${({ contentFontSize }) => contentFontSize}rem;
+  font-size: ${({ contentFontSize }) => contentFontSize}px;
   position: relative;
 `;
 
