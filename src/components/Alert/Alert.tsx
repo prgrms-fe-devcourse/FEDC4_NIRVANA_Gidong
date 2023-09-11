@@ -24,9 +24,9 @@ const Alert = ({
   width = 330,
   height = 390,
   emoji,
-  emojiSize = 4.5,
+  emojiSize = 80,
   content,
-  contentFontSize = 1,
+  contentFontSize = 16,
   buttonLabel,
   nextPageLink
 }: Partial<AlertProps>) => {
