@@ -7,6 +7,8 @@ import MeditationEndButton from '@pages/meditation/components/MeditationEndButto
 
 const FIVE_MINUTES_IN_SECONDS = 300;
 const BUTTON_SIZE = 90;
+const BUTTON_TYPE_ADD = 'add';
+const BUTTON_TYPE_SUB = 'sub';
 
 const CounterContainer = styled.div`
   display: flex;
@@ -56,10 +58,10 @@ const MeditationCounter = () => {
   }, []);
 
   const handleTime = (buttonType: string) => {
-    if (time === 0 && buttonType === 'sub') {
+    if (time === 0 && buttonType === BUTTON_TYPE_SUB) {
       return;
     } else {
-      if (buttonType === 'add') {
+      if (buttonType === BUTTON_TYPE_ADD) {
         setTime(time + FIVE_MINUTES_IN_SECONDS);
       } else {
         setTime(time - FIVE_MINUTES_IN_SECONDS);
@@ -71,7 +73,7 @@ const MeditationCounter = () => {
     <>
       {!timerStarted && (
         <CounterContainer>
-          <SetTimeButton onClick={() => handleTime('sub')}>
+          <SetTimeButton onClick={() => handleTime(BUTTON_TYPE_SUB)}>
             <Icon
               name={'chevron_left'}
               size={BUTTON_SIZE}
@@ -79,7 +81,7 @@ const MeditationCounter = () => {
             />
           </SetTimeButton>
           <CounterText>{`${time / 60} 분`}</CounterText>
-          <SetTimeButton onClick={() => handleTime('add')}>
+          <SetTimeButton onClick={() => handleTime(BUTTON_TYPE_ADD)}>
             <Icon
               name={'chevron_right'}
               size={BUTTON_SIZE}
