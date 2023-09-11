@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Button } from '../Button';
 import { Link } from '../Link';
 import {
-  DeemBackground,
-  ConfirmBackground,
-  IconWrapper,
-  ContentWrapper,
-  NavButtonWrapper
+  StyledDeemBackground,
+  StyledConfirmBackground,
+  IconContainer,
+  ContentContainer,
+  NavButtonContainer
 } from './Confirm.style';
 
 interface AlertProps {
@@ -30,14 +30,14 @@ const Alert = ({
 }: Partial<AlertProps>) => {
   const [disabled, setDisabled] = useState(false);
   return (
-    <DeemBackground disabled={disabled}>
-      <ConfirmBackground
+    <StyledDeemBackground disabled={disabled}>
+      <StyledConfirmBackground
         width={width}
         height={height}>
-        <IconWrapper emojiSize={emojiSize}>{emoji}</IconWrapper>
-        <ContentWrapper contentFontSize={contentFontSize}>
+        <IconContainer emojiSize={emojiSize}>{emoji}</IconContainer>
+        <ContentContainer contentFontSize={contentFontSize}>
           {content}
-          <NavButtonWrapper>
+          <NavButtonContainer>
             <Button
               handleClick={() => setDisabled(true)}
               width={120}
@@ -54,10 +54,10 @@ const Alert = ({
                 label={'확인'}
               />
             </Link>
-          </NavButtonWrapper>
-        </ContentWrapper>
-      </ConfirmBackground>
-    </DeemBackground>
+          </NavButtonContainer>
+        </ContentContainer>
+      </StyledConfirmBackground>
+    </StyledDeemBackground>
   );
 };
 export default Alert;
