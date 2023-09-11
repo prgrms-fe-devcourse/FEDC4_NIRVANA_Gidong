@@ -6,8 +6,8 @@ const StyledButton = styled.button<
   cursor: pointer;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  border: ${({ theme, dark }) =>
-    dark ? 0 : `0.5px solid ${theme['greyLight']}`};
+  border: ${({ theme, dark, borderSize }) =>
+    dark ? 0 : `${borderSize ?? 0.5}px solid ${theme['greyLight']}`};
   background-color: ${({ theme, dark }) =>
     dark ? theme['purpleDark'] : theme['white']};
   color: ${({ theme, dark }) => (dark ? theme['white'] : theme['black'])};
@@ -28,6 +28,7 @@ interface ButtonProps {
   label?: string;
   handleClick?: () => void;
   borderRadius?: number;
+  borderSize?: number;
   fontSize?: number;
 }
 
@@ -40,6 +41,7 @@ const Button = ({
   dark,
   bold,
   borderRadius,
+  borderSize,
   fontSize
 }: ButtonProps) => (
   <StyledButton
@@ -49,6 +51,7 @@ const Button = ({
     dark={dark}
     bold={bold}
     borderRadius={borderRadius}
+    borderSize={borderSize}
     fontSize={fontSize}>
     {label}
     {children}

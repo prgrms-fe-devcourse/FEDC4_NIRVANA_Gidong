@@ -2,12 +2,12 @@
 // import { useQuery } from 'react-query';
 // import { getUserData } from '@/apis/user/getUserData';
 import {
-  ProfileContainer,
+  ProfileInfoContainer,
   ProfilePage,
-  ProfileBackgroundContainer
+  ProfileCoverImageContainer
 } from './Profile.style';
 import { ProfileInfo } from './components/ProfileInfo';
-import { ProfileBackground } from './components/ProfileBackground';
+import { ProfileCover } from './components/ProfileBackground';
 import { ProfileConfig } from './components/ProfileConfig';
 import { ProfileTabs, ProfileTabItem } from './components/ProfileTabs';
 import { ProfileCarousel } from './components/ProfileCarousel';
@@ -25,10 +25,10 @@ const Profile = () => {
 
   return (
     <ProfilePage>
-      <ProfileBackgroundContainer>
-        <ProfileBackground src='https://www.programiz.com/blog/content/images/2022/03/Banner-Image-1.png' />
-      </ProfileBackgroundContainer>
-      <ProfileContainer>
+      <ProfileCoverImageContainer>
+        <ProfileCover src='https://www.programiz.com/blog/content/images/2022/03/Banner-Image-1.png' />
+      </ProfileCoverImageContainer>
+      <ProfileInfoContainer>
         <ProfileInfo
           email='test@email.com'
           fullName='testMan'
@@ -38,15 +38,15 @@ const Profile = () => {
         <ProfileConfig />
         <ProfileTabs>
           <ProfileTabItem
-            title={`50번 ${PROFILE_TABS.MEDITATION}`}
+            title={`50 ${PROFILE_TABS.MEDITATION}`}
             index={0}
           />
           <ProfileTabItem
-            title={`50번 ${PROFILE_TABS.FOLLOWER}`}
+            title={`50 ${PROFILE_TABS.FOLLOWER}`}
             index={1}
           />
           <ProfileTabItem
-            title={`50번 ${PROFILE_TABS.FOLLOWING}`}
+            title={`50 ${PROFILE_TABS.FOLLOWING}`}
             index={2}
           />
           <ProfileTabItem
@@ -55,7 +55,7 @@ const Profile = () => {
           />
         </ProfileTabs>
         <ProfileCarousel totalIndex={PROFILE_TABS.TOTAL_INDEX} />
-      </ProfileContainer>
+      </ProfileInfoContainer>
     </ProfilePage>
   );
 };

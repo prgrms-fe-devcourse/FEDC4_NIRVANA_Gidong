@@ -1,3 +1,3 @@
-import ProfileBackground from './ProfileBackground';
+import ProfileCover from './ProfileCover';
 
-export { ProfileBackground };
+export { ProfileCover };
