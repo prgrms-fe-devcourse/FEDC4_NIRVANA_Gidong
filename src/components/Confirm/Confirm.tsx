@@ -9,7 +9,7 @@ import {
   NavButtonContainer
 } from './Confirm.style';
 
-interface AlertProps {
+interface ConfirmProps {
   width: number;
   height: number;
   emoji: string;
@@ -19,7 +19,7 @@ interface AlertProps {
   nextPageLink: string;
 }
 
-const Alert = ({
+const Confirm = ({
   width = 330,
   height = 390,
   emoji,
@@ -27,7 +27,7 @@ const Alert = ({
   content,
   contentFontSize = 16,
   nextPageLink
-}: Partial<AlertProps>) => {
+}: Partial<ConfirmProps>) => {
   const [disabled, setDisabled] = useState(false);
   return (
     <StyledDeemBackground disabled={disabled}>
@@ -60,4 +60,4 @@ const Alert = ({
     </StyledDeemBackground>
   );
 };
-export default Alert;
+export default Confirm;
