@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { logInUser } from '@/apis/user/getUserData';
+import { userState } from '@/states/userState';
 import Button from '@components/Button';
 import UserInput from '@components/UserInput';
 import { USER_INPUT } from './constants';
@@ -14,6 +18,8 @@ import {
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const setUser = useSetRecoilState(userState);
+  const navigate = useNavigate();
   let timer = 0;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +45,11 @@ const Login = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    logInUser({ email, password }).then((res) => {
+      const { user } = res.data;
+      setUser(user);
+      navigate('/meditation');
+    });
     return;
   };
 
@@ -60,6 +71,7 @@ const Login = () => {
           placeholder={USER_INPUT.PASSWORD.PLACE_HOLDER}
           title={USER_INPUT.PASSWORD.TITLE}
           handleChange={handleInputChange}
+          type='password'
         />
         <ButtonContainer>
           <Button
