@@ -18,10 +18,10 @@ export const Logo = styled.h1`
   height: 17px;
 `;
 
-export const LeftLayout = styled.div`
+export const LeftContainer = styled.div`
   ${({ theme }) => theme.style.flexAlignCenter}
 `;
-export const RightLayout = styled.div`
+export const RightContainer = styled.div`
   ${({ theme }) => theme.style.flexAlignCenter}
 
   & > div {

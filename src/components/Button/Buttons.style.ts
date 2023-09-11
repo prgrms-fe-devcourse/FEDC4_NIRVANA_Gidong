@@ -3,8 +3,10 @@ import styled from '@emotion/styled';
 export const StyledButton = styled.button<{
   width: number;
   height: number;
-  dark: boolean;
-  bold: boolean;
+  dark?: boolean;
+  bold?: boolean;
+  borderRadius?: number;
+  fontSize?: number;
 }>`
   cursor: pointer;
   width: ${({ width }) => width}px;
@@ -15,6 +17,6 @@ export const StyledButton = styled.button<{
     dark ? theme.color.purpleDark : theme.color.white};
   color: ${({ theme, dark }) => (dark ? theme.color.white : theme.color.black)};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
-  border-radius: 10px;
-  font-size: 16px;
+  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : 10)}px;
+  font-size: ${({ fontSize }) => (fontSize ? fontSize : 16)}px;
 `;

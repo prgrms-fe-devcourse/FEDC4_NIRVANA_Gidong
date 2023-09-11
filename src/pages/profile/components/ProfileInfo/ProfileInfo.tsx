@@ -1,11 +1,12 @@
-import { Avatar } from '@components/Avatar';
-import { StackBadge } from '@components/Badge/StackBadge';
+import { Avatar } from '@/components/Avatar';
+import { StackBadge } from '@/components/Badge';
+import { UserId, UserName } from '@/components/UserText';
 import {
   ProfileInfoContainer,
   ProfileInfoNameAndBadge,
   ProfileAvatarContainer,
   ProfileEmailContainer
-} from './styles';
+} from './ProfileInfo.style';
 
 interface ProfileInfoProps {
   fullName: string;
@@ -20,7 +21,6 @@ const ProfileInfo = ({
   avatarImgSrc,
   meditationStack
 }: ProfileInfoProps) => {
-  console.log(email);
   return (
     <ProfileInfoContainer>
       <ProfileAvatarContainer>
@@ -31,12 +31,12 @@ const ProfileInfo = ({
         />
       </ProfileAvatarContainer>
       <ProfileInfoNameAndBadge>
-        <span>혜성상회</span>
+        <UserName>{fullName}</UserName>
         <StackBadge stack={meditationStack} />
       </ProfileInfoNameAndBadge>
 
       <ProfileEmailContainer>
-        <span>@star_comet</span>
+        <UserId email={email} />
       </ProfileEmailContainer>
     </ProfileInfoContainer>
   );
