@@ -3,7 +3,7 @@ import logo from '@assets/logo.svg';
 
 export const HeaderContainer = styled.header`
   height: 50px;
-  background-color: ${({ theme }) => theme.purpleDark};
+  background-color: ${({ theme }) => theme.color.purpleDark};
   display: flex;
   justify-content: space-between;
   padding: 0 18px;
@@ -18,13 +18,11 @@ export const Logo = styled.h1`
   height: 17px;
 `;
 
-export const LeftContainer = styled.div`
-  display: flex;
-  align-items: center;
+export const LeftLayout = styled.div`
+  ${({ theme }) => theme.style.flexAlignCenter}
 `;
-export const RightContainer = styled.div`
-  display: flex;
-  align-items: center;
+export const RightLayout = styled.div`
+  ${({ theme }) => theme.style.flexAlignCenter}
 
   & > div {
     margin-right: 15px;

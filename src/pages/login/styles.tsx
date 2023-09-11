@@ -22,34 +22,29 @@ const Logo = () => {
 };
 
 const LoginContainer = styled.div`
-  display: flex;
+  ${({ theme }) => theme.style.flexCenter};
   flex-direction: column;
   width: 100vw;
   height: 100vh;
   background-image: url(${logo});
-  background: ${({ theme }) => theme['linearGradientPurple']};
-  justify-content: center;
-  align-items: center;
+  background: ${({ theme }) => theme.color.linearGradientPurple};
 `;
 
 const LoginForm = styled.form`
+  background-color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.style.flexCenter};
+  flex-direction: column;
   box-sizing: border-box;
-  display: flex;
-  background-color: ${({ theme }) => theme['white']};
   width: 330px;
   height: 390px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 25px 20px;
   border: 1px solid purple;
   border-radius: 10px;
 `;
 
 const ButtonContainer = styled.div`
-  display: flex;
+  ${({ theme }) => theme.style.flexJustifyCenter};
   width: 300px;
-  justify-content: center;
   margin-top: 15px;
 `;
 

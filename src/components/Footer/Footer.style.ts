@@ -7,9 +7,9 @@ export const StyledFooter = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 0.5px ${({ theme }) => theme['greyLight']} solid;
-  border-bottom: 1.5px ${({ theme }) => theme['black']} solid;
-  border-left: 1.5px ${({ theme }) => theme['black']} solid;
-  border-right: 1.5px ${({ theme }) => theme['black']} solid;
+  border-top: 0.5px ${({ theme }) => theme.color.greyLight} solid;
+  border-bottom: 1.5px ${({ theme }) => theme.color.black} solid;
+  border-left: 1.5px ${({ theme }) => theme.color.black} solid;
+  border-right: 1.5px ${({ theme }) => theme.color.black} solid;
   padding: 0 35px;
 `;

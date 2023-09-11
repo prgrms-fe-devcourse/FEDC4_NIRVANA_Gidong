@@ -2,13 +2,12 @@ import styled from '@emotion/styled';
 import logo from '../../assets/logo.svg';
 
 export const LandingMain = styled.main`
-  background: ${({ theme }) => theme['linearGradientPurple']};
+  background: ${({ theme }) => theme.color.linearGradientPurple};
+  ${({ theme }) => theme.style.flexAlignCenter};
   display: flex;
   height: 100vh;
   min-height: 844px;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const Heading = styled.h1`
@@ -33,21 +32,19 @@ export const LinkLayout = styled.div`
 `;
 
 export const PreviewLink = styled.div`
-  display: flex;
+  ${({ theme }) => theme.style.flexAlignCenter};
   flex-direction: column;
-  align-items: center;
   margin-bottom: 26px;
   & > span {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.color.white};
     margin-bottom: 6px;
   }
 
   & > a {
+    ${({ theme }) => theme.style.flexAlignCenter};
     display: block;
-    border-bottom: 1px solid ${({ theme }) => theme.white};
+    border-bottom: 1px solid ${({ theme }) => theme.color.white};
     font-weight: 700;
-    display: flex;
-    align-items: center;
   }
 
   & > a > span {
