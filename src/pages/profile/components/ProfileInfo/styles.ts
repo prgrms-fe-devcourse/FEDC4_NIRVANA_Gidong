@@ -12,9 +12,8 @@ export const ProfileAvatarContainer = styled.div`
 `;
 
 export const ProfileInfoNameAndBadge = styled.div`
-  display: flex;
+  ${({ theme }) => theme.style.flexAlignCenter};
   justify-content: space-between;
-  align-items: center;
 `;
 
 export const ProfileEmailContainer = styled.div``;

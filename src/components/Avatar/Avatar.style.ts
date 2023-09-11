@@ -29,7 +29,5 @@ export const AvatarText = styled.div`
   width: 100%;
   height: 100%;
   background-image: linear-gradient(to right, #ff5858, #f857a6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.style.flexCenter}
 `;

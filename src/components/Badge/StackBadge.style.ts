@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
 
 export const StackBadgeContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${({ theme }) => theme.style.flexCenter}
   width: 50px;
   height: 20px;
-  background-color: ${({ theme }) => theme['purpleVivid']};
-  color: ${({ theme }) => theme['white']};
+  background-color: ${({ theme }) => theme.color.purpleVivid};
+  color: ${({ theme }) => theme.color.white};
   font-size: 14px;
   border-radius: 30px;
 `;
