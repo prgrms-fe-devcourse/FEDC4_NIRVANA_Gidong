@@ -8,6 +8,7 @@ import { ProfileHeader } from './components/ProfileHeader';
 import { ProfileTabs, ProfileTabItem } from './components/ProfileTabs';
 import { ProfileCarousel } from './components/ProfileCarousel';
 import { PROFILE_TABS } from './constants/profileTabs';
+import { useTabItem } from './hooks/useTabItem';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -18,6 +19,8 @@ const Profile = () => {
     { enabled: !!userId }
   );
   console.log(data, isLoading, isError, error);
+
+  const { tabItems } = useTabItem(data, isLoading);
 
   return (
     <ProfilePage>
@@ -31,28 +34,13 @@ const Profile = () => {
         />
         <ProfileHeader />
         <ProfileTabs>
-          <ProfileTabItem
-            title={`${isLoading ? 0 : data.posts.length} ${
-              PROFILE_TABS.MEDITATION
-            }`}
-            index={0}
-          />
-          <ProfileTabItem
-            title={`${isLoading ? 0 : data.following.length} ${
-              PROFILE_TABS.FOLLOWER
-            }`}
-            index={1}
-          />
-          <ProfileTabItem
-            title={`${isLoading ? 0 : data.followers.length} ${
-              PROFILE_TABS.FOLLOWING
-            }`}
-            index={2}
-          />
-          <ProfileTabItem
-            title={`${PROFILE_TABS.INFO}`}
-            index={3}
-          />
+          {tabItems.map((tabItem, index) => (
+            <ProfileTabItem
+              key={tabItem.label}
+              title={`${tabItem.value} ${tabItem.label}`}
+              index={index}
+            />
+          ))}
         </ProfileTabs>
         <ProfileCarousel totalIndex={PROFILE_TABS.TOTAL_INDEX} />
       </ProfileInfoContainer>
