@@ -9,15 +9,15 @@ interface ConfirmBackgroundProps {
   height: number;
 }
 
-interface IconWrapperProps {
+interface IconContainerProps {
   emojiSize: number;
 }
 
-interface ContentWrapperProps {
+interface ContentContainerProps {
   contentFontSize: number;
 }
 
-export const DeemBackground = styled.div<DeemBackgroundProps>`
+export const StyledDeemBackground = styled.div<DeemBackgroundProps>`
   position: absolute;
   left: 0;
   top: 0;
@@ -29,7 +29,7 @@ export const DeemBackground = styled.div<DeemBackgroundProps>`
   align-items: center;
 `;
 
-export const ConfirmBackground = styled.div<ConfirmBackgroundProps>`
+export const StyledConfirmBackground = styled.div<ConfirmBackgroundProps>`
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   background-color: ${({ theme }) => theme['white']};
@@ -39,25 +39,25 @@ export const ConfirmBackground = styled.div<ConfirmBackgroundProps>`
   align-items: center;
 `;
 
-export const IconWrapper = styled.div<IconWrapperProps>`
+export const IconContainer = styled.div<IconContainerProps>`
   width: 100%;
   height: 50%;
-  font-size: ${({ emojiSize }) => emojiSize}rem;
+  font-size: ${({ emojiSize }) => emojiSize}px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const ContentWrapper = styled.div<ContentWrapperProps>`
+export const ContentContainer = styled.div<ContentContainerProps>`
   width: 100%;
   height: 50%;
   text-align: center;
   font-weight: bold;
-  font-size: ${({ contentFontSize }) => contentFontSize}rem;
+  font-size: ${({ contentFontSize }) => contentFontSize}px;
   position: relative;
 `;
 
-export const NavButtonWrapper = styled.div`
+export const NavButtonContainer = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
