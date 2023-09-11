@@ -4,11 +4,12 @@ import { useRecoilState } from 'recoil';
 import { meditationTime } from '@pages/meditation/components/MeditationTimer';
 import { useState, useEffect } from 'react';
 import MeditationEndButton from '@pages/meditation/components/MeditationEndButton';
-
-const FIVE_MINUTES_IN_SECONDS = 300;
-const BUTTON_SIZE = 90;
-const BUTTON_TYPE_ADD = 'add';
-const BUTTON_TYPE_SUB = 'sub';
+import {
+  BUTTON_TYPE_ADD,
+  BUTTON_TYPE_SUB,
+  COUNTER_BUTTON_SIZE,
+  FIVE_MINUTES_IN_SECONDS
+} from '@pages/meditation/constants';
 
 const CounterContainer = styled.div`
   display: flex;
@@ -76,7 +77,7 @@ const MeditationCounter = () => {
           <SetTimeButton onClick={() => handleTime(BUTTON_TYPE_SUB)}>
             <Icon
               name={'chevron_left'}
-              size={BUTTON_SIZE}
+              size={COUNTER_BUTTON_SIZE}
               color={'white'}
             />
           </SetTimeButton>
@@ -84,7 +85,7 @@ const MeditationCounter = () => {
           <SetTimeButton onClick={() => handleTime(BUTTON_TYPE_ADD)}>
             <Icon
               name={'chevron_right'}
-              size={BUTTON_SIZE}
+              size={COUNTER_BUTTON_SIZE}
               color={'white'}
             />
           </SetTimeButton>

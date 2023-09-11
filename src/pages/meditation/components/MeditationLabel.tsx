@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-
-const MEDITATION_NOT_STARTED = '명상 시간을 설정해주세요.';
-const MEDITATION_ONGOING = '편안한 명상 되세요.';
-const MEDITATION_ENDED = '명상이 종료되었습니다.';
+import {
+  MEDITATION_ENDED,
+  MEDITATION_NOT_STARTED,
+  MEDITATION_ONGOING
+} from '@pages/meditation/constants/meditation';
 
 const StyledMeditationLabel = styled.div`
   display: flex;

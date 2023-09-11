@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import Button from '@components/Button';
-import { atom, useRecoilState } from 'recoil';
+import { atom, useSetRecoilState } from 'recoil';
 
 const EndButtonContainer = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ export const endButtonPushed = atom({
 });
 
 const MeditationEndButton = () => {
-  const [_, setPushed] = useRecoilState(endButtonPushed);
+  const setPushed = useSetRecoilState(endButtonPushed);
   return (
     <EndButtonContainer>
       <Button

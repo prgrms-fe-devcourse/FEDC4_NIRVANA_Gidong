@@ -3,11 +3,11 @@ import MeditationCounter from '@pages/meditation/components/MeditaionCounter';
 import MeditationLabel from '@pages/meditation/components/MeditationLabel';
 import { Container } from '@pages/meditation/Meditation.style';
 import Confirm from '@components/Confirm';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { endButtonPushed } from '@pages/meditation/components/MeditationEndButton';
 
 export const Meditation = () => {
-  const [confirmCaptured, _] = useRecoilState(endButtonPushed);
+  const confirmCaptured = useRecoilValue(endButtonPushed);
   return (
     <>
       <Container>
