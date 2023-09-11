@@ -9,15 +9,15 @@ interface AlertBackgroundProps {
   height: number;
 }
 
-interface IconWrapperProps {
+interface IconContainerProps {
   emojiSize: number;
 }
 
-interface ContentWrapperProps {
+interface ContentContainerProps {
   contentFontSize: number;
 }
 
-export const DeemBackground = styled.div<DeemBackgroundProps>`
+export const StyledDeemBackground = styled.div<DeemBackgroundProps>`
   position: absolute;
   left: 0;
   top: 0;
@@ -29,7 +29,7 @@ export const DeemBackground = styled.div<DeemBackgroundProps>`
   align-items: center;
 `;
 
-export const AlertBackground = styled.div<AlertBackgroundProps>`
+export const StyledAlertBackground = styled.div<AlertBackgroundProps>`
   ${({ theme }) => theme.style.flexAlignCenter}
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
@@ -38,23 +38,23 @@ export const AlertBackground = styled.div<AlertBackgroundProps>`
   display: flex;
 `;
 
-export const IconWrapper = styled.div<IconWrapperProps>`
+export const IconContainer = styled.div<IconContainerProps>`
   ${({ theme }) => theme.style.flexCenter}
   width: 100%;
   height: 50%;
-  font-size: ${({ emojiSize }) => emojiSize}rem;
+  font-size: ${({ emojiSize }) => emojiSize}px;
 `;
 
-export const ContentWrapper = styled.div<ContentWrapperProps>`
+export const ContentContainer = styled.div<ContentContainerProps>`
   width: 100%;
   height: 50%;
   text-align: center;
   font-weight: bold;
-  font-size: ${({ contentFontSize }) => contentFontSize}rem;
+  font-size: ${({ contentFontSize }) => contentFontSize}px;
   position: relative;
 `;
 
-export const NavButtonWrapper = styled.div`
+export const NavButtonContainer = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;

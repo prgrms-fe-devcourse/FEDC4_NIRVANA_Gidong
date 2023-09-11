@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import {
-  DeemBackground,
-  AlertBackground,
-  IconWrapper,
-  ContentWrapper,
-  NavButtonWrapper
+  StyledDeemBackground,
+  StyledAlertBackground,
+  IconContainer,
+  ContentContainer,
+  NavButtonContainer
 } from './Alert.style';
-import Button from '../Button';
-import Link from '../Link';
+import { Button } from '../Button';
+import { Link } from '../Link';
 
 interface AlertProps {
   width: number;
@@ -24,23 +24,23 @@ const Alert = ({
   width = 330,
   height = 390,
   emoji,
-  emojiSize = 4.5,
+  emojiSize = 80,
   content,
-  contentFontSize = 1,
+  contentFontSize = 16,
   buttonLabel,
   nextPageLink
 }: Partial<AlertProps>) => {
   const [disabled, setDisabled] = useState(false);
 
   return (
-    <DeemBackground disabled={disabled}>
-      <AlertBackground
+    <StyledDeemBackground disabled={disabled}>
+      <StyledAlertBackground
         width={width}
         height={height}>
-        <IconWrapper emojiSize={emojiSize}>{emoji}</IconWrapper>
-        <ContentWrapper contentFontSize={contentFontSize}>
+        <IconContainer emojiSize={emojiSize}>{emoji}</IconContainer>
+        <ContentContainer contentFontSize={contentFontSize}>
           {content}
-          <NavButtonWrapper onClick={() => setDisabled(true)}>
+          <NavButtonContainer onClick={() => setDisabled(true)}>
             {nextPageLink ? (
               <Link pageLink={nextPageLink}>
                 <Button
@@ -60,10 +60,10 @@ const Alert = ({
                 label={buttonLabel}
               />
             )}
-          </NavButtonWrapper>
-        </ContentWrapper>
-      </AlertBackground>
-    </DeemBackground>
+          </NavButtonContainer>
+        </ContentContainer>
+      </StyledAlertBackground>
+    </StyledDeemBackground>
   );
 };
 export default Alert;

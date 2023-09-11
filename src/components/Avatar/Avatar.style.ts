@@ -25,7 +25,7 @@ export const AvatarImage = styled.img<AvatarImageProps>`
 `;
 
 export const AvatarText = styled.div`
-  font-size: 2rem;
+  font-size: 32px;
   width: 100%;
   height: 100%;
   background-image: linear-gradient(to right, #ff5858, #f857a6);

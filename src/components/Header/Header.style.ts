@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import logo from '@assets/logo.svg';
 
-export const HeaderLayout = styled.header`
+export const HeaderContainer = styled.header`
   height: 50px;
   background-color: ${({ theme }) => theme.color.purpleDark};
   display: flex;

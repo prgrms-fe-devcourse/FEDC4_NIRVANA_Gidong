@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/components/UserInput/index.tsx
 import styled from '@emotion/styled';
 
 const SignUpLabel = styled.label`
@@ -33,6 +34,15 @@ const SignUpSuccess = styled.span`
   color: ${({ theme }) => theme.color.greenVivid};
   margin-left: 10px;
 `;
+=======
+import {
+  SignUpLabel,
+  SignUpInput,
+  InputContainer,
+  SignUpError,
+  SignUpSuccess
+} from './UserInput.style';
+>>>>>>> 4b3fc75737adb4274f428deea06501ea85005841:src/components/UserInput/UserInput.tsx
 
 interface UserInputProps {
   name: string;

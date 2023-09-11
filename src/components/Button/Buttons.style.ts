@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const StyledButton = styled.button<{
+export const StyledButton = styled.button<{
   width: number;
   height: number;
   dark: boolean;
@@ -16,34 +16,5 @@ const StyledButton = styled.button<{
   color: ${({ theme, dark }) => (dark ? theme.color.white : theme.color.black)};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 16px;
 `;
-
-interface ButtonProps {
-  width: number;
-  height: number;
-  dark: boolean;
-  label?: string;
-  handleClick?: () => void;
-  bold: boolean;
-}
-
-const Button = ({
-  width,
-  height,
-  label,
-  handleClick,
-  dark,
-  bold
-}: ButtonProps) => (
-  <StyledButton
-    width={width}
-    height={height}
-    onClick={handleClick}
-    dark={dark}
-    bold={bold}>
-    {label}
-  </StyledButton>
-);
-
-export default Button;
