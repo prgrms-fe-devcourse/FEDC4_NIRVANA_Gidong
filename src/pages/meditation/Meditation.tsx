@@ -2,7 +2,7 @@ import MeditationTimer from '@pages/meditation/components/MeditationTimer';
 import MeditationCounter from '@pages/meditation/components/MeditaionCounter';
 import MeditationLabel from '@pages/meditation/components/MeditationLabel';
 import { Container } from '@pages/meditation/Meditation.style';
-import Confirm from '@components/Confirm';
+import { Confirm } from '@components/Confirm';
 import { useRecoilValue } from 'recoil';
 import { endButtonPushed } from '@pages/meditation/components/MeditationEndButton';
 
@@ -19,9 +19,9 @@ export const Meditation = () => {
             width={329}
             height={389}
             emoji={'🧘🏻'}
-            emojiSize={4.5}
+            emojiSize={70}
             content={'정말 명상을 끝내시겠어요?'}
-            contentFontSize={1.2}
+            contentFontSize={18}
             nextPageLink={'/'}
           />
         )}

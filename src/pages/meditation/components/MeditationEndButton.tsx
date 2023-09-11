@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Button from '@components/Button';
+import { Button } from '@components/Button';
 import { atom, useSetRecoilState } from 'recoil';
 
 const EndButtonContainer = styled.div`

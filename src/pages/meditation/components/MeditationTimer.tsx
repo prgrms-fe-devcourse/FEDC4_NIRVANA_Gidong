@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { atom, useRecoilState } from 'recoil';
 import { useState } from 'react';
 import formatTime from '@utils/formatTime';
-import Icon from '@components/Icon';
+import { Icon } from '@components/Icon';
 
 const TimerContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};

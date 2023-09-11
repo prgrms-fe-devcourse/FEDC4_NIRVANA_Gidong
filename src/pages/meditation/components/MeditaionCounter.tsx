@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Icon from '@components/Icon';
+import { Icon } from '@components/Icon';
 import { useRecoilState } from 'recoil';
 import { meditationTime } from '@pages/meditation/components/MeditationTimer';
 import { useState, useEffect } from 'react';
@@ -9,7 +9,7 @@ import {
   BUTTON_TYPE_SUB,
   COUNTER_BUTTON_SIZE,
   FIVE_MINUTES_IN_SECONDS
-} from '@pages/meditation/constants';
+} from '@pages/meditation/constants/meditation';
 
 const CounterContainer = styled.div`
   display: flex;
