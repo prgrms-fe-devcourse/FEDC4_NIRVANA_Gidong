@@ -1,5 +1,5 @@
 import type { Post } from '@/types';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import { Avatar } from '../Avatar';
 import {
   AvatarContainer,
