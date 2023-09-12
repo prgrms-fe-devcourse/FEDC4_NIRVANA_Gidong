@@ -20,10 +20,11 @@ interface FollowUsersProps {
 const FollowUsers = ({ following, data = dumyData }: FollowUsersProps) => {
   return (
     <>
-      {data.map((element: Follow) => (
+      {data.map(({ _id, user }: Follow) => (
         <FollowUser
-          followUserData={element}
-          key={element._id}
+          followDataId={_id}
+          followUser={user}
+          key={_id}
           following={following}
         />
       ))}

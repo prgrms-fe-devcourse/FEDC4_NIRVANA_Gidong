@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_BASE_URL } from '../../constants/Api';
+import { API_BASE_URL } from '@constants/Api';
 
 const postFollowUser = async (userId: string) => {
   const response = await axios.post(
@@ -16,7 +16,7 @@ const postFollowUser = async (userId: string) => {
   return response.data;
 };
 
-const deleteUnfollowUser = async (userId: string) => {
+const deleteFollowUser = async (userId: string) => {
   const response = await axios.delete(`${API_BASE_URL}/follow/delete`, {
     data: { id: userId },
     headers: {
@@ -28,4 +28,4 @@ const deleteUnfollowUser = async (userId: string) => {
   return response.data;
 };
 
-export { postFollowUser, deleteUnfollowUser };
+export { postFollowUser, deleteFollowUser };

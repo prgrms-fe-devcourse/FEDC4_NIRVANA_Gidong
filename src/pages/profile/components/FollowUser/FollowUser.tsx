@@ -4,33 +4,34 @@ import { FollowUserContainer } from './FollowUser.style';
 import { FollowUserInfo } from '../FollowUserInfo';
 import { Follow } from '@types';
 import { useQuery } from '@tanstack/react-query';
-import { deleteUnfollowUser } from '@apis/follow';
+import { deleteFollowUser } from '@apis/follow';
 import { postFollowUser } from '@apis/follow';
 
 // TODO : follow, following logic 추가될 예정
 
-interface FollowUserItemProps {
-  followUserData: Follow;
+interface FollowUserProps {
   following: boolean;
+  followUser: Pick<Follow, 'user'>;
+  followDataId: Pick<Follow, '_id'>;
 }
 
-const FollowUserItem = ({ followUserData, following }: FollowUserItemProps) => {
+const FollowUser = ({
+  followDataId,
+  followUser,
+  following
+}: FollowUserProps) => {
   const [follow, setFollow] = useState(true);
 
-  const {
-    status,
-    data: followData,
-    refetch
-  } = useQuery({
+  const { status, refetch } = useQuery({
     queryKey: ['follow'],
     queryFn: async () => {
       let data = {};
       console.log(follow);
       if (follow) {
-        data = await deleteUnfollowUser(followUserData._id);
+        data = await deleteFollowUser(followDataId);
       } else {
-        console.log(followUserData.user);
-        data = await postFollowUser(followUserData.user);
+        console.log(followUser);
+        data = await postFollowUser(followUser);
       }
 
       return data;
@@ -38,11 +39,16 @@ const FollowUserItem = ({ followUserData, following }: FollowUserItemProps) => {
     enabled: false
   });
 
-  console.log(followData);
+  console.log(status);
+
+  const handleClickFollow = async () => {
+    await refetch();
+    setFollow((prev) => !prev);
+  };
 
   return (
     <FollowUserContainer>
-      <FollowUserInfo userData={followUserData} />
+      <FollowUserInfo userId={followUser} />
       {following &&
         (follow ? (
           <FollowButton
@@ -51,10 +57,7 @@ const FollowUserItem = ({ followUserData, following }: FollowUserItemProps) => {
             label='팔로우'
             dark={false}
             bold={true}
-            handleClick={async () => {
-              await refetch();
-              setFollow((prev) => !prev);
-            }}
+            handleClick={handleClickFollow}
           />
         ) : (
           <FollowButton
@@ -63,13 +66,10 @@ const FollowUserItem = ({ followUserData, following }: FollowUserItemProps) => {
             label='팔로잉'
             dark={true}
             bold={true}
-            handleClick={() => {
-              refetch();
-              setFollow((prev) => !prev);
-            }}
+            handleClick={handleClickFollow}
           />
         ))}
     </FollowUserContainer>
   );
 };
-export default FollowUserItem;
+export default FollowUser;

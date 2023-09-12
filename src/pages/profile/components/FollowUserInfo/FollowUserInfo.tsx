@@ -1,17 +1,14 @@
 import { FollowUserInfoContainer } from './FollowUserInfo.style';
 import { UserId, UserName } from '@components/UserText';
 import { BadgeAvatar } from '@components/Avatar';
-import { Follow } from '@types';
 import { useQuery } from '@tanstack/react-query';
-import { getUserData } from '@apis/user/getUserData';
+import getUserData from '@apis/user/getUserData';
 
 interface FollowUserInfoProps {
-  userData: Follow;
+  userId: string;
 }
 
-const FollowUserInfo = ({ userData }: FollowUserInfoProps) => {
-  const userId = userData.user;
-
+const FollowUserInfo = ({ userId }: FollowUserInfoProps) => {
   const { status, data: user } = useQuery({
     queryKey: ['followUser', userId],
     queryFn: async () => await getUserData(userId)
