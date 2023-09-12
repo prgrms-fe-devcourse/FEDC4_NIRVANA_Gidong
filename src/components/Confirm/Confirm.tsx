@@ -10,10 +10,7 @@ import {
 } from './Confirm.style';
 
 interface ConfirmProps {
-  width: number;
-  height: number;
   emoji: string;
-  emojiSize: number;
   content: string;
   contentFontSize: number;
   nextPageLink: string;
