@@ -1,6 +1,7 @@
 import NewPost from './NewPost';
+import { LandingMain } from '@pages/landing/style';
 import {
-  StyledBackground,
+  StyledPosting,
   ContentContainer,
   StyledDescription,
   StyledPassPosting
@@ -8,13 +9,15 @@ import {
 
 const Posting = () => {
   return (
-    <StyledBackground>
-      <ContentContainer>
-        <StyledDescription></StyledDescription>
-        <NewPost />
-        <StyledPassPosting></StyledPassPosting>
-      </ContentContainer>
-    </StyledBackground>
+    <LandingMain>
+      <StyledPosting>
+        <ContentContainer>
+          <StyledDescription></StyledDescription>
+          <NewPost />
+          <StyledPassPosting></StyledPassPosting>
+        </ContentContainer>
+      </StyledPosting>
+    </LandingMain>
   );
 };
 
