@@ -4,7 +4,7 @@ import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 import { Alert } from '@components/Alert';
 import { isEmailOk, isNicknameOk, isPasswordOk } from './validations';
-import { signUpUser } from '@/apis/user/getUserData';
+import postSignUpUser from '@/apis/signup';
 import { USER_INPUT, MODAL } from './constants';
 import {
   SignUpForm,
@@ -61,7 +61,7 @@ const SignUp = () => {
       passwordConfirm &&
       password === passwordConfirm
     ) {
-      signUpUser({ email, password, fullName: nickname })
+      postSignUpUser({ email, password, fullName: nickname })
         .then(() => setSignupSucceed(true))
         .catch((error) => {
           console.log(error);

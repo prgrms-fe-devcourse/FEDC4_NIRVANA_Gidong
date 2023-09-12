@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import { logInUser } from '@/apis/user/getUserData';
+import postLogInUser from '@apis/login';
 import { userState } from '@/states/userState';
 import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
@@ -46,7 +46,7 @@ const Login = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    logInUser({ email, password })
+    postLogInUser({ email, password })
       .then((res) => {
         const { user, token } = res.data;
         setUser({ ...user, token });
@@ -56,6 +56,7 @@ const Login = () => {
         console.log(err);
         setErrorCatched(true);
       });
+
     return;
   };
 
