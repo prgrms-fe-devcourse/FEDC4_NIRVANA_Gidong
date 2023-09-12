@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const MeditationInfoItemContainer = styled.div`
+export const MeditationInfoItemSection = styled.div`
   ${({ theme }) => theme.style.flexCenter}
   flex-direction: column;
   width: 100%;
@@ -11,13 +11,13 @@ export const MeditationInfoItemContainer = styled.div`
   }
 `;
 
-export const MeditationInfoItemIconSection = styled.div`
+export const MeditationInfoItemIconContainer = styled.div`
   width: 100%;
   text-align: center;
   font-size: 70px;
 `;
 
-export const MeditationInfoItemTitleSection = styled.div`
+export const MeditationInfoItemTitleContainer = styled.div`
   width: 100%;
   text-align: center;
   font-size: 20px;

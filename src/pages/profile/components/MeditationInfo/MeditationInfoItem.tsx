@@ -1,7 +1,7 @@
 import {
-  MeditationInfoItemContainer,
-  MeditationInfoItemIconSection,
-  MeditationInfoItemTitleSection
+  MeditationInfoItemSection,
+  MeditationInfoItemIconContainer,
+  MeditationInfoItemTitleContainer
 } from './MeditationInfoItem.style';
 
 interface MeditationInfoItemProps {
@@ -11,12 +11,12 @@ interface MeditationInfoItemProps {
 
 const MeditationInfoItem = ({ icon, children }: MeditationInfoItemProps) => {
   return (
-    <MeditationInfoItemContainer>
-      <MeditationInfoItemIconSection>{icon}</MeditationInfoItemIconSection>
-      <MeditationInfoItemTitleSection>
+    <MeditationInfoItemSection>
+      <MeditationInfoItemIconContainer>{icon}</MeditationInfoItemIconContainer>
+      <MeditationInfoItemTitleContainer>
         {children}
-      </MeditationInfoItemTitleSection>
-    </MeditationInfoItemContainer>
+      </MeditationInfoItemTitleContainer>
+    </MeditationInfoItemSection>
   );
 };
 
