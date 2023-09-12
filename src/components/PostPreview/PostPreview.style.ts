@@ -10,7 +10,7 @@ export const PreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 0.5px solid ${({ theme }) => theme['greyLight']};
+  border-bottom: 0.5px solid ${({ theme }) => theme.color.greyLight };
 `;
 
 export const PostHeaderContainer = styled.div`
@@ -48,7 +48,7 @@ export const UserNameContainer = styled.div`
 export const PostDetailInfoContainer = styled.div`
   width: 100%;
   height: 50%;
-  color: ${({ theme }) => theme['greyLight']};
+  color: ${({ theme }) => theme.color.greyLight };
   font-size: 14px;
   display: flex;
   align-items: center;
