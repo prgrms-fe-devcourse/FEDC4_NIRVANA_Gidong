@@ -4,22 +4,28 @@ import MeditationInfoItem from './MeditationInfoItem';
 interface MeditationInfoProps {
   totalMeditationCount: number;
   totalMeditationTime: number;
+  fullName: string;
 }
 
 const MeditationInfo = ({
   totalMeditationCount,
-  totalMeditationTime
+  totalMeditationTime,
+  fullName
 }: MeditationInfoProps) => {
   return (
     <MeditationInfoSection>
-      <MeditationInfoItem
-        icon='🧘🏻'
-        title={`혜성상회 님은 총 ${totalMeditationCount}번의 명상을 진행한 상태예요.`}
-      />
-      <MeditationInfoItem
-        icon='⏰'
-        title={`혜성상회 님은 총 ${totalMeditationTime}분의 명상을 하셨어요.`}
-      />
+      <MeditationInfoItem icon='🧘🏻'>
+        <p>
+          <strong>{fullName}</strong> 님은 총 <b>{totalMeditationCount}</b>번의
+          명상을 진행했어요.
+        </p>
+      </MeditationInfoItem>
+      <MeditationInfoItem icon='⏰'>
+        <p>
+          <strong>{fullName}</strong> 님은 총 <b>{totalMeditationTime}</b>분의
+          명상을 하셨어요.
+        </p>
+      </MeditationInfoItem>
     </MeditationInfoSection>
   );
 };

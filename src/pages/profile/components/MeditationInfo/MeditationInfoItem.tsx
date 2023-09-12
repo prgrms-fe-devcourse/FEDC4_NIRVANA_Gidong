@@ -6,14 +6,16 @@ import {
 
 interface MeditationInfoItemProps {
   icon: string;
-  title: string;
+  children: React.ReactNode;
 }
 
-const MeditationInfoItem = ({ icon, title }: MeditationInfoItemProps) => {
+const MeditationInfoItem = ({ icon, children }: MeditationInfoItemProps) => {
   return (
     <MeditationInfoItemContainer>
       <MeditationInfoItemIconSection>{icon}</MeditationInfoItemIconSection>
-      <MeditationInfoItemTitleSection>{title}</MeditationInfoItemTitleSection>
+      <MeditationInfoItemTitleSection>
+        {children}
+      </MeditationInfoItemTitleSection>
     </MeditationInfoItemContainer>
   );
 };

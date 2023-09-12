@@ -22,4 +22,14 @@ export const MeditationInfoItemTitleSection = styled.div`
   text-align: center;
   font-size: 20px;
   padding: 10px;
+  p {
+    > strong {
+      font-weight: 700;
+    }
+    > b {
+      font-size: 30px;
+      font-weight: 700;
+      color: ${({ theme }) => theme.color.purpleVivid};
+    }
+  }
 `;
