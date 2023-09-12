@@ -8,6 +8,7 @@ const style = css`
     font-family: 'Pretendard Variable', sans-serif;
     width: 100vw;
     height: 100vh;
+    max-width: 768px;
   }
 `;
 const GlobalStyle = () => {
