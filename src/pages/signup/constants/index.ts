@@ -17,7 +17,8 @@ const USER_INPUT = {
     NAME: 'password',
     PLACE_HOLDER: '비밀번호를 입력해주세요.',
     TITLE: '비밀번호',
-    ERROR_MESSAGE: '비밀번호는 8자 이상 16자 이하로 입력해주세요.',
+    ERROR_MESSAGE:
+      '비밀번호는 8자 이상 32자 이하여야 하며\n영문자 숫자 특수기호 중 두개이상 포함해야 합니다.',
     SUCCESS_MESSAGE: '안전한 비밀번호네요!',
     TYPE: 'password'
   },
