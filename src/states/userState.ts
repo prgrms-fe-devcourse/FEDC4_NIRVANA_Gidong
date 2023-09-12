@@ -13,6 +13,7 @@ type UserState = Pick<
   | 'banned'
   | 'createdAt'
   | 'updatedAt'
+  | 'token'
 >;
 
 export const userState = atom<UserState | null>({

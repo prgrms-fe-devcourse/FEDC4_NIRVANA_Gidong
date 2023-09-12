@@ -19,7 +19,7 @@ const LinkContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
 `;
 
-const GoSignUp = () => {
+const GoToSignUp = () => {
   return (
     <GoToSignUpContainer>
       <Message>{MESSAGE.GO_TO_SIGN_UP}</Message>
@@ -40,4 +40,4 @@ const GoSignUp = () => {
   );
 };
 
-export default GoSignUp;
+export default GoToSignUp;
