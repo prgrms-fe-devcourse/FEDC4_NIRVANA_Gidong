@@ -6,6 +6,7 @@ export const ProfileInfoContainer = styled.div`
   width: 122px;
   height: 117px;
   top: -35px;
+  position: absolute;
 `;
 export const ProfileAvatarContainer = styled.div`
   flex-grow: 1;

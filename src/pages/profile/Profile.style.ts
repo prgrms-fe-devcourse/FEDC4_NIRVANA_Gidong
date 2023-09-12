@@ -6,7 +6,9 @@ export const ProfilePage = styled.div`
   height: 100%;
 `;
 
-export const ProfileContainer = styled.div`
+export const ProfileInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   flex-grow: 1;
   padding: 0 26px;
@@ -15,8 +17,10 @@ export const ProfileContainer = styled.div`
   position: relative;
 `;
 
-export const ProfileBackgroundContainer = styled.div`
+export const ProfileCoverImageContainer = styled.div`
   height: 100px;
   width: 100%;
-  background-color: aliceblue;
+  background-color: ${({ theme }) => theme['purpleDarker']};
+  position: relative;
+  overflow: hidden;
 `;

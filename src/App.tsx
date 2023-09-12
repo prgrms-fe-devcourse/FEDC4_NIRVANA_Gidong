@@ -36,10 +36,6 @@ function App() {
               path='/login'
               element={<LogIn />}
             />
-            <Route
-              path='/profile/:userId'
-              element={<Profile />}
-            />
           </Routes>
         </RecoilRoot>
       </QueryClientProvider>

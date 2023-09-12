@@ -4,7 +4,7 @@ import logo from '../../assets/logo.svg';
 export const LandingMain = styled.main`
   background: ${({ theme }) => theme.color.linearGradientPurple};
   ${({ theme }) => theme.style.flexAlignCenter};
-  display: flex;
+  justify-content: center;
   height: 100vh;
   min-height: 844px;
   flex-direction: column;
@@ -21,7 +21,7 @@ export const Heading = styled.h1`
   margin-bottom: 469px;
 `;
 
-export const LinkLayout = styled.div`
+export const LinkContainer = styled.div`
   & > a {
     display: block;
   }
