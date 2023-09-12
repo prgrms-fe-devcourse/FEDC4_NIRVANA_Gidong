@@ -1,7 +1,7 @@
-import NewPost from './NewPost';
+import { NewPost } from './components';
 import { Link } from '@components/Link';
 import { LandingMain } from '@pages/landing/style';
-import { POSTING_DESCRIPTION } from '@pages/post/constants';
+import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import {
   StyledPosting,
   ContentContainer,
@@ -19,7 +19,7 @@ const Posting = () => {
           <NewPost />
           <StyledPassPosting>
             <Link
-              pageLink={'/'}
+              pageLink={'/posts'}
               size={14}
               color={'white'}>
               {PASS_POSTING}

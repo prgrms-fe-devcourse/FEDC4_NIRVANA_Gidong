@@ -1,5 +1,5 @@
 import { Button } from '@components/Button';
-import { POSTING_DESCRIPTION } from '@pages/post/constants';
+import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import { StyledForm, StyledInput, ButtonContainer } from './NewPost.style';
 
 const NewPost = () => {

@@ -1,3 +1,3 @@
 import Posting from './Posting';
 
-export { Posting };
+export default Posting;
