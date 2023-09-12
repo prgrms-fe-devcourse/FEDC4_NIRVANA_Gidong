@@ -5,17 +5,14 @@ import {
 
 interface ProfileBackgroundProps {
   src: string;
-  children?: React.ReactNode;
 }
 
-const ProfileCover = ({ src, children }: ProfileBackgroundProps) => {
+const ProfileCover = ({ src }: ProfileBackgroundProps) => {
   return (
     <ProfileCoverImageContainer src={src}>
       <ProfileCoverImage
         src={src}
-        alt='coverImage'>
-        {children}
-      </ProfileCoverImage>
+        alt='coverImage'></ProfileCoverImage>
     </ProfileCoverImageContainer>
   );
 };
