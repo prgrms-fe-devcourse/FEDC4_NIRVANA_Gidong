@@ -12,14 +12,14 @@ import {
 } from './PostPreview.style';
 
 interface PostPreviewProps {
-  post: Pick<Post, 'image' | 'likes' | 'comments' | 'title' | 'author' | 'createdAt' >;
+  post: Pick<Post, 'image' | 'title' | 'author' | 'createdAt' >;
+  totalLikes: number;
+  totalComments: number;
   noneProfile: boolean;
 }
 
-const PostPreview = ({ post, noneProfile = false }: PostPreviewProps) => {
-  const { image, likes, comments, title, author, createdAt } = post;
-  const totalLikes = likes.length;
-  const totalComments = comments.length;
+const PostPreview = ({ post, totalLikes, totalComments, noneProfile = false }: PostPreviewProps) => {
+  const { image, title, author, createdAt } = post;
   const iconDescription = [
     { name: 'favorite', size: 12, total: totalLikes },
     { name: 'chat', size: 12, total: totalComments }
