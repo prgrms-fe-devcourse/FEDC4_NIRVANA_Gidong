@@ -2,6 +2,8 @@ import createTabItems from './utils/createTabItems';
 import getUserData from '@apis/user/getUserData';
 import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { useRecoilState } from 'recoil';
+import { editModeState } from './states/editMode';
 import { ProfileInfoContainer, ProfilePage } from './Profile.style';
 import { ProfileInfo } from './components/ProfileInfo';
 import { ProfileCover } from './components/ProfileCover';
@@ -12,7 +14,8 @@ import { ProfileCarousel } from './components/ProfileCarousel';
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
   const location = useLocation();
-  const _EDIT_MODE = location.hash === '#edit';
+  const [editMode, setEditMode] = useRecoilState(editModeState);
+  setEditMode(location.hash === '#edit');
 
   const { data, isLoading, isError, error } = useQuery(
     ['userData', userId],
@@ -27,16 +30,16 @@ const Profile = () => {
     <ProfilePage>
       <ProfileCover src={isLoading ? '' : data.cover} />
       <ProfileInfoContainer>
-        {_EDIT_MODE ? (
+        <ProfileInfo
+          email={isLoading ? '' : data.email}
+          fullName={isLoading ? '' : data.fullName}
+          avatarImgSrc={isLoading ? '' : data.image}
+          meditationStack={50}
+        />
+        {editMode ? (
           ''
         ) : (
           <>
-            <ProfileInfo
-              email={isLoading ? '' : data.email}
-              fullName={isLoading ? '' : data.fullName}
-              avatarImgSrc={isLoading ? '' : data.image}
-              meditationStack={50}
-            />
             <ProfileHeader />
             <ProfileTabs>
               {tabItems.map((tabItem, index) => (
