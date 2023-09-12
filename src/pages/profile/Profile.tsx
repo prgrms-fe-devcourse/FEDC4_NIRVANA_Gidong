@@ -1,6 +1,6 @@
 import createTabItems from './utils/createTabItems';
 import getUserData from '@apis/user/getUserData';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { ProfileInfoContainer, ProfilePage } from './Profile.style';
 import { ProfileInfo } from './components/ProfileInfo';
@@ -11,6 +11,8 @@ import { ProfileCarousel } from './components/ProfileCarousel';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
+  const location = useLocation();
+  const _EDIT_MODE = location.hash === '#edit';
 
   const { data, isLoading, isError, error } = useQuery(
     ['userData', userId],
@@ -25,24 +27,30 @@ const Profile = () => {
     <ProfilePage>
       <ProfileCover src={isLoading ? '' : data.cover} />
       <ProfileInfoContainer>
-        <ProfileInfo
-          email={isLoading ? '' : data.email}
-          fullName={isLoading ? '' : data.fullName}
-          avatarImgSrc={isLoading ? '' : data.image}
-          meditationStack={50}
-        />
-        <ProfileHeader />
-        <ProfileTabs>
-          {tabItems.map((tabItem, index) => (
-            <ProfileTabItem
-              key={tabItem.label}
-              title={`${tabItem.value} ${tabItem.label}`}
-              data={tabItem.data}
-              index={index}
+        {_EDIT_MODE ? (
+          ''
+        ) : (
+          <>
+            <ProfileInfo
+              email={isLoading ? '' : data.email}
+              fullName={isLoading ? '' : data.fullName}
+              avatarImgSrc={isLoading ? '' : data.image}
+              meditationStack={50}
             />
-          ))}
-        </ProfileTabs>
-        <ProfileCarousel totalIndex={tabItems.length} />
+            <ProfileHeader />
+            <ProfileTabs>
+              {tabItems.map((tabItem, index) => (
+                <ProfileTabItem
+                  key={tabItem.label}
+                  title={`${tabItem.value} ${tabItem.label}`}
+                  data={tabItem.data}
+                  index={index}
+                />
+              ))}
+            </ProfileTabs>
+            <ProfileCarousel totalIndex={tabItems.length} />
+          </>
+        )}
       </ProfileInfoContainer>
     </ProfilePage>
   );

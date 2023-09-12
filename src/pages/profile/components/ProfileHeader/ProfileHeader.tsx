@@ -40,7 +40,7 @@ const ProfileHeader = () => {
           bold={true}
           fontSize={12}
           borderRadius={30}
-          handleClick={() => navigate('edit')}
+          handleClick={() => navigate('#edit')}
         />
       </ProfileHeaderButtonContainer>
     </ProfileHeaderSection>
