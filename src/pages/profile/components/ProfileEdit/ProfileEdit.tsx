@@ -41,11 +41,12 @@ const ProfileEdit = () => {
     event.preventDefault();
     const target = event.target as HTMLFormElement;
     const username = target.username.value;
-    const res = await putUpdateUser({
+    await putUpdateUser({
       username,
       token: user.token
+    }).then(() => {
+      window.location.reload();
     });
-    console.log(res);
   };
 
   return (
