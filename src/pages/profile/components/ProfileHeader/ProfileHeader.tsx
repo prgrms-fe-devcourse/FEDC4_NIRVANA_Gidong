@@ -1,11 +1,13 @@
 import { Button } from '@/components/Button';
 import { Icon } from '@/components/Icon';
+import { useNavigate } from 'react-router-dom';
 import {
   ProfileHeaderButtonContainer,
   ProfileHeaderSection
 } from './ProfileHeader.style';
 
 const ProfileHeader = () => {
+  const navigate = useNavigate();
   return (
     <ProfileHeaderSection>
       <ProfileHeaderButtonContainer>
@@ -38,6 +40,7 @@ const ProfileHeader = () => {
           bold={true}
           fontSize={12}
           borderRadius={30}
+          handleClick={() => navigate('edit')}
         />
       </ProfileHeaderButtonContainer>
     </ProfileHeaderSection>
