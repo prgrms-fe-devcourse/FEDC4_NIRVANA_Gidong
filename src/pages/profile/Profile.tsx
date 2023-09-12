@@ -10,6 +10,7 @@ import { ProfileCover } from './components/ProfileCover';
 import { ProfileHeader } from './components/ProfileHeader';
 import { ProfileTabs, ProfileTabItem } from './components/ProfileTabs';
 import { ProfileCarousel } from './components/ProfileCarousel';
+import { ProfileEdit } from './components/ProfileEdit';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -37,7 +38,7 @@ const Profile = () => {
           meditationStack={50}
         />
         {editMode ? (
-          ''
+          <ProfileEdit />
         ) : (
           <>
             <ProfileHeader />
