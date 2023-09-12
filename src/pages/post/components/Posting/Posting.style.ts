@@ -9,7 +9,7 @@ export const StyledPosting = styled.div`
 export const ContentContainer = styled.div`
   width: 100%;
   height: 550px;
-  ${({ theme }) => theme.style.flexJustifycenter };
+  ${({ theme }) => theme.style.flexCenter };
   flex-direction: column;
 `;
 
