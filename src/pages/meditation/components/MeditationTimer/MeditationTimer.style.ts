@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
 const TimerContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
@@ -22,15 +21,17 @@ const TimerElement = styled.button`
   color: ${({ theme }) => theme.color.white};
   font-size: 1.5rem;
   font-weight: bold;
+  &:hover {
+    filter: brightness(50%);
+    transition: 0.3s;
+  }
 `;
 
-const MeditationTimer = () => {
-  const [time, setTime] = useState('START');
-  return (
-    <TimerContainer>
-      <TimerElement>{time}</TimerElement>
-    </TimerContainer>
-  );
-};
+const IconContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+`;
 
-export default MeditationTimer;
+export { TimerContainer, TimerElement, IconContainer };

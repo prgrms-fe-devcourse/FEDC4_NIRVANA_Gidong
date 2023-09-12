@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import postLogInUser from '@apis/login';
+import { userState } from '@/states/userState';
 import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 import { USER_INPUT } from './constants';
@@ -14,6 +18,9 @@ import {
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [errorCatched, setErrorCatched] = useState<boolean>(false);
+  const setUser = useSetRecoilState(userState);
+  const navigate = useNavigate();
   let timer = 0;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +46,17 @@ const Login = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    postLogInUser({ email, password })
+      .then((res) => {
+        const { user, token } = res.data;
+        setUser({ ...user, token });
+        navigate('/meditation');
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorCatched(true);
+      });
+
     return;
   };
 
@@ -54,12 +72,15 @@ const Login = () => {
           placeholder={USER_INPUT.EMAIL.PLACE_HOLDER}
           title={USER_INPUT.EMAIL.TITLE}
           handleChange={handleInputChange}
+          show={errorCatched}
+          errorMessage={USER_INPUT.ERROR_MESSAGE}
         />
         <UserInput
           name={USER_INPUT.PASSWORD.NAME}
           placeholder={USER_INPUT.PASSWORD.PLACE_HOLDER}
           title={USER_INPUT.PASSWORD.TITLE}
           handleChange={handleInputChange}
+          type={USER_INPUT.PASSWORD.TYPE}
         />
         <ButtonContainer>
           <Button
