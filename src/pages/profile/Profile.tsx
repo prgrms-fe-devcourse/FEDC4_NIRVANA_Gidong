@@ -1,7 +1,7 @@
 import createTabItems from './utils/createTabItems';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getUserData } from '@/apis/user/getUserData';
+import getUserData from '@/apis/user/getUserData';
 import { ProfileInfoContainer, ProfilePage } from './Profile.style';
 import { ProfileInfo } from './components/ProfileInfo';
 import { ProfileCover } from './components/ProfileCover';
