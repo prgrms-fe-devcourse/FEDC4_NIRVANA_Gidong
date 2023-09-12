@@ -15,7 +15,7 @@ export interface User {
   likes: Like[];
   comments: string[];
   followers: Follow[];
-  followings: Follow[];
+  following: Follow[];
   notifications: Notification[];
   messages: Message[];
   _id: string;
