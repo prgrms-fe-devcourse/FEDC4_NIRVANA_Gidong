@@ -1,3 +1,4 @@
+import createTabItems from './utils/createTabItems';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getUserData } from '@/apis/user/getUserData';
@@ -7,7 +8,6 @@ import { ProfileCover } from './components/ProfileCover';
 import { ProfileHeader } from './components/ProfileHeader';
 import { ProfileTabs, ProfileTabItem } from './components/ProfileTabs';
 import { ProfileCarousel } from './components/ProfileCarousel';
-import { useTabItem } from './hooks/useTabItem';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -19,7 +19,7 @@ const Profile = () => {
   );
   console.log(data, isLoading, isError, error);
 
-  const { tabItems } = useTabItem(data, isLoading);
+  const tabItems = createTabItems(data, isLoading);
 
   return (
     <ProfilePage>

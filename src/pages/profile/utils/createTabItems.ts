@@ -1,7 +1,7 @@
 import { User } from '@/types';
 import { PROFILE_TABS } from '../constants/profileTabs';
 
-export const useTabItem = (
+const createTabItems = (
   tabData: Pick<User, 'followers' | 'following' | 'posts'>,
   isLoading: boolean
 ) => {
@@ -28,5 +28,7 @@ export const useTabItem = (
     }
   ];
 
-  return { tabItems };
+  return tabItems;
 };
+
+export default createTabItems;
