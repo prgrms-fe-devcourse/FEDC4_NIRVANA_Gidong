@@ -2,13 +2,13 @@ import type Post from '@types/Post';
 import { Avatar } from '../Avatar';
 import Icon from '../Icon';
 import {
-  PreviewWrapper,
-  PostHeaderWrapper,
-  PostInfoWrapper,
+  PreviewContainer,
+  PostHeaderContainer,
+  PostInfoContainer,
   PostContent,
-  UserNameWrapper,
-  AvatarWrapper,
-  PostDetailInfoWrapper
+  UserNameContainer,
+  AvatarContainer,
+  PostDetailInfoContainer
 } from './PostPreview.style';
 
 interface PostPreviewProps {
@@ -29,7 +29,7 @@ const PostPreview = ({ post, noneProfile = false }: PostPreviewProps) => {
 
   const PostDetailInfo = () => {
     return (
-      <PostDetailInfoWrapper>
+      <PostDetailInfoContainer>
         {createdAt}
         {iconDescription.map((iconInfo, index) => {
           return (
@@ -43,35 +43,35 @@ const PostPreview = ({ post, noneProfile = false }: PostPreviewProps) => {
             </div>
           );
         })}
-      </PostDetailInfoWrapper>
+      </PostDetailInfoContainer>
     );
   };
   const PostHeaderWithUser = () => {
     return (
       <>
-        <AvatarWrapper>
+        <AvatarContainer>
           <Avatar
             alt={'유저 프로필'}
             src={image}
             size={25}
           />
-        </AvatarWrapper>
-        <PostInfoWrapper>
-          <UserNameWrapper>{author}</UserNameWrapper>
+        </AvatarContainer>
+        <PostInfoContainer>
+          <UserNameContainer>{author}</UserNameContainer>
           <PostDetailInfo />
-        </PostInfoWrapper>
+        </PostInfoContainer>
       </>
     );
   };
 
   const PostHeader = noneProfile === true ? PostHeaderWithUser : PostDetailInfo;
   return (
-    <PreviewWrapper>
-      <PostHeaderWrapper>
+    <PreviewContainer>
+      <PostHeaderContainer>
         <PostHeader />
-      </PostHeaderWrapper>
+      </PostHeaderContainer>
       <PostContent>{previewTitle}...</PostContent>
-    </PreviewWrapper>
+    </PreviewContainer>
   );
 };
 export default PostPreview;

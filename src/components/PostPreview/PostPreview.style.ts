@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const PreviewWrapper = styled.div`
+export const PreviewContainer = styled.div`
   max-width: 600px;
   width: 100%;
   height: 150px;
@@ -13,14 +13,14 @@ export const PreviewWrapper = styled.div`
   border-bottom: 0.5px solid ${({ theme }) => theme['greyLight']};
 `;
 
-export const PostHeaderWrapper = styled.div`
+export const PostHeaderContainer = styled.div`
   width: 100%;
   height: 50px;
   display: flex;
   align-items: center;
 `;
 
-export const AvatarWrapper = styled.div`
+export const AvatarContainer = styled.div`
   width: 50px;
   height: 50px;
   display: flex;
@@ -28,7 +28,7 @@ export const AvatarWrapper = styled.div`
   align-items: center;
 `;
 
-export const PostInfoWrapper = styled.div`
+export const PostInfoContainer = styled.div`
   width: calc(100% - 50px);
   height: 50px;
   display: flex;
@@ -36,7 +36,7 @@ export const PostInfoWrapper = styled.div`
   padding-left: 10px;
 `;
 
-export const UserNameWrapper = styled.div`
+export const UserNameContainer = styled.div`
   width: 100%;
   height: 50%;
   font-weight: bold;
@@ -45,7 +45,7 @@ export const UserNameWrapper = styled.div`
   align-items: center;
 `;
 
-export const PostDetailInfoWrapper = styled.div`
+export const PostDetailInfoContainer = styled.div`
   width: 100%;
   height: 50%;
   color: ${({ theme }) => theme['greyLight']};
