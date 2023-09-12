@@ -12,7 +12,7 @@ import {
 } from './PostPreview.style';
 
 interface PostPreviewProps {
-  post: Post;
+  post: Pick<Post, 'image' | 'likes' | 'comments' | 'title' | 'author' | 'createdAt' >;
   noneProfile: boolean;
 }
 
