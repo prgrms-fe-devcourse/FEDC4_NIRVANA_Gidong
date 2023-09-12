@@ -1,39 +1,33 @@
 import { FollowUser } from '../FollowUser';
-import { FollowUserData } from '../../types';
+import { Follow } from '@types';
 
 const dumyData = [
   {
-    _id: '1234',
-    fullName: '물푸른',
-    isOnline: true,
-    email: 'bluewater@naver.com',
-    image: 'https://picsum.photos/200/300'
-  },
-  {
-    _id: '12345',
-    fullName: '수연조',
-    isOnline: false,
-    email: 'suyeon@naver.com',
-    image: 'https://picsum.photos/200/300'
+    _id: '64ff44d8e044e9076a2cb39e',
+    user: '64ff1661169c79057b5f8eb8',
+    follower: '64ff16cc169c79057b5f8ec0',
+    createdAt: '2023-09-11T16:48:24.723Z',
+    updatedAt: '2023-09-11T16:48:24.723Z',
+    __v: 0
   }
 ];
 
 interface FollowUsersProps {
   following: boolean;
-  data?: FollowUserData[];
+  data?: Follow[];
 }
 
 const FollowUsers = ({ following, data = dumyData }: FollowUsersProps) => {
   return (
-    <div>
-      {data.map((element) => (
+    <>
+      {data.map((element: Follow) => (
         <FollowUser
-          data={element}
+          followUserData={element}
           key={element._id}
           following={following}
         />
       ))}
-    </div>
+    </>
   );
 };
 export default FollowUsers;

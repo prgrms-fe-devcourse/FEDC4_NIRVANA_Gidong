@@ -1,25 +1,34 @@
 import { FollowUserInfoContainer } from './FollowUserInfo.style';
 import { UserId, UserName } from '@components/UserText';
 import { BadgeAvatar } from '@components/Avatar';
-import { FollowUserData } from '../../types';
+import { Follow } from '@types';
+import { useQuery } from '@tanstack/react-query';
+import { getUserData } from '@apis/user/getUserData';
 
 interface FollowUserInfoProps {
-  userData: FollowUserData;
+  userData: Follow;
 }
 
 const FollowUserInfo = ({ userData }: FollowUserInfoProps) => {
-  const { fullName, email, isOnline, image } = userData;
+  const userId = userData.user;
 
-  return (
+  const { status, data: user } = useQuery({
+    queryKey: ['followUser', userId],
+    queryFn: async () => await getUserData(userId)
+  });
+
+  return status === 'loading' ? (
+    <span>Loading..</span>
+  ) : (
     <FollowUserInfoContainer>
       <BadgeAvatar
-        alt={fullName}
-        src={image}
+        alt={user.fullName}
+        src={'https://picsum.photos/200/300'}
         size={39}
-        online={isOnline}
+        online={user.isOnline}
       />
-      <UserId email={email} />
-      <UserName>{fullName}</UserName>
+      <UserId email={user.email} />
+      <UserName>{user.fullName}</UserName>
     </FollowUserInfoContainer>
   );
 };
