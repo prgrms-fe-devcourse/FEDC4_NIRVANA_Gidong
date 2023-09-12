@@ -1,4 +1,5 @@
 import createTabItems from './utils/createTabItems';
+import { useEffect } from 'react';
 import { getUser } from '@apis/user';
 import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -16,7 +17,9 @@ const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
   const location = useLocation();
   const [editMode, setEditMode] = useRecoilState(editModeState);
-  setEditMode(location.hash === '#edit');
+  useEffect(() => {
+    setEditMode(location.hash === '#edit');
+  }, [location.hash, setEditMode]);
 
   const { data, isLoading, isError, error } = useQuery(
     ['userData', userId],
