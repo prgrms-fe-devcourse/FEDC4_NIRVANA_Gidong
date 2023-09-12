@@ -1,16 +1,19 @@
-import {
-  BUTTON_TYPE_ADD,
-  BUTTON_TYPE_SUB,
-  COUNTER_BUTTON_SIZE,
-  EVENT_NAME_MEDITATION_ENDED,
-  EVENT_NAME_MEDITATION_STARTED,
-  FIVE_MINUTES_IN_SECONDS,
-  MEDITATION_ENDED,
-  MEDITATION_NOT_STARTED,
-  MEDITATION_ONGOING
-} from '@pages/meditation/constants/meditation';
+const FIVE_MINUTES_IN_SECONDS = 3;
+const COUNTER_BUTTON_SIZE = 90;
+const BUTTON_TYPE_ADD = 'add';
+const BUTTON_TYPE_SUB = 'sub';
 
-export default {
+const ICON_NAME_PLAY = 'play_arrow';
+const ICON_NAME_PAUSE = 'pause';
+
+const MEDITATION_NOT_STARTED = '명상 시간을 설정해주세요.';
+const MEDITATION_ONGOING = '편안한 명상 되세요.';
+const MEDITATION_ENDED = '명상이 종료되었습니다.';
+
+const EVENT_NAME_MEDITATION_STARTED = 'meditation_started';
+const EVENT_NAME_MEDITATION_ENDED = 'meditation_ended';
+
+export {
   COUNTER_BUTTON_SIZE,
   MEDITATION_NOT_STARTED,
   MEDITATION_ONGOING,
@@ -19,5 +22,7 @@ export default {
   EVENT_NAME_MEDITATION_ENDED,
   FIVE_MINUTES_IN_SECONDS,
   BUTTON_TYPE_ADD,
-  BUTTON_TYPE_SUB
+  BUTTON_TYPE_SUB,
+  ICON_NAME_PLAY,
+  ICON_NAME_PAUSE
 };

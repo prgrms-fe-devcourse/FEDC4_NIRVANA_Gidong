@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
+export const MeditationPage = styled.div`
   ${({ theme }) => theme.style.flexCenter};
   flex-direction: column;
   height: 100%;

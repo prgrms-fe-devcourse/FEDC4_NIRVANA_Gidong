@@ -1,20 +1,13 @@
-import styled from '@emotion/styled';
-import { Button } from '@components/Button';
 import { atom, useSetRecoilState } from 'recoil';
-
-const EndButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-`;
+import { Button } from '@components/Button';
+import { EndButtonContainer } from './MeditationEndButton.style';
 
 export const endButtonPushed = atom({
   key: 'endButtonPushed',
   default: false
 });
 
-const MeditationEndButton = () => {
+export const MeditationEndButton = () => {
   const setPushed = useSetRecoilState(endButtonPushed);
   return (
     <EndButtonContainer>
@@ -31,5 +24,3 @@ const MeditationEndButton = () => {
     </EndButtonContainer>
   );
 };
-
-export default MeditationEndButton;

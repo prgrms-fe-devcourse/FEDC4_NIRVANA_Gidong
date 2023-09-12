@@ -1,42 +1,18 @@
-import styled from '@emotion/styled';
-import { atom, useRecoilState } from 'recoil';
 import { useState } from 'react';
-import formatTime from '@utils/formatTime';
+import { atom, useRecoilState } from 'recoil';
 import { Icon } from '@components/Icon';
-
-const TimerContainer = styled.div`
-  ${({ theme }) => theme.style.flexCenter};
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  background: ${({ theme }) => theme.color.linearGradientPurpleVivid};
-  margin-top: 100px;
-`;
-
-const TimerElement = styled.button`
-  ${({ theme }) => theme.style.flexCenter};
-  border: none;
-  outline: none;
-  cursor: pointer;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: #211730;
-  color: ${({ theme }) => theme.color.white};
-  font-size: 1.5rem;
-  font-weight: bold;
-  &:hover {
-    filter: brightness(50%);
-    transition: 0.3s;
-  }
-`;
-
-const IconContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 10px;
-`;
+import formatTime from '@utils/formatTime';
+import {
+  IconContainer,
+  TimerContainer,
+  TimerElement
+} from './MeditationTimer.style';
+import {
+  EVENT_NAME_MEDITATION_ENDED,
+  EVENT_NAME_MEDITATION_STARTED,
+  ICON_NAME_PAUSE,
+  ICON_NAME_PLAY
+} from '@pages/meditation/constants';
 
 export const meditationTime = atom({
   key: 'meditationTime',
@@ -45,7 +21,7 @@ export const meditationTime = atom({
 
 let timerId = 0;
 
-const MeditationTimer = () => {
+export const MeditationTimer = () => {
   const [time, setTime] = useRecoilState(meditationTime);
   const [paused, setPaused] = useState(true);
   const [hovered, setHovered] = useState(false);
@@ -62,12 +38,12 @@ const MeditationTimer = () => {
           return prevTime - 1;
         }
         clearInterval(timerId);
-        document.dispatchEvent(new Event('END-MEDITATION'));
+        document.dispatchEvent(new Event(EVENT_NAME_MEDITATION_ENDED));
         return prevTime;
       });
     }, 1000);
 
-    document.dispatchEvent(new Event('START-MEDITATION'));
+    document.dispatchEvent(new Event(EVENT_NAME_MEDITATION_STARTED));
   };
 
   const toggleTimer = () => {
@@ -88,7 +64,7 @@ const MeditationTimer = () => {
         <IconContainer>
           {hovered ? (
             <Icon
-              name={paused ? 'play_arrow' : 'pause'}
+              name={paused ? ICON_NAME_PLAY : ICON_NAME_PAUSE}
               size={70}
               color={'white'}
             />
@@ -100,5 +76,3 @@ const MeditationTimer = () => {
     </TimerContainer>
   );
 };
-
-export default MeditationTimer;

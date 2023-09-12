@@ -1,19 +1,19 @@
-import MeditationTimer from '@pages/meditation/components/MeditationTimer';
-import MeditationCounter from '@pages/meditation/components/MeditaionCounter';
-import MeditationLabel from '@pages/meditation/components/MeditationLabel';
-import { Container } from '@pages/meditation/Meditation.style';
-import { Confirm } from '@components/Confirm';
 import { useRecoilValue } from 'recoil';
-import { endButtonPushed } from '@pages/meditation/components/MeditationEndButton';
+import MeditationLabel from '@pages/meditation/components/MeditationLabel';
+import MeditationTimer from '@pages/meditation/components/MeditationTimer';
+import MeditationTimeSetter from '@pages/meditation/components/MeditationTimeSetter';
+import { MeditationPage } from './Meditation.style';
+import { endButtonPushed } from '@pages/meditation/components/MeditationEndButton/MeditationEndButton';
+import { Confirm } from '@components/Confirm';
 
 export const Meditation = () => {
   const confirmCaptured = useRecoilValue(endButtonPushed);
   return (
     <>
-      <Container>
+      <MeditationPage>
         <MeditationLabel />
         <MeditationTimer />
-        <MeditationCounter />
+        <MeditationTimeSetter />
         {confirmCaptured && (
           <Confirm
             width={329}
@@ -25,7 +25,7 @@ export const Meditation = () => {
             nextPageLink={'/'}
           />
         )}
-      </Container>
+      </MeditationPage>
     </>
   );
 };
