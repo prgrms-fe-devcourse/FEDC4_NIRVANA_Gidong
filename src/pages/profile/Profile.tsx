@@ -1,5 +1,5 @@
 import createTabItems from './utils/createTabItems';
-import getUserData from '@apis/user/getUserData';
+import { getUser } from '@apis/user';
 import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { useRecoilState } from 'recoil';
@@ -20,7 +20,7 @@ const Profile = () => {
 
   const { data, isLoading, isError, error } = useQuery(
     ['userData', userId],
-    () => getUserData(userId),
+    () => getUser(userId),
     { enabled: !!userId }
   );
   console.log(data, isLoading, isError, error);
