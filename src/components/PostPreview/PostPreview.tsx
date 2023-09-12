@@ -1,4 +1,4 @@
-import type Post from '@types/Post';
+import type { Post } from '@/types';
 import { Avatar } from '../Avatar';
 import Icon from '../Icon';
 import {
@@ -57,7 +57,7 @@ const PostPreview = ({ post, noneProfile = false }: PostPreviewProps) => {
           />
         </AvatarContainer>
         <PostInfoContainer>
-          <UserNameContainer>{author}</UserNameContainer>
+          <UserNameContainer>{author.fullName}</UserNameContainer>
           <PostDetailInfo />
         </PostInfoContainer>
       </>
