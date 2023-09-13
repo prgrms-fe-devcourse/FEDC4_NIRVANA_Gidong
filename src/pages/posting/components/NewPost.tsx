@@ -1,11 +1,31 @@
-import { Button } from '@components/Button';
-import { POSTING_DESCRIPTION } from '@pages/posting/constants';
-import { StyledForm, StyledInput, ButtonContainer } from './NewPost.style';
+import { useRef } from 'react';
+import { useRecoilValue } from 'recoil';
 
-const NewPost = () => {
+import postCreateNewPost from '@apis/posting';
+import { Button } from '@components/Button';
+import { userState } from '@/states/userState';
+import { POSTING_DESCRIPTION } from '@pages/posting/constants';
+import { PostContainer, StyledInput, ButtonContainer } from './NewPost.style';
+import { makeFormData, validateContent } from '../utils';
+
+interface NewPostProps {
+  channelId: string;
+}
+
+const NewPost = ({ channelId }: NewPostProps) => {
+  const contentRef = useRef(null);
   const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
+  
+  const handleClickButton = () => {
+    const { token } = useRecoilValue(userState);
+    if (validateContent(contentRef.current)) {
+      const formData = makeFormData(contentRef.current, channelId);
+      postCreateNewPost(token, formData);
+    }
+  }
+
   return (
-    <StyledForm>
+    <PostContainer>
       <StyledInput placeholder={PLACEHOLDER} />
       <ButtonContainer>
         <Button
@@ -16,9 +36,10 @@ const NewPost = () => {
           bold={true}
           fontSize={16}
           borderRadius={10}
+          handleClick={handleClickButton}
         />
       </ButtonContainer>
-    </StyledForm>
+    </PostContainer>
   );
 };
 
