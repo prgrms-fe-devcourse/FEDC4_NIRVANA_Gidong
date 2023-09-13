@@ -8,6 +8,10 @@ import {
 
 const ProfileHeader = () => {
   const navigate = useNavigate();
+
+  const handleEditClick = () => {
+    navigate('#edit');
+  };
   return (
     <ProfileHeaderSection>
       <ProfileHeaderButtonContainer>
@@ -40,7 +44,7 @@ const ProfileHeader = () => {
           bold={true}
           fontSize={12}
           borderRadius={30}
-          handleClick={() => navigate('#edit')}
+          handleClick={handleEditClick}
         />
       </ProfileHeaderButtonContainer>
     </ProfileHeaderSection>
