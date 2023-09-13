@@ -18,15 +18,15 @@ const NewPost = ({ channelId }: NewPostProps) => {
   
   const handleClickButton = () => {
     const { token } = useRecoilValue(userState);
-    if (validateContent(contentRef.current)) {
-      const formData = makeFormData(contentRef.current, channelId);
+    if (validateContent(contentRef.current.value)) {
+      const formData = makeFormData(contentRef.current.value, channelId);
       postCreateNewPost(token, formData);
     }
   }
 
   return (
     <PostContainer>
-      <StyledTextArea required maxLength={500} placeholder={PLACEHOLDER} />
+      <StyledTextArea ref={contentRef} required maxLength={500} placeholder={PLACEHOLDER} />
       <ButtonContainer>
         <Button
           width={300}
