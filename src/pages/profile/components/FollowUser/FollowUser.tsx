@@ -1,18 +1,15 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { postFollowUser, deleteFollowUser } from '@apis/follow';
 import { Button as FollowButton } from '@components/Button';
 import { FollowUserContainer } from './FollowUser.style';
 import { FollowUserInfo } from '../FollowUserInfo';
-import { Follow } from '@types';
-import { useQuery } from '@tanstack/react-query';
-import { deleteFollowUser } from '@apis/follow';
-import { postFollowUser } from '@apis/follow';
-
-// TODO : follow, following logic 추가될 예정
+import { User, Follow } from '@types';
 
 interface FollowUserProps {
   following: boolean;
-  followUser: Pick<Follow, 'user'>;
-  followDataId: Pick<Follow, '_id'>;
+  followUser: User;
+  followDataId: string;
 }
 
 const FollowUser = ({
@@ -22,24 +19,21 @@ const FollowUser = ({
 }: FollowUserProps) => {
   const [follow, setFollow] = useState(true);
 
-  const { status, refetch } = useQuery({
+  const { refetch } = useQuery({
     queryKey: ['follow'],
     queryFn: async () => {
       let data = {};
-      console.log(follow);
+
       if (follow) {
         data = await deleteFollowUser(followDataId);
       } else {
-        console.log(followUser);
-        data = await postFollowUser(followUser);
+        data = await postFollowUser(followUser._id);
       }
 
       return data;
     },
     enabled: false
   });
-
-  console.log(status);
 
   const handleClickFollow = async () => {
     await refetch();
@@ -48,7 +42,7 @@ const FollowUser = ({
 
   return (
     <FollowUserContainer>
-      <FollowUserInfo userId={followUser} />
+      <FollowUserInfo userData={followUser} />
       {following &&
         (follow ? (
           <FollowButton
