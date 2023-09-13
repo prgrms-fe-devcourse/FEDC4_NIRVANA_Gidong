@@ -65,3 +65,5 @@ export const NavButtonContainer = styled.div`
     margin: 0 10px;
   }
 `;
+
+export const CancelButtonDefaultEvent = styled.div``;
