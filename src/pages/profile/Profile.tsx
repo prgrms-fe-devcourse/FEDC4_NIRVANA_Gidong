@@ -8,9 +8,7 @@ import { editModeState } from './states/editMode';
 import { ProfileInfoContainer, ProfilePage } from './Profile.style';
 import { ProfileInfo } from './components/ProfileInfo';
 import { ProfileCover } from './components/ProfileCover';
-import { ProfileHeader } from './components/ProfileHeader';
-import { ProfileTabs, ProfileTabItem } from './components/ProfileTabs';
-import { ProfileCarousel } from './components/ProfileCarousel';
+import { ProfileMain } from './components/ProfileMain';
 import { ProfileEdit } from './components/ProfileEdit';
 
 const Profile = () => {
@@ -40,24 +38,7 @@ const Profile = () => {
           avatarImgSrc={isLoading ? '' : data.image}
           meditationStack={50}
         />
-        {editMode ? (
-          <ProfileEdit />
-        ) : (
-          <>
-            <ProfileHeader />
-            <ProfileTabs>
-              {tabItems.map((tabItem, index) => (
-                <ProfileTabItem
-                  key={tabItem.label}
-                  title={`${tabItem.value} ${tabItem.label}`}
-                  data={tabItem.data}
-                  index={index}
-                />
-              ))}
-            </ProfileTabs>
-            <ProfileCarousel totalIndex={tabItems.length} />
-          </>
-        )}
+        {editMode ? <ProfileEdit /> : <ProfileMain tabItems={tabItems} />}
       </ProfileInfoContainer>
     </ProfilePage>
   );
