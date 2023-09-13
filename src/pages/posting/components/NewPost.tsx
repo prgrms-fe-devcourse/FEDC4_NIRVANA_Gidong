@@ -18,9 +18,10 @@ const NewPost = ({ channelId }: NewPostProps) => {
   
   const handleClickButton = () => {
     const { token } = useRecoilValue(userState);
+    const customToken = `bearer ${token}`;
     if (validateContent(contentRef.current.value)) {
       const formData = makeFormData(contentRef.current.value, channelId);
-      postCreateNewPost(token, formData);
+      postCreateNewPost(customToken, formData);
     }
   }
 
