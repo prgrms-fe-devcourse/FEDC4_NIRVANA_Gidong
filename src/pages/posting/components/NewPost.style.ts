@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const StyledForm = styled.form`
+export const PostContainer = styled.div`
   min-width: 330px;
   width: 80%;
   height: 450px;
