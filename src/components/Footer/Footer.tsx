@@ -3,7 +3,7 @@ import { Link } from '../Link';
 import { StyledFooter } from './Footer.style';
 
 const iconInfos = [
-  { name: 'home', size: 35, link: '/' },
+  { name: 'home', size: 35, link: '/posts' },
   { name: 'self_improvement', size: 35, link: '/meditation' },
   { name: 'person', size: 35, link: '/profile:userId' }
 ];
