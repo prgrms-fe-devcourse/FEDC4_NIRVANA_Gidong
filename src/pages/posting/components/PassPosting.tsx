@@ -16,10 +16,11 @@ const PassPosting = ({ channelId, customToken }: PassPostingProps) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const { PASS_POSTING } = POSTING_DESCRIPTION;
 
-  const handleClickPassPost = () => {
+  const handleClickPassPost = async () => {
     const formData = createFormData('', channelId);
-    postCreateNewPost(customToken, formData);
-    navigate('/posts');
+    await postCreateNewPost(customToken, formData).then(() => {
+      navigate('/posts');
+    });
   };
 
   return (
