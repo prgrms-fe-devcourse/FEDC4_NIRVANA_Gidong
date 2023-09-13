@@ -15,7 +15,7 @@ import {
   PasswordUpdateContainer,
   LogoContainer,
   Logo
-} from './styles';
+} from './PasswordUpdate.styles';
 
 const PasswordUpdate = () => {
   // const { token } = useRecoilValue(userState);
