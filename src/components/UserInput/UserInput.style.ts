@@ -26,6 +26,7 @@ export const SignUpError = styled.span`
   font-size: 10px;
   font-weight: 400;
   margin-left: 10px;
+  white-space: pre-line;
 `;
 
 export const SignUpSuccess = styled.span`
