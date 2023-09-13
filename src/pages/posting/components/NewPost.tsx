@@ -1,9 +1,8 @@
 import { useRef } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 import postCreateNewPost from '@apis/posting';
 import { Button } from '@components/Button';
-import { userState } from '@/states/userState';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import { PostContainer, StyledTextArea, ButtonContainer } from './NewPost.style';
 import { makeFormData, validateContent } from '../utils';
@@ -16,11 +15,13 @@ interface NewPostProps {
 const NewPost = ({ channelId, customToken }: NewPostProps) => {
   const contentRef = useRef(null);
   const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
+  const navigate = useNavigate();
   
   const handleClickButton = () => {
     if (validateContent(contentRef.current.value)) {
       const formData = makeFormData(contentRef.current.value, channelId);
       postCreateNewPost(customToken, formData);
+      navigate('/posts')
     }
   }
 
