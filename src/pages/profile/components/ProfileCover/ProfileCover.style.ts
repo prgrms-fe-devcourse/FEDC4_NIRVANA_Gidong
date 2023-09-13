@@ -16,12 +16,14 @@ export const ProfileCoverImage = styled.img`
 
 export const ProfileCoverImageContainer = styled.div<ProfileCoverImageProps>`
   background-image: ${({ theme }) => theme.color.linearGradientPurple};
+  ${({ theme }) => theme.style.flexCenter};
   height: 100px;
   width: 100%;
   position: relative;
   overflow: hidden;
   > button {
-    float: right;
-    margin: 5px 10px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
   }
 `;

@@ -7,23 +7,39 @@ import {
 import { useRecoilValue } from 'recoil';
 import { editModeState } from '../../states/editMode';
 import useUploadPhotoMutation from '@pages/profile/hooks/useUploadPhotoMutation';
+import { Spinner } from '@components/Loader';
+import { useRecoilState } from 'recoil';
+import { isEditLoadingState } from '@pages/profile/states/editLoading';
 
 interface ProfileBackgroundProps {
   src: string;
 }
 
 const ProfileCover = ({ src }: ProfileBackgroundProps) => {
+  const [isEditLoading, setIsEditLoading] = useRecoilState(isEditLoadingState);
   const editMode = useRecoilValue(editModeState);
   const { fileInputRef, openFileInput } = useFileUpload();
-  const uploadCoverMutation = useUploadPhotoMutation({ isCover: true });
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMutate = () => {
+    setIsEditLoading(true);
+  };
+  const handleSuccess = () => {
+    setIsEditLoading(false);
+  };
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (!file) {
       return;
     }
     uploadCoverMutation.mutate(file);
   };
+
+  const uploadCoverMutation = useUploadPhotoMutation({
+    isCover: false,
+    handleMutate,
+    handleSuccess
+  });
 
   return (
     <ProfileCoverImageContainer src={src}>
@@ -42,6 +58,7 @@ const ProfileCover = ({ src }: ProfileBackgroundProps) => {
             dark={true}
             handleClick={openFileInput}
           />
+          <Spinner isLoading={isEditLoading} />
           <input
             ref={fileInputRef}
             type='file'

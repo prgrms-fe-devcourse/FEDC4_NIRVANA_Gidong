@@ -1,12 +1,13 @@
 import { useFileUpload } from '@hooks/useFileUpload';
 import { EditIconContainer } from './ProfileAvatarEdit.style';
 import { Icon } from '@components/Icon';
+import { useSetRecoilState } from 'recoil';
+import { isEditLoadingState } from '@pages/profile/states/editLoading';
 import useUploadPhotoMutation from '@pages/profile/hooks/useUploadPhotoMutation';
 
 const ProfileAvatarEdit = () => {
   const { fileInputRef, openFileInput } = useFileUpload();
-
-  const uploadAvatarMutation = useUploadPhotoMutation({ isCover: false });
+  const setIsEditLoading = useSetRecoilState(isEditLoadingState);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -15,6 +16,18 @@ const ProfileAvatarEdit = () => {
     }
     uploadAvatarMutation.mutate(file);
   };
+
+  const handleMutate = () => {
+    setIsEditLoading(true);
+  };
+  const handleSuccess = () => {
+    setIsEditLoading(false);
+  };
+  const uploadAvatarMutation = useUploadPhotoMutation({
+    isCover: false,
+    handleMutate,
+    handleSuccess
+  });
   return (
     <>
       <EditIconContainer onClick={openFileInput}>

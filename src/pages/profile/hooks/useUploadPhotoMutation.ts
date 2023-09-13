@@ -5,9 +5,15 @@ import { userState } from '@/states/userState';
 
 interface UseUploadPhotoMutationParams {
   isCover: boolean;
+  handleMutate: () => void;
+  handleSuccess: () => void;
 }
 
-const useUploadPhotoMutation = ({ isCover }: UseUploadPhotoMutationParams) => {
+const useUploadPhotoMutation = ({
+  isCover,
+  handleMutate,
+  handleSuccess
+}: UseUploadPhotoMutationParams) => {
   const user = useRecoilValue(userState);
   // const token = 'Bearer ' + user.token;
   const token =
@@ -15,8 +21,13 @@ const useUploadPhotoMutation = ({ isCover }: UseUploadPhotoMutationParams) => {
   const uploadMutation = useMutation(
     (file: File) => postUploadPhoto(file, token, isCover),
     {
+      onMutate: (file: File) => {
+        console.log('Uploading avatar...', file);
+        handleMutate();
+      },
       onSuccess: (data) => {
-        console.log('Upload avatar successfully', data);
+        console.log('Upload avatar success!', data);
+        handleSuccess();
       }
     }
   );

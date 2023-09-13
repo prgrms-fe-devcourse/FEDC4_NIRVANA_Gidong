@@ -7,6 +7,7 @@ export const EditIconContainer = styled.div`
   width: 70px;
   height: 70px;
   border-radius: 50%;
+  cursor: pointer;
   background-color: ${({ theme }) => theme.color.transparentGreyBackground};
   ${({ theme }) => theme.style.flexCenter};
   > span {
