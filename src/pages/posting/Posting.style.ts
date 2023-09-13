@@ -18,8 +18,3 @@ export const StyledDescription = styled.div`
   color: ${({ theme }) => theme.color.white};
   height: 50px;
 `;
-
-export const StyledPassPosting = styled.div`
-  ${({ theme }) => theme.style.flexCenter};
-  height: 50px;
-`;

@@ -1,3 +1,4 @@
 import NewPost from './NewPost';
+import PassPosting from './PassPosting';
 
-export { NewPost };
+export { NewPost, PassPosting };
