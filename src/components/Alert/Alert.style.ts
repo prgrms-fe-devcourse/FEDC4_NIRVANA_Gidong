@@ -30,12 +30,12 @@ export const StyledDeemBackground = styled.div<DeemBackgroundProps>`
 `;
 
 export const StyledAlertBackground = styled.div<AlertBackgroundProps>`
-  ${({ theme }) => theme.style.flexAlignCenter}
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   background-color: ${({ theme }) => theme.color.white};
   border-radius: 10px;
-  display: flex;
+  flex-direction: column;
+  ${({ theme }) => theme.style.flexAlignCenter}
 `;
 
 export const IconContainer = styled.div<IconContainerProps>`
