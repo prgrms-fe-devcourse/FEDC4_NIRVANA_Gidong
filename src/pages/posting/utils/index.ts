@@ -1,4 +1,4 @@
 import validateContent from './validateContent';
-import makeFormData from './makeFormData';
+import createFormData from './createFormData';
 
-export { makeFormData, validateContent };
+export { createFormData, validateContent };
