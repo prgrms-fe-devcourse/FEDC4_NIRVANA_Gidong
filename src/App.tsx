@@ -6,6 +6,7 @@ import Profile from './pages/profile';
 import SignUp from './pages/signup';
 import LogIn from './pages/login';
 import Meditation from './pages/meditation';
+import PasswordUpdate from './pages/password-update';
 import { queryClient, QueryClientProvider } from './apis/queryClient';
 
 function App() {
@@ -35,6 +36,10 @@ function App() {
             <Route
               path='/login'
               element={<LogIn />}
+            />
+            <Route
+              path='/password-update'
+              element={<PasswordUpdate />}
             />
           </Routes>
         </RecoilRoot>
