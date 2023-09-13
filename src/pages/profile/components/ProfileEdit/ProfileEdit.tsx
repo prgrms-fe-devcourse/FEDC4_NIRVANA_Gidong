@@ -37,7 +37,9 @@ const ProfileEdit = () => {
     }
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitUsername = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
     const target = event.target as HTMLFormElement;
     const username = target.username.value;
@@ -52,7 +54,7 @@ const ProfileEdit = () => {
   return (
     <ProfileEditSection>
       <ProfileEditContainer>
-        <ProfileEditForm onSubmit={handleSubmit}>
+        <ProfileEditForm onSubmit={handleSubmitUsername}>
           <UserInput
             name={'username'}
             placeholder={'수정할 닉네임을 입력해주세요'}
