@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@/constants/Api';
+import { User } from '@/types/User';
 
 interface PutUpdateUserParams {
   username?: string;
@@ -32,10 +33,14 @@ const putUpdateUser = async ({
   return response.data;
 };
 
-const postUploadAvatar = async (image: string, token: string) => {
+const postUploadPhoto = async (
+  image: File,
+  token: string,
+  isCover: boolean
+): Promise<User> => {
   const formData = new FormData();
   formData.append('image', image);
-  formData.append('isCover', 'true');
+  formData.append('isCover', isCover.toString());
   const response = await axios.post(
     `${API_BASE_URL}/users/upload-photo`,
     formData,
@@ -48,20 +53,4 @@ const postUploadAvatar = async (image: string, token: string) => {
   return response.data;
 };
 
-const postUploadCover = async (image: string, token: string) => {
-  const formData = new FormData();
-  formData.append('image', image);
-  formData.append('isCover', 'true');
-  const response = await axios.post(
-    `${API_BASE_URL}/users/upload-photo`,
-    formData,
-    {
-      headers: {
-        Authorization: token
-      }
-    }
-  );
-  return response.data;
-};
-
-export { getUser, putUpdateUser, postUploadAvatar, postUploadCover };
+export { getUser, putUpdateUser, postUploadPhoto };
