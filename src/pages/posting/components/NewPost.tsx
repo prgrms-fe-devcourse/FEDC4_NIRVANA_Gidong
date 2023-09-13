@@ -17,11 +17,13 @@ const NewPost = ({ channelId, customToken }: NewPostProps) => {
   const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
   const navigate = useNavigate();
   
-  const handleClickButton = () => {
+  const handleClickButton = async() => {
     if (validateContent(contentRef.current.value)) {
       const formData = createFormData(contentRef.current.value, channelId);
-      postCreateNewPost(customToken, formData);
-      navigate('/posts')
+      
+      await postCreateNewPost(customToken, formData).then(() => {
+        navigate('/posts')
+      });
     }
   }
 
