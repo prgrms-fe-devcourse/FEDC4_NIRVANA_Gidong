@@ -1,12 +1,15 @@
 import { Avatar } from '@/components/Avatar';
 import { StackBadge } from '@/components/Badge';
 import { UserId, UserName } from '@/components/UserText';
+import { useRecoilValue } from 'recoil';
+import { editModeState } from '../../states/editMode';
 import {
   ProfileInfoContainer,
   ProfileInfoNameAndBadge,
   ProfileAvatarContainer,
-  ProfileEmailContainer
+  EditIconContainer
 } from './ProfileInfo.style';
+import { Icon } from '@components/Icon';
 
 interface ProfileInfoProps {
   fullName: string;
@@ -21,23 +24,33 @@ const ProfileInfo = ({
   avatarImgSrc,
   meditationStack
 }: ProfileInfoProps) => {
+  const editMode = useRecoilValue(editModeState);
   return (
     <ProfileInfoContainer>
       <ProfileAvatarContainer>
         <Avatar
           size={70}
           src={avatarImgSrc}
-          alt={fullName}
-        />
+          alt={fullName}>
+          {editMode && (
+            <>
+              <EditIconContainer onClick={() => console.log('change Avatar')}>
+                <Icon
+                  name='edit_square'
+                  size={30}
+                  color='white'
+                />
+              </EditIconContainer>
+            </>
+          )}
+        </Avatar>
       </ProfileAvatarContainer>
       <ProfileInfoNameAndBadge>
         <UserName>{fullName}</UserName>
         <StackBadge stack={meditationStack} />
       </ProfileInfoNameAndBadge>
 
-      <ProfileEmailContainer>
-        <UserId email={email} />
-      </ProfileEmailContainer>
+      <UserId email={email} />
     </ProfileInfoContainer>
   );
 };
