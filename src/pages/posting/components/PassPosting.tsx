@@ -1,8 +1,10 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import postCreateNewPost from '@apis/posting';
-import { Link } from '@components/Link';
-import { StyledPassPosting } from './PassPosting.style';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import { makeFormData } from '../utils';
+import { StyledPassPosting } from './PassPosting.style';
 
 interface PassPostingProps {
   channelId: string;
@@ -10,22 +12,22 @@ interface PassPostingProps {
 }
 
 const PassPosting = ({ channelId, customToken }: PassPostingProps) => {
+  const navigate = useNavigate();
+  const [showConfirm, setShowConfirm] = useState(false);
   const { PASS_POSTING } = POSTING_DESCRIPTION;
 
   const handleClickPassPost = () => {
     const formData = makeFormData('', channelId);
     postCreateNewPost(customToken, formData);
+    navigate('/posts');
   };
 
   return (
-    <StyledPassPosting onClick={handleClickPassPost}>
-      <Link
-        pageLink={'/posts'}
-        size={14}
-        color={'white'}>
+    <>
+      <StyledPassPosting onClick={handleClickPassPost}>
         {PASS_POSTING}
-      </Link>
-    </StyledPassPosting>
+      </StyledPassPosting>
+    </>
   );
 };
 
