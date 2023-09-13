@@ -5,7 +5,7 @@ import postCreateNewPost from '@apis/posting';
 import { Button } from '@components/Button';
 import { userState } from '@/states/userState';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
-import { PostContainer, StyledInput, ButtonContainer } from './NewPost.style';
+import { PostContainer, StyledTextArea, ButtonContainer } from './NewPost.style';
 import { makeFormData, validateContent } from '../utils';
 
 interface NewPostProps {
@@ -26,7 +26,7 @@ const NewPost = ({ channelId }: NewPostProps) => {
 
   return (
     <PostContainer>
-      <StyledInput placeholder={PLACEHOLDER} />
+      <StyledTextArea required maxLength={500} placeholder={PLACEHOLDER} />
       <ButtonContainer>
         <Button
           width={300}

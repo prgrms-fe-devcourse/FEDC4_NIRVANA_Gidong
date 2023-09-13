@@ -7,7 +7,7 @@ export const PostContainer = styled.div`
   position: relative;
 `
 
-export const StyledInput = styled.textarea`
+export const StyledTextArea = styled.textarea`
   width: 100%;
   height: 450px;
   border-radius: 10px;
