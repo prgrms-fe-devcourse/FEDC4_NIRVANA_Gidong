@@ -1,4 +1,4 @@
-const makeFormData = (content: string, channelId: string) => {
+const createFormData = (content: string, channelId: string) => {
   const formData = new FormData();
 
   formData.append('title', content);
@@ -8,4 +8,4 @@ const makeFormData = (content: string, channelId: string) => {
   return formData;
 }
 
-export default makeFormData;
+export default createFormData;
