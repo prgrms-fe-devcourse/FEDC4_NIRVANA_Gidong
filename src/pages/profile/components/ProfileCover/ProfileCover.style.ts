@@ -20,4 +20,8 @@ export const ProfileCoverImageContainer = styled.div<ProfileCoverImageProps>`
   width: 100%;
   position: relative;
   overflow: hidden;
+  > button {
+    float: right;
+    margin: 5px 10px;
+  }
 `;
