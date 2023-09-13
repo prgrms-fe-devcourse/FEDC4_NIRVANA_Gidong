@@ -1,20 +1,27 @@
 import createTabItems from './utils/createTabItems';
-import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { getUser } from '@apis/user';
+import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import getUserData from '@/apis/user/getUserData';
+import { useRecoilState } from 'recoil';
+import { editModeState } from './states/editMode';
 import { ProfileInfoContainer, ProfilePage } from './Profile.style';
 import { ProfileInfo } from './components/ProfileInfo';
 import { ProfileCover } from './components/ProfileCover';
-import { ProfileHeader } from './components/ProfileHeader';
-import { ProfileTabs, ProfileTabItem } from './components/ProfileTabs';
-import { ProfileCarousel } from './components/ProfileCarousel';
+import { ProfileMain } from './components/ProfileMain';
+import { ProfileEdit } from './components/ProfileEdit';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
+  const location = useLocation();
+  const [editMode, setEditMode] = useRecoilState(editModeState);
+  useEffect(() => {
+    setEditMode(location.hash === '#edit');
+  }, [location.hash, setEditMode]);
 
   const { data, isLoading, isError, error } = useQuery(
     ['userData', userId],
-    () => getUserData(userId),
+    () => getUser(userId),
     { enabled: !!userId }
   );
   console.log(data, isLoading, isError, error);
@@ -31,18 +38,7 @@ const Profile = () => {
           avatarImgSrc={isLoading ? '' : data.image}
           meditationStack={50}
         />
-        <ProfileHeader />
-        <ProfileTabs>
-          {tabItems.map((tabItem, index) => (
-            <ProfileTabItem
-              key={tabItem.label}
-              title={`${tabItem.value} ${tabItem.label}`}
-              data={tabItem.data}
-              index={index}
-            />
-          ))}
-        </ProfileTabs>
-        <ProfileCarousel totalIndex={tabItems.length} />
+        {editMode ? <ProfileEdit /> : <ProfileMain tabItems={tabItems} />}
       </ProfileInfoContainer>
     </ProfilePage>
   );
