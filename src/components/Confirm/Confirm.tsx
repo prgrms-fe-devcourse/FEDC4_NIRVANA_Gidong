@@ -1,59 +1,45 @@
-import { useState } from 'react';
-import { Button } from '../Button';
+import React, { useState } from 'react';
 import { Link } from '../Link';
 import {
   StyledDeemBackground,
   StyledConfirmBackground,
   IconContainer,
   ContentContainer,
-  NavButtonContainer
+  NavButtonContainer,
+  CancelButtonDefaultEvent
 } from './Confirm.style';
 
 interface ConfirmProps {
-  width: number;
-  height: number;
   emoji: string;
-  emojiSize: number;
   content: string;
   contentFontSize: number;
   nextPageLink: string;
+  CancelButton: React.ReactNode;
+  ConfirmButton: React.ReactNode;
 }
 
 const Confirm = ({
-  width = 330,
-  height = 390,
   emoji,
-  emojiSize = 80,
   content,
   contentFontSize = 16,
-  nextPageLink
+  nextPageLink,
+  CancelButton,
+  ConfirmButton
 }: Partial<ConfirmProps>) => {
   const [disabled, setDisabled] = useState(false);
   return (
     <StyledDeemBackground disabled={disabled}>
       <StyledConfirmBackground
-        width={width}
-        height={height}>
-        <IconContainer emojiSize={emojiSize}>{emoji}</IconContainer>
+        width={330}
+        height={390}>
+        <IconContainer emojiSize={80}>{emoji}</IconContainer>
         <ContentContainer contentFontSize={contentFontSize}>
           {content}
           <NavButtonContainer>
-            <Button
-              handleClick={() => setDisabled(true)}
-              width={120}
-              height={50}
-              dark={false}
-              bold={false}
-              label={'취소'}></Button>
-            <Link pageLink={nextPageLink}>
-              <Button
-                width={120}
-                height={50}
-                dark={true}
-                bold={true}
-                label={'확인'}
-              />
-            </Link>
+            <CancelButtonDefaultEvent onClick={() => setDisabled(true)}>
+              {CancelButton}
+            </CancelButtonDefaultEvent>
+            <Link pageLink={nextPageLink}>{ConfirmButton}</Link>
           </NavButtonContainer>
         </ContentContainer>
       </StyledConfirmBackground>

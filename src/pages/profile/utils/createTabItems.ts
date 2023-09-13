@@ -1,10 +1,13 @@
-import { User } from '@/types';
+import { User, Follow, Post } from '@/types';
 import { PROFILE_TABS } from '../constants/profileTabs';
 
-const createTabItems = (
-  tabData: Pick<User, 'followers' | 'following' | 'posts'>,
-  isLoading: boolean
-) => {
+export interface TabItem {
+  label: string;
+  value: string | number;
+  data: number[] | Post[] | Follow[];
+}
+
+const createTabItems = (tabData: User, isLoading: boolean): TabItem[] => {
   const tabItems = [
     {
       label: PROFILE_TABS.MEDITATION,
