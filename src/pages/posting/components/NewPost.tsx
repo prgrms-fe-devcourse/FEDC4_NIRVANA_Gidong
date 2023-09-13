@@ -10,15 +10,14 @@ import { makeFormData, validateContent } from '../utils';
 
 interface NewPostProps {
   channelId: string;
+  customToken: string;
 }
 
-const NewPost = ({ channelId }: NewPostProps) => {
+const NewPost = ({ channelId, customToken }: NewPostProps) => {
   const contentRef = useRef(null);
   const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
   
   const handleClickButton = () => {
-    const { token } = useRecoilValue(userState);
-    const customToken = `bearer ${token}`;
     if (validateContent(contentRef.current.value)) {
       const formData = makeFormData(contentRef.current.value, channelId);
       postCreateNewPost(customToken, formData);
