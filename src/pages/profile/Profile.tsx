@@ -19,12 +19,11 @@ const Profile = () => {
     setEditMode(location.hash === '#edit');
   }, [location.hash, setEditMode]);
 
-  const { data, isLoading, isError, error } = useQuery(
+  const { data, isLoading } = useQuery(
     ['userData', userId],
     () => getUser(userId),
     { enabled: !!userId }
   );
-  console.log(data, isLoading, isError, error);
 
   const tabItems = createTabItems(data, isLoading);
 
