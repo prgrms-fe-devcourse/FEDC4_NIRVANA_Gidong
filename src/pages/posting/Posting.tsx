@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom';
+
 import { NewPost } from './components';
 import { Link } from '@components/Link';
 import { LandingMain } from '@pages/landing/style';
@@ -10,13 +12,16 @@ import {
 } from './Posting.style';
 
 const Posting = () => {
+  const location = useLocation();
+  const channelId = location.state.channelId;
   const { HEADER, PASS_POSTING } = POSTING_DESCRIPTION;
+
   return (
     <LandingMain>
       <StyledPosting>
         <ContentContainer>
           <StyledDescription>{HEADER}</StyledDescription>
-          <NewPost />
+          <NewPost channelId={channelId} />
           <StyledPassPosting>
             <Link
               pageLink={'/posts'}
