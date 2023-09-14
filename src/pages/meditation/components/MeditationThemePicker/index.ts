@@ -1,3 +1,3 @@
-import { MeditationThemePicker } from './MeditationThemePicker';
+import MeditationThemePicker from './MeditationThemePicker';
 
 export { MeditationThemePicker };

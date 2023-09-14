@@ -4,23 +4,16 @@ import { Button } from '@components/Button';
 import { ThemePickerContainer } from './MeditationThemePicker.style';
 import {
   EVENT_NAME_MEDITATION_ENDED,
-  EVENT_NAME_MEDITATION_STARTED
+  EVENT_NAME_MEDITATION_STARTED,
+  CONCENTRATION_KEY
 } from '@pages/meditation/constants';
+import { meditationChannelInfo } from './models/channelInfo';
 
-const meditationThemeLabels = new Map([
-  ['65017a41dfe8db5726b603a7', '집중'],
-  ['65003530a72a0d2e63f12878', '불안'],
-  ['65017abcdfe8db5726b603c3', '자유'],
-  ['65017aa2dfe8db5726b603ba', '휴식'],
-  ['65017a5edfe8db5726b603b1', '스트레스']
-]);
-
-export const MeditationThemePicker = () => {
+const MeditationThemePicker = () => {
   const [pickerShown, setPickerShown] = useState(true);
-  const [picked, setPicked] = useState({
-    id: '65017a41dfe8db5726b603a7',
-    label: '집중'
-  });
+  const [picked, setPicked] = useState(
+    meditationChannelInfo.get(CONCENTRATION_KEY)
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +21,13 @@ export const MeditationThemePicker = () => {
       setPickerShown(false);
     });
     document.addEventListener(EVENT_NAME_MEDITATION_ENDED, () => {
-      navigate('/posting', { state: { themeId: picked.id } });
+      navigate('/posting', {
+        state: {
+          channelId: picked.id,
+          channelLabel: picked.label,
+          validation: true
+        }
+      });
     });
     return () => {
       document.removeEventListener(EVENT_NAME_MEDITATION_STARTED, () => {
@@ -39,33 +38,21 @@ export const MeditationThemePicker = () => {
   return (
     <ThemePickerContainer>
       {pickerShown &&
-        Array.from(meditationThemeLabels).map(([key, value]) =>
-          picked.label === value ? (
-            <Button
-              width={80}
-              height={28}
-              key={key}
-              dark={true}
-              bold={false}
-              label={value}
-              handleClick={() => {
-                console.log(value);
-              }}
-            />
-          ) : (
-            <Button
-              width={80}
-              height={28}
-              key={key}
-              dark={false}
-              bold={false}
-              label={value}
-              handleClick={() => {
-                setPicked({ id: key, label: value });
-              }}
-            />
-          )
-        )}
+        Array.from(meditationChannelInfo).map(([key, value]) => (
+          <Button
+            key={key}
+            width={80}
+            height={28}
+            bold={false}
+            dark={picked.label === value.label}
+            label={value.label}
+            handleClick={() => {
+              setPicked(value);
+            }}
+          />
+        ))}
     </ThemePickerContainer>
   );
 };
+
+export default MeditationThemePicker;
