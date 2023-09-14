@@ -6,7 +6,6 @@ import { MeditationPage } from './Meditation.style';
 import { endButtonPushed } from '@pages/meditation/components/MeditationEndButton/MeditationEndButton';
 import { Confirm } from '@components/Confirm';
 import { Button } from '@components/Button';
-import { MeditationThemePicker } from '@pages/meditation/components/MeditationThemePicker';
 
 export const Meditation = () => {
   const [confirmCaptured, setConfirmCaptured] = useRecoilState(endButtonPushed);
