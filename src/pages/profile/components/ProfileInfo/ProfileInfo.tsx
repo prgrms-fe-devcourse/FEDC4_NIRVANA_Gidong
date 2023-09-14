@@ -15,13 +15,15 @@ interface ProfileInfoProps {
   email: string;
   avatarImgSrc: string;
   meditationStack: number;
+  refetch: () => void;
 }
 
 const ProfileInfo = ({
   email,
   fullName,
   avatarImgSrc,
-  meditationStack
+  meditationStack,
+  refetch
 }: ProfileInfoProps) => {
   const editMode = useRecoilValue(editModeState);
 
@@ -32,7 +34,9 @@ const ProfileInfo = ({
           size={70}
           src={avatarImgSrc}
           alt={fullName}>
-          {editMode && <ProfileAvatarEdit></ProfileAvatarEdit>}
+          {editMode && (
+            <ProfileAvatarEdit refetch={refetch}></ProfileAvatarEdit>
+          )}
         </Avatar>
       </ProfileAvatarContainer>
       <ProfileInfoNameAndBadge>

@@ -13,9 +13,10 @@ import { isEditLoadingState } from '@pages/profile/states/editLoading';
 
 interface ProfileBackgroundProps {
   src: string;
+  refetch: () => void;
 }
 
-const ProfileCover = ({ src }: ProfileBackgroundProps) => {
+const ProfileCover = ({ src, refetch }: ProfileBackgroundProps) => {
   const [isEditLoading, setIsEditLoading] = useRecoilState(isEditLoadingState);
   const editMode = useRecoilValue(editModeState);
   const { fileInputRef, openFileInput } = useFileUpload();
@@ -24,6 +25,7 @@ const ProfileCover = ({ src }: ProfileBackgroundProps) => {
   };
   const handleSuccess = () => {
     setIsEditLoading(false);
+    refetch();
   };
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -36,7 +38,7 @@ const ProfileCover = ({ src }: ProfileBackgroundProps) => {
   };
 
   const uploadCoverMutation = useUploadPhotoMutation({
-    isCover: false,
+    isCover: true,
     handleMutate,
     handleSuccess
   });

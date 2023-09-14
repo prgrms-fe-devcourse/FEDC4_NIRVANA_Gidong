@@ -5,7 +5,11 @@ import { useSetRecoilState } from 'recoil';
 import { isEditLoadingState } from '@pages/profile/states/editLoading';
 import useUploadPhotoMutation from '@pages/profile/hooks/useUploadPhotoMutation';
 
-const ProfileAvatarEdit = () => {
+interface ProfileAvatarEditProps {
+  refetch: () => void;
+}
+
+const ProfileAvatarEdit = ({ refetch }: ProfileAvatarEditProps) => {
   const { fileInputRef, openFileInput } = useFileUpload();
   const setIsEditLoading = useSetRecoilState(isEditLoadingState);
 
@@ -22,6 +26,7 @@ const ProfileAvatarEdit = () => {
   };
   const handleSuccess = () => {
     setIsEditLoading(false);
+    refetch();
   };
   const uploadAvatarMutation = useUploadPhotoMutation({
     isCover: false,

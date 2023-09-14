@@ -19,7 +19,7 @@ const Profile = () => {
     setEditMode(location.hash === '#edit');
   }, [location.hash, setEditMode]);
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     ['userData', userId],
     () => getUser(userId),
     { enabled: !!userId }
@@ -29,15 +29,23 @@ const Profile = () => {
 
   return (
     <ProfilePage>
-      <ProfileCover src={isLoading ? '' : data.cover} />
+      <ProfileCover
+        refetch={() => refetch()}
+        src={isLoading ? '' : data.coverImage}
+      />
       <ProfileInfoContainer>
         <ProfileInfo
           email={isLoading ? '' : data.email}
           fullName={isLoading ? '' : data.fullName}
           avatarImgSrc={isLoading ? '' : data.image}
           meditationStack={50}
+          refetch={() => refetch()}
         />
-        {editMode ? <ProfileEdit /> : <ProfileMain tabItems={tabItems} />}
+        {editMode ? (
+          <ProfileEdit refetch={() => refetch()} />
+        ) : (
+          <ProfileMain tabItems={tabItems} />
+        )}
       </ProfileInfoContainer>
     </ProfilePage>
   );

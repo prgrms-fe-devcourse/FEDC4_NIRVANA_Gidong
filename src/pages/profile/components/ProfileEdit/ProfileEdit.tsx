@@ -12,8 +12,11 @@ import { putUpdateUser } from '@apis/user';
 
 // import { useRecoilValue } from 'recoil';
 // import { userState } from '@/states/userState';
+interface ProfileEditProps {
+  refetch: () => void;
+}
 
-const ProfileEdit = () => {
+const ProfileEdit = ({ refetch }: ProfileEditProps) => {
   const [success, setSuccess] = useState<boolean>(false);
   const [show, setShow] = useState<boolean>(false);
   // const user = useRecoilValue(userState);
@@ -44,10 +47,10 @@ const ProfileEdit = () => {
     const target = event.target as HTMLFormElement;
     const username = target.username.value;
     await putUpdateUser({
-      username,
+      fullName: username,
       token: user.token
     }).then(() => {
-      window.location.reload();
+      refetch();
     });
   };
 
