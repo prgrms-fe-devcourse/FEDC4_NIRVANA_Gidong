@@ -8,7 +8,7 @@ import LogIn from './pages/login';
 import Posting from './pages/posting';
 import Meditation from './pages/meditation';
 import Setting from './pages/setting/Setting';
-import PasswordUpdate from './pages/password-update/PasswordUpdate';
+import PasswordUpdate from './pages/password-update';
 import { queryClient, QueryClientProvider } from './apis/queryClient';
 
 function App() {
@@ -48,7 +48,7 @@ function App() {
               element={<LogIn />}
             />
             <Route
-              path='/password-update'
+              path='/setting/password-update'
               element={<PasswordUpdate />}
             />
           </Routes>
