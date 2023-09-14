@@ -7,7 +7,7 @@ import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 // import { userState } from '@/states/userState';
 import { USER_INPUT, LABEL, PASSWORD_HINT } from './constants';
-import isPasswordOk from './validations';
+import isPasswordOk from './utils/passWordUpdateValidations';
 import { PasswordHint } from './components';
 import {
   PasswordUpdateForm,
@@ -15,7 +15,7 @@ import {
   PasswordUpdateContainer,
   LogoContainer,
   Logo
-} from './PasswordUpdate.styles';
+} from './PasswordUpdate.style';
 
 const PasswordUpdate = () => {
   // const { token } = useRecoilValue(userState);
