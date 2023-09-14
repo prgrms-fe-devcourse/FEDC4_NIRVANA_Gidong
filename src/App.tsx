@@ -1,11 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+
+import PrivateRoute from '@utils/PrivateRoute';
 import LandingPage from './pages/landing';
 import Layout from './pages/layout';
 import Profile from './pages/profile';
 import SignUp from './pages/signup';
 import LogIn from './pages/login';
+import Posting from './pages/posting';
 import Meditation from './pages/meditation';
+import Setting from './pages/setting/Setting';
 import { queryClient, QueryClientProvider } from './apis/queryClient';
 
 function App() {
@@ -17,11 +21,19 @@ function App() {
             <Route element={<Layout />}>
               <Route
                 path='/meditation'
-                element={<Meditation />}
+                element={<PrivateRoute path='/meditation' element={Meditation} />}
               />
               <Route
                 path='/profile/:userId'
-                element={<Profile />}
+                element={<PrivateRoute path='/profile/userId' element={Profile} />}
+              />
+              <Route
+                path='/posting'
+                element={<Posting />}
+              />
+              <Route
+                path='/setting'
+                element={<Setting />}
               />
             </Route>
             <Route

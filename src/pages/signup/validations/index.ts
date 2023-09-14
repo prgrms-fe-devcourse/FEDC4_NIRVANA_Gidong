@@ -7,5 +7,14 @@ export const isNicknameOk = (nickname: string) => {
 };
 
 export const isPasswordOk = (password: string) => {
-  return password.length >= 8 && password.length <= 16;
+  const lengthOk =
+    !password.includes(' ') && password.length >= 8 && password.length <= 32;
+  const containsAlphabet = /[a-zA-Z]/.test(password);
+  const containsNumber = /[0-9]/.test(password);
+  const containsSpecialChar = /[!@#$%^&*]/.test(password);
+  const containsOk =
+    [containsAlphabet, containsNumber, containsSpecialChar].filter(
+      (condition) => condition
+    ).length >= 2;
+  return lengthOk && containsOk;
 };
