@@ -3,16 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 import { Alert } from '@components/Alert';
-import { isEmailOk, isNicknameOk, isPasswordOk } from './validations';
+import {
+  isEmailOk,
+  isNicknameOk,
+  isPasswordOk
+} from './utils/signUpValidations';
 import postSignUpUser from '@/apis/signup';
 import { USER_INPUT, MODAL } from './constants';
 import {
   SignUpForm,
   ButtonContainer,
   SignUpContainer,
-  LogoContainer,
   Logo
-} from './styles';
+} from './SignUpStyle';
 
 const SignUp = () => {
   const [email, setEmail] = useState<string>('');
@@ -74,9 +77,7 @@ const SignUp = () => {
 
   return (
     <SignUpContainer>
-      <LogoContainer>
-        <Logo />
-      </LogoContainer>
+      <Logo />
 
       {emailErrorCatched && (
         <Alert

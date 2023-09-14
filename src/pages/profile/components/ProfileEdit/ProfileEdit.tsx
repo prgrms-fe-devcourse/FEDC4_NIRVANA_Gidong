@@ -6,7 +6,7 @@ import {
 } from './ProfileEdit.style';
 import { UserInput } from '@components/UserInput';
 import { USER_INPUT } from '@pages/signup/constants';
-import { isNicknameOk } from '@pages/signup/validations';
+import { isNicknameOk } from '@pages/signup/utils/signUpValidations';
 import { Button } from '@components/Button';
 import { putUpdateUser } from '@apis/user';
 
