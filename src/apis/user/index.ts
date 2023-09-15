@@ -26,7 +26,7 @@ const putUpdateUser = async ({
     },
     {
       headers: {
-        Authorization: token
+        Authorization: 'Bearer ' + token
       }
     }
   );
@@ -46,7 +46,7 @@ const postUploadPhoto = async (
     formData,
     {
       headers: {
-        Authorization: token
+        Authorization: 'Bearer ' + token
       }
     }
   );

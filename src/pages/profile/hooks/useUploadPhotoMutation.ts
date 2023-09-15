@@ -1,7 +1,7 @@
 import { postUploadPhoto } from '@apis/user';
-import { useMutation } from 'react-query';
-import { useRecoilValue } from 'recoil';
-import { userState } from '@/states/userState';
+import { useMutation } from '@tanstack/react-query';
+import useSessionStorage from '@hooks/useSessionStorage';
+import { User } from '@/types/User';
 
 interface UseUploadPhotoMutationParams {
   isCover: boolean;
@@ -14,10 +14,13 @@ const useUploadPhotoMutation = ({
   handleMutate,
   handleSuccess
 }: UseUploadPhotoMutationParams) => {
-  const user = useRecoilValue(userState);
-  // const token = 'Bearer ' + user.token;
-  const token =
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0ZmYxNmNjMTY5Yzc5MDU3YjVmOGVjMCIsImVtYWlsIjoibmFuYTEyNEBuYXZlci5jb20ifSwiaWF0IjoxNjk0NDM5MzE1fQ.heYeAayvX78n0NooS-7H4HlbeHCvquXdFl7tRIVkEHM';
+  const [{ token }] = useSessionStorage<Pick<User, '_id' | 'token'>>(
+    'userData',
+    {
+      _id: '',
+      token: ''
+    }
+  );
   const uploadMutation = useMutation(
     (file: File) => postUploadPhoto(file, token, isCover),
     {

@@ -1,7 +1,6 @@
-import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { userState } from '@/states/userState';
+import useSessionStorage from '@hooks/useSessionStorage';
+import { User } from '@/types/User';
 
 interface PrivateRouteProps {
   path: string;
@@ -10,12 +9,18 @@ interface PrivateRouteProps {
 
 const PrivateRoute = ({ path, element }: PrivateRouteProps) => {
   const RouteComponent = element;
-  const userInfo = useRecoilValue(userState);
+  const [userSessionData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
+    'userData',
+    {
+      _id: '',
+      token: ''
+    }
+  );
 
-  if (userInfo === null) {
+  if (userSessionData._id === null || userSessionData._id === '') {
     return <Navigate to={`/login?redirectUrl=${path}`} />;
   }
-  if (userInfo.token === undefined) {
+  if (userSessionData.token === undefined || userSessionData.token === '') {
     return <Navigate to={`/login?redirectUrl=${path}`} />;
   }
 

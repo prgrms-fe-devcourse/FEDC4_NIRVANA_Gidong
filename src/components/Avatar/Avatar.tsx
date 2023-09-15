@@ -15,7 +15,7 @@ const Avatar = ({ alt, src, size, children }: AvatarProps) => {
           alt={alt}
         />
       ) : (
-        <AvatarText>{alt.charAt(0).toUpperCase()}</AvatarText>
+        <AvatarText>{alt?.charAt(0).toUpperCase()}</AvatarText>
       )}
       {children}
     </AvatarContainer>

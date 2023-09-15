@@ -9,6 +9,8 @@ import { USER_INPUT } from '@pages/signup/constants';
 import { isNicknameOk } from '@pages/signup/validations';
 import { Button } from '@components/Button';
 import { putUpdateUser } from '@apis/user';
+import useSessionStorage from '@hooks/useSessionStorage';
+import { User } from '@/types/User';
 
 interface ProfileEditProps {
   refetch: () => void;
@@ -18,10 +20,13 @@ const ProfileEdit = ({ refetch }: ProfileEditProps) => {
   const [success, setSuccess] = useState<boolean>(false);
   const [show, setShow] = useState<boolean>(false);
 
-  const user = {
-    token:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0ZmYxNmNjMTY5Yzc5MDU3YjVmOGVjMCIsImVtYWlsIjoibmFuYTEyNEBuYXZlci5jb20ifSwiaWF0IjoxNjk0NDM5MzE1fQ.heYeAayvX78n0NooS-7H4HlbeHCvquXdFl7tRIVkEHM'
-  };
+  const [userSessionData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
+    'userData',
+    {
+      _id: '',
+      token: ''
+    }
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -44,9 +49,10 @@ const ProfileEdit = ({ refetch }: ProfileEditProps) => {
     event.preventDefault();
     const target = event.target as HTMLFormElement;
     const username = target.username.value;
+    console.log(userSessionData.token);
     await putUpdateUser({
       fullName: username,
-      token: user.token
+      token: userSessionData.token
     }).then(() => {
       refetch();
     });
