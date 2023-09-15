@@ -4,7 +4,9 @@ import { postFollowUser, deleteFollowUser } from '@apis/follow';
 import { Button as FollowButton } from '@components/Button';
 import { FollowUserContainer } from './FollowUser.style';
 import { FollowUserInfo } from '../FollowUserInfo';
-import { User, Follow } from '@types';
+import { User } from '@types';
+import { useRecoilValue } from 'recoil';
+import { userState } from '@states/userState';
 
 interface FollowUserProps {
   following: boolean;
@@ -17,18 +19,17 @@ const FollowUser = ({
   followUser,
   following
 }: FollowUserProps) => {
-  const [follow, setFollow] = useState(true);
+  const [followed, setFollowed] = useState(true);
+  // const { token } = useRecoilValue(userState);
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0ZmYxNmNjMTY5Yzc5MDU3YjVmOGVjMCIsImVtYWlsIjoibmFuYTEyNEBuYXZlci5jb20ifSwiaWF0IjoxNjk0NTczMDA5fQ.gWqpTse9wQarIavekn0M2H6RTVlm9IBZ8MZrC6FvYqA';
 
   const { refetch } = useQuery({
     queryKey: ['follow'],
     queryFn: async () => {
-      let data = {};
-
-      if (follow) {
-        data = await deleteFollowUser(followDataId);
-      } else {
-        data = await postFollowUser(followUser._id);
-      }
+      const data = followed
+        ? await deleteFollowUser(followDataId, token)
+        : await postFollowUser(followUser._id, token);
 
       return data;
     },
@@ -37,32 +38,29 @@ const FollowUser = ({
 
   const handleClickFollow = async () => {
     await refetch();
-    setFollow((prev) => !prev);
+    setFollowed((prev) => !prev);
   };
+
+  const { fullName, image, isOnline, email } = followUser;
 
   return (
     <FollowUserContainer>
-      <FollowUserInfo userData={followUser} />
-      {following &&
-        (follow ? (
-          <FollowButton
-            width={68}
-            height={30}
-            label='팔로우'
-            dark={false}
-            bold={true}
-            handleClick={handleClickFollow}
-          />
-        ) : (
-          <FollowButton
-            width={68}
-            height={30}
-            label='팔로잉'
-            dark={true}
-            bold={true}
-            handleClick={handleClickFollow}
-          />
-        ))}
+      <FollowUserInfo
+        fullName={fullName}
+        image={image}
+        isOnline={isOnline}
+        email={email}
+      />
+      {following && (
+        <FollowButton
+          width={68}
+          height={30}
+          label={followed ? '팔로우' : '팔로잉'}
+          dark={followed ? false : true}
+          bold={true}
+          handleClick={handleClickFollow}
+        />
+      )}
     </FollowUserContainer>
   );
 };
