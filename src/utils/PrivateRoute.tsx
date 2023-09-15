@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { userState } from '@/states/userState';
 
 interface PrivateRouteProps {
-  path: string,
+  path: string;
   element: () => JSX.Element;
 }
 
@@ -13,13 +13,13 @@ const PrivateRoute = ({ path, element }: PrivateRouteProps) => {
   const userInfo = useRecoilValue(userState);
 
   if (userInfo === null) {
-    return <Navigate to={`/login?redirectUrl=${path}`} />
+    return <Navigate to={`/login?redirectUrl=${path}`} />;
   }
   if (userInfo.token === undefined) {
-    return <Navigate to={`/login?redirectUrl=${path}`} />
+    return <Navigate to={`/login?redirectUrl=${path}`} />;
   }
 
-  return <RouteComponent />; 
-}
+  return <RouteComponent />;
+};
 
 export default PrivateRoute;
