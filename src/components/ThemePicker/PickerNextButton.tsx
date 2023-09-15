@@ -1,15 +1,19 @@
 import { Icon } from '@components/Icon';
 import { PickerNextButtonContainer } from './ThemePicker.style';
 
-const PickerNextButton = () => {
+interface PickerNextButtonProps {
+  color: string;
+}
+
+const PickerNextButton = ({ color = 'white' }: PickerNextButtonProps) => {
   return (
     <PickerNextButtonContainer>
-      <Icon 
+      <Icon
         name={'chevron_right'}
-        size={25}
-        color={'greyLight'}
+        size={50}
+        color={color}
       />
     </PickerNextButtonContainer>
-  )
+  );
 };
 export default PickerNextButton;

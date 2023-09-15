@@ -1,13 +1,17 @@
 import { Icon } from '@components/Icon';
 import { PickerPreviousButtonContainer } from './ThemePicker.style';
 
-const PickerPreviousButton = () => {
+interface PickerPreviousButtonProps {
+  color: string;
+}
+
+const PickerPreviousButton = ({ color = 'white' }: PickerPreviousButtonProps) => {
   return (
     <PickerPreviousButtonContainer>
       <Icon 
         name={'chevron_left'}
-        size={25}
-        color={'greyLight'}
+        size={50}
+        color={color}
       />
     </PickerPreviousButtonContainer>
   )
