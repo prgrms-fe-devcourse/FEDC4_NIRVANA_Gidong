@@ -12,7 +12,11 @@ import { putUpdateUser } from '@apis/user';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types/User';
 
-const ProfileEdit = () => {
+interface ProfileEditProps {
+  refetch: () => void;
+}
+
+const ProfileEdit = ({ refetch }: ProfileEditProps) => {
   const [success, setSuccess] = useState<boolean>(false);
   const [show, setShow] = useState<boolean>(false);
 
@@ -50,7 +54,7 @@ const ProfileEdit = () => {
       fullName: username,
       token: userSessionData.token
     }).then(() => {
-      window.location.reload();
+      refetch();
     });
   };
 

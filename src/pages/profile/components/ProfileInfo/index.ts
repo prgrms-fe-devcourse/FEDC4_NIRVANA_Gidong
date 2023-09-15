@@ -1,3 +1,4 @@
 import ProfileInfo from './ProfileInfo';
+import ProfileAvatarEdit from './ProfileAvatarEdit';
 
-export { ProfileInfo };
+export { ProfileInfo, ProfileAvatarEdit };

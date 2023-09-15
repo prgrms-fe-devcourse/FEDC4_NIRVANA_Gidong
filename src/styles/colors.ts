@@ -18,5 +18,6 @@ export const color = {
   greyLight: '#7e7e7e',
   linearGradientPurple:
     'linear-gradient(160deg, #2a2427 0%, #47346d 50%, #7e4ea4 75%, #b796d0 100%)',
-  linearGradientPurpleVivid: `linear-gradient(90deg, #47346d 0%, #5e12ff 100%)`
+  linearGradientPurpleVivid: `linear-gradient(90deg, #47346d 0%, #5e12ff 100%)`,
+  transparentGreyBackground: 'rgba(126, 126, 126, 0.5)'
 };

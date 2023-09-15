@@ -16,5 +16,3 @@ export const ProfileInfoNameAndBadge = styled.div`
   ${({ theme }) => theme.style.flexAlignCenter};
   justify-content: space-between;
 `;
-
-export const ProfileEmailContainer = styled.div``;

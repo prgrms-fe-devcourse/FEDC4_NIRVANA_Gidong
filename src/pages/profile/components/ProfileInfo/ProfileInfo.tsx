@@ -1,11 +1,13 @@
 import { Avatar } from '@/components/Avatar';
 import { StackBadge } from '@/components/Badge';
 import { UserId, UserName } from '@/components/UserText';
+import { useRecoilValue } from 'recoil';
+import { editModeState } from '../../states/editMode';
+import ProfileAvatarEdit from './ProfileAvatarEdit';
 import {
   ProfileInfoContainer,
   ProfileInfoNameAndBadge,
-  ProfileAvatarContainer,
-  ProfileEmailContainer
+  ProfileAvatarContainer
 } from './ProfileInfo.style';
 
 interface ProfileInfoProps {
@@ -13,31 +15,36 @@ interface ProfileInfoProps {
   email: string;
   avatarImgSrc: string;
   meditationStack: number;
+  refetch: () => void;
 }
 
 const ProfileInfo = ({
   email,
   fullName,
   avatarImgSrc,
-  meditationStack
+  meditationStack,
+  refetch
 }: ProfileInfoProps) => {
+  const editMode = useRecoilValue(editModeState);
+
   return (
     <ProfileInfoContainer>
       <ProfileAvatarContainer>
         <Avatar
           size={70}
           src={avatarImgSrc}
-          alt={fullName}
-        />
+          alt={fullName}>
+          {editMode && (
+            <ProfileAvatarEdit refetch={refetch}></ProfileAvatarEdit>
+          )}
+        </Avatar>
       </ProfileAvatarContainer>
       <ProfileInfoNameAndBadge>
         <UserName>{fullName}</UserName>
         <StackBadge stack={meditationStack} />
       </ProfileInfoNameAndBadge>
 
-      <ProfileEmailContainer>
-        <UserId email={email} />
-      </ProfileEmailContainer>
+      <UserId email={email} />
     </ProfileInfoContainer>
   );
 };
