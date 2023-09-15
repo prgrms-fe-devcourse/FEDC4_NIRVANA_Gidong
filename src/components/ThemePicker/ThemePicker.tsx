@@ -68,9 +68,7 @@ const MeditationThemePicker = () => {
         }
       });
     });
-    window.addEventListener('resize', () => {
-      handleButtonShow();
-    });
+    window.addEventListener('resize', () => handleButtonShow);
     return () => {
       document.removeEventListener(EVENT_NAME_MEDITATION_STARTED, () => {
         setPickerShown(false);

@@ -6,8 +6,6 @@ const NavContainer = styled.div`
   height: 28px;
   margin-top: 20px;
   position: relative;
-  ${({ theme }) => theme.style.flexCenter};
-
   > * {
     position: absolute;
     top: 50%;
@@ -21,6 +19,7 @@ const ThemePickerContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   overflow-x: scroll;
+  scroll-behavior: smooth;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -29,7 +28,6 @@ const ThemePickerContainer = styled.div`
     margin-right: 5px;
     flex-shrink: 0;
   }
-  scroll-behavior: smooth;
 `;
 
 const PickerButtonContainer = styled.div`
@@ -38,7 +36,6 @@ const PickerButtonContainer = styled.div`
   height: 45px;
   ${({ theme }) => theme.style.flexCenter};
   border-radius: 50%;
-  z-index: 2;
 
   &:hover {
     background-color: ${({ theme }) => theme.color.black250}
