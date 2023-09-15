@@ -21,6 +21,7 @@ const SignUp = () => {
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const [emailErrorCatched, setEmailErrorCatched] = useState<boolean>(false);
   const [signupSucceed, setSignupSucceed] = useState<boolean>(false);
+
   const navigate = useNavigate();
   let timer = 0;
 
