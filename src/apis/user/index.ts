@@ -24,7 +24,7 @@ const putUpdateUser = async ({
     },
     {
       headers: {
-        Authorization: token
+        Authorization: 'Bearer ' + token
       }
     }
   );
