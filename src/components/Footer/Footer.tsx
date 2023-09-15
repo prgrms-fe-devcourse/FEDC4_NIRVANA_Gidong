@@ -23,7 +23,13 @@ export const Footer = () => {
     <StyledFooter>
       {iconInfos.map((icon) => (
         <Link
-          pageLink={icon.link}
+          pageLink={
+            icon.name === 'person'
+              ? `${icon.link}/${userData._id}`
+              : userData.token
+              ? icon.link
+              : '/login'
+          }
           key={icon.name}>
           <Icon
             name={icon.name}
