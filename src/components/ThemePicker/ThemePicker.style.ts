@@ -29,6 +29,7 @@ const ThemePickerContainer = styled.div`
     margin-right: 5px;
     flex-shrink: 0;
   }
+  scroll-behavior: smooth;
 `;
 
 const PickerButtonContainer = styled.div`
@@ -38,6 +39,10 @@ const PickerButtonContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
   border-radius: 50%;
   z-index: 2;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.black250}
+  }
 `;
 
 const PickerPreviousButtonContainer = styled(PickerButtonContainer)`

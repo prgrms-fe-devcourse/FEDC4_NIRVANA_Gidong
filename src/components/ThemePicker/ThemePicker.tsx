@@ -46,6 +46,14 @@ const MeditationThemePicker = () => {
     }
   };
 
+  const clickPrevButton = () => {
+    containerRef.current.scrollLeft -= 250;
+  }
+
+  const clickNextButton = () => {
+    containerRef.current.scrollLeft += 250;
+  }
+
   useEffect(() => {
     handleButtonShow();
     document.addEventListener(EVENT_NAME_MEDITATION_STARTED, () => {
@@ -73,7 +81,7 @@ const MeditationThemePicker = () => {
 
   return (
     <NavContainer>
-      {showPreviousButton && <PickerPreviousButton color={'white'} />}
+      {showPreviousButton && <PickerPreviousButton clickPrevButton={clickPrevButton} color={'white'} />}
       <ThemePickerContainer
         ref={containerRef}
         onScroll={handleButtonShow}>
@@ -92,7 +100,7 @@ const MeditationThemePicker = () => {
             />
           ))}
       </ThemePickerContainer>
-      {showNextButton && <PickerNextButton color={'white'} />}
+      {showNextButton && <PickerNextButton clickNextButton={clickNextButton} color={'white'} />}
     </NavContainer>
   );
 };

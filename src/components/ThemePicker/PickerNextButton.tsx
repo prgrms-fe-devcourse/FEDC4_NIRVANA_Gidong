@@ -3,11 +3,12 @@ import { PickerNextButtonContainer } from './ThemePicker.style';
 
 interface PickerNextButtonProps {
   color: string;
+  clickNextButton: () => void;
 }
 
-const PickerNextButton = ({ color = 'white' }: PickerNextButtonProps) => {
+const PickerNextButton = ({ color = 'white', clickNextButton }: PickerNextButtonProps) => {
   return (
-    <PickerNextButtonContainer>
+    <PickerNextButtonContainer onClick={clickNextButton}>
       <Icon
         name={'chevron_right'}
         size={50}
