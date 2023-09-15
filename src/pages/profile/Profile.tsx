@@ -2,7 +2,7 @@ import createTabItems from './utils/createTabItems';
 import { useEffect } from 'react';
 import { getUser } from '@apis/user';
 import { useLocation, useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useRecoilState } from 'recoil';
 import { editModeState } from './states/editMode';
 import { ProfileInfoContainer, ProfilePage } from './Profile.style';
@@ -24,7 +24,6 @@ const Profile = () => {
     () => getUser(userId),
     { enabled: !!userId }
   );
-  console.log(data, isLoading, isError, error);
 
   const tabItems = createTabItems(data, isLoading);
 
