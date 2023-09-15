@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@components/Button';
-import { ThemePickerContainer } from './MeditationThemePicker.style';
+import { ThemePickerContainer } from './ThemePicker.style';
 import {
   EVENT_NAME_MEDITATION_ENDED,
   EVENT_NAME_MEDITATION_STARTED,
   CONCENTRATION_KEY
 } from '@pages/meditation/constants';
-import { meditationChannelInfo } from './models/channelInfo';
+import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
 
 const MeditationThemePicker = () => {
   const [pickerShown, setPickerShown] = useState(true);

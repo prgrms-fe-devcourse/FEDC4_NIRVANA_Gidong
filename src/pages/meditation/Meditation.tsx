@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 import MeditationLabel from '@pages/meditation/components/MeditationLabel';
 import MeditationTimer from '@pages/meditation/components/MeditationTimer';
 import MeditationTimeSetter from '@pages/meditation/components/MeditationTimeSetter';
-import { MeditationThemePicker } from '@pages/meditation/components/MeditationThemePicker';
+import { ThemePicker } from '@components/ThemePicker';
 import { MeditationPage } from './Meditation.style';
 import { endButtonPushed } from '@pages/meditation/components/MeditationEndButton/MeditationEndButton';
 import { Confirm } from '@components/Confirm';
@@ -16,7 +16,7 @@ export const Meditation = () => {
         <MeditationLabel />
         <MeditationTimer />
         <MeditationTimeSetter />
-        <MeditationThemePicker />
+        <ThemePicker />
         {confirmCaptured && (
           <Confirm
             emoji={'🧘🏻'}
