@@ -1,22 +1,35 @@
 import styled from '@emotion/styled';
 
-export const SettingSideBarBackground = styled.div`
+interface SettingSideBarProps {
+  active: boolean;
+}
+
+export const SettingSideBarSection = styled.section<SettingSideBarProps>`
+  display: flex;
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 2;
-  background-color: ${({ theme }) => theme.color.transparentGreyBackground};
+  transform: ${({ active }) =>
+    active ? 'translateX(0%)' : 'translateX(200%)'};
 `;
 
-export const SettingSideBarPage = styled.div`
-  padding: 43px 20px 0;
+export const SettingSideBarBackground = styled.div`
+  width: 100%;
+  background-color: ${({ theme }) => theme.color.transparentGreyBackground};
+  flex: 1;
+`;
 
+export const SettingSideBarPage = styled.div<SettingSideBarProps>`
+  padding: 43px 20px 0;
   right: 0;
-  z-index: 3;
-  width: 80%;
+  position: relative;
+  pointer-events: none;
+  width: 100%;
   height: 100%;
   float: right;
   background-color: ${({ theme }) => theme.color.white};
+  flex: 5;
 `;
 
 export const Heading = styled.h2`

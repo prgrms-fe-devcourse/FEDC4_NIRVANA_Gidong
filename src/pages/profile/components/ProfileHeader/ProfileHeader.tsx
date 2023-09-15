@@ -1,16 +1,17 @@
 import { Button } from '@/components/Button';
 import { Icon } from '@/components/Icon';
-import { useNavigate } from 'react-router-dom';
 import {
   ProfileHeaderButtonContainer,
   ProfileHeaderSection
 } from './ProfileHeader.style';
+import { useSetRecoilState } from 'recoil';
+import { editModeState } from '@pages/profile/states/editMode';
 
 const ProfileHeader = () => {
-  const navigate = useNavigate();
+  const setEditMode = useSetRecoilState(editModeState);
 
   const handleEditClick = () => {
-    navigate('#edit');
+    setEditMode(true);
   };
   return (
     <ProfileHeaderSection>

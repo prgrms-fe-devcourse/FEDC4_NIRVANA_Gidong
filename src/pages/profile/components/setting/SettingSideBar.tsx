@@ -1,16 +1,30 @@
 import { Link } from '@components/Link';
 import {
   SettingSideBarBackground,
+  SettingSideBarSection,
   SettingSideBarPage,
   Heading,
   SettingUl,
   SettingLi
 } from './SettingSideBar.style';
+import { useSetRecoilState } from 'recoil';
+import { editModeState } from '@pages/profile/states/editMode';
 
-const SettingSideBar = () => {
+interface SettingSideBarProps {
+  active?: boolean;
+}
+
+const SettingSideBar = ({ active }: SettingSideBarProps) => {
+  const setEditMode = useSetRecoilState(editModeState);
+  const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    setEditMode(false);
+  };
   return (
-    <SettingSideBarBackground>
-      <SettingSideBarPage>
+    <SettingSideBarSection active={active}>
+      <SettingSideBarBackground
+        onClick={handleBackgroundClick}></SettingSideBarBackground>
+      <SettingSideBarPage active={active}>
         <Heading>환경설정</Heading>
         <SettingUl>
           <SettingLi>
@@ -24,7 +38,7 @@ const SettingSideBar = () => {
           <SettingLi>로그아웃</SettingLi>
         </SettingUl>
       </SettingSideBarPage>
-    </SettingSideBarBackground>
+    </SettingSideBarSection>
   );
 };
 

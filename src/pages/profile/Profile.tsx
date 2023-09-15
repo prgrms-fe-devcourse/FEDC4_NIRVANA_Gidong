@@ -30,7 +30,7 @@ const Profile = () => {
 
   return (
     <ProfilePage>
-      {editMode && <SettingSideBar />}
+      <SettingSideBar active={editMode ? true : false} />
       <ProfileCover
         refetch={() => refetch()}
         src={isLoading ? '' : data.coverImage}
