@@ -60,6 +60,7 @@ const MeditationThemePicker = () => {
 
   return (
     <ThemePickerContainer ref={containerRef} onScroll={handleContainerScroll}>
+      {showPreviousButton && <PickerPreviousButton />}
       {pickerShown &&
         Array.from(meditationChannelInfo).map(([key, value]) => (
           <Button
@@ -74,6 +75,7 @@ const MeditationThemePicker = () => {
             }}
           />
         ))}
+        {showNextButton && <PickerNextButton />}
     </ThemePickerContainer>
   );
 };
