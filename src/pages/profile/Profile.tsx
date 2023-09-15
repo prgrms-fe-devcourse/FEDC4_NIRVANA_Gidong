@@ -10,6 +10,7 @@ import { ProfileInfo } from './components/ProfileInfo';
 import { ProfileCover } from './components/ProfileCover';
 import { ProfileMain } from './components/ProfileMain';
 import { ProfileEdit } from './components/ProfileEdit';
+import { SettingSideBar } from './components/setting';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -29,6 +30,7 @@ const Profile = () => {
 
   return (
     <ProfilePage>
+      {editMode && <SettingSideBar />}
       <ProfileCover
         refetch={() => refetch()}
         src={isLoading ? '' : data.coverImage}

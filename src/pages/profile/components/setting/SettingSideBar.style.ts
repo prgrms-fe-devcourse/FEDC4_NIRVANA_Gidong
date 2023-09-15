@@ -1,7 +1,22 @@
 import styled from '@emotion/styled';
 
-export const SettingPage = styled.div`
+export const SettingSideBarBackground = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: ${({ theme }) => theme.color.transparentGreyBackground};
+`;
+
+export const SettingSideBarPage = styled.div`
   padding: 43px 20px 0;
+
+  right: 0;
+  z-index: 3;
+  width: 80%;
+  height: 100%;
+  float: right;
+  background-color: ${({ theme }) => theme.color.white};
 `;
 
 export const Heading = styled.h2`
