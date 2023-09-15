@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { postFollowUser, deleteFollowUser } from '@apis/follow';
+import useSessionStorage from '@hooks/useSessionStorage';
 import { Button as FollowButton } from '@components/Button';
 import { FollowUserContainer } from './FollowUser.style';
 import { FollowUserInfo } from '../FollowUserInfo';
 import { User } from '@types';
-import { useRecoilValue } from 'recoil';
-import { userState } from '@states/userState';
 
 interface FollowUserProps {
   following: boolean;
@@ -20,9 +19,14 @@ const FollowUser = ({
   following
 }: FollowUserProps) => {
   const [followed, setFollowed] = useState(true);
-  // const { token } = useRecoilValue(userState);
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0ZmYxNmNjMTY5Yzc5MDU3YjVmOGVjMCIsImVtYWlsIjoibmFuYTEyNEBuYXZlci5jb20ifSwiaWF0IjoxNjk0NTczMDA5fQ.gWqpTse9wQarIavekn0M2H6RTVlm9IBZ8MZrC6FvYqA';
+  const [userSessionData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
+    'userData',
+    {
+      _id: '',
+      token: ''
+    }
+  );
+  const { token } = userSessionData;
 
   const { refetch } = useQuery({
     queryKey: ['follow'],
