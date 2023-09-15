@@ -15,6 +15,8 @@ const MeditationThemePicker = () => {
   const [picked, setPicked] = useState(
     meditationChannelInfo.get(CONCENTRATION_KEY)
   );
+  const [showPreviousButton, setShowPreviousButton] = useState(false);
+  const [showNextButton, setShowNextButton] = useState(false);
   const navigate = useNavigate();
 
   const handleContainerScroll = (event: React.UIEvent<HTMLElement>): void => {
@@ -34,6 +36,9 @@ const MeditationThemePicker = () => {
   }
 
   useEffect(() => {
+    if (containerRef.current && containerRef.current.clientWidth < 500) {
+      setShowNextButton(true);
+    }
     document.addEventListener(EVENT_NAME_MEDITATION_STARTED, () => {
       setPickerShown(false);
     });
@@ -51,7 +56,8 @@ const MeditationThemePicker = () => {
         setPickerShown(false);
       });
     };
-  });
+  }, []);
+
   return (
     <ThemePickerContainer ref={containerRef} onScroll={handleContainerScroll}>
       {pickerShown &&
