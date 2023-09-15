@@ -48,11 +48,11 @@ const MeditationThemePicker = () => {
 
   const clickPrevButton = () => {
     containerRef.current.scrollLeft -= 250;
-  }
+  };
 
   const clickNextButton = () => {
     containerRef.current.scrollLeft += 250;
-  }
+  };
 
   useEffect(() => {
     handleButtonShow();
@@ -68,18 +68,23 @@ const MeditationThemePicker = () => {
         }
       });
     });
-    window.addEventListener('resize', () => handleButtonShow);
+    window.addEventListener('resize', handleButtonShow);
     return () => {
       document.removeEventListener(EVENT_NAME_MEDITATION_STARTED, () => {
         setPickerShown(false);
       });
-      window.removeEventListener('resize', () => handleButtonShow);
+      window.removeEventListener('resize', handleButtonShow);
     };
   }, []);
 
   return (
     <NavContainer>
-      {showPreviousButton && <PickerPreviousButton clickPrevButton={clickPrevButton} color={'white'} />}
+      {showPreviousButton && (
+        <PickerPreviousButton
+          clickPrevButton={clickPrevButton}
+          color={'white'}
+        />
+      )}
       <ThemePickerContainer
         ref={containerRef}
         onScroll={handleButtonShow}>
@@ -98,7 +103,12 @@ const MeditationThemePicker = () => {
             />
           ))}
       </ThemePickerContainer>
-      {showNextButton && <PickerNextButton clickNextButton={clickNextButton} color={'white'} />}
+      {showNextButton && (
+        <PickerNextButton
+          clickNextButton={clickNextButton}
+          color={'white'}
+        />
+      )}
     </NavContainer>
   );
 };
