@@ -19,4 +19,20 @@ const ThemePickerContainer = styled.div`
     flex-shrink: 0;
   }
 `;
-export { ThemePickerContainer };
+
+const PickerButtonContainer = styled.div`
+  width: 45px;
+  height: 45px;
+  background-color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.style.flexCenter};
+`
+
+const PickerPreviousButtonContainer = styled(PickerButtonContainer)`
+  box-shadow: 20px 0px 10px ${({ theme }) => theme.color.white};
+`
+
+const PickerNextButtonContainer = styled(PickerButtonContainer)`
+  box-shadow: -20px 0px 10px ${({ theme }) => theme.color.white};
+`
+
+export { ThemePickerContainer, PickerPreviousButtonContainer, PickerNextButtonContainer };
