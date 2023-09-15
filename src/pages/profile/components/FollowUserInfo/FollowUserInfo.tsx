@@ -1,15 +1,20 @@
 import { FollowUserInfoContainer } from './FollowUserInfo.style';
 import { UserId, UserName } from '@components/UserText';
 import { BadgeAvatar } from '@components/Avatar';
-import { FollowUserData } from '../../types';
 
 interface FollowUserInfoProps {
-  userData: FollowUserData;
+  fullName: string;
+  image?: string;
+  email: string;
+  isOnline: boolean;
 }
 
-const FollowUserInfo = ({ userData }: FollowUserInfoProps) => {
-  const { fullName, email, isOnline, image } = userData;
-
+const FollowUserInfo = ({
+  fullName,
+  isOnline,
+  email,
+  image
+}: FollowUserInfoProps) => {
   return (
     <FollowUserInfoContainer>
       <BadgeAvatar
