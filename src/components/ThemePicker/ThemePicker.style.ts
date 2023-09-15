@@ -1,30 +1,29 @@
 import styled from '@emotion/styled';
 
-const NavContainer = styled.div`  
-  ${({ theme }) => theme.style.flexCenter};
-  position: relative;
+const NavContainer = styled.div`
   max-width: 500px;
-  height: 28px;
   width: 80%;
+  height: 28px;
   margin-top: 20px;
+  position: relative;
+  ${({ theme }) => theme.style.flexCenter};
 
   > * {
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
   }
-`
+`;
 
 const ThemePickerContainer = styled.div`
   display: flex;
+  width: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   overflow-x: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
-  width: 100%;
-  justify-content: flex-start;
-  position: absolute;
-
-
   & > button {
     margin-left: 5px;
     margin-right: 5px;
@@ -33,22 +32,25 @@ const ThemePickerContainer = styled.div`
 `;
 
 const PickerButtonContainer = styled.div`
+  cursor: pointer;
   width: 45px;
   height: 45px;
   ${({ theme }) => theme.style.flexCenter};
-  position: absolute;
   border-radius: 50%;
   z-index: 2;
-  cursor: pointer;
-  
-`
+`;
 
 const PickerPreviousButtonContainer = styled(PickerButtonContainer)`
-  left: -50px;
-`
+  left: -30px;
+`;
 
 const PickerNextButtonContainer = styled(PickerButtonContainer)`
-  right: -50px;
-`
+  right: -30px;
+`;
 
-export { NavContainer, ThemePickerContainer, PickerPreviousButtonContainer, PickerNextButtonContainer };
+export {
+  NavContainer,
+  ThemePickerContainer,
+  PickerPreviousButtonContainer,
+  PickerNextButtonContainer
+};

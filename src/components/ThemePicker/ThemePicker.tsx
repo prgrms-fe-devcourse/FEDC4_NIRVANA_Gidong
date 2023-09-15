@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@components/Button';
-import { ThemePickerContainer } from './ThemePicker.style';
+import { NavContainer, ThemePickerContainer } from './ThemePicker.style';
+import PickerPreviousButton from './PickerPreviousButton';
+import PickerNextButton from './PickerNextButton';
 import {
   EVENT_NAME_MEDITATION_ENDED,
   EVENT_NAME_MEDITATION_STARTED,
@@ -19,26 +21,33 @@ const MeditationThemePicker = () => {
   const [showNextButton, setShowNextButton] = useState(false);
   const navigate = useNavigate();
 
-  const handleContainerScroll = (event: React.UIEvent<HTMLElement>): void => {
-    event.preventDefault();
-    const splitContainer = event.currentTarget.scrollWidth - event.currentTarget.clientWidth > 0 ? true : false;
-    const splitPicxel = event.currentTarget.scrollWidth - event.currentTarget.clientWidth;
-    const { scrollLeft } = event.currentTarget;
+  const handleButtonShow = () => {
+    const { clientWidth } = containerRef.current;
+    const { scrollWidth } = containerRef.current;
+    const { scrollLeft } = containerRef.current;
 
-    if (splitContainer && scrollLeft > splitPicxel) {
-      console.log('끝에 도달!');
-      // todo: 다음 버튼을 disabled
-    } 
-    if (splitContainer && scrollLeft < 0) {
-      console.log('처음!');
-      // todo: 이전 버튼을 disabled 
+    const splitContainer = scrollWidth - clientWidth > 0;
+    const splitPixcel = scrollWidth - clientWidth;
+
+    if (!splitContainer) {
+      setShowPreviousButton(false);
+      setShowNextButton(false);
+      return;
     }
-  }
+    if (scrollLeft > 0) {
+      setShowPreviousButton(true);
+    } else {
+      setShowPreviousButton(false);
+    }
+    if (scrollLeft < splitPixcel - 5) {
+      setShowNextButton(true);
+    } else {
+      setShowNextButton(false);
+    }
+  };
 
   useEffect(() => {
-    if (containerRef.current && containerRef.current.clientWidth < 500) {
-      setShowNextButton(true);
-    }
+    handleButtonShow();
     document.addEventListener(EVENT_NAME_MEDITATION_STARTED, () => {
       setPickerShown(false);
     });
@@ -51,32 +60,40 @@ const MeditationThemePicker = () => {
         }
       });
     });
+    window.addEventListener('resize', () => {
+      handleButtonShow();
+    });
     return () => {
       document.removeEventListener(EVENT_NAME_MEDITATION_STARTED, () => {
         setPickerShown(false);
       });
+      window.removeEventListener('resize', () => handleButtonShow);
     };
   }, []);
 
   return (
-    <ThemePickerContainer ref={containerRef} onScroll={handleContainerScroll}>
-      {showPreviousButton && <PickerPreviousButton />}
-      {pickerShown &&
-        Array.from(meditationChannelInfo).map(([key, value]) => (
-          <Button
-            key={key}
-            width={80}
-            height={28}
-            bold={false}
-            dark={picked.label === value.label}
-            label={value.label}
-            handleClick={() => {
-              setPicked(value);
-            }}
-          />
-        ))}
-        {showNextButton && <PickerNextButton />}
-    </ThemePickerContainer>
+    <NavContainer>
+      {showPreviousButton && <PickerPreviousButton color={'white'} />}
+      <ThemePickerContainer
+        ref={containerRef}
+        onScroll={handleButtonShow}>
+        {pickerShown &&
+          Array.from(meditationChannelInfo).map(([key, value]) => (
+            <Button
+              key={key}
+              width={80}
+              height={28}
+              bold={false}
+              dark={picked.label === value.label}
+              label={value.label}
+              handleClick={() => {
+                setPicked(value);
+              }}
+            />
+          ))}
+      </ThemePickerContainer>
+      {showNextButton && <PickerNextButton color={'white'} />}
+    </NavContainer>
   );
 };
 
