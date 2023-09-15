@@ -1,8 +1,6 @@
-import { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import postLogInUser from '@apis/login';
-import { userState } from '@/states/userState';
 import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 import { USER_INPUT } from './constants';
@@ -14,14 +12,28 @@ import {
   LogoContainer,
   Logo
 } from './styles';
+import useSessionStorage from '@hooks/useSessionStorage';
+import { User } from '@/types/User';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorCatched, setErrorCatched] = useState<boolean>(false);
-  const setUser = useSetRecoilState(userState);
   const navigate = useNavigate();
   let timer = 0;
+
+  const [userSessionData, setUserSessionData] = useSessionStorage<
+    Pick<User, '_id' | 'token'>
+  >('userData', {
+    _id: '',
+    token: ''
+  });
+
+  useEffect(() => {
+    if (userSessionData.token) {
+      navigate('/meditation');
+    }
+  }, [userSessionData, navigate]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -49,15 +61,12 @@ const Login = () => {
     postLogInUser({ email, password })
       .then((res) => {
         const { user, token } = res.data;
-        setUser({ ...user, token });
-        navigate('/meditation');
+        setUserSessionData({ _id: user._id, token });
       })
       .catch((err) => {
         console.log(err);
         setErrorCatched(true);
       });
-
-    return;
   };
 
   return (

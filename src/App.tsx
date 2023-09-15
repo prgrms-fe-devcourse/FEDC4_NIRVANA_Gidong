@@ -10,7 +10,7 @@ import LogIn from './pages/login';
 import Posting from './pages/posting';
 import Meditation from './pages/meditation';
 import Setting from './pages/setting/Setting';
-import PasswordUpdate from './pages/password-update';
+import PasswordUpdate from '@pages/password-update';
 import { queryClient, QueryClientProvider } from './apis/queryClient';
 
 function App() {
@@ -22,11 +22,21 @@ function App() {
             <Route element={<Layout />}>
               <Route
                 path='/meditation'
-                element={<PrivateRoute path='/meditation' element={Meditation} />}
+                element={
+                  <PrivateRoute
+                    path='/meditation'
+                    element={Meditation}
+                  />
+                }
               />
               <Route
                 path='/profile/:userId'
-                element={<PrivateRoute path='/profile/userId' element={Profile} />}
+                element={
+                  <PrivateRoute
+                    path='/profile/userId'
+                    element={Profile}
+                  />
+                }
               />
               <Route
                 path='/posting'
