@@ -10,52 +10,23 @@ import {
   CONCENTRATION_KEY
 } from '@pages/meditation/constants';
 import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
+import useScrollButton from './hooks/useScrollButton';
 
 const MeditationThemePicker = () => {
-  const containerRef = useRef(null);
   const [pickerShown, setPickerShown] = useState(true);
   const [picked, setPicked] = useState(
     meditationChannelInfo.get(CONCENTRATION_KEY)
   );
-  const [showPreviousButton, setShowPreviousButton] = useState(false);
-  const [showNextButton, setShowNextButton] = useState(false);
+  const [
+    scrollRef,
+    showPrevButton,
+    showNextButton,
+    clickPrevButton,
+    clickNextButton
+  ] = useScrollButton();
   const navigate = useNavigate();
 
-  const handleButtonShow = () => {
-    const { clientWidth } = containerRef.current;
-    const { scrollWidth } = containerRef.current;
-    const { scrollLeft } = containerRef.current;
-
-    const splitContainer = scrollWidth - clientWidth > 0;
-    const splitPixcel = scrollWidth - clientWidth;
-
-    if (!splitContainer) {
-      setShowPreviousButton(false);
-      setShowNextButton(false);
-      return;
-    }
-    if (scrollLeft > 0) {
-      setShowPreviousButton(true);
-    } else {
-      setShowPreviousButton(false);
-    }
-    if (scrollLeft < splitPixcel - 5) {
-      setShowNextButton(true);
-    } else {
-      setShowNextButton(false);
-    }
-  };
-
-  const clickPrevButton = () => {
-    containerRef.current.scrollLeft -= 250;
-  };
-
-  const clickNextButton = () => {
-    containerRef.current.scrollLeft += 250;
-  };
-
   useEffect(() => {
-    handleButtonShow();
     document.addEventListener(EVENT_NAME_MEDITATION_STARTED, () => {
       setPickerShown(false);
     });
@@ -68,26 +39,23 @@ const MeditationThemePicker = () => {
         }
       });
     });
-    window.addEventListener('resize', handleButtonShow);
+    
     return () => {
-      document.removeEventListener(EVENT_NAME_MEDITATION_STARTED, () => {
-        setPickerShown(false);
-      });
-      window.removeEventListener('resize', handleButtonShow);
+      document.removeEventListener(EVENT_NAME_MEDITATION_STARTED, () =>
+        setPickerShown(false)
+      );
     };
   }, []);
 
   return (
     <NavContainer>
-      {showPreviousButton && (
+      {showPrevButton && (
         <PickerPreviousButton
           clickPrevButton={clickPrevButton}
           color={'white'}
         />
       )}
-      <ThemePickerContainer
-        ref={containerRef}
-        onScroll={handleButtonShow}>
+      <ThemePickerContainer ref={scrollRef}>
         {pickerShown &&
           Array.from(meditationChannelInfo).map(([key, value]) => (
             <Button
