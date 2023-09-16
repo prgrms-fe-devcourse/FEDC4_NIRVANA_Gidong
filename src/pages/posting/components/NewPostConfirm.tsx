@@ -1,15 +1,15 @@
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
 
-interface PostingConfirmProps {
+interface NewPostConfirmProps {
   handleConfirmButton: (() => Promise<void>) | (() => void);
   handleCancelButton: () => void;
 }
 
-const PostingConfirm = ({
+const NewPostConfirm = ({
   handleConfirmButton,
   handleCancelButton
-}: PostingConfirmProps) => {
+}: NewPostConfirmProps) => {
   const CancleButton = () => {
     return (
       <Button
@@ -46,4 +46,4 @@ const PostingConfirm = ({
   );
 };
 
-export default PostingConfirm;
+export default NewPostConfirm;

@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import postCreateNewPost from '@apis/posting';
+import { NewPostConfirm } from '@pages/posting/components';
 import { Button } from '@components/Button';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import {
@@ -10,7 +11,6 @@ import {
   ButtonContainer
 } from './NewPost.style';
 import { createFormData, validateContent } from '../utils';
-import PostingConfirm from './PostingConfirm';
 
 interface NewPostProps {
   channelId?: string;
@@ -44,7 +44,7 @@ const NewPost = ({ channelId, customToken }: NewPostProps) => {
   return (
     <>
       {showConfirm && (
-        <PostingConfirm
+        <NewPostConfirm
           handleConfirmButton={handleConfirmButton}
           handleCancelButton={handleCancelButton}
         />
