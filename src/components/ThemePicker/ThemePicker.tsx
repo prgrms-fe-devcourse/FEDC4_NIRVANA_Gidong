@@ -9,14 +9,15 @@ import {
   EVENT_NAME_MEDITATION_STARTED,
   CONCENTRATION_KEY
 } from '@pages/meditation/constants';
-import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
 import useScrollButton from './hooks/useScrollButton';
 
-const MeditationThemePicker = () => {
+interface MeditationThemePickerProps {
+  channelInfo: Map<string, { label: string; id: string }>;
+}
+
+const MeditationThemePicker = ({ channelInfo }: MeditationThemePickerProps) => {
   const [pickerShown, setPickerShown] = useState(true);
-  const [picked, setPicked] = useState(
-    meditationChannelInfo.get(CONCENTRATION_KEY)
-  );
+  const [picked, setPicked] = useState(channelInfo.get(CONCENTRATION_KEY));
   const [
     scrollRef,
     showPrevButton,
@@ -39,7 +40,7 @@ const MeditationThemePicker = () => {
         }
       });
     });
-    
+
     return () => {
       document.removeEventListener(EVENT_NAME_MEDITATION_STARTED, () =>
         setPickerShown(false)
@@ -57,7 +58,7 @@ const MeditationThemePicker = () => {
       )}
       <ThemePickerContainer ref={scrollRef}>
         {pickerShown &&
-          Array.from(meditationChannelInfo).map(([key, value]) => (
+          Array.from(channelInfo).map(([key, value]) => (
             <Button
               key={key}
               width={80}

@@ -7,6 +7,7 @@ import { MeditationPage } from './Meditation.style';
 import { endButtonPushed } from '@pages/meditation/components/MeditationEndButton/MeditationEndButton';
 import { Confirm } from '@components/Confirm';
 import { Button } from '@components/Button';
+import { meditationChannelInfo } from './models/channelInfo';
 
 export const Meditation = () => {
   const [confirmCaptured, setConfirmCaptured] = useRecoilState(endButtonPushed);
@@ -16,7 +17,7 @@ export const Meditation = () => {
         <MeditationLabel />
         <MeditationTimer />
         <MeditationTimeSetter />
-        <ThemePicker />
+        <ThemePicker channelInfo={meditationChannelInfo} />
         {confirmCaptured && (
           <Confirm
             emoji={'🧘🏻'}
