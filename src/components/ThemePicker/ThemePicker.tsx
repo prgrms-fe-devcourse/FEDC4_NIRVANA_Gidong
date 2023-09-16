@@ -12,12 +12,12 @@ import {
 import useScrollButton from './hooks/useScrollButton';
 
 interface MeditationThemePickerProps {
-  channelInfo: Map<string, { label: string; id: string }>;
+  themeInfo: Map<string, { label: string; id: string }>;
 }
 
-const MeditationThemePicker = ({ channelInfo }: MeditationThemePickerProps) => {
+const MeditationThemePicker = ({ themeInfo }: MeditationThemePickerProps) => {
   const [pickerShown, setPickerShown] = useState(true);
-  const [picked, setPicked] = useState(channelInfo.get(CONCENTRATION_KEY));
+  const [picked, setPicked] = useState(themeInfo.get(CONCENTRATION_KEY));
   const [
     scrollRef,
     showPrevButton,
@@ -58,7 +58,7 @@ const MeditationThemePicker = ({ channelInfo }: MeditationThemePickerProps) => {
       )}
       <ThemePickerContainer ref={scrollRef}>
         {pickerShown &&
-          Array.from(channelInfo).map(([key, value]) => (
+          Array.from(themeInfo).map(([key, value]) => (
             <Button
               key={key}
               width={80}

@@ -17,7 +17,7 @@ export const Meditation = () => {
         <MeditationLabel />
         <MeditationTimer />
         <MeditationTimeSetter />
-        <ThemePicker channelInfo={meditationChannelInfo} />
+        <ThemePicker themeInfo={meditationChannelInfo} />
         {confirmCaptured && (
           <Confirm
             emoji={'🧘🏻'}
