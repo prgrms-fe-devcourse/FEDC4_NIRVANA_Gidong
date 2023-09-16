@@ -1,14 +1,15 @@
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
-import { useState } from 'react';
 
 interface PostingConfirmProps {
-  handleConfirmButton: () => Promise<void>;
+  handleConfirmButton: (() => Promise<void>) | (() => void);
+  handleCancelButton: () => void;
 }
 
-const PostingConfirm = ({ handleConfirmButton }: PostingConfirmProps) => {
-  const [showConfirm, setShowConfirm] = useState(true);
-
+const PostingConfirm = ({
+  handleConfirmButton,
+  handleCancelButton
+}: PostingConfirmProps) => {
   const CancleButton = () => {
     return (
       <Button
@@ -17,7 +18,7 @@ const PostingConfirm = ({ handleConfirmButton }: PostingConfirmProps) => {
         bold={true}
         dark={false}
         label={'취소'}
-        handleClick={() => setShowConfirm(false)}
+        handleClick={() => handleCancelButton()}
       />
     );
   };
@@ -30,21 +31,21 @@ const PostingConfirm = ({ handleConfirmButton }: PostingConfirmProps) => {
         bold={true}
         dark={true}
         label={'발행'}
-        handleClick={handleConfirmButton}
+        handleClick={() => handleConfirmButton()}
       />
     );
   };
 
   return (
     <>
-      {showConfirm && (
-        <Confirm
-          emoji='✏️'
-          content='포스트를 발행할까요?'
-          CancelButton={<CancleButton />}
-          ConfirmButton={<ConfirmButton />}
-        />
-      )}
+      (
+      <Confirm
+        emoji='✏️'
+        content='포스트를 발행할까요?'
+        CancelButton={<CancleButton />}
+        ConfirmButton={<ConfirmButton />}
+      />
+      )
     </>
   );
 };
