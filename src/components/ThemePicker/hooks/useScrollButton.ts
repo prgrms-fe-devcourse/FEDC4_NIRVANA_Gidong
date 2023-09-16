@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 const useScrollButton = () => {
   const scrollRef = useRef(null);
@@ -17,7 +17,7 @@ const useScrollButton = () => {
     }
   }, [])
 
-  const handleButtonShow = () => {
+  const handleButtonShow = useCallback(() => {
     const { clientWidth } = scrollRef.current;
     const { scrollWidth } = scrollRef.current;
     const { scrollLeft } = scrollRef.current;
@@ -40,15 +40,15 @@ const useScrollButton = () => {
     } else {
       setShowNextButton(false);
     }
-  };
+  }, []);
 
-  const clickPrevButton = (move: number) => {
+  const clickPrevButton = useCallback((move: number) => {
     scrollRef.current.scrollLeft -= move;
-  };
+  }, []);
 
-  const clickNextButton = (move: number) => {
+  const clickNextButton = useCallback((move: number) => {
     scrollRef.current.scrollLeft += move;
-  };
+  }, []);
 
   return [scrollRef, showPrevButton, showNextButton, clickPrevButton, clickNextButton] as const;
 }
