@@ -37,16 +37,12 @@ const PostingConfirm = ({
   };
 
   return (
-    <>
-      (
-      <Confirm
-        emoji='✏️'
-        content='포스트를 발행할까요?'
-        CancelButton={<CancleButton />}
-        ConfirmButton={<ConfirmButton />}
-      />
-      )
-    </>
+    <Confirm
+      emoji='✏️'
+      content='포스트를 발행할까요?'
+      CancelButton={<CancleButton />}
+      ConfirmButton={<ConfirmButton />}
+    />
   );
 };
 
