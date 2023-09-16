@@ -1,16 +1,16 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import postCreateNewPost from '@apis/posting';
-import { NewPostConfirm } from '@pages/posting/components';
 import { Button } from '@components/Button';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
+import { createFormData, validateContent } from '@pages/posting/utils';
+import postCreateNewPost from '@apis/posting';
+import NewPostConfirm from './NewPostConfirm';
 import {
   PostContainer,
   StyledTextArea,
   ButtonContainer
 } from './NewPost.style';
-import { createFormData, validateContent } from '../utils';
 
 interface NewPostProps {
   channelId?: string;

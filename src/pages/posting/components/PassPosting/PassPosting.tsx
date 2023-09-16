@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import postCreateNewPost from '@apis/posting';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
-import { PassPostingConfirm } from '@pages/posting/components';
-import { createFormData } from '../utils';
+import { createFormData } from '@pages/posting/utils';
 import { StyledPassPosting } from './PassPosting.style';
+import postCreateNewPost from '@apis/posting';
+import PassPostingConfirm from './PassPostingConfirm';
 
 interface PassPostingProps {
   channelId?: string;
