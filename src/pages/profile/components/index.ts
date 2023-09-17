@@ -1,6 +1,7 @@
 import FollowUser from './FollowUser';
 import FollowUserInfo from './FollowUserInfo';
 import FollowUsers from './FollowUsers';
+import FollowButton from './FollowButton';
 import MeditationInfo from './MeditationInfo';
 import MeditationInfoItem from './MeditationInfoItem';
 import ProfileAvatarEdit from './ProfileAvatarEdit';
@@ -17,6 +18,7 @@ export {
   FollowUsers,
   FollowUser,
   FollowUserInfo,
+  FollowButton,
   MeditationInfo,
   MeditationInfoItem,
   ProfileAvatarEdit,

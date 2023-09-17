@@ -1,5 +1,5 @@
 import { MeditationInfoSection } from './MeditationInfo.style';
-import MeditationInfoItem from './MeditationInfoItem';
+import { MeditationInfoItem } from '@pages/profile/components';
 
 interface MeditationInfoProps {
   totalMeditationCount: number;

@@ -1,7 +1,7 @@
 import { useQueries } from '@tanstack/react-query';
-import FollowUser from './FollowUser';
 import { Follow } from '@/types';
 import { getFollowUser } from '@apis/follow';
+import { FollowUser } from '@pages/profile/components';
 
 const dumyData = [
   // following

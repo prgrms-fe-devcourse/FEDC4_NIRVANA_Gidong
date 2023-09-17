@@ -5,10 +5,10 @@ import { Footer } from '@components/Footer';
 import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 import useSessionStorage from '@hooks/useSessionStorage';
-import { User } from '@/types/User';
+import { User } from '@/types';
 import { USER_INPUT, LABEL, PASSWORD_HINT } from './constants';
 import isPasswordOk from './utils/isPasswordOk';
-import { PasswordHint } from './components';
+import { PasswordHint } from '@pages/password-update/components';
 import {
   PasswordUpdateForm,
   ButtonContainer,

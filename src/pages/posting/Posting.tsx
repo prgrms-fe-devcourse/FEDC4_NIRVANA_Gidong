@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-import { userState } from '@/states/userState';
+import { userState } from '@states/userState';
 import { NewPost, PassPosting } from './components';
 import { LandingMain } from '@pages/landing/Landing.style';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';

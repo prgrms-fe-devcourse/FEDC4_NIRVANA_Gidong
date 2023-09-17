@@ -1,9 +1,9 @@
-import { Avatar } from '@/components/Avatar';
-import { StackBadge } from '@/components/Badge';
-import { UserId, UserName } from '@/components/UserText';
+import { Avatar } from '@components/Avatar';
+import { StackBadge } from '@components/Badge';
+import { UserId, UserName } from '@components/UserText';
 import { useRecoilValue } from 'recoil';
 import { editModeState } from '../states/editMode';
-import ProfileAvatarEdit from './ProfileAvatarEdit';
+import { ProfileAvatarEdit } from '@pages/profile/components';
 import {
   ProfileInfoContainer,
   ProfileInfoNameAndBadge,

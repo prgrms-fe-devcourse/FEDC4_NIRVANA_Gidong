@@ -12,7 +12,7 @@ import {
   SignUpContainer,
   LogoContainer
 } from './signup.style';
-import { Logo } from './components';
+import { Logo } from '@pages/signup/components';
 
 const SignUp = () => {
   const [email, setEmail] = useState<string>('');

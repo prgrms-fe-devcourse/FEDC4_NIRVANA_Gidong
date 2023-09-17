@@ -10,7 +10,7 @@ import { isNicknameOk } from '@pages/signup/validations';
 import { Button } from '@components/Button';
 import { putUpdateUser } from '@apis/user';
 import useSessionStorage from '@hooks/useSessionStorage';
-import { User } from '@/types/User';
+import { User } from '@/types';
 
 interface ProfileEditProps {
   refetch: () => void;

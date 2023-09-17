@@ -7,7 +7,7 @@ import {
   MeditationTimer,
   MeditationThemePicker,
   MeditationTimeSetter
-} from './components';
+} from '@pages/meditation/components';
 import { endButtonPushed } from './states';
 
 const Meditation = () => {
