@@ -7,7 +7,7 @@ import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 // import { userState } from '@/states/userState';
 import { USER_INPUT, LABEL, PASSWORD_HINT } from './constants';
-import isPasswordOk from './utils/passWordUpdateValidations';
+import isPasswordOk from './utils/isPasswordOk';
 import { PasswordHint } from './components';
 import {
   PasswordUpdateForm,

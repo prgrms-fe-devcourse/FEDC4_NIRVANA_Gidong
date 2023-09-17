@@ -4,7 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import postCreateNewPost from '@apis/posting';
 import { Button } from '@components/Button';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
-import { PostContainer, StyledTextArea, ButtonContainer } from './NewPost.style';
+import {
+  PostContainer,
+  StyledTextArea,
+  ButtonContainer
+} from './NewPost.style';
 import { createFormData, validateContent } from '../utils';
 
 interface NewPostProps {
@@ -16,20 +20,25 @@ const NewPost = ({ channelId, customToken }: NewPostProps) => {
   const contentRef = useRef(null);
   const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
   const navigate = useNavigate();
-  
-  const handleClickButton = async() => {
+
+  const handleClickButton = async () => {
     if (validateContent(contentRef.current.value)) {
       const formData = createFormData(contentRef.current.value, channelId);
-      
+
       await postCreateNewPost(customToken, formData).then(() => {
-        navigate('/posts')
+        navigate('/posts');
       });
     }
-  }
+  };
 
   return (
     <PostContainer>
-      <StyledTextArea ref={contentRef} required maxLength={500} placeholder={PLACEHOLDER} />
+      <StyledTextArea
+        ref={contentRef}
+        required
+        maxLength={500}
+        placeholder={PLACEHOLDER}
+      />
       <ButtonContainer>
         <Button
           width={300}

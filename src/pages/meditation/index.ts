@@ -1,2 +1,3 @@
-import { Meditation } from '@pages/meditation/Meditation';
+import Meditation from './Meditation';
+
 export default Meditation;

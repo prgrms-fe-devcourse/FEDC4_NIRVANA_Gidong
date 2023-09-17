@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const PasswordHintContainer = styled.div<{
+export const PasswordHintContainer = styled.div<{
   fontSize: number;
   color: string;
 }>`
@@ -9,5 +9,3 @@ const PasswordHintContainer = styled.div<{
   white-space: pre-line;
   margin-bottom: 20px;
 `;
-
-export default PasswordHintContainer;
