@@ -1,44 +1,65 @@
+import ReactDom from 'react-dom';
 import { Link } from '@components/Link';
 import {
   SettingSideBarBackground,
   SettingSideBarSection,
-  SettingSideBarPage,
+  SettingRightSideBar,
   Heading,
   SettingUl,
   SettingLi
 } from './SettingSideBar.style';
-import { useSetRecoilState } from 'recoil';
-import { editModeState } from '@pages/profile/states/editMode';
+import useSessionStorage from '@hooks/useSessionStorage';
 
 interface SettingSideBarProps {
-  active?: boolean;
+  closeSidebar: () => void;
 }
 
-const SettingSideBar = ({ active }: SettingSideBarProps) => {
-  const setEditMode = useSetRecoilState(editModeState);
+const SettingSideBar = ({ closeSidebar }: SettingSideBarProps) => {
   const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    setEditMode(false);
+    closeSidebar();
   };
-  return (
-    <SettingSideBarSection active={active}>
+
+  const [, , deleteUserValue] = useSessionStorage('userData', {
+    _id: '',
+    token: ''
+  });
+
+  const handleLogoutClick = () => {
+    deleteUserValue();
+    window.location.reload();
+  };
+
+  return ReactDom.createPortal(
+    <SettingSideBarSection>
       <SettingSideBarBackground
         onClick={handleBackgroundClick}></SettingSideBarBackground>
-      <SettingSideBarPage active={active}>
+      <SettingRightSideBar>
         <Heading>환경설정</Heading>
         <SettingUl>
-          <SettingLi>
+          <SettingLi onClick={closeSidebar}>
             <Link
-              pageLink='/setting/password'
+              pageLink='#edit'
               size={16}
-              color='black'>
-              비밀번호 변경
+              color='none'>
+              <p>프로필 수정</p>
             </Link>
           </SettingLi>
-          <SettingLi>로그아웃</SettingLi>
+          <SettingLi>
+            <Link
+              pageLink='/setting/password-update'
+              size={16}
+              color='black'>
+              <p>비밀번호 변경</p>
+            </Link>
+          </SettingLi>
+          <SettingLi onClick={handleLogoutClick}>
+            <p>로그아웃</p>
+          </SettingLi>
         </SettingUl>
-      </SettingSideBarPage>
-    </SettingSideBarSection>
+      </SettingRightSideBar>
+    </SettingSideBarSection>,
+    document.getElementById('modal-root')
   );
 };
 
