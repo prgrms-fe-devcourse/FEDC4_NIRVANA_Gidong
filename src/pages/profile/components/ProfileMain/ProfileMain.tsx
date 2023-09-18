@@ -7,12 +7,13 @@ import { TabItem } from '@pages/profile/utils/createTabItems';
 
 interface ProfileMainProps {
   tabItems: TabItem[];
+  openSidebar: () => void;
 }
 
-const ProfileMain = ({ tabItems }: ProfileMainProps) => {
+const ProfileMain = ({ tabItems, openSidebar }: ProfileMainProps) => {
   return (
     <ProfileMainSection>
-      <ProfileHeader />
+      <ProfileHeader openSidebar={openSidebar} />
       <ProfileTabs>
         {tabItems.map((tabItem, index) => (
           <ProfileTabItem

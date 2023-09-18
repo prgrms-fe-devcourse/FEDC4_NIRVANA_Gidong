@@ -4,14 +4,14 @@ import {
   ProfileHeaderButtonContainer,
   ProfileHeaderSection
 } from './ProfileHeader.style';
-import { useSetRecoilState } from 'recoil';
-import { editModeState } from '@pages/profile/states/editMode';
 
-const ProfileHeader = () => {
-  const setEditMode = useSetRecoilState(editModeState);
+interface ProfileHeaderProps {
+  openSidebar: () => void;
+}
 
+const ProfileHeader = ({ openSidebar }: ProfileHeaderProps) => {
   const handleEditClick = () => {
-    setEditMode(true);
+    openSidebar();
   };
   return (
     <ProfileHeaderSection>
