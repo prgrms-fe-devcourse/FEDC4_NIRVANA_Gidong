@@ -30,34 +30,34 @@ const PostHeader = ({
   return (
     <>
       {!noneProfile && (
-        <>
-          <AvatarContainer>
-            <Avatar
-              alt={'유저 프로필'}
-              src={image}
-              size={25}
-            />
-          </AvatarContainer>
-          <PostInfoContainer>
-            <UserNameContainer>{author.fullName}</UserNameContainer>
-          </PostInfoContainer>
-        </>
+        <AvatarContainer>
+          <Avatar
+            alt={'유저 프로필'}
+            src={image}
+            size={35}
+          />
+        </AvatarContainer>
       )}
-      <PostDetailInfoContainer>
-        {createdAt}
-        {iconDescription.map((iconInfo, index) => {
-          return (
-            <div key={index}>
-              <Icon
-                name={iconInfo.name}
-                size={iconInfo.size}
-                color={'greyLight'}
-              />
-              {iconInfo.total}
-            </div>
-          );
-        })}
-      </PostDetailInfoContainer>
+      <PostInfoContainer>
+        {!noneProfile && (
+          <UserNameContainer>{author.fullName}</UserNameContainer>
+        )}
+        <PostDetailInfoContainer>
+          {createdAt}
+          {iconDescription.map((iconInfo, index) => {
+            return (
+              <div key={index}>
+                <Icon
+                  name={iconInfo.name}
+                  size={iconInfo.size}
+                  color={'greyLight'}
+                />
+                {iconInfo.total}
+              </div>
+            );
+          })}
+        </PostDetailInfoContainer>
+      </PostInfoContainer>
     </>
   );
 };
