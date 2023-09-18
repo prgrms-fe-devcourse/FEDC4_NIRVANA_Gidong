@@ -40,4 +40,9 @@ export const SettingLi = styled.li`
   font-size: 16px;
   color: ${({ theme }) => theme.color.black};
   border-bottom: 0.5px solid ${({ theme }) => theme.color.greyLight};
+
+  > a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.color.black};
+  }
 `;
