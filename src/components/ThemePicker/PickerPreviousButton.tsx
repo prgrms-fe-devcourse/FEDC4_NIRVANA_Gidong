@@ -10,8 +10,12 @@ const PickerPreviousButton = ({
   color = 'white',
   clickPrevButton
 }: PickerPreviousButtonProps) => {
+  const handleClickButton = () => {
+    clickPrevButton(250);
+  }
+
   return (
-    <PickerPreviousButtonContainer onClick={() => clickPrevButton(250)}>
+    <PickerPreviousButtonContainer onClick={handleClickButton}>
       <Icon
         name={'chevron_left'}
         size={50}

@@ -10,8 +10,12 @@ const PickerNextButton = ({
   color = 'white',
   clickNextButton
 }: PickerNextButtonProps) => {
+  const handleClickButton = () => {
+    clickNextButton(250);
+  }
+
   return (
-    <PickerNextButtonContainer onClick={() => clickNextButton(250)}>
+    <PickerNextButtonContainer onClick={handleClickButton}>
       <Icon
         name={'chevron_right'}
         size={50}
