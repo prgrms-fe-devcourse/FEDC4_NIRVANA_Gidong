@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { StyledPostsPage } from './Posts.style';
 import { PostPreview } from '@components/PostPreview';
 import { getPosts } from '@apis/posts';
+import { editPostData } from './utils/editPostData';
 import type { Post } from '@types';
 
 // import { ThemePicker } from '@components/ThemePicker';
@@ -18,7 +19,8 @@ const Posts = () => {
   const fetchPosts = useCallback(async () => {
     const data = await getPosts('65003530a72a0d2e63f12878');
     // console.log(data.data);
-    setPostsData(data.data);
+    const editedData = editPostData(data.data);
+    setPostsData(editedData);
   }, []);
 
   // 4. useEffect 시 API 로 postsData 상태 변경하기
