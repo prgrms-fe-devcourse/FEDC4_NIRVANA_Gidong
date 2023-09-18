@@ -1,11 +1,18 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@/constants/Api';
 
-export const getPosts = async (channelId: string) => {
+export const getPosts = async (
+  channelId: string,
+  offset: number = 0,
+  limit: number = 5
+) => {
   try {
     const url = `${API_BASE_URL}/posts/channel/${channelId}`;
-    console.log(url);
-    const response = axios.get(url);
+    const params = new URLSearchParams({
+      offset: `${offset}`,
+      limit: `${limit}`
+    });
+    const response = axios.get(`${url}?${params}`);
 
     return response;
   } catch (error) {

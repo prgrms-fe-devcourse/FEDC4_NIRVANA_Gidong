@@ -14,10 +14,11 @@ const Posts = () => {
   // const themeInfo = new Map(meditationChannelInfo);
   // 2. 출력할 포스트 데이터들
   const [postsData, setPostsData] = useState<Post[]>([]);
+  const [offeset, setOffset] = useState(0);
 
   // 3. 포스트 가져오는 함수
   const fetchPosts = useCallback(async () => {
-    const data = await getPosts('65003530a72a0d2e63f12878');
+    const data = await getPosts('65003530a72a0d2e63f12878', offeset, 5);
     // console.log(data.data);
     const editedData = editPostData(data.data);
     setPostsData(editedData);
