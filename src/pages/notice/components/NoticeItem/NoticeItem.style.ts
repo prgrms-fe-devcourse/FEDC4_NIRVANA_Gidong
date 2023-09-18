@@ -23,15 +23,15 @@ const NoticeContent = styled.div`
 `;
 
 const Message = styled.div<{ active: boolean }>`
-  font-weight: 500;
-  font-size: 1.2rem;
+  font-weight: 700;
+  font-size: 0.8rem;
   margin-bottom: 5px;
   color: ${({ theme, active }) =>
     active ? theme.color['greyLight'] : theme.color['black']};
 `;
 
 const MessagePreview = styled.div`
-  font-size: 1rem;
+  font-size: 0.6rem;
   color: ${({ theme }) => theme.color['greyLight']};
 `;
 
