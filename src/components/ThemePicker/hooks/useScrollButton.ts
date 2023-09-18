@@ -35,6 +35,7 @@ const useScrollButton = () => {
 
       return () => {
         window.removeEventListener('resize', handleButtonShow);
+        scrollRef.current.removeEventListener('scroll', handleButtonShow);
       };
     }
   }, [handleButtonShow]);
