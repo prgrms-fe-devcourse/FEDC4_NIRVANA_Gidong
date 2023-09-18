@@ -5,27 +5,26 @@ const useObserver = (callback: () => void) => {
     new IntersectionObserver(
       (entries, _) => {
         entries.forEach((entry) => {
-          console.log(entry);
           if (entry.isIntersecting) {
+            if (observer !== null) {
+              observer.current.disconnect();
+            }
             callback();
           }
         });
       },
       {
-        threshold: 0.5
+        threshold: 1
       }
     )
   );
 
   const observe = useCallback((element: HTMLElement) => {
-    observer.current.observe(element);
+    if (element !== null) {
+      observer.current.observe(element);
+    }
   }, []);
-
-  const unobserve = useCallback((element: HTMLElement) => {
-    observer.current.unobserve(element);
-  }, []);
-
-  return [observe, unobserve];
+  return [observe];
 };
 
 export default useObserver;

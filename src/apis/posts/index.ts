@@ -4,7 +4,7 @@ import { API_BASE_URL } from '@/constants/Api';
 export const getPosts = async (
   channelId: string,
   offset: number = 0,
-  limit: number = 5
+  limit: number = 10
 ) => {
   try {
     const url = `${API_BASE_URL}/posts/channel/${channelId}`;
