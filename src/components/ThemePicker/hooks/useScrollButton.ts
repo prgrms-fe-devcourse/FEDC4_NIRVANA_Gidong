@@ -6,10 +6,7 @@ const useScrollButton = () => {
   const [showNextButton, setShowNextButton] = useState(false);
 
   const handleButtonShow = useCallback(() => {
-    const { clientWidth } = scrollRef.current;
-    const { scrollWidth } = scrollRef.current;
-    const { scrollLeft } = scrollRef.current;
-
+    const { clientWidth, scrollWidth, scrollLeft } = scrollRef.current;
     const splitContainer = scrollWidth - clientWidth > 0;
     const splitPixcel = scrollWidth - clientWidth;
 
