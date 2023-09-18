@@ -5,18 +5,6 @@ const useScrollButton = () => {
   const [showPrevButton, setShowPrevButton] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
 
-  useEffect(() => {
-    if (scrollRef && scrollRef.current) {
-      handleButtonShow();
-      window.addEventListener('resize', handleButtonShow);
-      scrollRef.current.addEventListener('scroll', handleButtonShow);
-  
-      return () => {
-        window.removeEventListener('resize', handleButtonShow);
-      }
-    }
-  }, [])
-
   const handleButtonShow = useCallback(() => {
     const { clientWidth } = scrollRef.current;
     const { scrollWidth } = scrollRef.current;
@@ -42,6 +30,18 @@ const useScrollButton = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (scrollRef && scrollRef.current) {
+      handleButtonShow();
+      window.addEventListener('resize', handleButtonShow);
+      scrollRef.current.addEventListener('scroll', handleButtonShow);
+
+      return () => {
+        window.removeEventListener('resize', handleButtonShow);
+      };
+    }
+  }, [handleButtonShow]);
+
   const clickPrevButton = useCallback((move: number) => {
     scrollRef.current.scrollLeft -= move;
   }, []);
@@ -50,7 +50,13 @@ const useScrollButton = () => {
     scrollRef.current.scrollLeft += move;
   }, []);
 
-  return [scrollRef, showPrevButton, showNextButton, clickPrevButton, clickNextButton] as const;
-}
+  return [
+    scrollRef,
+    showPrevButton,
+    showNextButton,
+    clickPrevButton,
+    clickNextButton
+  ] as const;
+};
 
 export default useScrollButton;
