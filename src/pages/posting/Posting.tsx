@@ -2,7 +2,8 @@ import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import { userState } from '@/states/userState';
-import { NewPost, PassPosting } from './components';
+import { NewPost } from './components/NewPost';
+import { SkipPosting } from './components/SkipPosting';
 import { LandingMain } from '@pages/landing/style';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import {
