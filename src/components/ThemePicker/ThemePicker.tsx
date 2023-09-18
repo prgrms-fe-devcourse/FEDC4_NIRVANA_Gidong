@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@components/Button';
 import { NavContainer, ThemePickerContainer } from './ThemePicker.style';
@@ -9,7 +9,7 @@ import {
   EVENT_NAME_MEDITATION_STARTED,
   CONCENTRATION_KEY
 } from '@pages/meditation/constants';
-import useScrollButton from './hooks/useScrollButton';
+import useButtonShow from './hooks/useButtonShow';
 
 interface MeditationThemePickerProps {
   themeInfo: Map<string, { label: string; id: string }>;
@@ -18,14 +18,16 @@ interface MeditationThemePickerProps {
 const MeditationThemePicker = ({ themeInfo }: MeditationThemePickerProps) => {
   const [pickerShown, setPickerShown] = useState(true);
   const [picked, setPicked] = useState(themeInfo.get(CONCENTRATION_KEY));
-  const [
-    scrollRef,
-    showPrevButton,
-    showNextButton,
-    clickPrevButton,
-    clickNextButton
-  ] = useScrollButton();
+  const [scrollRef, showPrevButton, showNextButton] = useButtonShow();
   const navigate = useNavigate();
+
+  const clickPrevButton = useCallback((scrollPixel: number) => {
+    scrollRef.current.scrollLeft -= scrollPixel;
+  }, []);
+
+  const clickNextButton = useCallback((scrollPixel: number) => {
+    scrollRef.current.scrollLeft += scrollPixel;
+  }, []);
 
   useEffect(() => {
     document.addEventListener(EVENT_NAME_MEDITATION_STARTED, () => {

@@ -7,24 +7,16 @@ const useScrollButton = () => {
 
   const handleButtonShow = useCallback(() => {
     const { clientWidth, scrollWidth, scrollLeft } = scrollRef.current;
-    const splitContainer = scrollWidth - clientWidth > 0;
-    const splitPixcel = scrollWidth - clientWidth;
+    const hasHideElement = scrollWidth - clientWidth > 0;
+    const splitPixel = scrollWidth - clientWidth;
 
-    if (!splitContainer) {
+    if (!hasHideElement) {
       setShowPrevButton(false);
       setShowNextButton(false);
       return;
     }
-    if (scrollLeft > 0) {
-      setShowPrevButton(true);
-    } else {
-      setShowPrevButton(false);
-    }
-    if (scrollLeft < splitPixcel - 5) {
-      setShowNextButton(true);
-    } else {
-      setShowNextButton(false);
-    }
+    setShowPrevButton(scrollLeft > 0 ? true : false);
+    setShowNextButton(scrollLeft < splitPixel - 5 ? true : false);
   }, []);
 
   useEffect(() => {
@@ -40,21 +32,7 @@ const useScrollButton = () => {
     }
   }, [handleButtonShow]);
 
-  const clickPrevButton = useCallback((move: number) => {
-    scrollRef.current.scrollLeft -= move;
-  }, []);
-
-  const clickNextButton = useCallback((move: number) => {
-    scrollRef.current.scrollLeft += move;
-  }, []);
-
-  return [
-    scrollRef,
-    showPrevButton,
-    showNextButton,
-    clickPrevButton,
-    clickNextButton
-  ] as const;
+  return [scrollRef, showPrevButton, showNextButton] as const;
 };
 
 export default useScrollButton;
