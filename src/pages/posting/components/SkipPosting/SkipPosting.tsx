@@ -3,21 +3,21 @@ import { useNavigate } from 'react-router-dom';
 
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import { createFormData } from '@pages/posting/utils';
-import { StyledPassPosting } from './PassPosting.style';
+import { StyledSkipPosting } from './SkipPosting.style';
 import postCreateNewPost from '@apis/posting';
-import PassPostingConfirm from './PassPostingConfirm';
+import SkipPostingConfirm from './SkipPostingConfirm';
 
-interface PassPostingProps {
+interface SkipPostingProps {
   channelId?: string;
   customToken?: string;
 }
 
-const PassPosting = ({ channelId, customToken }: PassPostingProps) => {
+const SkipPosting = ({ channelId, customToken }: SkipPostingProps) => {
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
-  const { PASS_POSTING } = POSTING_DESCRIPTION;
+  const { SKIP_POSTING } = POSTING_DESCRIPTION;
 
-  const handleClickPassPost = () => {
+  const handleClickSkipPost = () => {
     setShowConfirm(true);
   };
 
@@ -34,12 +34,12 @@ const PassPosting = ({ channelId, customToken }: PassPostingProps) => {
 
   return (
     <>
-      {showConfirm && <PassPostingConfirm handleConfirmButton={handleConfirmButton} handleCancelButton={handleCancelButton}/>}
-      <StyledPassPosting onClick={handleClickPassPost}>
-        {PASS_POSTING}
-      </StyledPassPosting>
+      {showConfirm && <SkipPostingConfirm handleConfirmButton={handleConfirmButton} handleCancelButton={handleCancelButton}/>}
+      <StyledSkipPosting onClick={handleClickSkipPost}>
+        {SKIP_POSTING}
+      </StyledSkipPosting>
     </>
   );
 };
 
-export default PassPosting;
+export default SkipPosting;

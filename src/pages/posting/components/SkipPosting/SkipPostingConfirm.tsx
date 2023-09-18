@@ -6,7 +6,7 @@ interface PostingPassConfirmProps {
   handleCancelButton: () => void;
 }
 
-const PassPostingConfirm = ({
+const SkipPostingConfirm = ({
   handleConfirmButton,
   handleCancelButton
 }: PostingPassConfirmProps) => {
@@ -46,4 +46,4 @@ const PassPostingConfirm = ({
   );
 };
 
-export default PassPostingConfirm;
+export default SkipPostingConfirm;

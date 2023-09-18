@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const StyledPassPosting = styled.div`
+export const StyledSkipPosting = styled.div`
   cursor: pointer;
   ${({ theme }) => theme.style.flexCenter};
   height: 50px;
