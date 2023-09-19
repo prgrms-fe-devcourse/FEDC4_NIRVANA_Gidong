@@ -11,6 +11,7 @@ import Posting from './pages/posting';
 import Meditation from './pages/meditation';
 import Setting from './pages/setting/Setting';
 import PasswordUpdate from '@pages/password-update';
+import PostDetail from '@pages/postDetail/PostDetail';
 import { queryClient, QueryClientProvider } from './apis/queryClient';
 
 function App() {
@@ -42,6 +43,10 @@ function App() {
               <Route
                 path='/posting'
                 element={<Posting />}
+              />
+              <Route
+                path='/posts/:postId'
+                element={<PostDetail />}
               />
               <Route
                 path='/setting'
