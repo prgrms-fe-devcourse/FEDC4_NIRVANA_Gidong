@@ -14,7 +14,7 @@ import {
   TimeLabel,
   TimeSetterContainer
 } from './MeditationTimeSetter.style';
-import MeditationEndButton from '@pages/meditation/components/MeditationEndButton';
+import { MeditationEndButton } from './';
 import { meditationTime } from '../states';
 
 const MeditationTimeSetter = () => {
