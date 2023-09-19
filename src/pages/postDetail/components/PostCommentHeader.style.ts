@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 export const PostCommentHeaderContainer = styled.div`
   ${({ theme }) => theme.style.flexAlignCenter};
+  background-color: ${({ theme }) => theme.color.white};
+  position: fixed;
   width: 100%;
   height: 30px;
   > span {
