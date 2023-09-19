@@ -1,23 +1,11 @@
-import styled from '@emotion/styled';
 import { Link } from '@components/Link';
 import { Icon } from '@components/Icon';
 import { MESSAGE, LABEL } from '../constants';
-
-const GoToSignUpContainer = styled.div`
-  margin-top: 30px;
-  ${({ theme }) => theme.style.flexAlignCenter};
-  flex-direction: column;
-`;
-
-const Message = styled.span`
-  color: ${({ theme }) => theme.color.greyLight};
-  font-size: 14px;
-  margin-bottom: 10px;
-`;
-
-const LinkContainer = styled.div`
-  ${({ theme }) => theme.style.flexCenter};
-`;
+import {
+  GoToSignUpContainer,
+  Message,
+  LinkContainer
+} from './GoToSignUp.style';
 
 const GoToSignUp = () => {
   return (

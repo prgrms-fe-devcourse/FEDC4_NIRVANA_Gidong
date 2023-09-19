@@ -1,4 +1,4 @@
-import PasswordHintContainer from './PasswordHint.style';
+import { PasswordHintContainer } from './PasswordHint.style';
 
 interface PasswordHintProps {
   text: string;
