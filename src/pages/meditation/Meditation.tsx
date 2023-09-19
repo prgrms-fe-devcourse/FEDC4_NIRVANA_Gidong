@@ -1,15 +1,19 @@
 import { useRecoilState } from 'recoil';
-import MeditationLabel from '@pages/meditation/components/MeditationLabel';
-import MeditationTimer from '@pages/meditation/components/MeditationTimer';
-import MeditationTimeSetter from '@pages/meditation/components/MeditationTimeSetter';
-import { ThemePicker } from '@components/ThemePicker';
+
+import { endButtonPushed } from './states';
 import { MeditationPage } from './Meditation.style';
-import { endButtonPushed } from '@pages/meditation/components/MeditationEndButton/MeditationEndButton';
+import { ThemePicker } from '@components/ThemePicker';
 import { Confirm } from '@components/Confirm';
 import { Button } from '@components/Button';
 import { meditationChannelInfo } from './models/channelInfo';
+import {
+  MeditationLabel,
+  MeditationTimer,
+  MeditationThemePicker,
+  MeditationTimeSetter
+} from '@pages/meditation/components';
 
-export const Meditation = () => {
+const Meditation = () => {
   const [confirmCaptured, setConfirmCaptured] = useRecoilState(endButtonPushed);
   return (
     <>
@@ -49,3 +53,5 @@ export const Meditation = () => {
     </>
   );
 };
+
+export default Meditation;

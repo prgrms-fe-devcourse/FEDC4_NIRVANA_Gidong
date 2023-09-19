@@ -26,6 +26,7 @@
       "@constants/*": ["./src/constants/*"],
       "@colors/*": ["./src/colors/*"],
       "@apis/*": ["./src/apis/*"],
+      "@states/*": ["./src/states/*"],
       "@/*": ["./src/*"]
     }
   },

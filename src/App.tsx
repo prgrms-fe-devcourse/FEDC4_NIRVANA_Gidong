@@ -29,11 +29,12 @@ function App() {
                   />
                 }
               />
+
               <Route
                 path='/profile/:userId'
                 element={
                   <PrivateRoute
-                    path='/profile/userId'
+                    path='/profile/:userId'
                     element={Profile}
                   />
                 }

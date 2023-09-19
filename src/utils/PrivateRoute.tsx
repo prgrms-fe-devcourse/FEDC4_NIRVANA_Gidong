@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navigate } from 'react-router-dom';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types/User';
@@ -18,10 +17,10 @@ const PrivateRoute = ({ path, element }: PrivateRouteProps) => {
     }
   );
 
-  if (userSessionData._id === null) {
+  if (userSessionData._id === null || userSessionData._id === '') {
     return <Navigate to={`/login?redirectUrl=${path}`} />;
   }
-  if (userSessionData.token === undefined) {
+  if (userSessionData.token === undefined || userSessionData.token === '') {
     return <Navigate to={`/login?redirectUrl=${path}`} />;
   }
 

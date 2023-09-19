@@ -2,14 +2,16 @@ import createTabItems from './utils/createTabItems';
 import { useEffect } from 'react';
 import { getUser } from '@apis/user';
 import { useLocation, useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useRecoilState } from 'recoil';
 import { editModeState } from './states/editMode';
 import { ProfileInfoContainer, ProfilePage } from './Profile.style';
-import { ProfileInfo } from './components/ProfileInfo';
-import { ProfileCover } from './components/ProfileCover';
-import { ProfileMain } from './components/ProfileMain';
-import { ProfileEdit } from './components/ProfileEdit';
+import {
+  ProfileInfo,
+  ProfileCover,
+  ProfileMain,
+  ProfileEdit
+} from '@pages/profile/components';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -19,26 +21,33 @@ const Profile = () => {
     setEditMode(location.hash === '#edit');
   }, [location.hash, setEditMode]);
 
-  const { data, isLoading, isError, error } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     ['userData', userId],
     () => getUser(userId),
     { enabled: !!userId }
   );
-  console.log(data, isLoading, isError, error);
 
   const tabItems = createTabItems(data, isLoading);
 
   return (
     <ProfilePage>
-      <ProfileCover src={isLoading ? '' : data.cover} />
+      <ProfileCover
+        refetch={() => refetch()}
+        src={isLoading ? '' : data.coverImage}
+      />
       <ProfileInfoContainer>
         <ProfileInfo
           email={isLoading ? '' : data.email}
           fullName={isLoading ? '' : data.fullName}
           avatarImgSrc={isLoading ? '' : data.image}
           meditationStack={50}
+          refetch={() => refetch()}
         />
-        {editMode ? <ProfileEdit /> : <ProfileMain tabItems={tabItems} />}
+        {editMode ? (
+          <ProfileEdit refetch={() => refetch()} />
+        ) : (
+          <ProfileMain tabItems={tabItems} />
+        )}
       </ProfileInfoContainer>
     </ProfilePage>
   );

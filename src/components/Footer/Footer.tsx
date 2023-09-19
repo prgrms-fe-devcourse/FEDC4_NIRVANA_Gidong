@@ -25,7 +25,7 @@ export const Footer = () => {
         <Link
           pageLink={
             icon.name === 'person'
-              ? `${icon.link}/${userData._id}`
+              ? `${icon.link}`
               : userData.token
               ? icon.link
               : '/login'
