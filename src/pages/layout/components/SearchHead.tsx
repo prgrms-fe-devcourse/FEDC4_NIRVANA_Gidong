@@ -28,7 +28,7 @@ const SearchHead = ({ handleShowSearch, search }: SearchHeadProps) => {
       <SearchBox>
         <SearchInput placeholder='사용자나 게시물을 검색하세요' />
         <SearchButton
-          handleClick={handleShowSearch}
+          handleClick={() => {}}
           search={search}
         />
       </SearchBox>

@@ -7,6 +7,7 @@ export const SearchHeadContainer = styled.div`
     outline: none;
     padding: 0;
     background: none;
+    margin-right: 7px;
   }
 `;
 
