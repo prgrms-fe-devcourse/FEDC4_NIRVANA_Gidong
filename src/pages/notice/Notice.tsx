@@ -18,11 +18,11 @@ const Notice = () => {
 
   useEffect(() => {
     const fetchNotifications = async () => {
-      const res = await getNotifications(userSessionData.token).then((res) =>
-        res.filter((item: Notification) => !item.seen)
-      );
+      const res = await getNotifications(
+        `Bearer ${userSessionData.token}`
+      ).then((res) => res.filter((item: Notification) => !item.seen));
       setList(res);
-      await putNotifications(userSessionData.token);
+      await putNotifications(`Bearer ${userSessionData.token}`);
     };
 
     fetchNotifications();

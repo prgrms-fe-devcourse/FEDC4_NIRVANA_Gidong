@@ -11,7 +11,7 @@ interface postNotificationsParams {
 const getNotifications = async (token: string) => {
   const response = await axios.get(`${API_BASE_URL}/notifications`, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: token
     }
   });
   return response.data;
@@ -20,7 +20,7 @@ const getNotifications = async (token: string) => {
 const putNotifications = async (token: string) => {
   const response = await axios.put(`${API_BASE_URL}/notifications/seen`, null, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: token
     }
   });
   return response.data;
@@ -35,7 +35,7 @@ const postNotifications = async (
     notificationData,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: token
       }
     }
   );
