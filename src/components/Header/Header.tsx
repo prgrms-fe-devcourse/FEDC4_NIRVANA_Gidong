@@ -1,57 +1,34 @@
-import {
-  HeaderSection,
-  Logo,
-  LeftContainer,
-  RightContainer
-} from './Header.style';
-import { Icon } from '@components/Icon';
-import { Link } from '@components/Link';
-import { DotBadge } from '@components/Badge';
+import { useState } from 'react';
+import { HeaderSection } from './Header.style';
+import { PathNav, EtcNav, Search } from '@components/Header';
 
 interface HeaderProps {
   backLink?: string;
 }
 
 const Header = ({ backLink }: HeaderProps) => {
+  const [showSearch, setShowSearch] = useState(false);
+
+  const handleShowSearch = () => {
+    setShowSearch((prev) => !prev);
+  };
+
   return (
-    <HeaderSection>
-      <LeftContainer>
-        {backLink ? (
-          <Link pageLink=''>
-            <Icon
-              name='arrow_back_ios'
-              color='white'
-              size={23}
-            />
-          </Link>
-        ) : (
-          <Logo />
-        )}
-      </LeftContainer>
-      <RightContainer>
-        <DotBadge
-          dot={true}
-          color='orange'
-          position='top'
-          badgeSize={5}>
-          <Link
-            pageLink='/alert'
-            size={23}>
-            <Icon
-              name='notifications'
-              color='white'
-              size={23}
-            />
-          </Link>
-        </DotBadge>
-        <Link pageLink='/message'>
-          <Icon
-            name='chat'
-            color='white'
-            size={23}
+    <HeaderSection search={showSearch}>
+      {showSearch ? (
+        <Search
+          search={showSearch}
+          handleShowSearch={handleShowSearch}
+        />
+      ) : (
+        <>
+          <PathNav backLink={backLink} />
+          <EtcNav
+            handleShowSearch={handleShowSearch}
+            search={showSearch}
           />
-        </Link>
-      </RightContainer>
+        </>
+      )}
     </HeaderSection>
   );
 };
