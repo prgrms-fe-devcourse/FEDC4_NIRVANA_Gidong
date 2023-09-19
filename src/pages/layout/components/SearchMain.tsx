@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SearchFilter } from '@components/Header';
+import { SearchFilter } from '@pages/layout/components';
 import { SearchMainContainer, SearchResult } from './SearchMain.style';
 
 const SearchMain = () => {

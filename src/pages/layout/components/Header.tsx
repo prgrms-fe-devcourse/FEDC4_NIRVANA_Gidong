@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { HeaderSection } from './Header.style';
-import { PathNav, EtcNav, Search } from '@components/Header';
+import { PathNav, EtcNav, Search } from '@pages/layout/components';
 
 interface HeaderProps {
   backLink?: string;

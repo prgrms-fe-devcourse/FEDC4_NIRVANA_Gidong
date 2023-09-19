@@ -1,6 +1,6 @@
 import { Icon } from '@components/Icon';
 import { Link } from '@components/Link';
-import { AlertButton, SearchButton } from '@components/Header';
+import { AlertButton, SearchButton } from '@pages/layout/components';
 import { EctNavContainer } from './EtcNav.style';
 
 interface EctNavProps {

@@ -6,6 +6,7 @@ import SearchFilter from './SearchFilter';
 import PathNav from './PathNav';
 import EtcNav from './EtcNav';
 import AlertButton from './AlertButton';
+import Header from './Header';
 
 export {
   Search,
@@ -15,5 +16,6 @@ export {
   SearchFilter,
   PathNav,
   EtcNav,
-  AlertButton
+  AlertButton,
+  Header
 };

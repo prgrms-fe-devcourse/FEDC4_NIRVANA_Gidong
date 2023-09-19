@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { SearchHead, SearchMain } from '@components/Header';
+import { SearchHead, SearchMain } from '@pages/layout/components';
 
 const SearchContainer = styled.div``;
 
