@@ -8,6 +8,7 @@ import Profile from './pages/profile';
 import SignUp from './pages/signup';
 import LogIn from './pages/login';
 import Posting from './pages/posting';
+import Posts from '@pages/posts';
 import Meditation from './pages/meditation';
 import Setting from './pages/setting/Setting';
 import PasswordUpdate from '@pages/password-update';
@@ -46,6 +47,10 @@ function App() {
               <Route
                 path='/setting'
                 element={<Setting />}
+              />
+              <Route
+                path='/posts'
+                element={<Posts />}
               />
             </Route>
             <Route
