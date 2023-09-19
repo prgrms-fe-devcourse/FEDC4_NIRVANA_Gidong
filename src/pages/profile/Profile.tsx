@@ -44,7 +44,10 @@ const Profile = () => {
         {editMode ? (
           <ProfileEdit refetch={() => refetch()} />
         ) : (
-          <ProfileMain tabItems={tabItems} />
+          <ProfileMain
+            tabItems={tabItems}
+            fullName={isLoading ? '' : data.fullName}
+          />
         )}
       </ProfileInfoContainer>
     </ProfilePage>

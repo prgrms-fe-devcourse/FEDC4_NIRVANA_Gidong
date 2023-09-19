@@ -2,28 +2,23 @@ import { MeditationInfoSection } from './MeditationInfo.style';
 import MeditationInfoItem from './MeditationInfoItem';
 
 interface MeditationInfoProps {
-  totalMeditationCount: number;
-  totalMeditationTime: number;
+  data: number[];
   fullName: string;
 }
 
-const MeditationInfo = ({
-  totalMeditationCount,
-  totalMeditationTime,
-  fullName
-}: MeditationInfoProps) => {
+const MeditationInfo = ({ data, fullName }: MeditationInfoProps) => {
   return (
     <MeditationInfoSection>
       <MeditationInfoItem icon='🧘🏻'>
         <p>
-          <strong>{fullName}</strong> 님은 총 <b>{totalMeditationCount}</b>번의
-          명상을 진행했어요.
+          <strong>{fullName}</strong> 님은 총 <b>{data[0]}</b>번의 명상을
+          진행했어요.
         </p>
       </MeditationInfoItem>
       <MeditationInfoItem icon='⏰'>
         <p>
-          <strong>{fullName}</strong> 님은 총 <b>{totalMeditationTime}</b>분의
-          명상을 하셨어요.
+          <strong>{fullName}</strong> 님은 총 <b>{data[1]}</b>분의 명상을
+          하셨어요.
         </p>
       </MeditationInfoItem>
     </MeditationInfoSection>
