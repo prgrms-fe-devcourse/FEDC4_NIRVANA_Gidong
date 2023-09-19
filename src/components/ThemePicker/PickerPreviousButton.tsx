@@ -1,5 +1,5 @@
 import { Icon } from '@components/Icon';
-import { PickerPreviousButtonContainer } from './ThemePicker.style';
+import { StyledPreviousButton } from './ThemePicker.style';
 
 interface PickerPreviousButtonProps {
   color: string;
@@ -12,16 +12,16 @@ const PickerPreviousButton = ({
 }: PickerPreviousButtonProps) => {
   const handleClickButton = () => {
     clickPrevButton(250);
-  }
+  };
 
   return (
-    <PickerPreviousButtonContainer onClick={handleClickButton}>
+    <StyledPreviousButton onClick={handleClickButton}>
       <Icon
         name={'chevron_left'}
         size={50}
         color={color}
       />
-    </PickerPreviousButtonContainer>
+    </StyledPreviousButton>
   );
 };
 export default PickerPreviousButton;

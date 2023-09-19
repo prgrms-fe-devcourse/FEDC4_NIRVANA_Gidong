@@ -1,5 +1,5 @@
 import { Icon } from '@components/Icon';
-import { PickerNextButtonContainer } from './ThemePicker.style';
+import { StyledNextButton } from './ThemePicker.style';
 
 interface PickerNextButtonProps {
   color: string;
@@ -12,16 +12,16 @@ const PickerNextButton = ({
 }: PickerNextButtonProps) => {
   const handleClickButton = () => {
     clickNextButton(250);
-  }
+  };
 
   return (
-    <PickerNextButtonContainer onClick={handleClickButton}>
+    <StyledNextButton onClick={handleClickButton}>
       <Icon
         name={'chevron_right'}
         size={50}
         color={color}
       />
-    </PickerNextButtonContainer>
+    </StyledNextButton>
   );
 };
 export default PickerNextButton;

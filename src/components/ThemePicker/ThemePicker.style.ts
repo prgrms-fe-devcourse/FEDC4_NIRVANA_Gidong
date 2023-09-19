@@ -30,29 +30,31 @@ const ThemePickerContainer = styled.div`
   }
 `;
 
-const PickerButtonContainer = styled.div`
+const StyledPickerButton = styled.button`
   cursor: pointer;
   width: 45px;
   height: 45px;
   ${({ theme }) => theme.style.flexCenter};
   border-radius: 50%;
+  border: none;
+  background-color: transparent;
 
   &:hover {
-    background-color: ${({ theme }) => theme.color.black250}
+    background-color: ${({ theme }) => theme.color.black250};
   }
 `;
 
-const PickerPreviousButtonContainer = styled(PickerButtonContainer)`
+const StyledPreviousButton = styled(StyledPickerButton)`
   left: -30px;
 `;
 
-const PickerNextButtonContainer = styled(PickerButtonContainer)`
+const StyledNextButton = styled(StyledPickerButton)`
   right: -30px;
 `;
 
 export {
   NavContainer,
   ThemePickerContainer,
-  PickerPreviousButtonContainer,
-  PickerNextButtonContainer
+  StyledPreviousButton,
+  StyledNextButton
 };
