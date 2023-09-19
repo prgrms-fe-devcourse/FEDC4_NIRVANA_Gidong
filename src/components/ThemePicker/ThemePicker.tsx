@@ -13,9 +13,13 @@ import useButtonShow from './hooks/useButtonShow';
 
 interface MeditationThemePickerProps {
   themeInfo: Map<string, { label: string; id: string }>;
+  handleClickTheme: (selectedId: string) => void;
 }
 
-const MeditationThemePicker = ({ themeInfo }: MeditationThemePickerProps) => {
+const MeditationThemePicker = ({
+  themeInfo,
+  handleClickTheme
+}: MeditationThemePickerProps) => {
   const [pickerShown, setPickerShown] = useState(true);
   const [picked, setPicked] = useState(themeInfo.get(CONCENTRATION_KEY));
   const [scrollRef, showPrevButton, showNextButton] = useButtonShow();
@@ -70,6 +74,7 @@ const MeditationThemePicker = ({ themeInfo }: MeditationThemePickerProps) => {
               label={value.label}
               handleClick={() => {
                 setPicked(value);
+                handleClickTheme(value.id);
               }}
             />
           ))}

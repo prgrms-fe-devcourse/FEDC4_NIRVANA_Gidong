@@ -13,4 +13,6 @@ const ThemePickerContainer = styled.div`
   justify-content: center;
 `;
 
-export { StyledPostsPage, ThemePickerContainer };
+const PostsContainer = styled.div``;
+
+export { StyledPostsPage, ThemePickerContainer, PostsContainer };

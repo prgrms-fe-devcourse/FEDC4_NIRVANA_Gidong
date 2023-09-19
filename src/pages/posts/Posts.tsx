@@ -1,53 +1,81 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-import type { Post } from '@types/index';
+import type { Post } from '@/types';
 import { getPosts } from '@apis/posts';
 import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
-import useObserver from './hooks/useObserver';
-import { editPostData } from './utils/editPostData';
 import { PostPreview } from '@components/PostPreview';
 import { ThemePicker } from '@components/ThemePicker';
-import { StyledPostsPage, ThemePickerContainer } from './Posts.style';
+import useObserver from './hooks/useObserver';
+import { editPostData } from './utils/editPostData';
+import {
+  StyledPostsPage,
+  ThemePickerContainer,
+  PostsContainer
+} from './Posts.style';
 
 const Posts = () => {
+  const postsRef = useRef(null);
   const [postsData, setPostsData] = useState<Post[]>([]);
   const [offset, setOffset] = useState(0);
   const [observe] = useObserver(() => setOffset(offset + 11));
-  const pageRef = useRef(null);
-  const themeInfo = new Map(meditationChannelInfo);
+  const [channelId, setChannelId] = useState('65017a41dfe8db5726b603a7');
+  const channelInfo = new Map(meditationChannelInfo);
 
-  const fetchPosts = useCallback(async () => {
-    const data = await getPosts('65003530a72a0d2e63f12878', offset);
-    const editedData = editPostData(data.data);
+  const fetchMorePosts = useCallback(async () => {
+    if (offset > 0 && postsData.length >= 10) {
+      const data = await getPosts(channelId, offset);
+      const editedData = editPostData(data.data);
 
-    setPostsData([...postsData, ...editedData]);
+      setPostsData([...postsData, ...editedData]);
+    }
+  }, [offset]);
+
+  const fetchNewChannel = useCallback(async () => {
+    const data = await getPosts(channelId, 0);
+    const reformedData = editPostData(data.data);
+
+    setPostsData(reformedData);
+    setOffset(0);
+  }, [channelId]);
+
+  useEffect(() => {
+    fetchNewChannel();
+  }, [channelId]);
+
+  useEffect(() => {
+    fetchMorePosts();
   }, [offset]);
 
   useEffect(() => {
-    fetchPosts();
-  }, [offset]);
-
-  useEffect(() => {
-    if (pageRef && pageRef.current) {
-      const { lastChild } = pageRef.current;
-      observe(lastChild);
+    if (postsRef && postsRef.current) {
+      const { lastChild } = postsRef.current;
+      lastChild && observe(lastChild);
     }
   }, [postsData]);
 
+  const clickThemePicker = (selectedId: string) => {
+    setChannelId(selectedId);
+  };
+
   return (
-    <StyledPostsPage ref={pageRef}>
+    <StyledPostsPage>
       <ThemePickerContainer>
-        <ThemePicker themeInfo={themeInfo} />
-      </ThemePickerContainer>
-      {postsData.map((post: Post, index) => (
-        <PostPreview
-          key={index}
-          post={post}
-          totalLikes={post.likes.length}
-          totalComments={post.comments.length}
-          noneProfile={false}
+        <ThemePicker
+          themeInfo={channelInfo}
+          handleClickTheme={clickThemePicker}
         />
-      ))}
+      </ThemePickerContainer>
+      <PostsContainer ref={postsRef}>
+        {postsData.map((post: Post, index) => (
+          <PostPreview
+            key={index}
+            post={post}
+            totalLikes={post.likes.length}
+            totalComments={post.comments.length}
+            noneProfile={false}
+          />
+        ))}
+      </PostsContainer>
     </StyledPostsPage>
   );
 };
