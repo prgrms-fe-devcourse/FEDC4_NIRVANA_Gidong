@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@constants/Api';
-import { Follow } from '@types';
+import { Follow } from '@/types';
 
 const postFollowUser = async (userId: string, token: string) => {
   const response = await axios.post(
