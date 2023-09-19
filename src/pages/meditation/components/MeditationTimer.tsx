@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { atom, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { Icon } from '@components/Icon';
 import formatTime from '@utils/formatTime';
 import {
