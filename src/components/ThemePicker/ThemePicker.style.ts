@@ -4,7 +4,6 @@ const NavContainer = styled.div`
   max-width: 500px;
   width: 80%;
   height: 28px;
-  margin-top: 20px;
   position: relative;
   > * {
     position: absolute;
@@ -14,8 +13,8 @@ const NavContainer = styled.div`
 `;
 
 const ThemePickerContainer = styled.div`
-  display: flex;
-  width: 90%;
+  display: inline-flex;
+  width: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
   overflow-x: scroll;
@@ -24,9 +23,20 @@ const ThemePickerContainer = styled.div`
     display: none;
   }
   & > button {
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: 0px 5px;
     flex-shrink: 0;
+  }
+
+  & > button:last-child {
+    position: relative;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: -20px;
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
 

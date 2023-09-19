@@ -9,8 +9,8 @@ const StyledPostsPage = styled.div`
 
 const ThemePickerContainer = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
+  height: 70px;
+  ${({ theme }) => theme.style.flexCenter};
 `;
 
 const PostsContainer = styled.div``;

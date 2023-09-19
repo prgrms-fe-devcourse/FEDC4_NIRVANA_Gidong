@@ -63,6 +63,7 @@ const Posts = () => {
         <ThemePicker
           themeInfo={channelInfo}
           handleClickTheme={clickThemePicker}
+          dark={false}
         />
       </ThemePickerContainer>
       <PostsContainer ref={postsRef}>
