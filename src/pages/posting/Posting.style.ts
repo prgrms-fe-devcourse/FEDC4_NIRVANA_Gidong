@@ -15,6 +15,14 @@ export const ContentContainer = styled.div`
 
 export const StyledDescription = styled.div`
   ${({ theme }) => theme.style.flexCenter};
+  flex-direction: column;
   color: ${({ theme }) => theme.color.white};
-  height: 50px;
+  margin-bottom: 20px;
+  > p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    > b {
+      font-weight: 700;
+    }
+  }
 `;

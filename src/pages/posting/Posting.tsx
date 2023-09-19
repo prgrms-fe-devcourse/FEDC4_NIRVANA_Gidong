@@ -1,10 +1,8 @@
 import { useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 
 import { NewPost } from './components/NewPost';
 import { SkipPosting } from './components/SkipPosting';
 import { LandingMain } from '@pages/landing/Landing.style';
-import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import {
   StyledPosting,
   ContentContainer,
@@ -13,18 +11,21 @@ import {
 
 const Posting = () => {
   const location = useLocation();
-  const channelId = location.state.channelId;
+  const { channelId, channelLabel, totalTime } = location.state;
 
-  const { token } = useRecoilValue(userState);
+  const { _, token } = JSON.parse(sessionStorage.getItem('userData'));
   const customToken = `bearer ${token}`;
-
-  const { HEADER } = POSTING_DESCRIPTION;
 
   return (
     <LandingMain>
       <StyledPosting>
         <ContentContainer>
-          <StyledDescription>{HEADER}</StyledDescription>
+          <StyledDescription>
+            <p>
+              총 <b>{totalTime / 60}</b>분동안 명상을 진행했어요!
+            </p>
+            <p>{channelLabel}에 대해 어떤 생각을 하셨나요?</p>
+          </StyledDescription>
           <NewPost
             channelId={channelId}
             customToken={customToken}
