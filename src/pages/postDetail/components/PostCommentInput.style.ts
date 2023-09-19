@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const CommentInputSection = styled.section`
   ${({ theme }) => theme.style.flexCenter}
   width: 100%;
-  height: 100%;
+  height: 100px;
 `;
 
 export const CommentAvatarContainer = styled.div`

@@ -53,9 +53,7 @@ export const PostDetail = () => {
           detail={{ title, createdAt }}
         /> */}
       </Suspense>
-      <PostCommentSection>
-        <PostCommentInput avatarSrc='' />
-      </PostCommentSection>
+      <PostCommentInput avatarSrc='' />
     </PostDetailPage>
   );
 };
