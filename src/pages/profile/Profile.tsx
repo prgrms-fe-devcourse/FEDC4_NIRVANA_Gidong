@@ -6,10 +6,12 @@ import { useQuery } from '@tanstack/react-query';
 import { useRecoilState } from 'recoil';
 import { editModeState } from './states/editMode';
 import { ProfileInfoContainer, ProfilePage } from './Profile.style';
-import { ProfileInfo } from './components/ProfileInfo';
-import { ProfileCover } from './components/ProfileCover';
-import { ProfileMain } from './components/ProfileMain';
-import { ProfileEdit } from './components/ProfileEdit';
+import {
+  ProfileInfo,
+  ProfileCover,
+  ProfileMain,
+  ProfileEdit
+} from '@pages/profile/components';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
