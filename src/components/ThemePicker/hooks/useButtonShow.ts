@@ -15,19 +15,19 @@ const useScrollButton = () => {
       setShowNextButton(false);
       return;
     }
-    setShowPrevButton(scrollLeft > 0 ? true : false);
-    setShowNextButton(scrollLeft < splitPixel - 5 ? true : false);
+    setShowPrevButton(scrollLeft > 0);
+    setShowNextButton(scrollLeft < splitPixel - 5);
   }, []);
 
   useEffect(() => {
     if (scrollRef && scrollRef.current) {
       handleButtonShow();
       window.addEventListener('resize', handleButtonShow);
-      scrollRef.current.addEventListener('scroll', handleButtonShow);
+      scrollRef?.current?.addEventListener('scroll', handleButtonShow);
 
       return () => {
         window.removeEventListener('resize', handleButtonShow);
-        scrollRef.current.removeEventListener('scroll', handleButtonShow);
+        scrollRef?.current?.removeEventListener('scroll', handleButtonShow);
       };
     }
   }, [handleButtonShow]);
