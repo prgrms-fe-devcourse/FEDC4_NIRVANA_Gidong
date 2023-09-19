@@ -10,7 +10,6 @@ import {
 
 interface NoticeItemProps {
   seen: boolean;
-  key: string;
   profileImage: string;
   type: string;
   comment?: Comment | null;
@@ -19,7 +18,6 @@ interface NoticeItemProps {
 
 const NoticeItem = ({
   seen,
-  key,
   profileImage,
   type,
   comment,
@@ -44,7 +42,7 @@ const NoticeItem = ({
   }, [type]);
 
   return (
-    <NoticeItemContainer key={key}>
+    <NoticeItemContainer>
       <ProfileImage profileImage={profileImage} />
       <NoticeContent>
         <Message active={seen}>
