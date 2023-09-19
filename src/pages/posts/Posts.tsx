@@ -1,17 +1,20 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-import { StyledPostsPage } from './Posts.style';
-import { PostPreview } from '@components/PostPreview';
-import useObserver from './hooks/useObserver';
-import { getPosts } from '@apis/posts';
-import { editPostData } from './utils/editPostData';
 import type { Post } from '@types/index';
+import { getPosts } from '@apis/posts';
+import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
+import useObserver from './hooks/useObserver';
+import { editPostData } from './utils/editPostData';
+import { PostPreview } from '@components/PostPreview';
+import { ThemePicker } from '@components/ThemePicker';
+import { StyledPostsPage, ThemePickerContainer } from './Posts.style';
 
 const Posts = () => {
   const [postsData, setPostsData] = useState<Post[]>([]);
   const [offset, setOffset] = useState(0);
   const [observe] = useObserver(() => setOffset(offset + 11));
   const pageRef = useRef(null);
+  const themeInfo = new Map(meditationChannelInfo);
 
   const fetchPosts = useCallback(async () => {
     const data = await getPosts('65003530a72a0d2e63f12878', offset);
@@ -33,6 +36,9 @@ const Posts = () => {
 
   return (
     <StyledPostsPage ref={pageRef}>
+      <ThemePickerContainer>
+        <ThemePicker themeInfo={themeInfo} />
+      </ThemePickerContainer>
       {postsData.map((post: Post, index) => (
         <PostPreview
           key={index}
