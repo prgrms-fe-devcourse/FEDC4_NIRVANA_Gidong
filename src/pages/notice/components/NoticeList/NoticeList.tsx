@@ -1,5 +1,7 @@
-import NoticeItem from '../NoticeItem/NoticeItem';
 import { Notification } from '@/types/Notification';
+import NoticeItem from '../NoticeItem/NoticeItem';
+import noticeTypeChecker from '@pages/notice/utils/noticeTypeChecker';
+
 interface NoticeListProps {
   list: Notification[];
 }
@@ -10,9 +12,8 @@ const NoticeList = ({ list }: NoticeListProps) => {
       authorName={notice.author.fullName}
       key={notice._id}
       profileImage={notice.author.image}
-      seen={notice.seen}
       comment={notice.comment}
-      type={'COMMENT'}
+      type={noticeTypeChecker(notice)}
     />
   ));
 };

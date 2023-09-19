@@ -22,12 +22,11 @@ const NoticeContent = styled.div`
   ${({ theme }) => theme.style.flexJustifyCenter}
 `;
 
-const Message = styled.div<{ active: boolean }>`
+const Message = styled.div`
   font-weight: 700;
   font-size: 0.8rem;
   margin-bottom: 5px;
-  color: ${({ theme, active }) =>
-    active ? theme.color['greyLight'] : theme.color['black']};
+  color: ${({ theme }) => theme.color['black']};
 `;
 
 const MessagePreview = styled.div`

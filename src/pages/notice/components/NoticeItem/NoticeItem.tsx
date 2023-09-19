@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Comment } from '@/types/Comment';
+import { MESSAGE_TYPE, NOTICE_TYPE } from '@pages/notice/constants';
 import {
   NoticeItemContainer,
   NoticeContent,
@@ -9,7 +10,6 @@ import {
 } from './NoticeItem.style';
 
 interface NoticeItemProps {
-  seen: boolean;
   profileImage: string;
   type: string;
   comment?: Comment | null;
@@ -17,7 +17,6 @@ interface NoticeItemProps {
 }
 
 const NoticeItem = ({
-  seen,
   profileImage,
   type,
   comment,
@@ -27,14 +26,14 @@ const NoticeItem = ({
 
   useEffect(() => {
     switch (type) {
-      case 'COMMENT':
-        setMessage(' 님이 회원님의 게시물에 댓글을 남겼습니다');
+      case NOTICE_TYPE.COMMENT:
+        setMessage(MESSAGE_TYPE.COMMENT);
         break;
-      case 'LIKE':
-        setMessage(' 님이 회원님의 게시물을 좋아합니다');
+      case NOTICE_TYPE.LIKE:
+        setMessage(MESSAGE_TYPE.LIKE);
         break;
-      case 'FOLLOW':
-        setMessage(' 님이 회원님을 팔로우합니다');
+      case NOTICE_TYPE.FOLLOW:
+        setMessage(MESSAGE_TYPE.FOLLOW);
         break;
       default:
         break;
@@ -45,11 +44,11 @@ const NoticeItem = ({
     <NoticeItemContainer>
       <ProfileImage profileImage={profileImage} />
       <NoticeContent>
-        <Message active={seen}>
+        <Message>
           <span>{authorName}</span>
           {message}
         </Message>
-        {type === 'COMMENT' && (
+        {type === NOTICE_TYPE.COMMENT && (
           <MessagePreview>{comment && comment.comment}</MessagePreview>
         )}
       </NoticeContent>
