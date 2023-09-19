@@ -7,6 +7,7 @@ export const StyledButton = styled.button<{
   bold?: boolean;
   borderRadius?: number;
   fontSize?: number;
+  color?: string;
 }>`
   cursor: pointer;
   width: ${({ width }) => width}px;
@@ -15,7 +16,8 @@ export const StyledButton = styled.button<{
     dark ? 0 : `0.5px solid ${theme.color.greyLight}`};
   background-color: ${({ theme, dark }) =>
     dark ? theme.color.purpleDark : theme.color.white};
-  color: ${({ theme, dark }) => (dark ? theme.color.white : theme.color.black)};
+  color: ${({ theme, dark, color = 'black' }) =>
+    dark ? theme.color.white : theme.color[color]};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : 10)}px;
   font-size: ${({ fontSize }) => (fontSize ? fontSize : 16)}px;
