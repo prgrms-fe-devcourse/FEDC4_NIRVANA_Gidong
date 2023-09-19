@@ -18,7 +18,7 @@ const getNotifications = async (token: string) => {
 };
 
 const putNotifications = async (token: string) => {
-  const response = await axios.put(`${API_BASE_URL}/notifications/seen`, {
+  const response = await axios.put(`${API_BASE_URL}/notifications/seen`, null, {
     headers: {
       Authorization: `Bearer ${token}`
     }
