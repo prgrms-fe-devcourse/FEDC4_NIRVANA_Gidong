@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { getNotifications } from '@apis/notice';
+import { getNotifications, putNotifications } from '@apis/notice';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types/User';
+import { Notification } from '@/types/Notification';
 import NoticeList from './components/NoticeList/NoticeList';
 import { NoticePage, Header } from './Notice.style';
 
@@ -17,8 +18,11 @@ const Notice = () => {
 
   useEffect(() => {
     const fetchNotifications = async () => {
-      const res = await getNotifications(userSessionData.token);
+      const res = await getNotifications(userSessionData.token).then((res) =>
+        res.filter((item: Notification) => !item.seen)
+      );
       setList(res);
+      await putNotifications(userSessionData.token);
     };
 
     fetchNotifications();
