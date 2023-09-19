@@ -1,19 +1,10 @@
-import styled from '@emotion/styled';
 import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { PostCommentSection } from './PostDetail.style';
-import { PostCommentInput } from './components';
-
+import { PostCommentInput, PostComments } from './components';
+import { PostDetailPage } from './PostDetail.style';
 import { API_BASE_URL } from '@constants/Api';
-
-const PostDetailPage = styled.div`
-  ${({ theme }) => theme.style.flexAlignCenter};
-  flex-direction: column;
-  padding-top: 50px;
-  width: 100%;
-`;
 
 const channelId = '65017a41dfe8db5726b603a7';
 const postId = '6503e31f5f01477ef038671b';
@@ -54,6 +45,7 @@ export const PostDetail = () => {
         /> */}
       </Suspense>
       <PostCommentInput avatarSrc='' />
+      <PostComments />
     </PostDetailPage>
   );
 };
