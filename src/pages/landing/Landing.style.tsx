@@ -11,13 +11,13 @@ export const LandingMain = styled.main`
 `;
 
 export const Heading = styled.h1`
-  width: 221px;
-  height: 41px;
+  width: 216px;
+  height: 45px;
   background-image: url(${logo});
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-top: 120px;
+  margin-top: 101px;
   margin-bottom: 469px;
 `;
 
@@ -37,18 +37,20 @@ export const PreviewLink = styled.div`
   margin-bottom: 26px;
   & > span {
     color: ${({ theme }) => theme.color.white};
-    margin-bottom: 6px;
+    margin-bottom: 2px;
+    text-align: center;
+    letter-spacing: 0.03rem;
   }
 
   & > a {
     ${({ theme }) => theme.style.flexAlignCenter};
-    display: block;
     border-bottom: 1px solid ${({ theme }) => theme.color.white};
     font-weight: 700;
+    padding: 4px 7px 4px 5px;
   }
 
   & > a > span {
-    margin-left: 5px;
+    margin-left: 3px;
   }
 `;
 
