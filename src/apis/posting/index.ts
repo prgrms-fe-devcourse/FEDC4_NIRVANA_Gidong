@@ -9,7 +9,7 @@ const postCreateNewPost = async (token: string, formData: FormData) => {
       }
     });
   } catch (error) {
-    console.error(error);
+    throw new Error(error);
   }
 };
 

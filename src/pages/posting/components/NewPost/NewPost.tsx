@@ -41,13 +41,9 @@ const NewPost = ({ channelId, meditationTime, customToken }: NewPostProps) => {
       };
       const formData = createFormData(JSON.stringify(customTitle), channelId);
 
-      postCreateNewPost(customToken, formData)
-        .then(() => {
-          navigate('/posts');
-        })
-        .catch(() => {
-          console.error('포스트 생성에 실패했습니다.');
-        });
+      postCreateNewPost(customToken, formData).then(() => {
+        navigate('/posts');
+      });
     }
   };
 
