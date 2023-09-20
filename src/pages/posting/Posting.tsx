@@ -12,13 +12,13 @@ import { useEffect } from 'react';
 const Posting = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { channelId, validate, channelLabel, totalTime } = location.state;
+  const { channelId, validation, channelLabel, totalTime } = location.state;
 
   const { token } = JSON.parse(sessionStorage.getItem('userData'));
   const customToken = `bearer ${token}`;
 
   useEffect(() => {
-    if (!validate) {
+    if (!validation) {
       navigate('/404');
     }
   });

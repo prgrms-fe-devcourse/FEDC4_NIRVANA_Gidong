@@ -5,7 +5,7 @@ interface PrevPostingConfirmProps {
   handleConfirmButton?: () => void;
   handleCancelButton?: () => void;
   linkState: {
-    validate: boolean;
+    validation: boolean;
     channelId: string;
   };
 }
