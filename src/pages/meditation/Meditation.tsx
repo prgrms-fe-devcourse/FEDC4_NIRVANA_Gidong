@@ -1,4 +1,5 @@
 import { useRecoilState } from 'recoil';
+import { useState } from 'react';
 
 import { endButtonPushed } from './states';
 import { MeditationPage } from './Meditation.style';
@@ -7,6 +8,7 @@ import { Confirm } from '@components/Confirm';
 import { Button } from '@components/Button';
 import { meditationChannelInfo } from './models/channelInfo';
 import {
+  PrevPostingConfirm,
   MeditationLabel,
   MeditationTimer,
   MeditationTimeSetter
@@ -14,9 +16,20 @@ import {
 
 const Meditation = () => {
   const [confirmCaptured, setConfirmCaptured] = useRecoilState(endButtonPushed);
+  const [hasPrevPosting, setHasPrevPosting] = useState(
+    !!sessionStorage.getItem('posting')
+  );
+  const handleCancelButton = () => {
+    sessionStorage.removeItem('posting');
+    setHasPrevPosting(false);
+  };
+
   return (
     <>
       <MeditationPage>
+        {hasPrevPosting && (
+          <PrevPostingConfirm handleCancelButton={handleCancelButton} />
+        )}
         <MeditationLabel />
         <MeditationTimer />
         <MeditationTimeSetter />
