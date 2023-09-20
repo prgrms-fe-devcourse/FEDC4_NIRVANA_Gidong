@@ -41,6 +41,7 @@ const NewPost = ({ channelId, customToken }: NewPostProps) => {
 
   const handleCancelButton = () => {
     setShowConfirm(false);
+    sessionStorage.removeItem('posting');
   };
 
   const handleConfirmButton = async () => {
