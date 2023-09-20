@@ -5,6 +5,7 @@ import { SearchMainContainer, SearchResult } from './SearchMain.style';
 import { searchUser, searchPost } from '@apis/search';
 import { User, Post } from '@/types';
 import { FollowUserInfo } from '@pages/profile/components';
+import { PostPreview } from '@components/PostPreview';
 
 interface SearchMainProps {
   inputValue: string;
@@ -29,7 +30,8 @@ const SearchMain = ({ inputValue }: SearchMainProps) => {
       const data =
         filter === 'post' ? await searchPost(value) : await searchUser(value);
       return data;
-    }
+    },
+    enabled: value !== ''
   });
 
   const handleChangeFilter = (theme: string) => {
@@ -42,6 +44,14 @@ const SearchMain = ({ inputValue }: SearchMainProps) => {
     }
   };
 
+  const filteredData = data?.filter((element: User | Post) => {
+    if (filter === 'post') {
+      return 'title' in element;
+    } else {
+      return true;
+    }
+  });
+
   return (
     <SearchMainContainer>
       <SearchFilter
@@ -49,10 +59,18 @@ const SearchMain = ({ inputValue }: SearchMainProps) => {
         filterState={filter}
       />
       <SearchResult>
-        {data?.map((element: User | Post) => {
+        {filteredData?.map((element: User | Post) => {
           if (isPost(element)) {
             // post component
-            return <></>;
+            return (
+              <PostPreview
+                key={element._id}
+                post={element}
+                totalLikes={element.likes.length}
+                totalComments={element.comments.length}
+                noneProfile
+              />
+            );
           } else {
             // user component
             const { _id, fullName, image, email, isOnline } = element;
