@@ -12,7 +12,7 @@ const Posting = () => {
   const location = useLocation();
   const { channelId, channelLabel, totalTime } = location.state;
 
-  const { _, token } = JSON.parse(sessionStorage.getItem('userData'));
+  const { token } = JSON.parse(sessionStorage.getItem('userData'));
   const customToken = `bearer ${token}`;
 
   return (
