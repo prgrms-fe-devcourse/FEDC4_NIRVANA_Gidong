@@ -36,7 +36,7 @@ const NewPost = ({ channelId, customToken }: NewPostProps) => {
 
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
-    const saveItem = { posting: value };
+    const saveItem = { posting: value, channelId: channelId };
 
     if (timer.current) {
       clearTimeout(timer.current);
