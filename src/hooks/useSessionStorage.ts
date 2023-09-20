@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 function useSessionStorage<T>(
   key: string,
-  initialValue: T
+  initialValue?: T
 ): [T, React.Dispatch<React.SetStateAction<T>>] {
   const storedValue = sessionStorage.getItem(key);
   const initial = storedValue ? JSON.parse(storedValue) : initialValue;
