@@ -34,7 +34,12 @@ const SkipPosting = ({ channelId, customToken }: SkipPostingProps) => {
 
   return (
     <>
-      {showConfirm && <SkipPostingConfirm handleConfirmButton={handleConfirmButton} handleCancelButton={handleCancelButton}/>}
+      {showConfirm && (
+        <SkipPostingConfirm
+          handleConfirmButton={handleConfirmButton}
+          handleCancelButton={handleCancelButton}
+        />
+      )}
       <StyledSkipPosting onClick={handleClickSkipPost}>
         {SKIP_POSTING}
       </StyledSkipPosting>

@@ -9,7 +9,6 @@ import { meditationChannelInfo } from './models/channelInfo';
 import {
   MeditationLabel,
   MeditationTimer,
-  MeditationThemePicker,
   MeditationTimeSetter
 } from '@pages/meditation/components';
 
