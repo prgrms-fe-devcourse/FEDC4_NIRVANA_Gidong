@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@components/Button';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
-import { createFormData, validateContent } from '@pages/posting/utils';
+import { createFormData, purifyContent } from '@pages/posting/utils';
 import postCreateNewPost from '@apis/posting';
 import NewPostConfirm from './NewPostConfirm';
 import {
@@ -14,10 +14,11 @@ import {
 
 interface NewPostProps {
   channelId?: string;
+  meditationTime?: number;
   customToken?: string;
 }
 
-const NewPost = ({ channelId, customToken }: NewPostProps) => {
+const NewPost = ({ channelId, meditationTime, customToken }: NewPostProps) => {
   const contentRef = useRef(null);
   const [showConfirm, setShowConfirm] = useState(false);
   const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
@@ -31,13 +32,23 @@ const NewPost = ({ channelId, customToken }: NewPostProps) => {
     setShowConfirm(false);
   };
 
-  const handleConfirmButton = async () => {
-    if (validateContent(contentRef.current.value)) {
-      const formData = createFormData(contentRef.current.value, channelId);
+  const handleConfirmButton = () => {
+    const content: string = contentRef.current.value;
+    if (content.length > 0) {
+      const customTitle = {
+        title: purifyContent(content),
+        meditationTime: `${meditationTime / 60}`
+      };
+      const formData = createFormData(JSON.stringify(customTitle), channelId);
 
-      await postCreateNewPost(customToken, formData).then(() => {
-        navigate('/posts');
-      });
+      postCreateNewPost(customToken, formData)
+        .then((res) => {
+          console.log(res);
+          navigate('/posts');
+        })
+        .catch(() => {
+          console.error('포스트 생성에 실패했습니다.');
+        });
     }
   };
 

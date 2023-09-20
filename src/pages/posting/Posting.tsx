@@ -28,6 +28,7 @@ const Posting = () => {
         </StyledDescription>
         <NewPost
           channelId={channelId}
+          meditationTime={totalTime}
           customToken={customToken}
         />
         <SkipPosting
