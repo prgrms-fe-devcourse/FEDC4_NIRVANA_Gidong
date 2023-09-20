@@ -13,7 +13,6 @@ const Posting = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { channelId, validation, channelLabel, totalTime } = location.state;
-
   const { token } = JSON.parse(sessionStorage.getItem('userData'));
   const customToken = `bearer ${token}`;
 
@@ -35,7 +34,7 @@ const Posting = () => {
           </p>
         </StyledDescription>
         <NewPost
-          channelId={channelId}
+          medidationInfo={location.state}
           customToken={customToken}
         />
         <SkipPosting
