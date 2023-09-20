@@ -1,5 +1,4 @@
 import { useRecoilState } from 'recoil';
-import { useState } from 'react';
 
 import { endButtonPushed } from './states';
 import { MeditationPage } from './Meditation.style';
@@ -30,7 +29,7 @@ const Meditation = () => {
       <MeditationPage>
         {!!prevPosting && (
           <PrevPostingConfirm
-            prevMeditationInfo={prevPosting}
+            prevPostingInfo={prevPosting}
             handleCancelButton={handleCancelPrevPosting}
           />
         )}

@@ -1,7 +1,8 @@
 import { Confirm } from '@components/Confirm';
 import { Button } from '@components/Button';
 
-interface MeditationInfo {
+interface prevPostingInfo {
+  posting: string;
   channelId: string;
   validation: boolean;
   channelLabel: string;
@@ -11,13 +12,13 @@ interface MeditationInfo {
 interface PrevPostingConfirmProps {
   handleConfirmButton?: () => void;
   handleCancelButton?: () => void;
-  prevMeditationInfo: MeditationInfo;
+  prevPostingInfo: prevPostingInfo;
 }
 
 const PrevPostingConfirm = ({
   handleConfirmButton,
   handleCancelButton,
-  prevMeditationInfo
+  prevPostingInfo
 }: PrevPostingConfirmProps) => {
   const ConfirmButton = () => {
     return (
@@ -56,7 +57,7 @@ const PrevPostingConfirm = ({
         ConfirmButton={ConfirmButton}
         CancelButton={CancelButton}
         nextPageLink='/posting'
-        linkState={prevMeditationInfo}
+        linkState={prevPostingInfo}
       />
       ;
     </>
