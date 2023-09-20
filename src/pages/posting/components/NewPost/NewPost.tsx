@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import { createFormData, validateContent } from '@pages/posting/utils';
 import { Button } from '@components/Button';
+import useDebounce from '@hooks/useDebounce';
 import useSessionStorage from '@hooks/useSessionStorage';
 import postCreateNewPost from '@apis/posting';
 import NewPostConfirm from './NewPostConfirm';
@@ -13,38 +14,34 @@ import {
   StyledTextArea
 } from './NewPost.style';
 
+interface MeditationInfo {
+  channelId: string;
+  validation: boolean;
+  channelLabel: string;
+  totalTime: number;
+}
+
 interface NewPostProps {
-  channelId?: string;
+  meditationInfo: MeditationInfo;
   customToken?: string;
 }
 
-const NewPost = ({ channelId, customToken }: NewPostProps) => {
+const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
   const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
-  const contentRef = useRef(null);
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
+  const [posting, setPosting] = useState('');
   const [prevPosting, savePosting] = useSessionStorage('posting', {
-    posting: ''
+    posting,
+    ...meditationInfo
   });
-  let timer = useRef(null);
-
-  useEffect(() => {
-    if (prevPosting) {
-      contentRef.current.value = prevPosting.posting;
-    }
-  }, []);
-
-  const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { value } = event.target;
-    const saveItem = { posting: value, channelId: channelId };
-
-    if (timer.current) {
-      clearTimeout(timer.current);
-    }
-    timer.current = setTimeout(() => {
-      savePosting(saveItem);
-    }, 200);
-  };
+  const clear = useDebounce(
+    200,
+    () => {
+      savePosting({ posting, ...meditationInfo });
+    },
+    [posting]
+  );
 
   const handlePostButton = () => {
     setShowConfirm(true);
@@ -55,15 +52,22 @@ const NewPost = ({ channelId, customToken }: NewPostProps) => {
   };
 
   const handleConfirmButton = async () => {
-    if (validateContent(contentRef.current.value)) {
+    if (validateContent(posting)) {
       sessionStorage.removeItem('posting');
-      const formData = createFormData(contentRef.current.value, channelId);
+      const formData = createFormData(posting, meditationInfo.channelId);
 
       await postCreateNewPost(customToken, formData).then(() => {
         navigate('/posts');
       });
     }
   };
+
+  useEffect(() => {
+    if (prevPosting.posting) {
+      setPosting(prevPosting.posting);
+    }
+    return () => clear();
+  }, []);
 
   return (
     <>
@@ -76,10 +80,10 @@ const NewPost = ({ channelId, customToken }: NewPostProps) => {
       <PostContainer>
         <StyledTextArea
           onChange={(event) => {
-            handleTextChange(event);
+            setPosting(event.target.value);
           }}
-          ref={contentRef}
           required
+          value={posting}
           maxLength={500}
           placeholder={PLACEHOLDER}
         />
