@@ -36,7 +36,7 @@ const Meditation = () => {
   return (
     <>
       <MeditationPage>
-        {!!prevPosting && (
+        {!!prevPosting.channelId && (
           <PrevPostingConfirm
             linkState={linkState}
             handleCancelButton={handleCancelPrevPosting}
