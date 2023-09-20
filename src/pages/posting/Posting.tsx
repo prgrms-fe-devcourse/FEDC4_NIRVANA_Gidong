@@ -34,7 +34,7 @@ const Posting = () => {
           </p>
         </StyledDescription>
         <NewPost
-          medidationInfo={location.state}
+          meditationInfo={location.state}
           customToken={customToken}
         />
         <SkipPosting
