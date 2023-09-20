@@ -18,7 +18,7 @@ const Meditation = () => {
   const [hasPrevPosting, setHasPrevPosting] = useState(
     !!sessionStorage.getItem('posting')
   );
-  const handleCancelButton = () => {
+  const handleCancelPrevPosting = () => {
     sessionStorage.removeItem('posting');
     setHasPrevPosting(false);
   };
@@ -31,7 +31,7 @@ const Meditation = () => {
     <>
       <MeditationPage>
         {hasPrevPosting && (
-          <PrevPostingConfirm handleCancelButton={handleCancelButton} />
+          <PrevPostingConfirm handleCancelButton={handleCancelPrevPosting} />
         )}
         <MeditationLabel />
         <MeditationTimer />
