@@ -7,6 +7,10 @@ export const SearchMainContainer = styled.div`
   position: absolute;
   top: 50px;
   left: 0;
+  z-index: 1;
 `;
 
-export const SearchResult = styled.div``;
+export const SearchResult = styled.div`
+  height: 670px;
+  overflow: auto;
+`;
