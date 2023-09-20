@@ -17,9 +17,14 @@ import { User } from '@/types/User';
 interface PostCommentInputProps {
   postId: string;
   avatarSrc: string;
+  refetch: () => void;
 }
 
-const PostCommentInput = ({ avatarSrc, postId }: PostCommentInputProps) => {
+const PostCommentInput = ({
+  avatarSrc,
+  postId,
+  refetch
+}: PostCommentInputProps) => {
   const COMMENT_PLACEHOLDER = '댓글을 달아보세요.';
   const commentRef = useRef(null);
 
@@ -31,9 +36,13 @@ const PostCommentInput = ({ avatarSrc, postId }: PostCommentInputProps) => {
     }
   );
 
-  const { mutate } = useMutation(postComment);
+  const { mutate, isSuccess } = useMutation(postComment);
 
-  const handleCommentSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  if (isSuccess) refetch();
+
+  const handleCommentSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
     mutate({
       postId,

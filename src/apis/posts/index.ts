@@ -42,6 +42,11 @@ const getSpecificUserPosts = async (
   return response.data;
 };
 
+const getPost = async (postId: string) => {
+  const response = await axios.get<Post>(`${API_BASE_URL}/posts/${postId}`);
+  return response.data;
+};
+
 const postPost = async (postData: FormData, token: string) => {
   const response = await axios.post<Post>(
     `${API_BASE_URL}/posts/create`,
@@ -80,6 +85,7 @@ const deletePost = async (postId: string, token: string) => {
 export {
   getChannels,
   getPosts,
+  getPost,
   getSpecificUserPosts,
   postPost,
   putPost,
