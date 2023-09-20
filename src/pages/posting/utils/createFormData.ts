@@ -6,6 +6,6 @@ const createFormData = (content: string, channelId: string) => {
   formData.append('image', null);
 
   return formData;
-}
+};
 
 export default createFormData;

@@ -6,6 +6,6 @@ const validateContent = (content: string): boolean => {
   }
 
   return validation;
-}
+};
 
 export default validateContent;

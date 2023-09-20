@@ -6,4 +6,5 @@ export const StyledSkipPosting = styled.div`
   height: 50px;
   color: ${({ theme }) => theme.color.white};
   font-size: 14px;
+  padding-top: 20px;
 `;
