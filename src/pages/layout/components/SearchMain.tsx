@@ -62,12 +62,13 @@ const SearchMain = ({ inputValue }: SearchMainProps) => {
         {filteredData?.map((element: User | Post) => {
           if (isPost(element)) {
             // post component
+            const { _id, likes, comments } = element;
             return (
               <PostPreview
-                key={element._id}
+                key={_id}
                 post={element}
-                totalLikes={element.likes.length}
-                totalComments={element.comments.length}
+                totalLikes={likes.length}
+                totalComments={comments.length}
                 noneProfile
               />
             );
