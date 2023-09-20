@@ -12,18 +12,10 @@ import {
   MeditationTimeSetter,
   MeditationCancelConfirm
 } from '@pages/meditation/components';
-import useSessionStorage from '@hooks/useSessionStorage';
 
 const Meditation = () => {
   const [confirmCaptured, setConfirmCaptured] = useRecoilState(endButtonPushed);
-  const [prevPosting, _] = useSessionStorage('posting', {
-    posting: '',
-    channelId: null
-  });
-  const linkState = {
-    validate: true,
-    channelId: prevPosting.channelId
-  };
+  const prevPosting = JSON.parse(sessionStorage.getItem('posting'));
 
   const handleCancelPrevPosting = () => {
     sessionStorage.removeItem('posting');
@@ -36,9 +28,9 @@ const Meditation = () => {
   return (
     <>
       <MeditationPage>
-        {!!prevPosting.channelId && (
+        {!!prevPosting && (
           <PrevPostingConfirm
-            linkState={linkState}
+            prevMeditationInfo={prevPosting}
             handleCancelButton={handleCancelPrevPosting}
           />
         )}
