@@ -7,7 +7,12 @@ import {
 } from './PostComment.style';
 import { UserId, UserName } from '@components/UserText';
 
-const PostComment = () => {
+interface PostCommentProps {
+  userId: string;
+  text: string;
+}
+
+const PostComment = ({ text }: PostCommentProps) => {
   return (
     <PostCommentContainer>
       <PostCommentAvatarContainer>
@@ -22,9 +27,7 @@ const PostComment = () => {
           <UserName>testMan</UserName>
           <UserId email='testman@naver.com' />
         </PostCommentUserContainer>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
-        suscipit amet modi fugit debitis facere quod expedita atque et deleniti,
-        dolores pariatur aliquam quisquam maxime cupiditate beatae qui! Ab, aut.
+        {text}
       </PostCommentContentContainer>
     </PostCommentContainer>
   );

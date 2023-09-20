@@ -1,21 +1,25 @@
 import { PostCommentsSection } from './PostComments.style';
 import { PostCommentHeader, PostComment } from './';
+import { Comment } from '@/types/Comment';
 
-const PostComments = () => {
+interface PostCommentsProps {
+  comments: Comment[];
+}
+
+const PostComments = ({ comments }: PostCommentsProps) => {
   return (
     <PostCommentsSection>
       <PostCommentHeader
         postLikeCount={10}
         postCommentCount={20}
       />
-      <PostComment />
-      <PostComment />
-      <PostComment />
-      <PostComment />
-      <PostComment />
-      <PostComment />
-      <PostComment />
-      <PostComment />
+      {comments?.map((comment: Comment) => (
+        <PostComment
+          key={comment._id}
+          userId={comment._id}
+          text={comment.comment}
+        />
+      ))}
     </PostCommentsSection>
   );
 };

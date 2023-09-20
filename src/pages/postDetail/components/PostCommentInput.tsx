@@ -9,18 +9,37 @@ import {
 } from './PostCommentInput.style';
 import { Avatar } from '@components/Avatar';
 import { useRef } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { postComment } from '@apis/comment';
+import useSessionStorage from '@hooks/useSessionStorage';
+import { User } from '@/types/User';
 
 interface PostCommentInputProps {
+  postId: string;
   avatarSrc: string;
 }
 
-const PostCommentInput = ({ avatarSrc }: PostCommentInputProps) => {
+const PostCommentInput = ({ avatarSrc, postId }: PostCommentInputProps) => {
   const COMMENT_PLACEHOLDER = '댓글을 달아보세요.';
   const commentRef = useRef(null);
 
+  const [{ token }] = useSessionStorage<Pick<User, '_id' | 'token'>>(
+    'userData',
+    {
+      _id: '',
+      token: ''
+    }
+  );
+
+  const { mutate } = useMutation(postComment);
+
   const handleCommentSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(commentRef.current.value);
+    mutate({
+      postId,
+      comment: commentRef.current.value,
+      token: 'Bearer ' + token
+    });
     commentRef.current.value = '';
   };
 
