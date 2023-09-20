@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@components/Button';
@@ -19,10 +19,18 @@ interface NewPostProps {
 
 const NewPost = ({ channelId, customToken }: NewPostProps) => {
   const contentRef = useRef(null);
+  const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
   const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
-  const navigate = useNavigate();
   let timer = useRef(null);
+
+  useEffect(() => {
+    const prevPosting = sessionStorage.getItem('posting');
+
+    if (prevPosting) {
+      contentRef.current.value = prevPosting;
+    }
+  }, []);
 
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
