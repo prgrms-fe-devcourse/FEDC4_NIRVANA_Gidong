@@ -8,7 +8,6 @@ export const Header = styled.h1`
 `;
 
 export const NoticePage = styled.div`
-  flex-direction: column;
   height: 100%;
   width: 100%;
   padding: 2rem;

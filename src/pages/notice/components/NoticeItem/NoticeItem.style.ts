@@ -1,31 +1,28 @@
 import styled from '@emotion/styled';
 
 const NoticeItemContainer = styled.div`
-  ${({ theme }) => theme.style.flexJustifyCenter};
+  display: flex;
+  justify-content: flex-start;
   padding: 10px;
   border-bottom: 0.5px solid ${({ theme }) => theme.color['greyLight']};
   margin-bottom: 10px;
-  justify-content: flex-start;
 `;
 
 const ProfileImage = styled.div<{ profileImage: string }>`
   background-image: url(${({ profileImage }) => profileImage});
-  background-color: red;
-  width: 50px;
-  height: 50px;
+  width: 39px;
+  height: 39px;
   margin-right: 20px;
   border-radius: 50%;
 `;
 
 const NoticeContent = styled.div`
-  flex-direction: column;
-  ${({ theme }) => theme.style.flexJustifyCenter}
+  ${({ theme }) => theme.style.flexCenter};
 `;
 
 const Message = styled.div`
   font-weight: 700;
   font-size: 0.8rem;
-  margin-bottom: 5px;
   color: ${({ theme }) => theme.color['black']};
 `;
 
