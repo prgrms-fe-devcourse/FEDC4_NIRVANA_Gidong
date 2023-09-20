@@ -42,8 +42,7 @@ const NewPost = ({ channelId, meditationTime, customToken }: NewPostProps) => {
       const formData = createFormData(JSON.stringify(customTitle), channelId);
 
       postCreateNewPost(customToken, formData)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           navigate('/posts');
         })
         .catch(() => {
