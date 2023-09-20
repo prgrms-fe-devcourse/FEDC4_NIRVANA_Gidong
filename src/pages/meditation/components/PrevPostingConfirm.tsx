@@ -10,8 +10,10 @@ const PrevPostingConfirm = ({
   handleConfirmButton,
   handleCancelButton
 }: PrevPostingConfirmProps) => {
+  const channelId = JSON.parse(sessionStorage.getItem('posting'));
   const linkState = {
-    validate: true
+    validate: true,
+    channelId: channelId
   };
 
   const ConfirmButton = () => {
