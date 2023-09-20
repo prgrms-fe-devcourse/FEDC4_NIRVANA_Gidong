@@ -4,7 +4,6 @@ export const PostCommentContainer = styled.div`
   display: flex;
   width: 100%;
   padding: 10px;
-  background-color: aliceblue;
 `;
 
 export const PostCommentAvatarContainer = styled.div`
