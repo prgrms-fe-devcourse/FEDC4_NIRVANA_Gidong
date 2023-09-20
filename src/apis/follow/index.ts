@@ -24,9 +24,4 @@ const deleteFollowUser = async (userId: string, token: string) => {
   return response.data;
 };
 
-const getFollowUser = async (userId: string) => {
-  const response = await axios.get(`${API_BASE_URL}/users/${userId}`);
-  return response.data;
-};
-
-export { postFollowUser, deleteFollowUser, getFollowUser };
+export { postFollowUser, deleteFollowUser };
