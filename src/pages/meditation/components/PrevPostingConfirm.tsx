@@ -4,18 +4,17 @@ import { Button } from '@components/Button';
 interface PrevPostingConfirmProps {
   handleConfirmButton?: () => void;
   handleCancelButton?: () => void;
+  linkState: {
+    validate: boolean;
+    channelId: string;
+  };
 }
 
 const PrevPostingConfirm = ({
   handleConfirmButton,
-  handleCancelButton
+  handleCancelButton,
+  linkState
 }: PrevPostingConfirmProps) => {
-  const channelId = JSON.parse(sessionStorage.getItem('posting'));
-  const linkState = {
-    validate: true,
-    channelId: channelId
-  };
-
   const ConfirmButton = () => {
     return (
       <Button
