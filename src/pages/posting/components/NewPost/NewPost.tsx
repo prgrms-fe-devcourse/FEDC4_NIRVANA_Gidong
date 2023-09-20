@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '@components/Button';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import { createFormData, validateContent } from '@pages/posting/utils';
+import { Button } from '@components/Button';
+import useSessionStorage from '@hooks/useSessionStorage';
 import postCreateNewPost from '@apis/posting';
 import NewPostConfirm from './NewPostConfirm';
 import {
@@ -18,28 +19,30 @@ interface NewPostProps {
 }
 
 const NewPost = ({ channelId, customToken }: NewPostProps) => {
+  const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
   const contentRef = useRef(null);
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
-  const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
+  const [prevPosting, savePosting] = useSessionStorage('posting', {
+    posting: ''
+  });
   let timer = useRef(null);
 
   useEffect(() => {
-    const prevPosting = sessionStorage.getItem('posting');
-
     if (prevPosting) {
-      contentRef.current.value = prevPosting;
+      contentRef.current.value = prevPosting.posting;
     }
   }, []);
 
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
+    const saveItem = { posting: value };
 
     if (timer.current) {
       clearTimeout(timer.current);
     }
     timer.current = setTimeout(() => {
-      sessionStorage.setItem('posting', value);
+      savePosting(saveItem);
     }, 200);
   };
 
@@ -49,11 +52,11 @@ const NewPost = ({ channelId, customToken }: NewPostProps) => {
 
   const handleCancelButton = () => {
     setShowConfirm(false);
-    sessionStorage.removeItem('posting');
   };
 
   const handleConfirmButton = async () => {
     if (validateContent(contentRef.current.value)) {
+      sessionStorage.removeItem('posting');
       const formData = createFormData(contentRef.current.value, channelId);
 
       await postCreateNewPost(customToken, formData).then(() => {
