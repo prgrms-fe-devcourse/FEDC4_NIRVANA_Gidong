@@ -13,9 +13,15 @@ import useButtonShow from './hooks/useButtonShow';
 
 interface MeditationThemePickerProps {
   themeInfo: Map<string, { label: string; id: string }>;
+  handleClickTheme: (selectedId: string) => void;
+  dark?: boolean;
 }
 
-const MeditationThemePicker = ({ themeInfo }: MeditationThemePickerProps) => {
+const MeditationThemePicker = ({
+  themeInfo,
+  handleClickTheme,
+  dark = true
+}: MeditationThemePickerProps) => {
   const [pickerShown, setPickerShown] = useState(true);
   const [picked, setPicked] = useState(themeInfo.get(CONCENTRATION_KEY));
   const [scrollRef, showPrevButton, showNextButton] = useButtonShow();
@@ -55,7 +61,7 @@ const MeditationThemePicker = ({ themeInfo }: MeditationThemePickerProps) => {
       {showPrevButton && (
         <PickerPreviousButton
           clickPrevButton={clickPrevButton}
-          color={'white'}
+          color={dark ? 'white' : 'purpleDark'}
         />
       )}
       <ThemePickerContainer ref={scrollRef}>
@@ -70,6 +76,7 @@ const MeditationThemePicker = ({ themeInfo }: MeditationThemePickerProps) => {
               label={value.label}
               handleClick={() => {
                 setPicked(value);
+                handleClickTheme(value.id);
               }}
             />
           ))}
@@ -77,7 +84,7 @@ const MeditationThemePicker = ({ themeInfo }: MeditationThemePickerProps) => {
       {showNextButton && (
         <PickerNextButton
           clickNextButton={clickNextButton}
-          color={'white'}
+          color={dark ? 'white' : 'purpleDark'}
         />
       )}
     </NavContainer>

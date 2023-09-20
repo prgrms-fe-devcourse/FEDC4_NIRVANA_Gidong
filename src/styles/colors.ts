@@ -9,6 +9,7 @@ export const color = {
   orange: '#ff9900',
   pastelBlueLight: '#c9d0e9',
   white: '#ffffff',
+  white900: '#f9f9f9',
   white800: '#eeeeee',
   white600: '#e4e4e4',
   white500: '#d9d9d9',
