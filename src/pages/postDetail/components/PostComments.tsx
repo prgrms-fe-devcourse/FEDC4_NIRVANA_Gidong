@@ -16,7 +16,7 @@ const PostComments = ({ comments }: PostCommentsProps) => {
       {comments?.map((comment: Comment) => (
         <PostComment
           key={comment._id}
-          userId={comment._id}
+          author={comment.author}
           text={comment.comment}
         />
       ))}

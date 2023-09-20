@@ -6,26 +6,27 @@ import {
   PostCommentContentContainer
 } from './PostComment.style';
 import { UserId, UserName } from '@components/UserText';
+import { User } from '@/types/User';
 
 interface PostCommentProps {
-  userId: string;
+  author: User;
   text: string;
 }
 
-const PostComment = ({ text }: PostCommentProps) => {
+const PostComment = ({ author, text }: PostCommentProps) => {
   return (
     <PostCommentContainer>
       <PostCommentAvatarContainer>
         <Avatar
           size={39}
-          src='https://avatars.githubusercontent.com/u/26498437?v=4'
-          alt='testMan'
+          src={author.image ? author.image : ''}
+          alt={author.fullName}
         />
       </PostCommentAvatarContainer>
       <PostCommentContentContainer>
         <PostCommentUserContainer>
-          <UserName>testMan</UserName>
-          <UserId email='testman@naver.com' />
+          <UserName>{author.fullName}</UserName>
+          <UserId email={author.email} />
         </PostCommentUserContainer>
         {text}
       </PostCommentContentContainer>

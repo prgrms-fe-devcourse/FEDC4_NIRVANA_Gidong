@@ -5,6 +5,6 @@ export const PostCommentsSection = styled.section`
   flex: 1;
   overflow: scroll;
   > div:first-of-type {
-    margin-top: 30px;
+    margin-top: 40px;
   }
 `;

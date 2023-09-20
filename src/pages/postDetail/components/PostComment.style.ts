@@ -10,6 +10,7 @@ export const PostCommentAvatarContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter}
   height: 50px;
   width: 50px;
+  min-width: 50px;
   margin-right: 10px;
 `;
 

@@ -21,7 +21,6 @@ export const PostDetail = () => {
         postId={postId}
         avatarSrc=''
         refetch={() => {
-          console.log('refetch');
           refetch();
         }}
       />
