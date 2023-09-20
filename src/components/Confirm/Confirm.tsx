@@ -17,6 +17,7 @@ interface ConfirmProps {
   nextPageLink: string;
   CancelButton: React.ReactNode | (() => JSX.Element);
   ConfirmButton: React.ReactNode | (() => JSX.Element);
+  linkState: { [key: string]: any };
 }
 
 const Confirm = ({
@@ -24,6 +25,7 @@ const Confirm = ({
   content,
   contentFontSize = 16,
   nextPageLink,
+  linkState,
   CancelButton,
   ConfirmButton
 }: Partial<ConfirmProps>) => {
@@ -45,7 +47,11 @@ const Confirm = ({
             <CancelButtonDefaultEvent onClick={() => setDisabled(true)}>
               {FormedCancelButton}
             </CancelButtonDefaultEvent>
-            <Link pageLink={nextPageLink}>{FormedConfirmlButton}</Link>
+            <Link
+              pageLink={nextPageLink}
+              state={{ linkState }}>
+              {FormedConfirmlButton}
+            </Link>
           </NavButtonContainer>
         </ContentContainer>
       </StyledConfirmBackground>
