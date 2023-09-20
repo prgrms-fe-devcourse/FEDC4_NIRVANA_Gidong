@@ -1,5 +1,5 @@
 import { useQueries } from '@tanstack/react-query';
-import { Follow } from '@/types';
+import { Follow, User } from '@/types';
 import { getFollowUser } from '@apis/follow';
 import { FollowUser } from '@pages/profile/components';
 
@@ -32,7 +32,14 @@ const FollowUsers = ({ following, data = dumyData }: FollowUsersProps) => {
     queries: data.map((element) => {
       return {
         queryKey: ['followUser', element._id],
-        queryFn: () => getFollowUser(element.user, element)
+        queryFn: () => getFollowUser(element.user),
+        select: (data: User) => {
+          return {
+            ...element,
+            user: data
+          };
+        },
+        enabled: data.length > 0
       };
     })
   });

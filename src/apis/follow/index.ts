@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@constants/Api';
-import { Follow } from '@/types';
 
 const postFollowUser = async (userId: string, token: string) => {
   const response = await axios.post(
@@ -25,13 +24,9 @@ const deleteFollowUser = async (userId: string, token: string) => {
   return response.data;
 };
 
-const getFollowUser = async (userId: string, element: Follow) => {
+const getFollowUser = async (userId: string) => {
   const response = await axios.get(`${API_BASE_URL}/users/${userId}`);
-  return {
-    _id: element._id,
-    user: response.data,
-    follower: element.user
-  };
+  return response.data;
 };
 
 export { postFollowUser, deleteFollowUser, getFollowUser };
