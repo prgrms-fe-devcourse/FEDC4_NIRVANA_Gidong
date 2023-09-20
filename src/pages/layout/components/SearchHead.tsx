@@ -10,9 +10,16 @@ import {
 interface SearchHeadProps {
   handleShowSearch: () => void;
   search: boolean;
+  inputValue: string;
+  handleChangeInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SearchHead = ({ handleShowSearch, search }: SearchHeadProps) => {
+const SearchHead = ({
+  handleShowSearch,
+  search,
+  inputValue,
+  handleChangeInput
+}: SearchHeadProps) => {
   return (
     <SearchHeadContainer>
       <Button
@@ -26,7 +33,13 @@ const SearchHead = ({ handleShowSearch, search }: SearchHeadProps) => {
         />
       </Button>
       <SearchBox>
-        <SearchInput placeholder='사용자나 게시물을 검색하세요' />
+        <SearchInput
+          placeholder='사용자나 게시물을 검색하세요'
+          value={inputValue}
+          onChange={(event) => {
+            handleChangeInput(event);
+          }}
+        />
         <SearchButton
           handleClick={() => {}}
           search={search}
