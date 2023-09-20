@@ -21,7 +21,7 @@ const Link = ({
 }: Partial<LinkProps>) => {
   return (
     <StyledNavLink
-      state={{ state }}
+      state={{ ...state }}
       to={pageLink}
       size={size}
       color={color}>

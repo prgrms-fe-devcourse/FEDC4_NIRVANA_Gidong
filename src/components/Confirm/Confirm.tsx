@@ -48,7 +48,7 @@ const Confirm = ({
             </CancelButtonDefaultEvent>
             <Link
               pageLink={nextPageLink}
-              state={{ linkState }}>
+              state={{ ...linkState }}>
               {FormedConfirmlButton}
             </Link>
           </NavButtonContainer>
