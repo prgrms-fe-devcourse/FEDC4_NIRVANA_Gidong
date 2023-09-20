@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@components/Button';
@@ -22,6 +22,18 @@ const NewPost = ({ channelId, customToken }: NewPostProps) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
   const navigate = useNavigate();
+  let timer = useRef(null);
+
+  const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = event.target;
+
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+    timer.current = setTimeout(() => {
+      sessionStorage.setItem('posting', value);
+    }, 200);
+  };
 
   const handlePostButton = () => {
     setShowConfirm(true);
@@ -51,6 +63,9 @@ const NewPost = ({ channelId, customToken }: NewPostProps) => {
       )}
       <PostContainer>
         <StyledTextArea
+          onChange={(event) => {
+            handleTextChange(event);
+          }}
           ref={contentRef}
           required
           maxLength={500}
