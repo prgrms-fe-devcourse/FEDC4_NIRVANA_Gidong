@@ -34,7 +34,6 @@ const Confirm = ({
     typeof CancelButton === 'function' ? CancelButton() : CancelButton;
   const FormedConfirmlButton =
     typeof ConfirmButton === 'function' ? ConfirmButton() : ConfirmButton;
-  return (
   return createPortal(
     <StyledDeemBackground disabled={disabled}>
       <StyledConfirmBackground
