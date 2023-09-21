@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HeaderSection, HeaderNav } from './Header.style';
+import { HeaderSection } from './Header.style';
 import { PathNav, EtcNav, Search } from '@pages/layout/components';
 
 interface HeaderProps {
@@ -21,13 +21,13 @@ const Header = ({ backLink }: HeaderProps) => {
           handleShowSearchBox={handleShowSearchBox}
         />
       ) : (
-        <HeaderNav>
+        <>
           <PathNav backLink={backLink} />
           <EtcNav
             handleShowSearchBox={handleShowSearchBox}
             showSearchBox={showSearchBox}
           />
-        </HeaderNav>
+        </>
       )}
     </HeaderSection>
   );

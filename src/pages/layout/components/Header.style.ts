@@ -12,5 +12,3 @@ export const HeaderSection = styled.header<{ showSearchBox: boolean }>`
       : `justify-content : space-between;
        padding: 0 18px;`};
 `;
-
-export const HeaderNav = styled.div``;
