@@ -7,9 +7,10 @@ import {
   PostDetailInfoContainer,
   UserNameContainer
 } from './PostPreview.style';
+import { Link } from '@components/Link';
 
 interface PostHeaderProps {
-  post: Pick<Post, 'image' | 'title' | 'author' | 'createdAt'>;
+  post: Pick<Post, '_id' | 'image' | 'title' | 'author' | 'createdAt'>;
   totalLikes: number;
   totalComments: number;
   noneProfile: boolean;
@@ -30,34 +31,38 @@ const PostHeader = ({
   return (
     <>
       {!noneProfile && (
-        <>
-          <AvatarContainer>
+        <AvatarContainer>
+          <Link pageLink={`/profile/:${post.author}`}>
             <Avatar
               alt={'유저 프로필'}
               src={image}
-              size={25}
+              size={35}
             />
-          </AvatarContainer>
-          <PostInfoContainer>
-            <UserNameContainer>{author.fullName}</UserNameContainer>
-          </PostInfoContainer>
-        </>
+          </Link>
+        </AvatarContainer>
       )}
-      <PostDetailInfoContainer>
-        {createdAt}
-        {iconDescription.map((iconInfo, index) => {
-          return (
-            <div key={index}>
-              <Icon
-                name={iconInfo.name}
-                size={iconInfo.size}
-                color={'greyLight'}
-              />
-              {iconInfo.total}
-            </div>
-          );
-        })}
-      </PostDetailInfoContainer>
+      <PostInfoContainer>
+        <Link pageLink={`/post-detail/${post._id}`}>
+          {!noneProfile && (
+            <UserNameContainer>{author.fullName}</UserNameContainer>
+          )}
+          <PostDetailInfoContainer>
+            {createdAt}
+            {iconDescription.map((iconInfo, index) => {
+              return (
+                <div key={index}>
+                  <Icon
+                    name={iconInfo.name}
+                    size={iconInfo.size}
+                    color={'greyLight'}
+                  />
+                  {iconInfo.total}
+                </div>
+              );
+            })}
+          </PostDetailInfoContainer>
+        </Link>
+      </PostInfoContainer>
     </>
   );
 };
