@@ -70,7 +70,7 @@ const MeditationTimeSetter = () => {
   });
 
   const handleTime = (buttonType: string) => {
-    if (time === 0 && buttonType === BUTTON_TYPE_SUB) {
+    if (time <= 240 && buttonType === BUTTON_TYPE_SUB) {
       return;
     }
     if (buttonType === BUTTON_TYPE_ADD) {
