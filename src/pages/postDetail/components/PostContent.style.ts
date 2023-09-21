@@ -28,9 +28,13 @@ export const PostContentUserName = styled.div`
   > span:first-of-type {
     margin-right: 2px;
   }
+  margin-bottom: 3px;
 `;
 
-export const PostContentTime = styled.div``;
+export const PostContentTime = styled.div`
+  color: ${({ theme }) => theme.color.greyLight};
+  font-size: 12px;
+`;
 
 export const PostContentMenu = styled.div`
   ${({ theme }) => theme.style.flexCenter}

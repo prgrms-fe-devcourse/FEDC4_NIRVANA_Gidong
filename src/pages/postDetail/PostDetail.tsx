@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { PostCommentInput, PostComments, PostContent } from './components';
 import { PostDetailPage } from './PostDetail.style';
 import { getPost } from '@apis/posts';
+import formatDate from '@utils/formatDate';
 
 export const PostDetail = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -20,7 +21,7 @@ export const PostDetail = () => {
       <PostContent
         author={data?.author}
         title={data?.title}
-        createdAt={data?.createdAt}
+        createdAt={formatDate(data?.createdAt)}
       />
       <PostCommentInput
         postId={postId}
