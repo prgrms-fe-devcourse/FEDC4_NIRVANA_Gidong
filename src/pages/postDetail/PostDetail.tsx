@@ -3,6 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 import { PostCommentInput, PostComments, PostContent } from './components';
 import { PostDetailPage } from './PostDetail.style';
 import { getPost } from '@apis/posts';
+import useSessionStorage from '@hooks/useSessionStorage';
+import { User } from '@/types/User';
+import { checkLike } from './utils';
 import formatDate from '@utils/formatDate';
 
 export const PostDetail = () => {
@@ -13,6 +16,14 @@ export const PostDetail = () => {
     queryFn: async () => getPost(postId),
     enabled: !!postId
   });
+
+  const [{ token, _id }] = useSessionStorage<Pick<User, '_id' | 'token'>>(
+    'userData',
+    {
+      _id: '',
+      token: ''
+    }
+  );
 
   console.log(data);
 
@@ -25,12 +36,23 @@ export const PostDetail = () => {
       />
       <PostCommentInput
         postId={postId}
+        token={'Bearer ' + token}
         avatarSrc=''
         refetch={() => {
           refetch();
         }}
       />
-      <PostComments comments={data?.comments} />
+      <PostComments
+        postId={postId}
+        currentUserId={_id}
+        token={'Bearer ' + token}
+        refetch={() => {
+          refetch();
+        }}
+        comments={data?.comments}
+        likedThisPost={checkLike(data?.likes, _id)}
+        likeCounts={data?.likes.length}
+      />
     </PostDetailPage>
   );
 };
