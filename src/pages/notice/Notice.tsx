@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { getNotifications, putNotifications } from '@apis/notice';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types/User';
@@ -16,21 +17,20 @@ const Notice = () => {
     }
   );
 
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      const res = await getNotifications(
-        `Bearer ${userSessionData.token}`
-      ).then((res) => res.filter((item: Notification) => !item.seen));
-      setList(res);
-      await putNotifications(`Bearer ${userSessionData.token}`);
-    };
+  const fetchNotifications = async () => {
+    const res = await getNotifications(`Bearer ${userSessionData.token}`).then(
+      (res) => res.filter((item: Notification) => !item.seen)
+    );
+    setList(res);
+    await putNotifications(`Bearer ${userSessionData.token}`);
+    return res;
+  };
 
-    fetchNotifications();
-
-    const intervalId = setInterval(fetchNotifications, 3000);
-
-    return () => clearInterval(intervalId);
-  }, [userSessionData.token]);
+  useQuery({
+    queryKey: ['notifications'],
+    queryFn: () => fetchNotifications(),
+    refetchInterval: 3000
+  });
 
   return (
     <NoticePage>
