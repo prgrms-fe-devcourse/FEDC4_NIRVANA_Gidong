@@ -12,42 +12,35 @@ import {
   ThemePickerContainer,
   PostsContainer
 } from './Posts.style';
+import { useQuery } from '@tanstack/react-query';
 
 const Posts = () => {
   const postsRef = useRef(null);
-  const [postsData, setPostsData] = useState<Post[]>([]);
   const [offset, setOffset] = useState(0);
   const [observe] = useObserver(() => setOffset(offset + 11));
   const [channelId, setChannelId] = useState('65017a41dfe8db5726b603a7');
   const channelInfo = new Map(meditationChannelInfo);
 
-  const fetchMorePosts = useCallback(async () => {
-    if (offset > 0 && postsData.length >= 10) {
+  const { data: postsData } = useQuery({
+    queryKey: ['getChannelPosts', channelId, offset],
+    queryFn: async () => {
       const data = await getPosts(channelId, offset);
-      const editedData = editPostData(data.data);
+      const editedData = editPostData(data);
 
-      setPostsData([...postsData, ...editedData]);
+      return offset === 0 ? editedData : [...data, ...editedData];
     }
-  }, [offset]);
+  });
 
-  const fetchNewChannel = useCallback(async () => {
-    const data = await getPosts(channelId, 0);
-    const reformedData = editPostData(data.data);
-
-    setPostsData(reformedData);
+  useEffect(() => {
     setOffset(0);
   }, [channelId]);
 
   useEffect(() => {
-    fetchNewChannel();
-  }, [channelId]);
-
-  useEffect(() => {
-    fetchMorePosts();
-  }, [offset]);
-
-  useEffect(() => {
-    if (postsRef && postsRef.current) {
+    if (
+      postsRef &&
+      postsRef.current &&
+      postsRef.current.childNodes.length >= 10
+    ) {
       const { lastChild } = postsRef.current;
       lastChild && observe(lastChild);
     }
@@ -67,15 +60,16 @@ const Posts = () => {
         />
       </ThemePickerContainer>
       <PostsContainer ref={postsRef}>
-        {postsData.map((post: Post, index) => (
-          <PostPreview
-            key={index}
-            post={post}
-            totalLikes={post.likes.length}
-            totalComments={post.comments.length}
-            noneProfile={false}
-          />
-        ))}
+        {postsData &&
+          postsData.map((post: Post, index) => (
+            <PostPreview
+              key={index}
+              post={post}
+              totalLikes={post.likes.length}
+              totalComments={post.comments.length}
+              noneProfile={false}
+            />
+          ))}
       </PostsContainer>
     </StyledPostsPage>
   );
