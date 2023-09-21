@@ -11,6 +11,9 @@ export const PreviewContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border-bottom: 0.5px solid ${({ theme }) => theme.color.greyLight};
+  &:hover {
+    background-color: ${({ theme }) => theme.color.white900};
+  }
 `;
 
 export const PostHeaderContainer = styled.div`
@@ -64,9 +67,13 @@ export const PostDetailInfoContainer = styled.div`
   }
 `;
 
+export const PostContentContainer = styled.div`
+  width: 100%;
+`;
+
 export const PostContent = styled.div`
   width: 100%;
-  height: 100px;
+  height: 70px;
   padding: 5px 10px;
   font-size: 16px;
   display: -webkit-box;

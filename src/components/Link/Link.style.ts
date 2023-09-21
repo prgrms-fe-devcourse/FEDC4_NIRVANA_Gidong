@@ -5,6 +5,7 @@ export const StyledNavLink = styled(NavLink)<{ size: number; color: string }>`
   color: ${({ theme, color }) => theme.color[color]};
   font-size: ${({ size }) => size}px;
   text-decoration: none;
+  text-align: left;
   &.active {
     font-weight: bold;
     text-decoration: underline;

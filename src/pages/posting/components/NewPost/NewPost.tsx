@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
-import { createFormData, validateContent } from '@pages/posting/utils';
+import { createFormData, purifyContent } from '@pages/posting/utils';
 import { Button } from '@components/Button';
 import useDebounce from '@hooks/useDebounce';
 import useSessionStorage from '@hooks/useSessionStorage';
@@ -23,12 +23,13 @@ interface MeditationInfo {
 
 interface NewPostProps {
   meditationInfo: MeditationInfo;
-  customToken?: string;
+  customToken: string;
 }
 
 const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
-  const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
   const navigate = useNavigate();
+  const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
+  const [showConfirm, setShowConfirm] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [posting, setPosting] = useState('');
   const [prevPosting, savePosting] = useSessionStorage('posting', {
@@ -51,12 +52,16 @@ const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
     setShowConfirm(false);
   };
 
-  const handleConfirmButton = async () => {
-    if (validateContent(posting)) {
+  const handleConfirmButton = () => {
+    if (content.length > 0) {
       sessionStorage.removeItem('posting');
-      const formData = createFormData(posting, meditationInfo.channelId);
+      const customTitle = {
+        title: purifyContent(posting),
+        meditationTime: `${meditationTime / 60}`
+      };
+      const formData = createFormData(JSON.stringify(customTitle), channelId);
 
-      await postCreateNewPost(customToken, formData).then(() => {
+      postCreateNewPost(customToken, formData).then(() => {
         navigate('/posts');
       });
     }
