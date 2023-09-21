@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@constants/Api';
+import { Notification } from '@/types/Notification';
 
 interface postNotificationsParams {
   notificationType: 'COMMENT' | 'FOLLOW' | 'LIKE' | 'MESSAGE';
@@ -9,11 +10,14 @@ interface postNotificationsParams {
 }
 
 const getNotifications = async (token: string) => {
-  const response = await axios.get(`${API_BASE_URL}/notifications`, {
-    headers: {
-      Authorization: token
+  const response = await axios.get<Notification[]>(
+    `${API_BASE_URL}/notifications`,
+    {
+      headers: {
+        Authorization: token
+      }
     }
-  });
+  );
   return response.data;
 };
 
@@ -30,7 +34,7 @@ const postNotifications = async (
   token: string,
   notificationData: postNotificationsParams
 ) => {
-  const response = await axios.post(
+  const response = await axios.post<Notification>(
     `${API_BASE_URL}/notifications/create`,
     notificationData,
     {
