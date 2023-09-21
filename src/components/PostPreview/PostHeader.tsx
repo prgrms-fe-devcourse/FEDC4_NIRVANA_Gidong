@@ -32,7 +32,9 @@ const PostHeader = ({
     <>
       {!noneProfile && (
         <AvatarContainer>
-          <Link pageLink={`/profile/:${post.author}`}>
+          <Link
+            pageLink={`/profile/:${post.author}`}
+            color='black'>
             <Avatar
               alt={'유저 프로필'}
               src={image}
@@ -42,7 +44,9 @@ const PostHeader = ({
         </AvatarContainer>
       )}
       <PostInfoContainer>
-        <Link pageLink={`/post-detail/${post._id}`}>
+        <Link
+          pageLink={`/post-detail/${post._id}`}
+          color='black'>
           {!noneProfile && (
             <UserNameContainer>{author.fullName}</UserNameContainer>
           )}
