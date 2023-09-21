@@ -33,7 +33,9 @@ const PostPreview = ({
           noneProfile={noneProfile}
         />
       </PostHeaderContainer>
-      <Link pageLink={`/post-detail/:${post._id}`}>
+      <Link
+        pageLink={`/post-detail/:${post._id}`}
+        color='black'>
         <PostContent>{previewTitle}...</PostContent>
       </Link>
     </PreviewContainer>
