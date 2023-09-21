@@ -7,6 +7,7 @@ interface ButtonProps {
   label?: string;
   handleClick?: () => void;
   bold?: boolean;
+  textColor?: string;
   fontSize?: number;
   borderRadius?: number;
   children?: React.ReactNode;
@@ -19,6 +20,7 @@ const Button = ({
   handleClick,
   dark,
   bold,
+  textColor,
   fontSize,
   borderRadius,
   children
@@ -28,6 +30,7 @@ const Button = ({
     height={height}
     onClick={handleClick}
     dark={dark}
+    textColor={textColor}
     bold={bold}
     fontSize={fontSize}
     borderRadius={borderRadius}>
