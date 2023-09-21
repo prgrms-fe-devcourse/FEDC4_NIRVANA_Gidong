@@ -11,30 +11,22 @@ import { Avatar } from '@components/Avatar';
 import { useRef } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { postComment } from '@apis/comment';
-import useSessionStorage from '@hooks/useSessionStorage';
-import { User } from '@/types/User';
 
 interface PostCommentInputProps {
   postId: string;
+  token: string;
   avatarSrc: string;
   refetch: () => void;
 }
 
 const PostCommentInput = ({
   avatarSrc,
+  token,
   postId,
   refetch
 }: PostCommentInputProps) => {
   const COMMENT_PLACEHOLDER = '댓글을 달아보세요.';
   const commentRef = useRef(null);
-
-  const [{ token }] = useSessionStorage<Pick<User, '_id' | 'token'>>(
-    'userData',
-    {
-      _id: '',
-      token: ''
-    }
-  );
 
   const { mutate, isSuccess } = useMutation(postComment);
 
@@ -47,7 +39,7 @@ const PostCommentInput = ({
     mutate({
       postId,
       comment: commentRef.current.value,
-      token: 'Bearer ' + token
+      token
     });
     commentRef.current.value = '';
   };
