@@ -30,7 +30,6 @@ const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
   const navigate = useNavigate();
   const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
   const [showConfirm, setShowConfirm] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
   const [posting, setPosting] = useState('');
   const [prevPosting, savePosting] = useSessionStorage('posting', {
     posting,
@@ -53,13 +52,16 @@ const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
   };
 
   const handleConfirmButton = () => {
-    if (content.length > 0) {
+    if (posting.length > 0) {
       sessionStorage.removeItem('posting');
       const customTitle = {
         title: purifyContent(posting),
-        meditationTime: `${meditationTime / 60}`
+        meditationTime: `${meditationInfo.totalTime / 60}`
       };
-      const formData = createFormData(JSON.stringify(customTitle), channelId);
+      const formData = createFormData(
+        JSON.stringify(customTitle),
+        meditationInfo.channelId
+      );
 
       postCreateNewPost(customToken, formData).then(() => {
         navigate('/posts');
