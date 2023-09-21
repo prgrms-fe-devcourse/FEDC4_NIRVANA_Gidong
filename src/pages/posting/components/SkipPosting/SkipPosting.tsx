@@ -19,6 +19,7 @@ const SkipPosting = ({ channelId, customToken }: SkipPostingProps) => {
 
   const handleClickSkipPost = () => {
     setShowConfirm(true);
+    sessionStorage.removeItem('posting');
   };
 
   const handleCancelButton = () => {
