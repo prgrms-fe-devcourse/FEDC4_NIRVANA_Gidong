@@ -4,10 +4,10 @@ import { ButtonBox } from './SearchButton.style';
 
 interface SearchButton {
   handleClickButton?: () => void;
-  showSearchBox: boolean;
+  searchStatus: boolean;
 }
 
-const SearchButton = ({ handleClickButton, showSearchBox }: SearchButton) => {
+const SearchButton = ({ handleClickButton, searchStatus }: SearchButton) => {
   return (
     <ButtonBox>
       <Button
@@ -16,7 +16,7 @@ const SearchButton = ({ handleClickButton, showSearchBox }: SearchButton) => {
         handleClick={handleClickButton}>
         <Icon
           name='search'
-          color={showSearchBox ? 'greyLight' : 'white'}
+          color={searchStatus ? 'greyLight' : 'white'}
           size={24}
         />
       </Button>

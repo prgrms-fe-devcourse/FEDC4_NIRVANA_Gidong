@@ -40,7 +40,7 @@ const SearchHead = ({
             handleChangeInput(event);
           }}
         />
-        <SearchButton showSearchBox={showSearchBox} />
+        <SearchButton searchStatus={showSearchBox} />
       </SearchBox>
     </SearchHeadContainer>
   );

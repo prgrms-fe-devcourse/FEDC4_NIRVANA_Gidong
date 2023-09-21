@@ -1,7 +1,7 @@
 import { Icon } from '@components/Icon';
 import { Link } from '@components/Link';
 import { AlertButton, SearchButton } from '@pages/layout/components';
-import { EtcNavContainer } from './EtcNav.style';
+import { EtcNavContainer } from './IconNav.style';
 
 interface EtcNavProps {
   handleShowSearchBox: () => void;
@@ -13,7 +13,7 @@ const EtcNav = ({ handleShowSearchBox, showSearchBox }: EtcNavProps) => {
     <EtcNavContainer>
       <SearchButton
         handleClickButton={handleShowSearchBox}
-        showSearchBox={showSearchBox}
+        searchStatus={showSearchBox}
       />
       <AlertButton />
       <Link pageLink='/message'>
