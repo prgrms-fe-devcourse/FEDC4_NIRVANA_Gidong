@@ -87,17 +87,14 @@ const MeditationTimeSetter = () => {
     if (buttonType === BUTTON_TYPE_ADD) {
       longClickIdRef.current = setInterval(() => {
         setTime((prevTime) => {
-          if (prevTime < 3600) {
-            return prevTime + FIVE_MINUTES_IN_SECONDS;
-          }
-          return prevTime;
+          return prevTime + FIVE_MINUTES_IN_SECONDS;
         });
       }, 100);
     } else {
       longClickIdRef.current = setInterval(() => {
         setTime((prevTime) => {
           if (prevTime > 0) {
-            return prevTime - FIVE_MINUTES_IN_SECONDS;
+            prevTime -= FIVE_MINUTES_IN_SECONDS;
           }
           return prevTime;
         });
