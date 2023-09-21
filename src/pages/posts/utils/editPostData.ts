@@ -1,10 +1,13 @@
-import type { Post } from '@types/index';
+import type { Post } from '@/types';
 
 const editTimeForm = (time: string) => {
   return time.split('T')[0].split('-').join('.');
 };
 
 const editPostData = (posts: Post[]): Post[] => {
+  if (!posts) {
+    return [];
+  }
   const editData = posts.map((post: Post) => {
     post.createdAt = editTimeForm(post.createdAt);
     post.updatedAt = editTimeForm(post.updatedAt);
