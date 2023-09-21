@@ -7,6 +7,7 @@ import { User, Post } from '@/types';
 import { FollowUserInfo } from '@pages/profile/components';
 import { PostPreview } from '@components/PostPreview';
 import encodeURIValue from '../utils/encodeURIValue';
+import isPost from '../types/typeGuard';
 
 interface SearchMainProps {
   inputValue: string;
@@ -31,12 +32,6 @@ const SearchMain = ({ inputValue }: SearchMainProps) => {
 
   const handleChangeFilter = (theme: string) => {
     setSearchFilter(theme);
-  };
-
-  const isPost = (arg: User | Post): arg is Post => {
-    if ('title' in arg) {
-      return arg.title !== undefined;
-    }
   };
 
   const filteredData = data?.filter((element: User | Post) => {
