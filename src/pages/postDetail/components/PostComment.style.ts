@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const PostCommentContainer = styled.div`
   display: flex;
   width: 100%;
-  padding: 10px;
+  margin-bottom: 15px;
 `;
 
 export const PostCommentAvatarContainer = styled.div`

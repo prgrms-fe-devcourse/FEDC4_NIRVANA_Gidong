@@ -2,11 +2,12 @@ import styled from '@emotion/styled';
 
 export const CommentInputSection = styled.section`
   ${({ theme }) => theme.style.flexCenter}
-  width: 100%;
-  padding: 10px;
-  height: 80px;
   border-top: 1px solid ${({ theme }) => theme.color.greyLight};
   border-bottom: 1px solid ${({ theme }) => theme.color.greyLight};
+  background-color: ${({ theme }) => theme.color.white};
+  padding: 20px 0;
+  width: 100%;
+  height: 100px;
 `;
 
 export const CommentAvatarContainer = styled.div`
@@ -35,7 +36,9 @@ export const CommentButtonContainer = styled.div`
 `;
 
 export const CommentInput = styled.input`
+  padding: 0px;
   width: 100%;
+  height: 100%;
   flex: 1;
   font-size: 16px;
   border: none;

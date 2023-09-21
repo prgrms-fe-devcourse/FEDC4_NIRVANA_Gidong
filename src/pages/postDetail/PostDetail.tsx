@@ -1,22 +1,27 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { PostCommentInput, PostComments } from './components';
+import { PostCommentInput, PostComments, PostContent } from './components';
 import { PostDetailPage } from './PostDetail.style';
 import { getPost } from '@apis/posts';
 
 export const PostDetail = () => {
   const { postId } = useParams<{ postId: string }>();
 
-  const { data, refetch } = useQuery(
-    ['postDetail', postId],
-    () => getPost(postId),
-    { enabled: !!postId }
-  );
+  const { data, refetch } = useQuery({
+    queryKey: ['postDetail', postId],
+    queryFn: async () => getPost(postId),
+    enabled: !!postId
+  });
 
   console.log(data);
 
   return (
     <PostDetailPage>
+      <PostContent
+        author={data?.author}
+        title={data?.title}
+        createdAt={data?.createdAt}
+      />
       <PostCommentInput
         postId={postId}
         avatarSrc=''
