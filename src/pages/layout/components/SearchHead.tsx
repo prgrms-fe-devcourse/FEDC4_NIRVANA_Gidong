@@ -34,7 +34,7 @@ const SearchHead = ({
       </Button>
       <SearchBox>
         <SearchInput
-          placeholder='사용자나 게시물을 검색하세요'
+          placeholder='사용자나 게시물을 검색해보세요'
           value={inputValue}
           onChange={(event) => {
             handleChangeInput(event);
