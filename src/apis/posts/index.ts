@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_BASE_URL } from '@/constants/Api';
 import { Post } from '@/types';
 
-export const getPosts = async (
+const getPosts = async (
   channelId: string,
   offset: number = 0,
   limit: number = 10
@@ -20,3 +20,5 @@ export const getPosts = async (
     console.log(error);
   }
 };
+
+export { getPosts };
