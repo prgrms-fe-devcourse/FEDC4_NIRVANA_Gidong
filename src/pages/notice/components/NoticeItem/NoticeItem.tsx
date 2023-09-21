@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Comment } from '@/types/Comment';
 import { MESSAGE_TYPE, NOTICE_TYPE } from '@pages/notice/constants';
 import {
@@ -22,23 +21,18 @@ const NoticeItem = ({
   comment,
   authorName
 }: NoticeItemProps) => {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
+  const typeToMessage = (type: string) => {
     switch (type) {
       case NOTICE_TYPE.COMMENT:
-        setMessage(MESSAGE_TYPE.COMMENT);
-        break;
+        return MESSAGE_TYPE.COMMENT;
       case NOTICE_TYPE.LIKE:
-        setMessage(MESSAGE_TYPE.LIKE);
-        break;
+        return MESSAGE_TYPE.LIKE;
       case NOTICE_TYPE.FOLLOW:
-        setMessage(MESSAGE_TYPE.FOLLOW);
-        break;
+        return MESSAGE_TYPE.FOLLOW;
       default:
-        break;
+        return;
     }
-  }, [type]);
+  };
 
   return (
     <NoticeItemContainer>
@@ -46,7 +40,7 @@ const NoticeItem = ({
       <NoticeContent>
         <Message>
           <span>{authorName}</span>
-          {message}
+          {typeToMessage(type)}
         </Message>
         {type === NOTICE_TYPE.COMMENT && (
           <MessagePreview>{comment && comment.comment}</MessagePreview>
