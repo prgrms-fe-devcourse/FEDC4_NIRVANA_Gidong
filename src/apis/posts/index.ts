@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@/constants/Api';
+import { Post } from '@/types';
 
 export const getPosts = async (
   channelId: string,
@@ -12,7 +13,7 @@ export const getPosts = async (
       offset: `${offset}`,
       limit: `${limit}`
     });
-    const response = axios.get(`${url}?${params}`);
+    const response = axios.get<Post[]>(`${url}?${params}`);
 
     return response;
   } catch (error) {
