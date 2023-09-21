@@ -12,6 +12,7 @@ const NoticeList = ({ list }: NoticeListProps) => {
     <NoticeListContainer>
       {list.map((notice) => (
         <NoticeItem
+          notification={notice}
           authorName={notice.author.fullName}
           key={notice._id}
           profileImage={notice.author.image}

@@ -1,5 +1,8 @@
+import { useEffect, useState } from 'react';
 import { Comment } from '@/types/Comment';
+import { Notification } from '@/types/Notification';
 import { MESSAGE_TYPE, NOTICE_TYPE } from '@pages/notice/constants';
+import GoToNotificationOrigin from '@pages/notice/utils/GoToNotificationOrigin';
 import {
   NoticeItemContainer,
   NoticeContent,
@@ -13,14 +16,17 @@ interface NoticeItemProps {
   type: string;
   comment?: Comment | null;
   authorName: string;
+  notification: Notification;
 }
 
 const NoticeItem = ({
   profileImage,
   type,
   comment,
-  authorName
+  authorName,
+  notification
 }: NoticeItemProps) => {
+  const [typeId, setTypeId] = useState('');
   const typeToMessage = (type: string) => {
     switch (type) {
       case NOTICE_TYPE.COMMENT:
@@ -35,7 +41,8 @@ const NoticeItem = ({
   };
 
   return (
-    <NoticeItemContainer>
+    <NoticeItemContainer
+      onClick={() => GoToNotificationOrigin({ type, id: typeId })}>
       <ProfileImage profileImage={profileImage} />
       <NoticeContent>
         <Message>
