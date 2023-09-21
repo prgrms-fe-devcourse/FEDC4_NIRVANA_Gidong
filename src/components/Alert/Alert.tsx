@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import {
   StyledDeemBackground,
   StyledAlertBackground,
@@ -32,7 +33,7 @@ const Alert = ({
 }: Partial<AlertProps>) => {
   const [disabled, setDisabled] = useState(false);
 
-  return (
+  return createPortal(
     <StyledDeemBackground disabled={disabled}>
       <StyledAlertBackground
         width={width}
@@ -63,7 +64,8 @@ const Alert = ({
           </NavButtonContainer>
         </ContentContainer>
       </StyledAlertBackground>
-    </StyledDeemBackground>
+    </StyledDeemBackground>,
+    document.getElementById('root-modal')
   );
 };
 export default Alert;

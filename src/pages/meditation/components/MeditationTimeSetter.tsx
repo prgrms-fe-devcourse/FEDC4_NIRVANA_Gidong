@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { Icon } from '@components/Icon';
 import {
   BUTTON_TYPE_ADD,
@@ -15,19 +16,36 @@ import {
   TimeSetterContainer
 } from './MeditationTimeSetter.style';
 import MeditationEndButton from '@pages/meditation/components/MeditationEndButton';
-import { meditationTime } from '../states';
+import {
+  meditationTime,
+  pickedTheme,
+  totalMeditationTime
+} from '@pages/meditation/states';
 
 const MeditationTimeSetter = () => {
   const [time, setTime] = useRecoilState<number>(meditationTime);
+  const [totalTime, setTotalTime] = useRecoilState(totalMeditationTime);
+  const themePicked = useRecoilValue(pickedTheme);
   const [timerStarted, setTimerStarted] = useState(false);
   const [timerEnded, setTimerEnded] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const handleStartMeditation = () => {
+      if (totalTime === 0) {
+        setTotalTime(time);
+      }
       setTimerStarted(true);
     };
 
     const handleEndMeditation = () => {
+      navigate('/posting', {
+        state: {
+          channelId: themePicked.id,
+          channelLabel: themePicked.label,
+          totalTime: totalTime,
+          validation: true
+        }
+      });
       setTimerEnded(true);
     };
 
@@ -47,7 +65,7 @@ const MeditationTimeSetter = () => {
         handleEndMeditation
       );
     };
-  }, []);
+  });
 
   const handleTime = (buttonType: string) => {
     if (time === 0 && buttonType === BUTTON_TYPE_SUB) {

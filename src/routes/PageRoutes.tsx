@@ -10,6 +10,7 @@ import Posting from '@pages/posting';
 import Meditation from '@pages/meditation';
 import Setting from '@pages/setting/Setting';
 import PasswordUpdate from '@pages/password-update';
+import Posts from '@pages/posts';
 import Notice from '@pages/notice';
 
 const PageRoutes = () => {
@@ -52,6 +53,10 @@ const PageRoutes = () => {
       <Route
         path='/signup'
         element={<SignUp />}
+      />
+      <Route
+        path='/posts'
+        element={<Posts />}
       />
       <Route
         path='/login'

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from '../Link';
 import {
   StyledDeemBackground,
@@ -27,7 +28,7 @@ const Confirm = ({
   ConfirmButton
 }: Partial<ConfirmProps>) => {
   const [disabled, setDisabled] = useState(false);
-  return (
+  return createPortal(
     <StyledDeemBackground disabled={disabled}>
       <StyledConfirmBackground
         width={330}
@@ -43,7 +44,8 @@ const Confirm = ({
           </NavButtonContainer>
         </ContentContainer>
       </StyledConfirmBackground>
-    </StyledDeemBackground>
+    </StyledDeemBackground>,
+    document.getElementById('root-modal')
   );
 };
 export default Confirm;
