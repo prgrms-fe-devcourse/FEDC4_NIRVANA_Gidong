@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback } from 'react';
 
 const useObserver = (callback: () => void) => {
   const observer = useRef(
