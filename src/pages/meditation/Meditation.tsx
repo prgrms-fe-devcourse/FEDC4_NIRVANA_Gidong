@@ -27,7 +27,7 @@ const Meditation = () => {
   return (
     <>
       <MeditationPage>
-        {!!prevPosting && (
+        {prevPosting && (
           <PrevPostingConfirm
             prevPostingInfo={prevPosting}
             handleCancelButton={handleCancelPrevPosting}
