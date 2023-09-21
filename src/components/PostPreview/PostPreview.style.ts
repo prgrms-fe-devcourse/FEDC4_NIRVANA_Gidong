@@ -67,6 +67,10 @@ export const PostDetailInfoContainer = styled.div`
   }
 `;
 
+export const PostContentContainer = styled.div`
+  width: 100%;
+`;
+
 export const PostContent = styled.div`
   width: 100%;
   height: 70px;
