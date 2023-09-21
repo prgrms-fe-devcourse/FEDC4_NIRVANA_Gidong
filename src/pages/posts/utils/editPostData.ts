@@ -5,6 +5,9 @@ const editTimeForm = (time: string) => {
 };
 
 const editPostData = (posts: Post[]): Post[] => {
+  if (!posts) {
+    return [];
+  }
   const editData = posts.map((post: Post) => {
     post.createdAt = editTimeForm(post.createdAt);
     post.updatedAt = editTimeForm(post.updatedAt);
