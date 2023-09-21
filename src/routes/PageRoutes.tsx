@@ -11,6 +11,7 @@ import Meditation from '@pages/meditation';
 import Setting from '@pages/setting/Setting';
 import PasswordUpdate from '@pages/password-update';
 import Posts from '@pages/posts';
+import Notice from '@pages/notice';
 
 const PageRoutes = () => {
   return (
@@ -32,6 +33,10 @@ const PageRoutes = () => {
           <Route
             path='/setting/password-update'
             element={<PasswordUpdate />}
+          />
+          <Route
+            path='/notice'
+            element={<Notice />}
           />
         </Route>
       </Route>
