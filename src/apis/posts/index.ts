@@ -13,9 +13,9 @@ export const getPosts = async (
       offset: `${offset}`,
       limit: `${limit}`
     });
-    const response = axios.get<Post[]>(`${url}?${params}`);
+    const response = await axios.get<Post[]>(`${url}?${params}`);
 
-    return response;
+    return response.data;
   } catch (error) {
     console.log(error);
   }
