@@ -5,16 +5,13 @@ import { style } from '@styles/styles';
 type color = typeof color;
 type style = typeof style;
 
-type c = keyof color;
-type s = keyof style;
-
 declare module '@emotion/react' {
   export interface Theme extends color, style {
     color: {
-      [key in c]: string;
+      [key in keyof color]: string;
     };
     style: {
-      [key in s]: string;
+      [key in keyof style]: string;
     };
   }
 }
