@@ -12,6 +12,7 @@ import {
 } from '@pages/meditation/constants';
 import {
   SetTimeButton,
+  TimeInput,
   TimeLabel,
   TimeSetterContainer
 } from './MeditationTimeSetter.style';
@@ -104,6 +105,15 @@ const MeditationTimeSetter = () => {
     }
   };
 
+  const handleTimeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    if (value === '') {
+      setTime(0);
+      return;
+    }
+    setTime(parseInt(value) * 60);
+  };
+
   return (
     <>
       {!timerStarted && (
@@ -121,7 +131,14 @@ const MeditationTimeSetter = () => {
               color={'white'}
             />
           </SetTimeButton>
-          <TimeLabel>{`${time / 60} 분`}</TimeLabel>
+          <TimeLabel>
+            <TimeInput
+              type={'text'}
+              value={time / 60}
+              onChange={handleTimeInput}
+            />
+            {'분'}
+          </TimeLabel>
           <SetTimeButton
             onClick={() => handleTime(BUTTON_TYPE_ADD)}
             onMouseDown={() => handleLongClick(BUTTON_TYPE_ADD)}
