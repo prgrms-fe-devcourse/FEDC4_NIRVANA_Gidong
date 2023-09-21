@@ -8,6 +8,11 @@ interface PostCommentProps {
   token: string;
 }
 
+interface DeleteCommentProps {
+  id: string;
+  token: string;
+}
+
 const postComment = async ({ postId, comment, token }: PostCommentProps) => {
   const response = await axios.post<Comment>(
     `${API_BASE_URL}/comments/create`,
@@ -21,14 +26,11 @@ const postComment = async ({ postId, comment, token }: PostCommentProps) => {
   return response.data;
 };
 
-const deleteComment = async ({
-  postId,
-  token
-}: Omit<PostCommentProps, 'comment'>) => {
+const deleteComment = async ({ id, token }: DeleteCommentProps) => {
   const response = await axios.delete<Comment>(
     `${API_BASE_URL}/comments/delete`,
     {
-      data: { id: postId },
+      data: { id },
       headers: {
         Authorization: token
       }
