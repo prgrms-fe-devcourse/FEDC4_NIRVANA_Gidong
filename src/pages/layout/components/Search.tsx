@@ -5,11 +5,11 @@ import { SearchHead, SearchMain } from '@pages/layout/components';
 const SearchContainer = styled.div``;
 
 interface SearchProps {
-  handleShowSearch: () => void;
-  search: boolean;
+  handleShowSearchBox: () => void;
+  showSearchBox: boolean;
 }
 
-const Search = ({ handleShowSearch, search }: SearchProps) => {
+const Search = ({ handleShowSearchBox, showSearchBox }: SearchProps) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,12 +19,12 @@ const Search = ({ handleShowSearch, search }: SearchProps) => {
   return (
     <SearchContainer>
       <SearchHead
-        handleShowSearch={handleShowSearch}
-        search={search}
+        handleShowSearchBox={handleShowSearchBox}
+        showSearchBox={showSearchBox}
         inputValue={inputValue}
         handleChangeInput={handleChangeInput}
       />
-      {true && <SearchMain inputValue={inputValue} />}
+      <SearchMain inputValue={inputValue} />
     </SearchContainer>
   );
 };

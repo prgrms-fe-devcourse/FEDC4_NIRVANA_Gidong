@@ -1,19 +1,19 @@
 import { Icon } from '@components/Icon';
 import { Link } from '@components/Link';
 import { AlertButton, SearchButton } from '@pages/layout/components';
-import { EctNavContainer } from './EtcNav.style';
+import { EtcNavContainer } from './EtcNav.style';
 
-interface EctNavProps {
-  handleShowSearch: () => void;
-  search: boolean;
+interface EtcNavProps {
+  handleShowSearchBox: () => void;
+  showSearchBox: boolean;
 }
 
-const EctNav = ({ handleShowSearch, search }: EctNavProps) => {
+const EtcNav = ({ handleShowSearchBox, showSearchBox }: EtcNavProps) => {
   return (
-    <EctNavContainer>
+    <EtcNavContainer>
       <SearchButton
-        handleClick={handleShowSearch}
-        search={search}
+        handleClickButton={handleShowSearchBox}
+        showSearchBox={showSearchBox}
       />
       <AlertButton />
       <Link pageLink='/message'>
@@ -23,8 +23,8 @@ const EctNav = ({ handleShowSearch, search }: EctNavProps) => {
           size={23}
         />
       </Link>
-    </EctNavContainer>
+    </EtcNavContainer>
   );
 };
 
-export default EctNav;
+export default EtcNav;

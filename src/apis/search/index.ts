@@ -8,8 +8,8 @@ const searchUser = async (query: string) => {
 };
 
 const searchPost = async (query: string) => {
-  console.log(query);
   const response = await axios.get(`${API_BASE_URL}/search/all/${query}`);
+
   return response.data;
 };
 

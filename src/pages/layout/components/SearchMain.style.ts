@@ -11,6 +11,6 @@ export const SearchMainContainer = styled.div`
 `;
 
 export const SearchResult = styled.div`
-  height: 670px;
+  height: calc(100vh - 50px - 64px - 61px);
   overflow: auto;
 `;

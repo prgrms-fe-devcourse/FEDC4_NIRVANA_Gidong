@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const EctNavContainer = styled.div`
+export const EtcNavContainer = styled.div`
   ${({ theme }) => theme.style.flexAlignCenter}
 
   & > div {

@@ -21,7 +21,7 @@ const SearchFilter = ({ handleClick, filterState }: SearchFilterProps) => {
           dark={filterState === theme}
           fontSize={14}
           borderRadius={30}
-          color='greyLight'
+          textColor='greyLight'
           handleClick={() => handleClick(theme)}>
           {text}
         </Button>
