@@ -7,9 +7,9 @@ import { createFormData, validateContent } from '@pages/posting/utils';
 import postCreateNewPost from '@apis/posting';
 import NewPostConfirm from './NewPostConfirm';
 import {
+  ButtonContainer,
   PostContainer,
-  StyledTextArea,
-  ButtonContainer
+  StyledTextArea
 } from './NewPost.style';
 
 interface NewPostProps {

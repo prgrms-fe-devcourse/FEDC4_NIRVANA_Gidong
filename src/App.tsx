@@ -6,6 +6,7 @@ import PageRoutes from './routes/PageRoutes';
 function App() {
   return (
     <>
+      <div id='root-modal'></div>
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
           <PageRoutes />
