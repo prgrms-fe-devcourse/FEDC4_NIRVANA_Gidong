@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Comment } from '@/types/Comment';
 import { Notification } from '@/types/Notification';
 import { MESSAGE_TYPE, NOTICE_TYPE } from '@pages/notice/constants';
-import GoToNotificationOrigin from '@pages/notice/utils/GoToNotificationOrigin';
+import { useNavigate } from 'react-router-dom';
+
 import {
   NoticeItemContainer,
   NoticeContent,
@@ -19,6 +20,11 @@ interface NoticeItemProps {
   notification: Notification;
 }
 
+interface GoToNotificationOriginProps {
+  type: string;
+  id: string;
+}
+
 const NoticeItem = ({
   profileImage,
   type,
@@ -27,6 +33,8 @@ const NoticeItem = ({
   notification
 }: NoticeItemProps) => {
   const [typeId, setTypeId] = useState('');
+  const navigate = useNavigate();
+
   const typeToMessage = (type: string) => {
     switch (type) {
       case NOTICE_TYPE.COMMENT:
@@ -39,6 +47,37 @@ const NoticeItem = ({
         return;
     }
   };
+
+  const GoToNotificationOrigin = ({
+    type,
+    id
+  }: GoToNotificationOriginProps) => {
+    switch (type) {
+      case NOTICE_TYPE.COMMENT:
+        navigate(`/post/${id}`);
+        return;
+      case NOTICE_TYPE.LIKE:
+        navigate(`/post/${id}`);
+        return;
+      case NOTICE_TYPE.FOLLOW:
+        navigate(`/profile/${id}`);
+        return;
+      default:
+        return;
+    }
+  };
+
+  useEffect(() => {
+    if (type === NOTICE_TYPE.COMMENT) {
+      setTypeId(notification.post);
+    }
+    if (type === NOTICE_TYPE.LIKE) {
+      setTypeId(notification.post);
+    }
+    if (type === NOTICE_TYPE.FOLLOW) {
+      setTypeId(notification.author._id);
+    }
+  }, [notification, type, typeId]);
 
   return (
     <NoticeItemContainer
