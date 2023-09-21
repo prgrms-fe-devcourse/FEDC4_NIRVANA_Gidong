@@ -3,20 +3,20 @@ import { Icon } from '@components/Icon';
 import { ButtonBox } from './SearchButton.style';
 
 interface SearchButton {
-  handleClick: () => void;
-  search: boolean;
+  handleClickButton?: () => void;
+  searchStatus: boolean;
 }
 
-const SearchButton = ({ handleClick, search }: SearchButton) => {
+const SearchButton = ({ handleClickButton, searchStatus }: SearchButton) => {
   return (
     <ButtonBox>
       <Button
         width={24}
         height={24}
-        handleClick={handleClick}>
+        handleClick={handleClickButton}>
         <Icon
           name='search'
-          color={search ? 'greyLight' : 'white'}
+          color={searchStatus ? 'greyLight' : 'white'}
           size={24}
         />
       </Button>

@@ -8,15 +8,15 @@ import {
 } from './SearchHead.style';
 
 interface SearchHeadProps {
-  handleShowSearch: () => void;
-  search: boolean;
+  handleShowSearchBox: () => void;
+  showSearchBox: boolean;
   inputValue: string;
   handleChangeInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SearchHead = ({
-  handleShowSearch,
-  search,
+  handleShowSearchBox,
+  showSearchBox,
   inputValue,
   handleChangeInput
 }: SearchHeadProps) => {
@@ -25,7 +25,7 @@ const SearchHead = ({
       <Button
         width={25}
         height={25}
-        handleClick={handleShowSearch}>
+        handleClick={handleShowSearchBox}>
         <Icon
           name='arrow_back_ios'
           color='white'
@@ -40,10 +40,7 @@ const SearchHead = ({
             handleChangeInput(event);
           }}
         />
-        <SearchButton
-          handleClick={() => {}}
-          search={search}
-        />
+        <SearchButton searchStatus={showSearchBox} />
       </SearchBox>
     </SearchHeadContainer>
   );

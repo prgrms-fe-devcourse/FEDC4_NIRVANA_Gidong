@@ -4,7 +4,7 @@ import SearchHead from './SearchHead';
 import SearchMain from './SearchMain';
 import SearchFilter from './SearchFilter';
 import PathNav from './PathNav';
-import EtcNav from './EtcNav';
+import EtcNav from './IconNav';
 import AlertButton from './AlertButton';
 import Header from './Header';
 
