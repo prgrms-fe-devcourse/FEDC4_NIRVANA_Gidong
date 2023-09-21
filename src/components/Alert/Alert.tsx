@@ -40,7 +40,7 @@ const Alert = ({
         height={height}>
         <IconContainer emojiSize={emojiSize}>{emoji}</IconContainer>
         <ContentContainer contentFontSize={contentFontSize}>
-          {content}
+          <p>{content}</p>
           <NavButtonContainer onClick={() => setDisabled(true)}>
             {nextPageLink ? (
               <Link pageLink={nextPageLink}>

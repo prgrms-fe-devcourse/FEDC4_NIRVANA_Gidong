@@ -1,9 +1,11 @@
-import { useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '@components/Button';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import { createFormData, purifyContent } from '@pages/posting/utils';
+import { Button } from '@components/Button';
+import useDebounce from '@hooks/useDebounce';
+import useSessionStorage from '@hooks/useSessionStorage';
 import postCreateNewPost from '@apis/posting';
 import NewPostConfirm from './NewPostConfirm';
 import {
@@ -12,17 +14,35 @@ import {
   StyledTextArea
 } from './NewPost.style';
 
-interface NewPostProps {
-  channelId?: string;
-  meditationTime?: number;
-  customToken?: string;
+interface MeditationInfo {
+  channelId: string;
+  validation: boolean;
+  channelLabel: string;
+  totalTime: number;
 }
 
-const NewPost = ({ channelId, meditationTime, customToken }: NewPostProps) => {
-  const contentRef = useRef(null);
-  const [showConfirm, setShowConfirm] = useState(false);
-  const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
+interface NewPostProps {
+  meditationInfo: MeditationInfo;
+  customToken: string;
+}
+
+const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
   const navigate = useNavigate();
+  const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [posting, setPosting] = useState('');
+  const [prevPosting, savePosting] = useSessionStorage('posting', {
+    posting,
+    ...meditationInfo
+  });
+  const clear = useDebounce(
+    200,
+    () => {
+      savePosting({ posting, ...meditationInfo });
+    },
+    [posting]
+  );
 
   const handlePostButton = () => {
     setShowConfirm(true);
@@ -33,10 +53,10 @@ const NewPost = ({ channelId, meditationTime, customToken }: NewPostProps) => {
   };
 
   const handleConfirmButton = () => {
-    const content: string = contentRef.current.value;
     if (content.length > 0) {
+      sessionStorage.removeItem('posting');
       const customTitle = {
-        title: purifyContent(content),
+        title: purifyContent(posting),
         meditationTime: `${meditationTime / 60}`
       };
       const formData = createFormData(JSON.stringify(customTitle), channelId);
@@ -46,6 +66,13 @@ const NewPost = ({ channelId, meditationTime, customToken }: NewPostProps) => {
       });
     }
   };
+
+  useEffect(() => {
+    if (prevPosting.posting) {
+      setPosting(prevPosting.posting);
+    }
+    return () => clear();
+  }, []);
 
   return (
     <>
@@ -57,8 +84,11 @@ const NewPost = ({ channelId, meditationTime, customToken }: NewPostProps) => {
       )}
       <PostContainer>
         <StyledTextArea
-          ref={contentRef}
+          onChange={(event) => {
+            setPosting(event.target.value);
+          }}
           required
+          value={posting}
           maxLength={500}
           placeholder={PLACEHOLDER}
         />
