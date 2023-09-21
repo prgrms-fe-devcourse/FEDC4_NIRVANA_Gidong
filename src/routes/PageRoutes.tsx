@@ -10,6 +10,7 @@ import Posting from '@pages/posting';
 import Meditation from '@pages/meditation';
 import Setting from '@pages/setting/Setting';
 import PasswordUpdate from '@pages/password-update';
+import NotFound from '@pages/NotFound';
 import Posts from '@pages/posts';
 
 const PageRoutes = () => {
@@ -44,6 +45,10 @@ const PageRoutes = () => {
       <Route
         path='/'
         element={<LandingPage />}
+      />
+      <Route
+        path='/404'
+        element={<NotFound />}
       />
       <Route
         path='/signup'
