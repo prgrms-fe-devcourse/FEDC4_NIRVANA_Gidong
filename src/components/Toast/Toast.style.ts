@@ -16,6 +16,9 @@ const ChildContainer = (backgroundColor: string, textColor: string) => {
 const StyledToast = styled.div<StyledToastProps>`
   position: absolute;
   top: 50px;
+  transition: 2s all ease-out;
+  animation: hide 2s ease-out forwards;
+  opacity: 1;
   width: ${({ width }) => (width ? `${width}px` : `100%`)};
   min-height: ${({ height }) => (height ? `${height}px` : `70px`)};
   padding-left: 30px;
@@ -36,6 +39,18 @@ const StyledToast = styled.div<StyledToastProps>`
     toastType === 'CONFIRM'
       ? ChildContainer(theme.color.bluePastel, theme.color.blue)
       : ''}
+
+  @keyframes hide {
+    0% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 `;
 
 export { StyledToast };
