@@ -1,15 +1,13 @@
 import { useEffect, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import { Button } from '@components/Button';
 import { NavContainer, ThemePickerContainer } from './ThemePicker.style';
 import PickerPreviousButton from './PickerPreviousButton';
 import PickerNextButton from './PickerNextButton';
-import {
-  EVENT_NAME_MEDITATION_ENDED,
-  EVENT_NAME_MEDITATION_STARTED,
-  CONCENTRATION_KEY
-} from '@pages/meditation/constants';
+import { EVENT_NAME_MEDITATION_STARTED } from '@pages/meditation/constants';
 import useButtonShow from './hooks/useButtonShow';
+
+import { pickedTheme } from '@pages/meditation/states';
 
 interface MeditationThemePickerProps {
   themeInfo: Map<string, { label: string; id: string }>;
@@ -23,9 +21,10 @@ const MeditationThemePicker = ({
   dark = true
 }: MeditationThemePickerProps) => {
   const [pickerShown, setPickerShown] = useState(true);
-  const [picked, setPicked] = useState(themeInfo.get(CONCENTRATION_KEY));
+  const [picked, setPicked] = useRecoilState<{ id: string; label: string }>(
+    pickedTheme
+  );
   const [scrollRef, showPrevButton, showNextButton] = useButtonShow();
-  const navigate = useNavigate();
 
   const clickPrevButton = useCallback((scrollPixel: number) => {
     scrollRef.current.scrollLeft -= scrollPixel;
@@ -39,16 +38,6 @@ const MeditationThemePicker = ({
     document.addEventListener(EVENT_NAME_MEDITATION_STARTED, () => {
       setPickerShown(false);
     });
-    document.addEventListener(EVENT_NAME_MEDITATION_ENDED, () => {
-      navigate('/posting', {
-        state: {
-          channelId: picked.id,
-          channelLabel: picked.label,
-          validation: true
-        }
-      });
-    });
-
     return () => {
       document.removeEventListener(EVENT_NAME_MEDITATION_STARTED, () =>
         setPickerShown(false)

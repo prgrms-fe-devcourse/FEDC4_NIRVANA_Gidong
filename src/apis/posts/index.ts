@@ -2,11 +2,7 @@ import axios from 'axios';
 import { API_BASE_URL } from '@/constants/Api';
 import { Post } from '@/types';
 
-const getPosts = async (
-  channelId: string,
-  offset: number = 0,
-  limit: number = 10
-) => {
+export const getPosts = async (channelId: string, offset = 0, limit = 10) => {
   try {
     const url = `${API_BASE_URL}/posts/channel/${channelId}`;
     const params = new URLSearchParams({
