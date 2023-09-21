@@ -1,47 +1,76 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-import { StyledPostsPage } from './Posts.style';
-import { PostPreview } from '@components/PostPreview';
-import useObserver from './hooks/useObserver';
+import type { Post } from '@/types';
 import { getPosts } from '@apis/posts';
+import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
+import { PostPreview } from '@components/PostPreview';
+import { ThemePicker } from '@components/ThemePicker';
+import useObserver from './hooks/useObserver';
 import { editPostData } from './utils/editPostData';
-import type { Post } from '@types/index';
+import {
+  StyledPostsPage,
+  ThemePickerContainer,
+  PostsContainer
+} from './Posts.style';
+import { useQuery } from '@tanstack/react-query';
 
 const Posts = () => {
-  const [postsData, setPostsData] = useState<Post[]>([]);
+  const postsRef = useRef(null);
   const [offset, setOffset] = useState(0);
   const [observe] = useObserver(() => setOffset(offset + 11));
-  const pageRef = useRef(null);
+  const [channelId, setChannelId] = useState('65017a41dfe8db5726b603a7');
+  const channelInfo = new Map(meditationChannelInfo);
 
-  const fetchPosts = useCallback(async () => {
-    const data = await getPosts('65003530a72a0d2e63f12878', offset);
-    const editedData = editPostData(data.data);
+  const { data: postsData } = useQuery({
+    queryKey: ['getChannelPosts', channelId, offset],
+    queryFn: async () => {
+      const data = await getPosts(channelId, offset);
+      const editedData = editPostData(data);
 
-    setPostsData([...postsData, ...editedData]);
-  }, [offset]);
+      return offset === 0 ? editedData : [...data, ...editedData];
+    }
+  });
 
   useEffect(() => {
-    fetchPosts();
-  }, [offset]);
+    setOffset(0);
+  }, [channelId]);
 
   useEffect(() => {
-    if (pageRef && pageRef.current) {
-      const { lastChild } = pageRef.current;
-      observe(lastChild);
+    if (
+      postsRef &&
+      postsRef.current &&
+      postsRef.current.childNodes.length >= 10
+    ) {
+      const { lastChild } = postsRef.current;
+      lastChild && observe(lastChild);
     }
   }, [postsData]);
 
+  const clickThemePicker = (selectedId: string) => {
+    setChannelId(selectedId);
+  };
+
   return (
-    <StyledPostsPage ref={pageRef}>
-      {postsData.map((post: Post, index) => (
-        <PostPreview
-          key={index}
-          post={post}
-          totalLikes={post.likes.length}
-          totalComments={post.comments.length}
-          noneProfile={false}
+    <StyledPostsPage>
+      <ThemePickerContainer>
+        <ThemePicker
+          themeInfo={channelInfo}
+          handleClickTheme={clickThemePicker}
+          dark={false}
         />
-      ))}
+      </ThemePickerContainer>
+      <PostsContainer ref={postsRef}>
+        {postsData &&
+          postsData.map((post: Post, index) => (
+            <PostPreview
+              key={index}
+              post={post}
+              totalLikes={post.likes.length}
+              totalComments={post.comments.length}
+              noneProfile={false}
+            />
+          ))}
+      </PostsContainer>
     </StyledPostsPage>
   );
 };
