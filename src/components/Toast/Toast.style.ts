@@ -1,43 +1,41 @@
 import styled from '@emotion/styled';
 
-interface ToastContainerProps {
+interface StyledToastProps {
   width?: number;
   height?: number;
-  type: string;
+  toastType: string;
 }
 
-const ErrorContainer = `
-  background-color: ${({ theme }) => theme.color.redPastel};
-  color: ${({ theme }) => theme.color.redVivid};
-  border-left: 10px solid ${({ theme }) => theme.color.redVivid};
-`;
-const WarningContainer = `
-  background-color: ${({ theme }) => theme.color.orangePastel};
-  color: ${({ theme }) => theme.color.orange};
-  border-left: 10px solid ${({ theme }) => theme.color.orange};
-`;
+const ChildContainer = (backgroundColor: string, textColor: string) => {
+  return `
+  background-color: ${backgroundColor};
+  color: ${textColor};
+  border-left: 10px solid ${textColor};`;
+};
 
-const ConfirmContainer = `
-  background-color: ${({ theme }) => theme.color.bluePastel};
-  color: ${({ theme }) => theme.color.blue};
-  border-left: 10px solid ${({ theme }) => theme.color.blue};
-`;
-
-const SuccessContainer = `
-  background-color: ${({ theme }) => theme.color.greenDarkPastel};
-  color: ${({ theme }) => theme.color.greenDark};
-  border-left: 10px solid ${({ theme }) => theme.color.greenDark};
-`;
-
-const ToastContainer = styled.div<ToastContainerProps>`
+const StyledToast = styled.div<StyledToastProps>`
+  position: absolute;
+  top: 50px;
   width: ${({ width }) => (width ? `${width}px` : `100%`)};
-  height: ${({ height }) => (height ? `${height}px` : `50px`)};
+  min-height: ${({ height }) => (height ? `${height}px` : `70px`)};
   padding-left: 30px;
-  {({ theme }) => theme.style.AlignCenter};
-  ${({ type }) => (type === 'ERROR' ? ErrorContainer : '')}
-  ${({ type }) => (type === 'WARNING' ? WarningContainer : '')}
-  ${({ type }) => (type === 'SUCCESS' ? SuccessContainer : '')}
-  ${({ type }) => (type === 'CONFIRM' ? ConfirmContainer : '')}
+  ${({ theme }) => theme.style.flexAlignCenter};
+  ${({ toastType, theme }) =>
+    toastType === 'ERROR'
+      ? ChildContainer(theme.color.redPastel, theme.color.redVivid)
+      : ''}
+  ${({ toastType, theme }) =>
+    toastType === 'WARNING'
+      ? ChildContainer(theme.color.orangePastel, theme.color.orange)
+      : ''}
+  ${({ toastType, theme }) =>
+    toastType === 'SUCCESS'
+      ? ChildContainer(theme.color.greenDarkPastel, theme.color.greenDark)
+      : ''}
+  ${({ toastType, theme }) =>
+    toastType === 'CONFIRM'
+      ? ChildContainer(theme.color.bluePastel, theme.color.blue)
+      : ''}
 `;
 
-export { ToastContainer };
+export { StyledToast };
