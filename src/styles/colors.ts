@@ -5,7 +5,7 @@ export const color = {
   purpleLighter: '#e8d6f8',
   purpleVivid: '#8f00ff',
   redVivid: '#bc0000',
-  redPastel: 'FFE0E0',
+  redPastel: '#FFE0E0',
   greenVivid: '#39cb47',
   greenDark: '#2D881F',
   greenDarkPastel: '#E7FFE3',
