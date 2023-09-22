@@ -20,7 +20,11 @@ const Posting = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { token } = JSON.parse(sessionStorage.getItem('userData'));
-  const [meditationInfo, setMeditationInfo] = useState<ReceiveState>();
+  const [meditationInfo, setMeditationInfo] = useState<ReceiveState>({
+    totalTime: 0,
+    channelId: '',
+    channelLabel: ''
+  });
   const { totalTime, channelLabel, channelId } = meditationInfo;
   const customToken = `bearer ${token}`;
 
