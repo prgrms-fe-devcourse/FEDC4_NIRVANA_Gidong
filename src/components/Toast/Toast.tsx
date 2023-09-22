@@ -1,13 +1,13 @@
 import { StyledToast } from './Toast.style';
 
 interface ToastProps {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   content: string;
   type: 'WARNING' | 'ERROR' | 'ALERT' | 'SUCCESS';
 }
 
-const Toast = ({ width, height, content, type }: Partial<ToastProps>) => {
+const Toast = ({ width, height, content, type }: ToastProps) => {
   return (
     <StyledToast
       width={width}
