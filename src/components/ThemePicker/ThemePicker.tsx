@@ -11,7 +11,7 @@ import { pickedTheme } from '@pages/meditation/states';
 
 interface MeditationThemePickerProps {
   themeInfo: Map<string, { label: string; id: string }>;
-  handleClickTheme: (selectedId: string) => void;
+  handleClickTheme?: (selectedId: string) => void;
   dark?: boolean;
 }
 
@@ -65,7 +65,7 @@ const MeditationThemePicker = ({
               label={value.label}
               handleClick={() => {
                 setPicked(value);
-                handleClickTheme(value.id);
+                handleClickTheme && handleClickTheme(value.id);
               }}
             />
           ))}
