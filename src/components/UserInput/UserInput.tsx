@@ -48,6 +48,7 @@ const UserInput = ({
         type={type}
         name={name}
         placeholder={placeholder}
+        autoComplete={type === 'password' ? 'off' : 'on'}
         onChange={(event) => handleChange(event)}
       />
     </InputContainer>
