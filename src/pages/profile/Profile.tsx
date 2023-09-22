@@ -1,5 +1,5 @@
 import createTabItems from './utils/createTabItems';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getUser } from '@apis/user';
 import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -10,12 +10,14 @@ import {
   ProfileInfo,
   ProfileCover,
   ProfileMain,
-  ProfileEdit
+  ProfileEdit,
+  SettingSideBar
 } from '@pages/profile/components';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
   const location = useLocation();
+  const [sideBarOpened, setSideBarOpened] = useState(false);
   const [editMode, setEditMode] = useRecoilState(editModeState);
   useEffect(() => {
     setEditMode(location.hash === '#edit');
@@ -27,10 +29,23 @@ const Profile = () => {
     { enabled: !!userId }
   );
 
+  const openSidebar = () => {
+    setSideBarOpened(true);
+  };
+
+  const closeSidebar = () => {
+    console.log('close');
+    setSideBarOpened(false);
+  };
+
   const tabItems = createTabItems(data, isLoading);
 
   return (
     <ProfilePage>
+      <SettingSideBar
+        sideBarOpened={sideBarOpened}
+        closeSidebar={closeSidebar}
+      />
       <ProfileCover
         refetch={() => refetch()}
         src={isLoading ? '' : data.coverImage}
@@ -48,6 +63,7 @@ const Profile = () => {
         ) : (
           <ProfileMain
             tabItems={tabItems}
+            openSidebar={openSidebar}
             fullName={isLoading ? '' : data.fullName}
           />
         )}

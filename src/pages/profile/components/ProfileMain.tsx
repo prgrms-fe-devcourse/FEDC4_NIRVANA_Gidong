@@ -10,12 +10,13 @@ import { TabItems } from '../utils/createTabItems';
 interface ProfileMainProps {
   tabItems: TabItems;
   fullName: string;
+  openSidebar: () => void;
 }
 
-const ProfileMain = ({ tabItems, fullName }: ProfileMainProps) => {
+const ProfileMain = ({ tabItems, openSidebar, fullName }: ProfileMainProps) => {
   return (
     <ProfileMainSection>
-      <ProfileHeader />
+      <ProfileHeader openSidebar={openSidebar} />
       <ProfileTabs>
         {Object.entries(tabItems).map(([label, tabItem], index) => (
           <ProfileTabItem

@@ -1,13 +1,15 @@
 import MeditationEndButton from './MeditationEndButton';
 import MeditationLabel from './MeditationLabel';
-import MeditationThemePicker from './MeditationThemePicker';
 import MeditationTimer from './MeditationTimer';
 import MeditationTimeSetter from './MeditationTimeSetter';
+import PrevPostingConfirm from './PrevPostingConfirm';
+import MeditationCancelConfirm from './MeditationCancelConfirm';
 
 export {
+  MeditationCancelConfirm,
+  PrevPostingConfirm,
   MeditationEndButton,
   MeditationLabel,
-  MeditationThemePicker,
   MeditationTimer,
   MeditationTimeSetter
 };

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import {
   StyledDeemBackground,
   StyledAlertBackground,
@@ -31,18 +32,34 @@ const Alert = ({
   nextPageLink
 }: Partial<AlertProps>) => {
   const [disabled, setDisabled] = useState(false);
+  const [domReady, setDomReady] = useState(false);
+
+  useEffect(() => {
+    setDomReady(true);
+  }, []);
 
   return (
-    <StyledDeemBackground disabled={disabled}>
-      <StyledAlertBackground
-        width={width}
-        height={height}>
-        <IconContainer emojiSize={emojiSize}>{emoji}</IconContainer>
-        <ContentContainer contentFontSize={contentFontSize}>
-          {content}
-          <NavButtonContainer onClick={() => setDisabled(true)}>
-            {nextPageLink ? (
-              <Link pageLink={nextPageLink}>
+    domReady &&
+    createPortal(
+      <StyledDeemBackground disabled={disabled}>
+        <StyledAlertBackground
+          width={width}
+          height={height}>
+          <IconContainer emojiSize={emojiSize}>{emoji}</IconContainer>
+          <ContentContainer contentFontSize={contentFontSize}>
+            {content}
+            <NavButtonContainer onClick={() => setDisabled(true)}>
+              {nextPageLink ? (
+                <Link pageLink={nextPageLink}>
+                  <Button
+                    width={300}
+                    height={50}
+                    dark={true}
+                    bold={true}
+                    label={buttonLabel}
+                  />
+                </Link>
+              ) : (
                 <Button
                   width={300}
                   height={50}
@@ -50,20 +67,13 @@ const Alert = ({
                   bold={true}
                   label={buttonLabel}
                 />
-              </Link>
-            ) : (
-              <Button
-                width={300}
-                height={50}
-                dark={true}
-                bold={true}
-                label={buttonLabel}
-              />
-            )}
-          </NavButtonContainer>
-        </ContentContainer>
-      </StyledAlertBackground>
-    </StyledDeemBackground>
+              )}
+            </NavButtonContainer>
+          </ContentContainer>
+        </StyledAlertBackground>
+      </StyledDeemBackground>,
+      document.getElementById('root-modal')
+    )
   );
 };
 export default Alert;
