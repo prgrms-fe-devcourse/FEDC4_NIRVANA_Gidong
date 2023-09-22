@@ -1,5 +1,7 @@
+import { useState } from 'react';
+
 import { Icon } from '@components/Icon';
-import { StyledToast } from './Toast.style';
+import { StyledToast, IconContainer } from './Toast.style';
 
 interface ToastProps {
   width?: number;
@@ -9,17 +11,27 @@ interface ToastProps {
 }
 
 const Toast = ({ width, height, content, type }: ToastProps) => {
+  const [toastShow, setToastShow] = useState(true);
+
+  const clickCancelIcon = () => {
+    setToastShow(false);
+  };
+
   return (
-    <StyledToast
-      width={width}
-      height={height}
-      toastType={type}>
-      {content}
-      <Icon
-        name='close'
-        size={14}
-      />
-    </StyledToast>
+    toastShow && (
+      <StyledToast
+        width={width}
+        height={height}
+        toastType={type}>
+        {content}
+        <IconContainer onClick={clickCancelIcon}>
+          <Icon
+            name='close'
+            size={14}
+          />
+        </IconContainer>
+      </StyledToast>
+    )
   );
 };
 

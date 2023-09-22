@@ -57,4 +57,11 @@ const StyledToast = styled.div<StyledToastProps>`
   }
 `;
 
-export { StyledToast };
+const IconContainer = styled.div`
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  ${({ theme }) => theme.style.flexCenter};
+`;
+
+export { StyledToast, IconContainer };
