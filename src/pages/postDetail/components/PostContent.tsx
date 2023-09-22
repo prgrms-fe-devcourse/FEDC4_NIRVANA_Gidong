@@ -30,7 +30,8 @@ interface PostContentProps {
   postId: string;
   token: string;
   createdAt: string;
-  title: string;
+  content: string;
+  meditationTime: string;
 }
 
 const PostContent = ({
@@ -40,7 +41,8 @@ const PostContent = ({
   channelId,
   token,
   createdAt,
-  title
+  content,
+  meditationTime
 }: PostContentProps) => {
   const [menuOpened, setMenuOpened] = useState(false);
   const [confirmOpened, setConfirmOpened] = useState(false);
@@ -79,7 +81,7 @@ const PostContent = ({
     contentEditRef.current?.setAttribute('contenteditable', 'false');
     const newCustomTitle = {
       title: purifyContent(contentEditRef.current?.textContent || ''),
-      meditationTime: `수정할때 명상시간 수정할게요`
+      meditationTime
     };
     const newFormData = createFormData(
       JSON.stringify(newCustomTitle),
@@ -113,7 +115,9 @@ const PostContent = ({
             <UserName>{author?.fullName}</UserName>
             <UserId email={author ? author.email : ''} />
           </PostContentUserName>
-          <PostContentTime>{createdAt}</PostContentTime>
+          <PostContentTime>
+            {createdAt} / {meditationTime}
+          </PostContentTime>
         </PostContentUserInfo>
         {currentUserId === author?._id && (
           <>
@@ -132,7 +136,7 @@ const PostContent = ({
           </>
         )}
       </PostContentHeader>
-      <PostContentBody ref={contentEditRef}>{title}</PostContentBody>
+      <PostContentBody ref={contentEditRef}>{content}</PostContentBody>
       <PostEditConfirmButtonContainer contentEditMode={contentEditMode}>
         <Button
           width={50}

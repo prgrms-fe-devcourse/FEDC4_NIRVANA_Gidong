@@ -36,7 +36,8 @@ export const PostDetail = () => {
         channelId={data?.channel._id}
         author={data?.author}
         currentUserId={_id}
-        title={data?.title}
+        content={data ? JSON.parse(data.title).title : ''}
+        meditationTime={data ? JSON.parse(data.title).meditationTime : ''}
         createdAt={formatDate(data?.createdAt)}
       />
       <PostCommentInput
