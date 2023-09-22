@@ -7,7 +7,7 @@ interface ToastProps {
   width?: number;
   height?: number;
   content: string;
-  type: 'WARNING' | 'ERROR' | 'ALERT' | 'SUCCESS';
+  type: 'WARNING' | 'ERROR' | 'CONFIRM' | 'SUCCESS';
 }
 
 const Toast = ({ width, height, content, type }: ToastProps) => {
