@@ -14,5 +14,9 @@ export interface Post {
   author: User;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface EditedPost extends Post {
   meditationTime?: number;
+  content?: string;
 }
