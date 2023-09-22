@@ -1,18 +1,18 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import type { Post } from '@/types';
 import { getPosts } from '@apis/posts';
 import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
 import { PostPreview } from '@components/PostPreview';
 import { ThemePicker } from '@components/ThemePicker';
-import useObserver from './hooks/useObserver';
 import { editPostData } from './utils/editPostData';
+import useObserver from './hooks/useObserver';
 import {
   StyledPostsPage,
   ThemePickerContainer,
   PostsContainer
 } from './Posts.style';
-import { useQuery } from '@tanstack/react-query';
 
 const Posts = () => {
   const postsRef = useRef(null);
@@ -26,7 +26,6 @@ const Posts = () => {
     queryFn: async () => {
       const data = await getPosts(channelId, offset);
       const editedData = editPostData(data);
-
       return offset === 0 ? editedData : [...data, ...editedData];
     }
   });
