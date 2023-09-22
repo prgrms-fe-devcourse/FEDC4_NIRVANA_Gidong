@@ -17,26 +17,10 @@ const PageRoutes = () => {
   return (
     <Routes>
       <Route element={<PrivateRoute />}>
-        <Route element={<Layout />}>
+        <Route element={<Layout headerStatus={'back'} />}>
           <Route
             path='/profile/:userId'
             element={<Profile />}
-          />
-          <Route
-            path='/posting'
-            element={<Posting />}
-          />
-          <Route
-            path='/setting'
-            element={<Setting />}
-          />
-          <Route
-            path='/posts'
-            element={<Posts />}
-          />
-          <Route
-            path='/setting/password-update'
-            element={<PasswordUpdate />}
           />
           <Route
             path='/notice'
@@ -44,7 +28,25 @@ const PageRoutes = () => {
           />
         </Route>
       </Route>
-      <Route element={<Layout />}>
+      <Route element={<Layout headerStatus={'home'} />}>
+        <Route
+          path='/posting'
+          element={<Posting />}
+        />
+        <Route
+          path='/setting'
+          element={<Setting />}
+        />
+        <Route
+          path='/posts'
+          element={<Posts />}
+        />
+        <Route
+          path='/setting/password-update'
+          element={<PasswordUpdate />}
+        />
+      </Route>
+      <Route element={<Layout headerStatus={'home'} />}>
         <Route
           path='/meditation'
           element={<Meditation />}
