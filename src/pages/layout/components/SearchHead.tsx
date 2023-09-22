@@ -6,20 +6,37 @@ import {
   SearchBox,
   SearchInput
 } from './SearchHead.style';
+import useDebounce from '@hooks/useDebounce';
+import { useState } from 'react';
 
 interface SearchHeadProps {
   handleShowSearchBox: () => void;
   showSearchBox: boolean;
   inputValue: string;
-  handleChangeInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeInput: (text: string) => void;
 }
 
 const SearchHead = ({
   handleShowSearchBox,
   showSearchBox,
-  inputValue,
+
   handleChangeInput
 }: SearchHeadProps) => {
+  const [text, setText] = useState('');
+
+  useDebounce(
+    5000,
+    () => {
+      if (text === '') handleChangeInput('');
+      else handleChangeInput(text);
+    },
+    [text]
+  );
+
+  const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setText(event.target.value);
+  };
+
   return (
     <SearchHeadContainer>
       <Button
@@ -35,10 +52,8 @@ const SearchHead = ({
       <SearchBox>
         <SearchInput
           placeholder='사용자나 게시물을 검색해보세요'
-          value={inputValue}
-          onChange={(event) => {
-            handleChangeInput(event);
-          }}
+          value={text}
+          onChange={handleChangeText}
         />
         <SearchButton searchStatus={showSearchBox} />
       </SearchBox>
