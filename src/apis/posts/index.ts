@@ -2,6 +2,12 @@ import axios from 'axios';
 import { API_BASE_URL } from '@/constants/Api';
 import { Post, Channel } from '@/types';
 
+interface PostApiProps {
+  postId: string;
+  token: string;
+  postData: FormData;
+}
+
 const getPosts = async (
   channelId: string,
   offset: number = 0,
@@ -60,7 +66,10 @@ const postPost = async (postData: FormData, token: string) => {
   return response.data;
 };
 
-const putPost = async (postData: FormData, token: string) => {
+const putPost = async ({
+  postData,
+  token
+}: Pick<PostApiProps, 'postData' | 'token'>) => {
   const response = await axios.put<Post>(
     `${API_BASE_URL}/posts/update`,
     postData,
@@ -73,7 +82,11 @@ const putPost = async (postData: FormData, token: string) => {
   return response.data;
 };
 
-const deletePost = async (postId: string, token: string) => {
+const deletePost = async ({
+  postId,
+  token
+}: Pick<PostApiProps, 'postId' | 'token'>) => {
+  console.log(postId, token);
   const response = await axios.delete<Post>(`${API_BASE_URL}/posts/delete`, {
     data: { id: postId },
     headers: {

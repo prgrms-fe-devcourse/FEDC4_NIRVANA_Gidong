@@ -4,6 +4,10 @@ interface PostContentMenuProps {
   opened: boolean;
 }
 
+interface contentEditMode {
+  contentEditMode: boolean;
+}
+
 export const PostContentSection = styled.section`
   width: 100%;
 `;
@@ -78,9 +82,10 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
     padding: 5px;
     font-size: 14px;
     border-bottom: 1px solid ${({ theme }) => theme.color.greyLight};
+    transition: all 0.3s ease;
     cursor: pointer;
     &:hover {
-      background-color: ${({ theme }) => theme.color.greyDark};
+      background-color: ${({ theme }) => theme.color.purpleLight};
     }
   }
 `;
@@ -88,4 +93,16 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
 export const PostContentBody = styled.div`
   padding: 20px;
   width: 100%;
+`;
+
+export const PostEditConfirmButtonContainer = styled.div<contentEditMode>`
+  padding: 10px;
+  float: right;
+  transition: all 0.2s ease-out;
+
+  opacity: ${(props) => (props.contentEditMode ? '1' : '0')};
+  z-index: ${(props) => (props.contentEditMode ? '1' : '-1')};
+  > button {
+    cursor: ${(props) => (props.contentEditMode ? 'pointer' : 'default')};
+  }
 `;

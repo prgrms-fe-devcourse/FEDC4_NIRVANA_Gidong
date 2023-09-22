@@ -36,7 +36,6 @@ const PostCommentHeader = ({
     mutate();
   };
 
-  console.log(myLike);
   return (
     <PostCommentHeaderContainer>
       <PostLikeContainer onClick={handleLikeClick}>

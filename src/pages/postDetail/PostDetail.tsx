@@ -26,9 +26,13 @@ export const PostDetail = () => {
     fullName: ''
   });
 
+  console.log(data);
+
   return (
     <PostDetailPage>
       <PostContent
+        token={'Bearer ' + token}
+        postId={postId}
         author={data?.author}
         title={data?.title}
         createdAt={formatDate(data?.createdAt)}
