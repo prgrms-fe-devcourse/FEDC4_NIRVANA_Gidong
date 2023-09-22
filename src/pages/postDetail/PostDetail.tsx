@@ -26,8 +26,6 @@ export const PostDetail = () => {
     fullName: ''
   });
 
-  console.log(data);
-
   return (
     <PostDetailPage>
       <PostContent
