@@ -6,13 +6,14 @@ import {
   PostCommentHeaderText,
   PostLikeContainer
 } from './PostCommentHeader.style';
+import { Like } from '@/types/Like';
 
 interface PostCommentHeaderProps {
   postId: string;
   token: string;
   likeCounts: number;
-  likedThisPost: boolean;
   refetch: () => void;
+  myLike: Like;
   postCommentCount: number;
 }
 
@@ -20,12 +21,12 @@ const PostCommentHeader = ({
   postId,
   token,
   refetch,
-  likedThisPost,
+  myLike,
   likeCounts,
   postCommentCount = 0
 }: PostCommentHeaderProps) => {
   const { mutate, isSuccess } = useMutation(() => {
-    return likedThisPost ? deleteLike(postId, token) : postLike(postId, token);
+    return myLike ? deleteLike(myLike._id, token) : postLike(postId, token);
   });
 
   if (isSuccess) {
@@ -34,14 +35,13 @@ const PostCommentHeader = ({
   const handleLikeClick = () => {
     mutate();
   };
-
   return (
     <PostCommentHeaderContainer>
       <PostLikeContainer onClick={handleLikeClick}>
         <Icon
           name='favorite'
           color='purpleVivid'
-          fill={likedThisPost}
+          fill={myLike?._id ? true : false}
         />
       </PostLikeContainer>
       <PostCommentHeaderText>{likeCounts}</PostCommentHeaderText>

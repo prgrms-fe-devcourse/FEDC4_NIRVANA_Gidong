@@ -5,13 +5,13 @@ import { PostDetailPage } from './PostDetail.style';
 import { getPost } from '@apis/posts';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types/User';
-import { checkLike } from './utils';
+import { GetMyLike } from './utils';
 import formatDate from '@utils/formatDate';
 
 export const PostDetail = () => {
   const { postId } = useParams<{ postId: string }>();
 
-  const { data, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ['postDetail', postId],
     queryFn: async () => getPost(postId),
     enabled: !!postId
@@ -25,7 +25,7 @@ export const PostDetail = () => {
     }
   );
 
-  console.log(data);
+  console.log(data, isLoading);
 
   return (
     <PostDetailPage>
@@ -50,8 +50,8 @@ export const PostDetail = () => {
           refetch();
         }}
         comments={data?.comments}
-        likedThisPost={checkLike(data?.likes, _id)}
-        likeCounts={data?.likes.length}
+        myLike={GetMyLike(data?.likes)}
+        likeCounts={data?.likes?.length}
       />
     </PostDetailPage>
   );

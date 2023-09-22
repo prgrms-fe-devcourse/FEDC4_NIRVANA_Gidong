@@ -1,3 +1,3 @@
-import checkLike from './checkLike';
+import GetMyLike from './GetMyLike';
 
-export { checkLike };
+export { GetMyLike };
