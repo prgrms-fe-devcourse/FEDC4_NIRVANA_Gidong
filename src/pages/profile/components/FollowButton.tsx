@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { deleteFollowUser, postFollowUser } from '@apis/follow';
+import { postNotifications } from '@apis/notice';
 import { Button } from '@components/Button';
 import { User } from '@/types';
 
@@ -26,6 +27,15 @@ const FollowButton = ({ followDataId }: FollowButtonProps) => {
       const data = followed
         ? await deleteFollowUser(followDataId, token)
         : await postFollowUser(_id, token);
+
+      if (!followed) {
+        await postNotifications(token, {
+          notificationType: 'FOLLOW',
+          notificationTypeId: followDataId,
+          userId: _id,
+          postId: null
+        });
+      }
 
       return data;
     },

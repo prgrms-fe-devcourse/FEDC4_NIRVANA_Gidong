@@ -19,7 +19,7 @@ const Notice = () => {
 
   const fetchNotifications = async () => {
     const res = await getNotifications(`Bearer ${userSessionData.token}`).then(
-      (res) => res.filter((item: Notification) => !item.seen)
+      (res) => res.filter((item: Notification) => item.seen)
     );
     setList(res);
     await putNotifications(`Bearer ${userSessionData.token}`);
