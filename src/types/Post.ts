@@ -17,6 +17,6 @@ export interface Post {
 }
 
 export interface EditedPost extends Post {
-  meditationTime?: number;
-  content?: string;
+  meditationTime: number;
+  content: string | undefined;
 }
