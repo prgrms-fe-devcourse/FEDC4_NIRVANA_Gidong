@@ -60,15 +60,18 @@ const Posts = () => {
       </ThemePickerContainer>
       <PostsContainer ref={postsRef}>
         {postsData &&
-          postsData.map((post: Post, index) => (
-            <PostPreview
-              key={index}
-              post={post}
-              totalLikes={post.likes.length}
-              totalComments={post.comments.length}
-              noneProfile={false}
-            />
-          ))}
+          postsData.map(
+            (post: Post, index) =>
+              post.title && (
+                <PostPreview
+                  key={index}
+                  post={post}
+                  totalLikes={post.likes.length}
+                  totalComments={post.comments.length}
+                  noneProfile={false}
+                />
+              )
+          )}
       </PostsContainer>
     </StyledPostsPage>
   );
