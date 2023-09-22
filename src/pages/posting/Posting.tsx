@@ -1,35 +1,59 @@
-import { useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import { userState } from '@/states/userState';
-import { NewPost, PassPosting } from './components';
-import { LandingMain } from '@pages/landing/style';
-import { POSTING_DESCRIPTION } from '@pages/posting/constants';
+import { NewPost } from './components/NewPost';
+import { SkipPosting } from './components/SkipPosting';
 import {
-  StyledPosting,
   ContentContainer,
   StyledDescription,
+  StyledPosting
 } from './Posting.style';
+import PostingHelper from './components/NewPost/PostingHelper';
+
+interface ReceiveState {
+  totalTime: number;
+  channelId: string;
+  channelLabel: string;
+}
 
 const Posting = () => {
   const location = useLocation();
-  const channelId = location.state.channelId;
-
-  const { token } = useRecoilValue(userState);
+  const { token } = JSON.parse(sessionStorage.getItem('userData'));
+  const [meditationInfo, setMeditationInfo] = useState<ReceiveState>({
+    totalTime: 0,
+    channelId: '',
+    channelLabel: ''
+  });
+  const { totalTime, channelLabel, channelId } = meditationInfo;
   const customToken = `bearer ${token}`;
 
-  const { HEADER } = POSTING_DESCRIPTION;
+  useEffect(() => {
+    if (location.state === null) {
+      navigate('/404');
+    }
+
+    setMeditationInfo(location.state);
+  }, []);
 
   return (
-    <LandingMain>
-      <StyledPosting>
-        <ContentContainer>
-          <StyledDescription>{HEADER}</StyledDescription>
-          <NewPost channelId={channelId} customToken={customToken} />
-          <PassPosting channelId={channelId} customToken={customToken} />
-        </ContentContainer>
-      </StyledPosting>
-    </LandingMain>
+    <StyledPosting>
+      <ContentContainer>
+        <StyledDescription>
+          <PostingHelper
+            totalTime={totalTime}
+            channelLabel={channelLabel}
+          />
+        </StyledDescription>
+        <NewPost
+          meditationInfo={channelId}
+          customToken={customToken}
+        />
+        <SkipPosting
+          channelId={channelId}
+          customToken={customToken}
+        />
+      </ContentContainer>
+    </StyledPosting>
   );
 };
 

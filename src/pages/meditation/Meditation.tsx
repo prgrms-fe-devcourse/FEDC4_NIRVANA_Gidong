@@ -1,50 +1,48 @@
 import { useRecoilState } from 'recoil';
-import MeditationLabel from '@pages/meditation/components/MeditationLabel';
-import MeditationTimer from '@pages/meditation/components/MeditationTimer';
-import MeditationTimeSetter from '@pages/meditation/components/MeditationTimeSetter';
-import { MeditationThemePicker } from '@pages/meditation/components/MeditationThemePicker';
-import { MeditationPage } from './Meditation.style';
-import { endButtonPushed } from '@pages/meditation/components/MeditationEndButton/MeditationEndButton';
-import { Confirm } from '@components/Confirm';
-import { Button } from '@components/Button';
 
-export const Meditation = () => {
+import { endButtonPushed } from './states';
+import { MeditationPage } from './Meditation.style';
+import { ThemePicker } from '@components/ThemePicker';
+import { meditationChannelInfo } from './models/channelInfo';
+import {
+  PrevPostingConfirm,
+  MeditationLabel,
+  MeditationTimer,
+  MeditationTimeSetter,
+  MeditationCancelConfirm
+} from '@pages/meditation/components';
+
+const Meditation = () => {
   const [confirmCaptured, setConfirmCaptured] = useRecoilState(endButtonPushed);
+  const prevPosting = JSON.parse(sessionStorage.getItem('posting'));
+
+  const handleCancelPrevPosting = () => {
+    sessionStorage.removeItem('posting');
+  };
+
+  const handleCancelCapture = () => {
+    setConfirmCaptured(false);
+  };
+
   return (
     <>
       <MeditationPage>
+        {prevPosting && (
+          <PrevPostingConfirm
+            prevPostingInfo={prevPosting}
+            handleCancelButton={handleCancelPrevPosting}
+          />
+        )}
         <MeditationLabel />
         <MeditationTimer />
         <MeditationTimeSetter />
-        <MeditationThemePicker />
+        <ThemePicker themeInfo={meditationChannelInfo} />
         {confirmCaptured && (
-          <Confirm
-            emoji={'🧘🏻'}
-            content={'정말 명상을 끝내시겠어요?'}
-            contentFontSize={18}
-            nextPageLink={'/'}
-            CancelButton={
-              <Button
-                width={120}
-                height={50}
-                bold={true}
-                dark={false}
-                label={'취소'}
-                handleClick={() => setConfirmCaptured(false)}
-              />
-            }
-            ConfirmButton={
-              <Button
-                width={120}
-                height={50}
-                bold={true}
-                dark={true}
-                label={'끝내기'}
-              />
-            }
-          />
+          <MeditationCancelConfirm handleCancelButton={handleCancelCapture} />
         )}
       </MeditationPage>
     </>
   );
 };
+
+export default Meditation;

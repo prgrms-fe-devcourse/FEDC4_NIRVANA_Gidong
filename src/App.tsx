@@ -1,4 +1,3 @@
-import { Routes, Route } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
 import PrivateRoute from '@utils/PrivateRoute';
@@ -9,12 +8,15 @@ import SignUp from './pages/signup';
 import LogIn from './pages/login';
 import Posting from './pages/posting';
 import Meditation from './pages/meditation';
+import Setting from './pages/setting/Setting';
 import PasswordUpdate from '@pages/password-update';
 import { queryClient, QueryClientProvider } from './apis/queryClient';
+import PageRoutes from './routes/PageRoutes';
 
 function App() {
   return (
     <>
+      <div id='root-modal'></div>
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
           <Routes>
@@ -41,6 +43,10 @@ function App() {
               <Route
                 path='/posting'
                 element={<Posting />}
+              />
+              <Route
+                path='/setting'
+                element={<Setting />}
               />
             </Route>
             <Route

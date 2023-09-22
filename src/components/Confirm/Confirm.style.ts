@@ -21,6 +21,7 @@ export const StyledDeemBackground = styled.div<DeemBackgroundProps>`
   position: absolute;
   left: 0;
   top: 0;
+  z-index: 2;
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.color.black600};
@@ -46,10 +47,11 @@ export const IconContainer = styled.div<IconContainerProps>`
 `;
 
 export const ContentContainer = styled.div<ContentContainerProps>`
-  width: 100%;
+  width: 80%;
   height: 50%;
   text-align: center;
   font-weight: bold;
+  white-space: pre-line;
   font-size: ${({ contentFontSize }) => contentFontSize}px;
   position: relative;
 `;
