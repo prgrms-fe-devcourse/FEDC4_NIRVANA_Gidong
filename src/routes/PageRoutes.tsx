@@ -34,6 +34,10 @@ const PageRoutes = () => {
             path='/setting/password-update'
             element={<PasswordUpdate />}
           />
+          <Route
+            path='/*'
+            element={<Navigate to='/404' />}
+          />
         </Route>
       </Route>
       <Route element={<Layout />}>
