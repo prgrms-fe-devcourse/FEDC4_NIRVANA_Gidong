@@ -1,4 +1,4 @@
-import type { Post } from '@/types';
+import type { EditedPost } from '@/types';
 import PostHeader from './PostHeader';
 import {
   PreviewContainer,
@@ -9,7 +9,10 @@ import {
 import { Link } from '@components/Link';
 
 interface PostPreviewProps {
-  post: Pick<Post, '_id' | 'image' | 'title' | 'author' | 'createdAt'>;
+  post: Pick<
+    EditedPost,
+    '_id' | 'image' | 'content' | 'author' | 'createdAt' | 'meditationTime'
+  >;
   totalLikes: number;
   totalComments: number;
   noneProfile: boolean;
@@ -21,8 +24,8 @@ const PostPreview = ({
   totalComments,
   noneProfile = false
 }: PostPreviewProps) => {
-  const { title } = post;
-  const previewTitle = title.substring(0, 100);
+  const { content } = post;
+  const previewContent = content.substring(0, 100);
 
   return (
     <PreviewContainer>
@@ -38,7 +41,7 @@ const PostPreview = ({
         <Link
           pageLink={`/post-detail/:${post._id}`}
           color='black'>
-          <PostContent>{previewTitle}...</PostContent>
+          <PostContent>{previewContent}...</PostContent>
         </Link>
       </PostContentContainer>
     </PreviewContainer>

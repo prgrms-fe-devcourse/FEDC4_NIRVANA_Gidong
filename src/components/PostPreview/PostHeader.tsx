@@ -1,4 +1,4 @@
-import type { Post } from '@/types';
+import type { EditedPost } from '@/types';
 import { Icon } from '../Icon';
 import { Avatar } from '../Avatar';
 import {
@@ -11,8 +11,8 @@ import { Link } from '@components/Link';
 
 interface PostHeaderProps {
   post: Pick<
-    Post,
-    '_id' | 'image' | 'title' | 'author' | 'createdAt' | 'meditationTime'
+    EditedPost,
+    '_id' | 'image' | 'author' | 'createdAt' | 'meditationTime'
   >;
   totalLikes: number;
   totalComments: number;

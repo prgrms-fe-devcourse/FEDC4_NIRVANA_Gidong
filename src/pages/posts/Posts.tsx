@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import type { Post } from '@/types';
+import type { EditedPost } from '@/types';
 import { getPosts } from '@apis/posts';
 import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
 import { PostPreview } from '@components/PostPreview';
@@ -26,7 +26,10 @@ const Posts = () => {
     queryFn: async () => {
       const data = await getPosts(channelId, offset);
       const editedData = editPostData(data);
-      return offset === 0 ? editedData : [...data, ...editedData];
+      const returnedData: EditedPost[] =
+        offset === 0 ? editedData : [...postsData, ...editedData];
+
+      return returnedData;
     }
   });
 
@@ -61,8 +64,8 @@ const Posts = () => {
       <PostsContainer ref={postsRef}>
         {postsData &&
           postsData.map(
-            (post: Post, index) =>
-              post.title && (
+            (post: EditedPost, index) =>
+              post.content && (
                 <PostPreview
                   key={index}
                   post={post}
