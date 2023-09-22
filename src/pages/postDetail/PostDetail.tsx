@@ -17,13 +17,14 @@ export const PostDetail = () => {
     enabled: !!postId
   });
 
-  const [{ token, _id }] = useSessionStorage<Pick<User, '_id' | 'token'>>(
-    'userData',
-    {
-      _id: '',
-      token: ''
-    }
-  );
+  const [{ token, _id, image, fullName }] = useSessionStorage<
+    Pick<User, '_id' | 'token' | 'image' | 'fullName'>
+  >('userData', {
+    _id: '',
+    token: '',
+    image: '',
+    fullName: ''
+  });
 
   return (
     <PostDetailPage>
@@ -35,7 +36,8 @@ export const PostDetail = () => {
       <PostCommentInput
         postId={postId}
         token={'Bearer ' + token}
-        avatarSrc=''
+        avatarSrc={image}
+        userName={fullName}
         refetch={() => {
           refetch();
         }}

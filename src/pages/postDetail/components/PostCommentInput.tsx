@@ -16,11 +16,13 @@ interface PostCommentInputProps {
   postId: string;
   token: string;
   avatarSrc: string;
+  userName: string;
   refetch: () => void;
 }
 
 const PostCommentInput = ({
   avatarSrc,
+  userName,
   token,
   postId,
   refetch
@@ -49,7 +51,7 @@ const PostCommentInput = ({
       <CommentAvatarContainer>
         <Avatar
           src={avatarSrc ? avatarSrc : ''}
-          alt='케로로'
+          alt={userName}
           size={39}
         />
       </CommentAvatarContainer>
