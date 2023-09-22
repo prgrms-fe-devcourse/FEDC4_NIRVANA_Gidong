@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { Toast } from '@components/Toast';
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import { createFormData, purifyContent } from '@pages/posting/utils';
 import { Button } from '@components/Button';
@@ -9,6 +10,7 @@ import useSessionStorage from '@hooks/useSessionStorage';
 import postCreateNewPost from '@apis/posting';
 import NewPostConfirm from './NewPostConfirm';
 import {
+  TextAreaContainer,
   ButtonContainer,
   PostContainer,
   StyledTextArea
@@ -78,6 +80,12 @@ const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
 
   return (
     <>
+      {posting.length >= 500 && (
+        <Toast
+          content='포스팅은 최대 500글자까지 가능합니다.'
+          type='WARNING'
+        />
+      )}
       {showConfirm && (
         <NewPostConfirm
           handleConfirmButton={handleConfirmButton}
@@ -85,15 +93,17 @@ const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
         />
       )}
       <PostContainer>
-        <StyledTextArea
-          onChange={(event) => {
-            setPosting(event.target.value);
-          }}
-          required
-          value={posting}
-          maxLength={500}
-          placeholder={PLACEHOLDER}
-        />
+        <TextAreaContainer>
+          <StyledTextArea
+            onChange={(event) => {
+              setPosting(event.target.value);
+            }}
+            required
+            value={posting}
+            maxLength={500}
+            placeholder={PLACEHOLDER}
+          />
+        </TextAreaContainer>
         <ButtonContainer>
           <Button
             width={300}
