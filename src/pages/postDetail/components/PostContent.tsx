@@ -24,6 +24,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface PostContentProps {
   author: User;
+  currentUserId: string;
   postId: string;
   token: string;
   createdAt: string;
@@ -32,6 +33,7 @@ interface PostContentProps {
 
 const PostContent = ({
   author,
+  currentUserId,
   postId,
   token,
   createdAt,
@@ -49,6 +51,8 @@ const PostContent = ({
   const navigate = useNavigate();
   const { mutate: mutateDeletePost, isSuccess: deletePostSuccess } =
     useMutation(deletePost);
+
+  const { mutate: mutatePutPost } = useMutation(putPost);
 
   if (deletePostSuccess) {
     navigate('/posts');
@@ -97,21 +101,33 @@ const PostContent = ({
           </PostContentUserName>
           <PostContentTime>{createdAt}</PostContentTime>
         </PostContentUserInfo>
-        <PostContentMenuIconContainer
-          opened={menuOpened}
-          onClick={handleMenuClick}>
-          <Icon
-            size={24}
-            name='menu'
-          />
-        </PostContentMenuIconContainer>
-        <PostContentMenu opened={menuOpened}>
-          <p onClick={handleDeleteMenuClick}>삭제하기</p>
-          <p onClick={handleEditMenuClick}>수정하기</p>
-        </PostContentMenu>
+        {currentUserId === author?._id && (
+          <>
+            <PostContentMenuIconContainer
+              opened={menuOpened}
+              onClick={handleMenuClick}>
+              <Icon
+                size={24}
+                name='menu'
+              />
+            </PostContentMenuIconContainer>
+            <PostContentMenu opened={menuOpened}>
+              <p onClick={handleDeleteMenuClick}>삭제하기</p>
+              <p onClick={handleEditMenuClick}>수정하기</p>
+            </PostContentMenu>
+          </>
+        )}
       </PostContentHeader>
       <PostContentBody ref={contentEditRef}>{title}</PostContentBody>
       <PostEditConfirmButtonContainer contentEditMode={contentEditMode}>
+        <Button
+          width={50}
+          height={25}
+          dark={true}
+          fontSize={12}
+          label='취소'
+          handleClick={handleEditConfirmClick}
+        />
         <Button
           width={50}
           height={25}

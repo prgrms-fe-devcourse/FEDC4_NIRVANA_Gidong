@@ -34,6 +34,7 @@ export const PostDetail = () => {
         token={'Bearer ' + token}
         postId={postId}
         author={data?.author}
+        currentUserId={_id}
         title={data?.title}
         createdAt={formatDate(data?.createdAt)}
       />

@@ -99,10 +99,16 @@ export const PostEditConfirmButtonContainer = styled.div<contentEditMode>`
   padding: 10px;
   float: right;
   transition: all 0.2s ease-out;
-
   opacity: ${(props) => (props.contentEditMode ? '1' : '0')};
   z-index: ${(props) => (props.contentEditMode ? '1' : '-1')};
   > button {
+    transition: all 0.2s ease-out;
     cursor: ${(props) => (props.contentEditMode ? 'pointer' : 'default')};
+    :hover {
+      background-color: ${({ theme }) => theme.color.purpleLight};
+    }
+    &:first-of-type {
+      margin-right: 5px;
+    }
   }
 `;
