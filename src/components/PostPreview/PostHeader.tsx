@@ -37,7 +37,7 @@ const PostHeader = ({
             color='black'>
             <Avatar
               alt={'유저 프로필'}
-              src={image}
+              src={image || author.image}
               size={35}
             />
           </Link>
