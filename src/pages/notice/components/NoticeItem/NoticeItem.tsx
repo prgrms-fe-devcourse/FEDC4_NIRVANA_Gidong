@@ -43,10 +43,10 @@ const NoticeItem = ({
   }: GoToNotificationOriginProps) => {
     switch (type) {
       case NOTICE_TYPE.COMMENT:
-        navigate(`/post-detail/:${id}`);
+        navigate(`/posts/${id}`);
         return;
       case NOTICE_TYPE.LIKE:
-        navigate(`/post-detail/:${id}`);
+        navigate(`/posts/${id}`);
         return;
       case NOTICE_TYPE.FOLLOW:
         navigate(`/profile/${id}`);
