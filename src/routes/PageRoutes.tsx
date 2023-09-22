@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 
 import LandingPage from '@pages/landing';
@@ -10,6 +10,7 @@ import Posting from '@pages/posting';
 import Meditation from '@pages/meditation';
 import Setting from '@pages/setting/Setting';
 import PasswordUpdate from '@pages/password-update';
+import NotFound from '@pages/NotFound';
 import Posts from '@pages/posts';
 import Notice from '@pages/notice';
 
@@ -39,6 +40,10 @@ const PageRoutes = () => {
             element={<PasswordUpdate />}
           />
           <Route
+            path='/*'
+            element={<Navigate to='/404' />}
+          />
+          <Route
             path='/notice'
             element={<Notice />}
           />
@@ -53,6 +58,14 @@ const PageRoutes = () => {
       <Route
         path='/'
         element={<LandingPage />}
+      />
+      <Route
+        path='/404'
+        element={<NotFound />}
+      />
+      <Route
+        path='/*'
+        element={<Navigate to='/404' />}
       />
       <Route
         path='/signup'
