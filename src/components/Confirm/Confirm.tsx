@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from '../Link';
 import {
   StyledDeemBackground,
@@ -14,8 +15,9 @@ interface ConfirmProps {
   content: string;
   contentFontSize: number;
   nextPageLink: string;
-  CancelButton: React.ReactNode;
-  ConfirmButton: React.ReactNode;
+  CancelButton: React.ReactNode | (() => JSX.Element);
+  ConfirmButton: React.ReactNode | (() => JSX.Element);
+  linkState: { [key: string]: any };
 }
 
 const Confirm = ({
@@ -23,11 +25,16 @@ const Confirm = ({
   content,
   contentFontSize = 16,
   nextPageLink,
+  linkState,
   CancelButton,
   ConfirmButton
 }: Partial<ConfirmProps>) => {
   const [disabled, setDisabled] = useState(false);
-  return (
+  const FormedCancelButton =
+    typeof CancelButton === 'function' ? CancelButton() : CancelButton;
+  const FormedConfirmlButton =
+    typeof ConfirmButton === 'function' ? ConfirmButton() : ConfirmButton;
+  return createPortal(
     <StyledDeemBackground disabled={disabled}>
       <StyledConfirmBackground
         width={330}
@@ -37,13 +44,18 @@ const Confirm = ({
           {content}
           <NavButtonContainer>
             <CancelButtonDefaultEvent onClick={() => setDisabled(true)}>
-              {CancelButton}
+              {FormedCancelButton}
             </CancelButtonDefaultEvent>
-            <Link pageLink={nextPageLink}>{ConfirmButton}</Link>
+            <Link
+              pageLink={nextPageLink}
+              state={{ ...linkState }}>
+              {FormedConfirmlButton}
+            </Link>
           </NavButtonContainer>
         </ContentContainer>
       </StyledConfirmBackground>
-    </StyledDeemBackground>
+    </StyledDeemBackground>,
+    document.getElementById('root-modal')
   );
 };
 export default Confirm;

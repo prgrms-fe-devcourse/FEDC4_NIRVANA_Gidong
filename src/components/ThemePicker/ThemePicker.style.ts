@@ -18,6 +18,7 @@ const ThemePickerContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   overflow-x: scroll;
+  overflow-y: hidden;
   scroll-behavior: smooth;
   &::-webkit-scrollbar {
     display: none;

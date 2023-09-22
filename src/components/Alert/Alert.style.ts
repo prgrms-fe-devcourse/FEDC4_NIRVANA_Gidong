@@ -46,8 +46,9 @@ export const IconContainer = styled.div<IconContainerProps>`
 `;
 
 export const ContentContainer = styled.div<ContentContainerProps>`
-  width: 100%;
+  width: 80%;
   height: 50%;
+  white-space: pre-line;
   text-align: center;
   font-weight: bold;
   font-size: ${({ contentFontSize }) => contentFontSize}px;

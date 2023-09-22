@@ -1,22 +1,22 @@
-import { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback } from 'react';
 
 const useObserver = (callback: () => void) => {
+  const observerOption = useRef({ threshold: 1 });
+  const observerFn: IntersectionObserverCallback = useCallback(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && observer !== null) {
+          observer.disconnect();
+        }
+        if (entry.isIntersecting) {
+          callback();
+        }
+      });
+    },
+    []
+  );
   const observer = useRef(
-    new IntersectionObserver(
-      (entries, _) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (observer !== null) {
-              observer.current.disconnect();
-            }
-            callback();
-          }
-        });
-      },
-      {
-        threshold: 1
-      }
-    )
+    new IntersectionObserver(observerFn, observerOption.current)
   );
 
   const observe = useCallback((element: HTMLElement) => {
@@ -24,6 +24,7 @@ const useObserver = (callback: () => void) => {
       observer.current.observe(element);
     }
   }, []);
+
   return [observe];
 };
 

@@ -5,7 +5,7 @@ export const PostContainer = styled.div`
   width: 80%;
   height: 450px;
   position: relative;
-`
+`;
 
 export const StyledTextArea = styled.textarea`
   width: 100%;
@@ -22,4 +22,4 @@ export const ButtonContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
   bottom: 30px;
-`
+`;

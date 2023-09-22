@@ -1,41 +1,48 @@
-import { useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { NewPost } from './components/NewPost';
 import { SkipPosting } from './components/SkipPosting';
-import { LandingMain } from '@pages/landing/Landing.style';
-import { POSTING_DESCRIPTION } from '@pages/posting/constants';
 import {
-  StyledPosting,
   ContentContainer,
-  StyledDescription
+  StyledDescription,
+  StyledPosting
 } from './Posting.style';
+import { useEffect } from 'react';
 
 const Posting = () => {
   const location = useLocation();
-  const channelId = location.state.channelId;
-
-  const { token } = useRecoilValue(userState);
+  const navigate = useNavigate();
+  const { channelId, validation, channelLabel, totalTime } = location.state;
+  const { token } = JSON.parse(sessionStorage.getItem('userData'));
   const customToken = `bearer ${token}`;
 
-  const { HEADER } = POSTING_DESCRIPTION;
+  useEffect(() => {
+    if (!validation) {
+      navigate('/404');
+    }
+  });
 
   return (
-    <LandingMain>
-      <StyledPosting>
-        <ContentContainer>
-          <StyledDescription>{HEADER}</StyledDescription>
-          <NewPost
-            channelId={channelId}
-            customToken={customToken}
-          />
-          <SkipPosting
-            channelId={channelId}
-            customToken={customToken}
-          />
-        </ContentContainer>
-      </StyledPosting>
-    </LandingMain>
+    <StyledPosting>
+      <ContentContainer>
+        <StyledDescription>
+          <p>
+            총 <b>{totalTime / 60}</b>분 동안 명상을 진행했어요!
+          </p>
+          <p>
+            <u>{channelLabel}</u>에 대해 어떤 생각을 하셨나요?
+          </p>
+        </StyledDescription>
+        <NewPost
+          meditationInfo={location.state}
+          customToken={customToken}
+        />
+        <SkipPosting
+          channelId={channelId}
+          customToken={customToken}
+        />
+      </ContentContainer>
+    </StyledPosting>
   );
 };
 
