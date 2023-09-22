@@ -49,6 +49,7 @@ const StyledToast = styled.div<StyledToastProps>`
     }
     100% {
       opacity: 0;
+      display: none;
     }
   }
 `;
