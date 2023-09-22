@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Comment } from '@/types/Comment';
-import { Notification } from '@/types/Notification';
-import { MESSAGE_TYPE, NOTICE_TYPE } from '@pages/notice/constants';
 import { useNavigate } from 'react-router-dom';
+import { Comment } from '@/types/Comment';
+import { NOTICE_TYPE } from '@pages/notice/constants';
+import typeToMessage from '@pages/notice/utils/typeToMessage';
 
 import {
   NoticeItemContainer,
@@ -17,7 +17,8 @@ interface NoticeItemProps {
   type: string;
   comment?: Comment | null;
   authorName: string;
-  notification: Notification;
+  postId: string;
+  followId: string;
 }
 
 interface GoToNotificationOriginProps {
@@ -30,23 +31,11 @@ const NoticeItem = ({
   type,
   comment,
   authorName,
-  notification
+  postId,
+  followId
 }: NoticeItemProps) => {
   const [typeId, setTypeId] = useState('');
   const navigate = useNavigate();
-
-  const typeToMessage = (type: string) => {
-    switch (type) {
-      case NOTICE_TYPE.COMMENT:
-        return MESSAGE_TYPE.COMMENT;
-      case NOTICE_TYPE.LIKE:
-        return MESSAGE_TYPE.LIKE;
-      case NOTICE_TYPE.FOLLOW:
-        return MESSAGE_TYPE.FOLLOW;
-      default:
-        return;
-    }
-  };
 
   const GoToNotificationOrigin = ({
     type,
@@ -54,10 +43,10 @@ const NoticeItem = ({
   }: GoToNotificationOriginProps) => {
     switch (type) {
       case NOTICE_TYPE.COMMENT:
-        navigate(`/post/${id}`);
+        navigate(`/post-detail/:${id}`);
         return;
       case NOTICE_TYPE.LIKE:
-        navigate(`/post/${id}`);
+        navigate(`/post-detail/:${id}`);
         return;
       case NOTICE_TYPE.FOLLOW:
         navigate(`/profile/${id}`);
@@ -69,15 +58,15 @@ const NoticeItem = ({
 
   useEffect(() => {
     if (type === NOTICE_TYPE.COMMENT) {
-      setTypeId(notification.post);
+      setTypeId(postId);
     }
     if (type === NOTICE_TYPE.LIKE) {
-      setTypeId(notification.post);
+      setTypeId(postId);
     }
     if (type === NOTICE_TYPE.FOLLOW) {
-      setTypeId(notification.author._id);
+      setTypeId(followId);
     }
-  }, [notification, type, typeId]);
+  }, [postId, followId, type, typeId]);
 
   return (
     <NoticeItemContainer
@@ -89,7 +78,11 @@ const NoticeItem = ({
           {typeToMessage(type)}
         </Message>
         {type === NOTICE_TYPE.COMMENT && (
-          <MessagePreview>{comment && comment.comment}</MessagePreview>
+          <MessagePreview>
+            {comment && comment.comment.length > 25
+              ? comment.comment.slice(0, 25) + '...'
+              : comment.comment}
+          </MessagePreview>
         )}
       </NoticeContent>
     </NoticeItemContainer>

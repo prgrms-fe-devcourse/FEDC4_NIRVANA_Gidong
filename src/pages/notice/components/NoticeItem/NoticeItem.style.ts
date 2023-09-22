@@ -17,7 +17,9 @@ const ProfileImage = styled.div<{ profileImage: string }>`
 `;
 
 const NoticeContent = styled.div`
-  ${({ theme }) => theme.style.flexCenter};
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: center;
 `;
 
 const Message = styled.div`
