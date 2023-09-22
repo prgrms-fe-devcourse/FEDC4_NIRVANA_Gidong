@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Icon } from '@components/Icon';
 import { StyledToast, IconContainer } from './Toast.style';
@@ -16,6 +16,12 @@ const Toast = ({ width, height, content, type }: ToastProps) => {
   const clickCancelIcon = () => {
     setToastShow(false);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setToastShow(false);
+    }, 5000);
+  }, []);
 
   return (
     toastShow && (
