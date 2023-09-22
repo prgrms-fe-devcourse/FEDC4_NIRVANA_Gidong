@@ -3,6 +3,8 @@ import SearchButton from './SearchButton';
 import SearchHead from './SearchHead';
 import SearchMain from './SearchMain';
 import SearchFilter from './SearchFilter';
+import SearchResultPost from './SearchResultPost';
+import SearchResultUser from './SearchResultUser';
 import PathNav from './PathNav';
 import EtcNav from './IconNav';
 import AlertButton from './AlertButton';
@@ -14,6 +16,8 @@ export {
   SearchHead,
   SearchMain,
   SearchFilter,
+  SearchResultPost,
+  SearchResultUser,
   PathNav,
   EtcNav,
   AlertButton,
