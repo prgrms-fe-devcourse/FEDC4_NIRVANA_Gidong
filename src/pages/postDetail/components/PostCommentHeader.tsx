@@ -35,13 +35,15 @@ const PostCommentHeader = ({
   const handleLikeClick = () => {
     mutate();
   };
+
+  console.log(myLike);
   return (
     <PostCommentHeaderContainer>
       <PostLikeContainer onClick={handleLikeClick}>
         <Icon
           name='favorite'
           color='purpleVivid'
-          fill={myLike?._id ? true : false}
+          fill={myLike ? true : false}
         />
       </PostLikeContainer>
       <PostCommentHeaderText>{likeCounts}</PostCommentHeaderText>
