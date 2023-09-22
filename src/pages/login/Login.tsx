@@ -23,10 +23,12 @@ const Login = () => {
   let timer = 0;
 
   const [userSessionData, setUserSessionData] = useSessionStorage<
-    Pick<User, '_id' | 'token'>
+    Pick<User, '_id' | 'token' | 'image' | 'fullName'>
   >('userData', {
     _id: '',
-    token: ''
+    token: '',
+    image: '',
+    fullName: ''
   });
 
   useEffect(() => {
@@ -61,7 +63,13 @@ const Login = () => {
     postLogInUser({ email, password })
       .then((res) => {
         const { user, token } = res.data;
-        setUserSessionData({ _id: user._id, token });
+        console.log(res.data);
+        setUserSessionData({
+          _id: user._id,
+          token,
+          image: user.image,
+          fullName: user.fullName
+        });
       })
       .catch((err) => {
         console.log(err);
