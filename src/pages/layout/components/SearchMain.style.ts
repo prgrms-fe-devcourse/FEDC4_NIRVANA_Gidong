@@ -19,4 +19,8 @@ export const SearchItem = styled.div`
   ${({ theme }) => theme.style.flexAlignCenter}
   padding : 0 26px;
   height: 80px;
+
+  & > div {
+    padding: 0 14px;
+  }
 `;
