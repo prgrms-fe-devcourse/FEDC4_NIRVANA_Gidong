@@ -76,6 +76,11 @@ const PostContent = ({
     setConfirmOpened(true);
   };
 
+  const handleEditCancelClick = () => {
+    setContentEditMode(false);
+    contentEditRef.current?.setAttribute('contenteditable', 'false');
+  };
+
   const handleEditConfirmClick = () => {
     setContentEditMode(false);
     contentEditRef.current?.setAttribute('contenteditable', 'false');
@@ -144,7 +149,7 @@ const PostContent = ({
           dark={true}
           fontSize={12}
           label='취소'
-          handleClick={handleEditConfirmClick}
+          handleClick={handleEditCancelClick}
         />
         <Button
           width={50}
