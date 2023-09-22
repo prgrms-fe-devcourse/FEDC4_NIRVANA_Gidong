@@ -64,6 +64,7 @@ const Profile = () => {
           <ProfileMain
             tabItems={tabItems}
             openSidebar={openSidebar}
+            fullName={isLoading ? '' : data.fullName}
           />
         )}
       </ProfileInfoContainer>
