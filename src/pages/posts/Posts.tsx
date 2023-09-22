@@ -18,35 +18,36 @@ import { useLocation } from 'react-router-dom';
 const Posts = () => {
   const locate = useLocation();
   const postsRef = useRef(null);
+  const [postsData, setPostsData] = useState<EditedPost[]>([]);
   const [offset, setOffset] = useState(0);
   const [observe] = useObserver(() => setOffset(offset + 11));
   const [channelId, setChannelId] = useState(
-    locate.state ? locate.state.channelId : '65017a41dfe8db5726b603a7'
+    locate.state.channelId ? locate.state.channelId : '65017a41dfe8db5726b603a7'
   );
   const channelInfo = new Map(meditationChannelInfo);
 
-  const { data: postsData } = useQuery({
+  const { data } = useQuery({
     queryKey: ['getChannelPosts', channelId, offset],
     queryFn: async () => {
       const data = await getPosts(channelId, offset);
       const editedData = editPostData(data);
-      const returnedData: EditedPost[] =
-        offset === 0 ? editedData : [...postsData, ...editedData];
 
-      return returnedData;
+      return editedData;
     }
   });
+
+  useEffect(() => {
+    if (data) {
+      setPostsData(offset === 0 ? data : [...postsData, ...data]);
+    }
+  }, [data]);
 
   useEffect(() => {
     setOffset(0);
   }, [channelId]);
 
   useEffect(() => {
-    if (
-      postsRef &&
-      postsRef.current &&
-      postsRef.current.childNodes.length >= 10
-    ) {
+    if (postsRef.current && postsRef.current.childNodes.length >= 10) {
       const { lastChild } = postsRef.current;
       lastChild && observe(lastChild);
     }
