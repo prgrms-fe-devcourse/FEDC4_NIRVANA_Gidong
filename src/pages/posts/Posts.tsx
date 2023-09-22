@@ -13,12 +13,16 @@ import {
   ThemePickerContainer,
   PostsContainer
 } from './Posts.style';
+import { useLocation } from 'react-router-dom';
 
 const Posts = () => {
+  const locate = useLocation();
   const postsRef = useRef(null);
   const [offset, setOffset] = useState(0);
   const [observe] = useObserver(() => setOffset(offset + 11));
-  const [channelId, setChannelId] = useState('65017a41dfe8db5726b603a7');
+  const [channelId, setChannelId] = useState(
+    locate.state ? locate.state.channelId : '65017a41dfe8db5726b603a7'
+  );
   const channelInfo = new Map(meditationChannelInfo);
 
   const { data: postsData } = useQuery({

@@ -64,7 +64,7 @@ const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
       );
 
       postCreateNewPost(customToken, formData).then(() => {
-        navigate('/posts');
+        navigate('/posts', { state: { channelId: meditationInfo.channelId } });
       });
     }
   };
