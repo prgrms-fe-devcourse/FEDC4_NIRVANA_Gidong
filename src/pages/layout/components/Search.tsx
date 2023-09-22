@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import styled from '@emotion/styled';
 import { SearchHead, SearchMain } from '@pages/layout/components';
-
-const SearchContainer = styled.div``;
 
 interface SearchProps {
   handleShowSearchBox: () => void;
@@ -17,7 +14,7 @@ const Search = ({ handleShowSearchBox, showSearchBox }: SearchProps) => {
   };
 
   return (
-    <SearchContainer>
+    <>
       <SearchHead
         handleShowSearchBox={handleShowSearchBox}
         showSearchBox={showSearchBox}
@@ -25,7 +22,7 @@ const Search = ({ handleShowSearchBox, showSearchBox }: SearchProps) => {
         handleChangeInput={handleChangeInput}
       />
       <SearchMain inputValue={inputValue} />
-    </SearchContainer>
+    </>
   );
 };
 export default Search;
