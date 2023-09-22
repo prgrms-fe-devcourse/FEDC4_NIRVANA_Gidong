@@ -16,8 +16,8 @@ const ChildContainer = (backgroundColor: string, textColor: string) => {
 const StyledToast = styled.div<StyledToastProps>`
   position: absolute;
   top: 50px;
-  transition: 2s all ease-out;
-  animation: hide 2s ease-out forwards;
+  transition: 3s all ease-out;
+  animation: hide 3s ease-out forwards;
   opacity: 1;
   width: ${({ width }) => (width ? `${width}px` : `100%`)};
   min-height: ${({ height }) => (height ? `${height}px` : `70px`)};
