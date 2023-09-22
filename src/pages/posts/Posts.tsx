@@ -67,19 +67,20 @@ const Posts = () => {
         />
       </ThemePickerContainer>
       <PostsContainer ref={postsRef}>
-        {postsData &&
-          postsData.map(
-            (post: EditedPost, index) =>
-              post.content && (
-                <PostPreview
-                  key={index}
-                  post={post}
-                  totalLikes={post.likes.length}
-                  totalComments={post.comments.length}
-                  noneProfile={false}
-                />
-              )
-          )}
+        {postsData.map((post: EditedPost, index) => {
+          const { content, likes, comments } = post;
+          return (
+            content && (
+              <PostPreview
+                key={index}
+                post={post}
+                totalLikes={likes.length}
+                totalComments={comments.length}
+                noneProfile={false}
+              />
+            )
+          );
+        })}
       </PostsContainer>
     </StyledPostsPage>
   );
