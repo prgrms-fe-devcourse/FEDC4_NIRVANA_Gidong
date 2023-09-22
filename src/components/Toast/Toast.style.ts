@@ -14,14 +14,17 @@ const ChildContainer = (backgroundColor: string, textColor: string) => {
 };
 
 const StyledToast = styled.div<StyledToastProps>`
+  width: ${({ width }) => (width ? `${width}px` : `100%`)};
+  max-width: 768px;
+  min-height: ${({ height }) => (height ? `${height}px` : `70px`)};
   position: absolute;
   top: 50px;
+  display: flex;
+  justify-content: space-between;
   transition: 3s all ease-out;
   animation: hide 3s ease-out forwards;
   opacity: 1;
-  width: ${({ width }) => (width ? `${width}px` : `100%`)};
-  min-height: ${({ height }) => (height ? `${height}px` : `70px`)};
-  padding-left: 30px;
+  padding: 0px 30px;
   ${({ theme }) => theme.style.flexAlignCenter};
   ${({ toastType, theme }) =>
     toastType === 'ERROR'

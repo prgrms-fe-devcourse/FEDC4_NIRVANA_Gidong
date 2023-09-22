@@ -1,3 +1,4 @@
+import { Icon } from '@components/Icon';
 import { StyledToast } from './Toast.style';
 
 interface ToastProps {
@@ -14,6 +15,10 @@ const Toast = ({ width, height, content, type }: ToastProps) => {
       height={height}
       toastType={type}>
       {content}
+      <Icon
+        name='close'
+        size={14}
+      />
     </StyledToast>
   );
 };
