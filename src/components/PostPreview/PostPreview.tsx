@@ -25,7 +25,9 @@ const PostPreview = ({
   noneProfile = false
 }: PostPreviewProps) => {
   const { content } = post;
-  const previewContent = content.substring(0, 100);
+  const previewContent = `${content.substring(0, 100)}${
+    content.length > 100 ? '...' : ''
+  }`;
 
   return (
     <PreviewContainer>
@@ -41,7 +43,7 @@ const PostPreview = ({
         <Link
           pageLink={`/post-detail/:${post._id}`}
           color='black'>
-          <PostContent>{previewContent}...</PostContent>
+          <PostContent>{previewContent}</PostContent>
         </Link>
       </PostContentContainer>
     </PreviewContainer>
