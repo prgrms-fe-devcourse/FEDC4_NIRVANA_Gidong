@@ -22,7 +22,7 @@ const PostHeader = ({
   totalComments,
   noneProfile
 }: PostHeaderProps) => {
-  const { author, createdAt } = post;
+  const { image, author, createdAt } = post;
   const iconDescription = [
     { name: 'favorite', size: 12, total: totalLikes },
     { name: 'chat', size: 12, total: totalComments }
@@ -37,7 +37,7 @@ const PostHeader = ({
             color='black'>
             <Avatar
               alt={'유저 프로필'}
-              src={author.image}
+              src={image}
               size={35}
             />
           </Link>
