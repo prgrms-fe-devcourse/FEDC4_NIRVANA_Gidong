@@ -33,6 +33,7 @@ export const PostDetail = () => {
       <PostContent
         token={'Bearer ' + token}
         postId={postId}
+        channelId={data?.channel._id}
         author={data?.author}
         currentUserId={_id}
         title={data?.title}

@@ -70,6 +70,10 @@ const putPost = async ({
   postData,
   token
 }: Pick<PostApiProps, 'postData' | 'token'>) => {
+  console.log(postData.get('postId'));
+  console.log(postData.get('title'));
+  console.log(postData.get('image'));
+  console.log(postData.get('channelId'));
   const response = await axios.put<Post>(
     `${API_BASE_URL}/posts/update`,
     postData,

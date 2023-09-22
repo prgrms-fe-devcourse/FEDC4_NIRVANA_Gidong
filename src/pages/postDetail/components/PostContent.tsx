@@ -21,10 +21,12 @@ import { useRef } from 'react';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
 import { useNavigate } from 'react-router-dom';
+import { createFormData, purifyContent } from '@pages/posting/utils';
 
 interface PostContentProps {
   author: User;
   currentUserId: string;
+  channelId: string;
   postId: string;
   token: string;
   createdAt: string;
@@ -35,6 +37,7 @@ const PostContent = ({
   author,
   currentUserId,
   postId,
+  channelId,
   token,
   createdAt,
   title
@@ -61,6 +64,7 @@ const PostContent = ({
   const handleEditMenuClick = () => {
     setContentEditMode(true);
     setMenuOpened(false);
+
     contentEditRef.current?.setAttribute('contenteditable', 'true');
     contentEditRef.current?.focus();
   };
@@ -73,6 +77,16 @@ const PostContent = ({
   const handleEditConfirmClick = () => {
     setContentEditMode(false);
     contentEditRef.current?.setAttribute('contenteditable', 'false');
+    const newCustomTitle = {
+      title: purifyContent(contentEditRef.current?.textContent || ''),
+      meditationTime: `수정할때 명상시간 수정할게요`
+    };
+    const newFormData = createFormData(
+      JSON.stringify(newCustomTitle),
+      channelId,
+      postId
+    );
+    mutatePutPost({ postData: newFormData, token });
   };
 
   const handleConfirmCancelClick = () => {
