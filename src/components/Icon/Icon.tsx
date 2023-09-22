@@ -14,7 +14,7 @@ const Icon = ({ name, size, color, fill }: Partial<IconProps>) => {
       className={GOOGLE_ICON_CLASSNAME}
       size={size}
       color={color}
-      fill={fill}>
+      fill={fill?.toString()}>
       {name}
     </StyledIcon>
   );

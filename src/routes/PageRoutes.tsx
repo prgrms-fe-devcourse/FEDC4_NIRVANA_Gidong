@@ -12,6 +12,7 @@ import Setting from '@pages/setting/Setting';
 import PasswordUpdate from '@pages/password-update';
 import Posts from '@pages/posts';
 import Notice from '@pages/notice';
+import PostDetail from '@pages/postDetail/PostDetail';
 
 const PageRoutes = () => {
   return (
@@ -41,6 +42,10 @@ const PageRoutes = () => {
           <Route
             path='/notice'
             element={<Notice />}
+          />
+          <Route
+            path='/posts/:postId'
+            element={<PostDetail />}
           />
         </Route>
       </Route>

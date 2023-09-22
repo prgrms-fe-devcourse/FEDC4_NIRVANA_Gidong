@@ -45,7 +45,7 @@ const PostHeader = ({
       )}
       <PostInfoContainer>
         <Link
-          pageLink={`/post-detail/${post._id}`}
+          pageLink={`/posts/${post._id}`}
           color='black'>
           {!noneProfile && (
             <UserNameContainer>{author.fullName}</UserNameContainer>

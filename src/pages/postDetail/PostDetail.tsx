@@ -11,7 +11,7 @@ import formatDate from '@utils/formatDate';
 export const PostDetail = () => {
   const { postId } = useParams<{ postId: string }>();
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ['postDetail', postId],
     queryFn: async () => getPost(postId),
     enabled: !!postId
@@ -24,8 +24,6 @@ export const PostDetail = () => {
       token: ''
     }
   );
-
-  console.log(data, isLoading);
 
   return (
     <PostDetailPage>

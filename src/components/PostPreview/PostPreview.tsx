@@ -36,7 +36,7 @@ const PostPreview = ({
       </PostHeaderContainer>
       <PostContentContainer>
         <Link
-          pageLink={`/post-detail/:${post._id}`}
+          pageLink={`/posts/${post._id}`}
           color='black'>
           <PostContent>{previewTitle}...</PostContent>
         </Link>
