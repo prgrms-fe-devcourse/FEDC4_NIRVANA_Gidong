@@ -8,7 +8,6 @@ import SignUp from '@pages/signup';
 import LogIn from '@pages/login';
 import Posting from '@pages/posting';
 import Meditation from '@pages/meditation';
-import Setting from '@pages/setting/Setting';
 import PasswordUpdate from '@pages/password-update';
 import Posts from '@pages/posts';
 import Notice from '@pages/notice';
@@ -25,10 +24,6 @@ const PageRoutes = () => {
           <Route
             path='/posting'
             element={<Posting />}
-          />
-          <Route
-            path='/setting'
-            element={<Setting />}
           />
           <Route
             path='/posts'

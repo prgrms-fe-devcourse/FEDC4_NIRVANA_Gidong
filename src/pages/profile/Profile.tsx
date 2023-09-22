@@ -10,7 +10,8 @@ import {
   ProfileInfo,
   ProfileCover,
   ProfileMain,
-  ProfileEdit
+  ProfileEdit,
+  SettingSideBar
 } from '@pages/profile/components';
 
 const Profile = () => {
