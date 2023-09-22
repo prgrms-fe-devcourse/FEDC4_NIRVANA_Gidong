@@ -1,4 +1,3 @@
-import ReactDom from 'react-dom';
 import { Link } from '@components/Link';
 import {
   SettingSideBarBackground,
@@ -12,9 +11,13 @@ import useSessionStorage from '@hooks/useSessionStorage';
 
 interface SettingSideBarProps {
   closeSidebar: () => void;
+  sideBarOpened: boolean;
 }
 
-const SettingSideBar = ({ closeSidebar }: SettingSideBarProps) => {
+const SettingSideBar = ({
+  closeSidebar,
+  sideBarOpened
+}: SettingSideBarProps) => {
   const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     closeSidebar();
@@ -30,18 +33,16 @@ const SettingSideBar = ({ closeSidebar }: SettingSideBarProps) => {
     window.location.reload();
   };
 
-  return ReactDom.createPortal(
-    <SettingSideBarSection>
-      <SettingSideBarBackground
-        onClick={handleBackgroundClick}></SettingSideBarBackground>
-      <SettingRightSideBar>
+  return (
+    <SettingSideBarSection sideBarOpened={sideBarOpened}>
+      <SettingSideBarBackground onClick={handleBackgroundClick} />
+      <SettingRightSideBar sideBarOpened={sideBarOpened}>
         <Heading>환경설정</Heading>
-        <SettingUl>
+        <SettingUl sideBarOpened={sideBarOpened}>
           <SettingLi onClick={closeSidebar}>
             <Link
               pageLink='#edit'
-              size={16}
-              color='none'>
+              size={16}>
               <p>프로필 수정</p>
             </Link>
           </SettingLi>
@@ -58,8 +59,7 @@ const SettingSideBar = ({ closeSidebar }: SettingSideBarProps) => {
           </SettingLi>
         </SettingUl>
       </SettingRightSideBar>
-    </SettingSideBarSection>,
-    document.getElementById('modal-root')
+    </SettingSideBarSection>
   );
 };
 

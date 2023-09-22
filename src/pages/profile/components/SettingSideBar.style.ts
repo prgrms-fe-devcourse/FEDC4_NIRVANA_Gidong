@@ -1,25 +1,40 @@
 import styled from '@emotion/styled';
 
-export const SettingSideBarSection = styled.section`
+interface SettingSideBarProps {
+  sideBarOpened: boolean;
+}
+
+export const SettingSideBarSection = styled.section<SettingSideBarProps>`
+  position: absolute;
   display: flex;
+  justify-content: flex-end;
   width: 100vw;
   height: 100vh;
   max-width: 768px;
+  overflow: hidden;
+  z-index: 3;
+  transform: ${({ sideBarOpened }) =>
+    sideBarOpened ? 'translateX(0)' : 'translateX(100%)'};
 `;
 
 export const SettingSideBarBackground = styled.div`
+  position: absolute;
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.color.transparentGreyBackground};
-  flex: 1;
+  cursor: pointer;
 `;
 
-export const SettingRightSideBar = styled.div`
+export const SettingRightSideBar = styled.div<SettingSideBarProps>`
+  z-index: 4;
   padding: 43px 20px 0;
-  width: 100%;
+  width: 300px;
+  max-width: 80%;
   height: 100%;
   background-color: ${({ theme }) => theme.color.white};
-  flex: 5;
+  transform: ${({ sideBarOpened }) =>
+    sideBarOpened ? 'translateX(0)' : 'translateX(100%)'};
+  transition: all 0.1s ease-out;
 `;
 
 export const Heading = styled.h2`
@@ -29,20 +44,37 @@ export const Heading = styled.h2`
   margin-bottom: 24px;
 `;
 
-export const SettingUl = styled.ul`
+export const SettingUl = styled.ul<SettingSideBarProps>`
   z-index: 1;
+  animation: ${({ sideBarOpened }) => (sideBarOpened ? 'fadeIn' : 'fadeOut')}
+    0.3s;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const SettingLi = styled.li`
   ${({ theme }) => theme.style.flexAlignCenter}
   height: 51px;
   padding: 0 5px;
-  font-size: 16px;
   color: ${({ theme }) => theme.color.black};
+  font-size: 16px;
   border-bottom: 0.5px solid ${({ theme }) => theme.color.greyLight};
+  transition: all 0.2s ease-out;
 
-  > a {
+  :hover {
+    background-color: ${({ theme }) => theme.color.purpleLighter};
+  }
+
+  > a.active {
+    font-weight: normal;
     text-decoration: none;
     color: ${({ theme }) => theme.color.black};
+    width: 100%;
   }
 `;

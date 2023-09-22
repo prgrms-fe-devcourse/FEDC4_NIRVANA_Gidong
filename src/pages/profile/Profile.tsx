@@ -17,7 +17,7 @@ import {
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
   const location = useLocation();
-  const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [sideBarOpened, setSideBarOpened] = useState(false);
   const [editMode, setEditMode] = useRecoilState(editModeState);
   useEffect(() => {
     setEditMode(location.hash === '#edit');
@@ -30,18 +30,22 @@ const Profile = () => {
   );
 
   const openSidebar = () => {
-    setSidebarVisible(true);
+    setSideBarOpened(true);
   };
 
   const closeSidebar = () => {
-    setSidebarVisible(false);
+    console.log('close');
+    setSideBarOpened(false);
   };
 
   const tabItems = createTabItems(data, isLoading);
 
   return (
     <ProfilePage>
-      {sidebarVisible && <SettingSideBar closeSidebar={closeSidebar} />}
+      <SettingSideBar
+        sideBarOpened={sideBarOpened}
+        closeSidebar={closeSidebar}
+      />
       <ProfileCover
         refetch={() => refetch()}
         src={isLoading ? '' : data.coverImage}
