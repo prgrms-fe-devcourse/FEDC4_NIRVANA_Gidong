@@ -14,4 +14,5 @@ export interface Post {
   author: User;
   createdAt: string;
   updatedAt: string;
+  meditationTime?: number;
 }
