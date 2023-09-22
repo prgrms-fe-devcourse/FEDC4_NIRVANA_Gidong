@@ -33,7 +33,7 @@ const PostHeader = ({
       {!noneProfile && (
         <AvatarContainer>
           <Link
-            pageLink={`/profile/:${post.author}`}
+            pageLink={`/profile/${post.author._id}`}
             color='black'>
             <Avatar
               alt={'유저 프로필'}
