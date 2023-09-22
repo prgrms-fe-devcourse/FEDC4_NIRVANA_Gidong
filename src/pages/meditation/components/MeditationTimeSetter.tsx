@@ -28,15 +28,17 @@ const MeditationTimeSetter = () => {
   const longClickIdRef = useRef<number>(null);
   const [totalTime, setTotalTime] = useRecoilState(totalMeditationTime);
   const themePicked = useRecoilValue(pickedTheme);
-  const [timerStarted, setTimerStarted] = useState(false);
-  const [timerEnded, setTimerEnded] = useState(false);
+  const [meditationStatus, setMeditationStatus] = useState({
+    started: false,
+    ended: false
+  });
   const navigate = useNavigate();
   useEffect(() => {
     const handleStartMeditation = () => {
       if (totalTime === 0) {
         setTotalTime(time);
       }
-      setTimerStarted(true);
+      setMeditationStatus({ ...meditationStatus, started: true });
     };
 
     const handleEndMeditation = () => {
@@ -48,7 +50,7 @@ const MeditationTimeSetter = () => {
           validation: true
         }
       });
-      setTimerEnded(true);
+      setMeditationStatus({ ...meditationStatus, ended: true });
     };
 
     document.addEventListener(
@@ -67,9 +69,11 @@ const MeditationTimeSetter = () => {
         handleEndMeditation
       );
     };
-  });
+  }, []);
 
-  const handleTime = (buttonType: string) => {
+  const handleTime = (
+    buttonType: typeof BUTTON_TYPE_SUB | typeof BUTTON_TYPE_ADD
+  ) => {
     if (time <= 240 && buttonType === BUTTON_TYPE_SUB) {
       return;
     }
@@ -113,7 +117,7 @@ const MeditationTimeSetter = () => {
 
   return (
     <>
-      {!timerStarted && (
+      {!meditationStatus.started && (
         <TimeSetterContainer>
           <SetTimeButton
             onClick={() => handleTime(BUTTON_TYPE_SUB)}
@@ -151,7 +155,9 @@ const MeditationTimeSetter = () => {
           </SetTimeButton>
         </TimeSetterContainer>
       )}
-      {timerStarted && !timerEnded && <MeditationEndButton />}
+      {meditationStatus.started && !meditationStatus.ended && (
+        <MeditationEndButton />
+      )}
     </>
   );
 };
