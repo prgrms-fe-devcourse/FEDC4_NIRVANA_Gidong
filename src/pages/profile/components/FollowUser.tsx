@@ -22,6 +22,7 @@ const FollowUser = ({
         image={image}
         isOnline={isOnline}
         email={email}
+        id={_id}
       />
       {following && (
         <FollowButton
