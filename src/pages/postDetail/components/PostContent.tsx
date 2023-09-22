@@ -19,6 +19,8 @@ import { deletePost, putPost } from '@apis/posts';
 import { useMutation } from '@tanstack/react-query';
 import { useRef } from 'react';
 import { Button } from '@components/Button';
+import { Confirm } from '@components/Confirm';
+import { useNavigate } from 'react-router-dom';
 
 interface PostContentProps {
   author: User;
@@ -36,6 +38,7 @@ const PostContent = ({
   title
 }: PostContentProps) => {
   const [menuOpened, setMenuOpened] = useState(false);
+  const [confirmOpened, setConfirmOpened] = useState(false);
   const [contentEditMode, setContentEditMode] = useState(false);
   const contentEditRef = useRef(null);
 
@@ -43,32 +46,38 @@ const PostContent = ({
     setMenuOpened(!menuOpened);
   };
 
-  const {
-    mutate: mutateDeletePost,
-    data: deletedPostData,
-    isSuccess
-  } = useMutation(deletePost);
-  // const { mutate: mutatePutPost } = useMutation(putPost);
+  const navigate = useNavigate();
+  const { mutate: mutateDeletePost, isSuccess: deletePostSuccess } =
+    useMutation(deletePost);
 
-  if (isSuccess) {
-    console.log(deletedPostData);
+  if (deletePostSuccess) {
+    navigate('/posts');
   }
 
-  const handleEditClick = () => {
+  const handleEditMenuClick = () => {
     setContentEditMode(true);
     setMenuOpened(false);
     contentEditRef.current?.setAttribute('contenteditable', 'true');
     contentEditRef.current?.focus();
-    // mutatePutPost({});
   };
 
-  const handleDeleteClick = () => {
-    mutateDeletePost({ postId, token });
+  const handleDeleteMenuClick = () => {
+    setMenuOpened(false);
+    setConfirmOpened(true);
   };
 
   const handleEditConfirmClick = () => {
     setContentEditMode(false);
     contentEditRef.current?.setAttribute('contenteditable', 'false');
+  };
+
+  const handleConfirmCancelClick = () => {
+    setConfirmOpened(false);
+  };
+
+  const handleDeleteConfirmClick = () => {
+    setConfirmOpened(false);
+    mutateDeletePost({ postId, token });
   };
 
   return (
@@ -97,8 +106,8 @@ const PostContent = ({
           />
         </PostContentMenuIconContainer>
         <PostContentMenu opened={menuOpened}>
-          <p onClick={handleDeleteClick}>삭제하기</p>
-          <p onClick={handleEditClick}>수정하기</p>
+          <p onClick={handleDeleteMenuClick}>삭제하기</p>
+          <p onClick={handleEditMenuClick}>수정하기</p>
         </PostContentMenu>
       </PostContentHeader>
       <PostContentBody ref={contentEditRef}>{title}</PostContentBody>
@@ -112,6 +121,33 @@ const PostContent = ({
           handleClick={handleEditConfirmClick}
         />
       </PostEditConfirmButtonContainer>
+      {confirmOpened && (
+        <Confirm
+          emoji='❗'
+          content='정말 게시글을 삭제하시겠습니까?'
+          contentFontSize={14}
+          CancelButton={
+            <Button
+              width={120}
+              height={50}
+              bold={true}
+              dark={false}
+              label={'취소'}
+              handleClick={handleConfirmCancelClick}
+            />
+          }
+          ConfirmButton={
+            <Button
+              width={120}
+              height={50}
+              bold={true}
+              dark={true}
+              label={'삭제'}
+              handleClick={handleDeleteConfirmClick}
+            />
+          }
+        />
+      )}
     </PostContentSection>
   );
 };
