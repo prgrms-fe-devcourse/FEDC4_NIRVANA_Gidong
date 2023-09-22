@@ -45,7 +45,7 @@ const SkeletonAvatar = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 30px;
+    width: 60px;
     height: 100%;
     background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
     animation: loading 2s infinite linear;
@@ -76,7 +76,7 @@ const SkeletonUser = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 30px;
+    width: 60px;
     height: 100%;
     background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
     animation: loading 2s infinite linear;
@@ -111,7 +111,7 @@ const SkeletonContent = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 30px;
+    width: 60px;
     height: 100%;
     background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
     animation: loading 2s infinite linear;
