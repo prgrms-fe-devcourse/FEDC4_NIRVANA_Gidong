@@ -47,10 +47,11 @@ export const IconContainer = styled.div<IconContainerProps>`
 `;
 
 export const ContentContainer = styled.div<ContentContainerProps>`
-  width: 100%;
+  width: 80%;
   height: 50%;
   text-align: center;
   font-weight: bold;
+  white-space: pre-line;
   font-size: ${({ contentFontSize }) => contentFontSize}px;
   position: relative;
 `;

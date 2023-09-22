@@ -31,6 +31,10 @@ const PageRoutes = () => {
             element={<Setting />}
           />
           <Route
+            path='/posts'
+            element={<Posts />}
+          />
+          <Route
             path='/setting/password-update'
             element={<PasswordUpdate />}
           />
@@ -54,10 +58,7 @@ const PageRoutes = () => {
         path='/signup'
         element={<SignUp />}
       />
-      <Route
-        path='/posts'
-        element={<Posts />}
-      />
+
       <Route
         path='/login'
         element={<LogIn />}
