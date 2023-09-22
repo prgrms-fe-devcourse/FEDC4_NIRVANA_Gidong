@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 
 import LandingPage from '@pages/landing';
@@ -49,6 +49,10 @@ const PageRoutes = () => {
       <Route
         path='/404'
         element={<NotFound />}
+      />
+      <Route
+        path='/*'
+        element={<Navigate to='/404' />}
       />
       <Route
         path='/signup'
