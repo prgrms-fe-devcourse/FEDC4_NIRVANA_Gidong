@@ -4,6 +4,7 @@ import { getUser } from '@apis/user';
 import { User } from '@/types';
 import { PostPreview } from '@components/PostPreview';
 import filterPostData from '../utils/filterPostData';
+import { FILTER } from '../constants/filter';
 
 interface SearchResultPostProps {
   searchKeyword: string;
@@ -21,7 +22,7 @@ const SearchResultPost = ({
 
       return data;
     },
-    enabled: searchKeyword !== '' && searchFilter === 'post'
+    enabled: searchKeyword !== '' && searchFilter === FILTER[0]
   });
 
   const filteredData = filterPostData(postData || []);
@@ -48,8 +49,7 @@ const SearchResultPost = ({
 
   return (
     <>
-      {searchFilter === 'post' &&
-        Failed === 0 &&
+      {Failed < 1 &&
         postWithUserData.map(({ data: post }) => {
           const { _id, likes, comments } = post;
 

@@ -3,6 +3,7 @@ import { searchUser } from '@apis/search';
 import { User } from '@/types';
 import { FollowUserInfo } from '@pages/profile/components';
 import { SearchItem } from './SearchMain.style';
+import { FILTER } from '../constants/filter';
 
 interface SearchResultUserProps {
   searchKeyword: string;
@@ -19,26 +20,25 @@ const SearchResultUser = ({
       const data = await searchUser(searchKeyword);
       return data;
     },
-    enabled: searchKeyword !== '' && searchFilter === 'user'
+    enabled: searchKeyword !== '' && searchFilter === FILTER[1]
   });
 
   return (
     <>
-      {searchFilter === 'user' &&
-        userData?.map((element: User) => {
-          const { _id, fullName, image, email, isOnline } = element;
+      {userData?.map((element: User) => {
+        const { _id, fullName, image, email, isOnline } = element;
 
-          return (
-            <SearchItem key={_id}>
-              <FollowUserInfo
-                fullName={fullName}
-                image={image}
-                email={email}
-                isOnline={isOnline}
-              />
-            </SearchItem>
-          );
-        })}
+        return (
+          <SearchItem key={_id}>
+            <FollowUserInfo
+              fullName={fullName}
+              image={image}
+              email={email}
+              isOnline={isOnline}
+            />
+          </SearchItem>
+        );
+      })}
     </>
   );
 };

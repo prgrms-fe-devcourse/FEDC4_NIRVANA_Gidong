@@ -4,13 +4,14 @@ import { SearchMainContainer, SearchResult } from './SearchMain.style';
 import encodeURIValue from '../utils/encodeURIValue';
 import SearchResultPost from './SearchResultPost';
 import SearchResultUser from './SearchResultUser';
+import { FILTER } from '../constants/filter';
 
 interface SearchMainProps {
   inputValue: string;
 }
 
 const SearchMain = ({ inputValue }: SearchMainProps) => {
-  const [searchFilter, setSearchFilter] = useState('post');
+  const [searchFilter, setSearchFilter] = useState(FILTER[0]);
 
   const searchKeyword = encodeURIValue(inputValue);
 
@@ -25,14 +26,17 @@ const SearchMain = ({ inputValue }: SearchMainProps) => {
         filterState={searchFilter}
       />
       <SearchResult>
-        <SearchResultPost
-          searchFilter={searchFilter}
-          searchKeyword={searchKeyword}
-        />
-        <SearchResultUser
-          searchFilter={searchFilter}
-          searchKeyword={searchKeyword}
-        />
+        {searchFilter === FILTER[0] ? (
+          <SearchResultPost
+            searchFilter={searchFilter}
+            searchKeyword={searchKeyword}
+          />
+        ) : (
+          <SearchResultUser
+            searchFilter={searchFilter}
+            searchKeyword={searchKeyword}
+          />
+        )}
       </SearchResult>
     </SearchMainContainer>
   );
