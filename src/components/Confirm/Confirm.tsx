@@ -15,8 +15,9 @@ interface ConfirmProps {
   content: string;
   contentFontSize: number;
   nextPageLink: string;
-  CancelButton: React.ReactNode;
-  ConfirmButton: React.ReactNode;
+  CancelButton: React.ReactNode | (() => JSX.Element);
+  ConfirmButton: React.ReactNode | (() => JSX.Element);
+  linkState: { [key: string]: any };
 }
 
 const Confirm = ({
@@ -24,11 +25,17 @@ const Confirm = ({
   content,
   contentFontSize = 16,
   nextPageLink,
+  linkState,
   CancelButton,
   ConfirmButton
 }: Partial<ConfirmProps>) => {
   const [disabled, setDisabled] = useState(false);
   const [domReady, setDomReady] = useState(false);
+  
+  const FormedCancelButton =
+    typeof CancelButton === 'function' ? CancelButton() : CancelButton;
+  const FormedConfirmlButton =
+    typeof ConfirmButton === 'function' ? ConfirmButton() : ConfirmButton;
 
   useEffect(() => {
     setDomReady(true);

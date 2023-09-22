@@ -12,6 +12,7 @@ import Setting from '@pages/setting/Setting';
 import PasswordUpdate from '@pages/password-update';
 import NotFound from '@pages/NotFound';
 import Posts from '@pages/posts';
+import Notice from '@pages/notice';
 
 const PageRoutes = () => {
   return (
@@ -31,12 +32,20 @@ const PageRoutes = () => {
             element={<Setting />}
           />
           <Route
+            path='/posts'
+            element={<Posts />}
+          />
+          <Route
             path='/setting/password-update'
             element={<PasswordUpdate />}
           />
           <Route
             path='/*'
             element={<Navigate to='/404' />}
+          />
+          <Route
+            path='/notice'
+            element={<Notice />}
           />
         </Route>
       </Route>
@@ -62,10 +71,7 @@ const PageRoutes = () => {
         path='/signup'
         element={<SignUp />}
       />
-      <Route
-        path='/posts'
-        element={<Posts />}
-      />
+
       <Route
         path='/login'
         element={<LogIn />}

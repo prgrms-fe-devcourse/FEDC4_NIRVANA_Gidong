@@ -3,6 +3,7 @@ import PostHeader from './PostHeader';
 import {
   PreviewContainer,
   PostHeaderContainer,
+  PostContentContainer,
   PostContent
 } from './PostPreview.style';
 import { Link } from '@components/Link';
@@ -33,9 +34,13 @@ const PostPreview = ({
           noneProfile={noneProfile}
         />
       </PostHeaderContainer>
-      <Link pageLink={`/post-detail/:${post._id}`}>
-        <PostContent>{previewTitle}...</PostContent>
-      </Link>
+      <PostContentContainer>
+        <Link
+          pageLink={`/post-detail/:${post._id}`}
+          color='black'>
+          <PostContent>{previewTitle}...</PostContent>
+        </Link>
+      </PostContentContainer>
     </PreviewContainer>
   );
 };

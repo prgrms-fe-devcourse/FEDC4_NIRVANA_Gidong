@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { NewPost } from './components/NewPost';
 import { SkipPosting } from './components/SkipPosting';
@@ -7,13 +7,20 @@ import {
   StyledDescription,
   StyledPosting
 } from './Posting.style';
+import { useEffect } from 'react';
 
 const Posting = () => {
   const location = useLocation();
-  const { channelId, channelLabel, totalTime } = location.state;
-
+  const navigate = useNavigate();
+  const { channelId, validation, channelLabel, totalTime } = location.state;
   const { token } = JSON.parse(sessionStorage.getItem('userData'));
   const customToken = `bearer ${token}`;
+
+  useEffect(() => {
+    if (!validation) {
+      navigate('/404');
+    }
+  });
 
   return (
     <StyledPosting>
@@ -27,7 +34,7 @@ const Posting = () => {
           </p>
         </StyledDescription>
         <NewPost
-          channelId={channelId}
+          meditationInfo={location.state}
           customToken={customToken}
         />
         <SkipPosting
