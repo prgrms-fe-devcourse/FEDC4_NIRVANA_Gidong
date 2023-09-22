@@ -6,10 +6,7 @@ import { User } from '@/types/User';
 const PrivateRoute = (): React.ReactElement => {
   const [userSessionData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
     'userData',
-    {
-      _id: '',
-      token: ''
-    }
+    { _id: '', token: '' }
   );
   const { pathname } = useLocation();
 
