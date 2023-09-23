@@ -5,7 +5,7 @@ import {
   SkeletonUser,
   SkeletonContentContainer,
   SkeletonContent
-} from './Skeleton.style';
+} from './PostPreviewSkeleton.style';
 
 const Skeleton = () => {
   return (

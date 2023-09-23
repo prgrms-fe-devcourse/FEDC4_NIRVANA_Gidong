@@ -1,4 +1,4 @@
 import PostPreview from './PostPreview';
-import Skeleton from './Skeleton';
+import PostPreviewSkeleton from './PostPreviewSkeleton';
 
-export { PostPreview, Skeleton };
+export { PostPreview, PostPreviewSkeleton };
