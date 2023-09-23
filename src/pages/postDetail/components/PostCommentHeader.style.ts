@@ -26,6 +26,9 @@ export const PostLikeContainer = styled.div`
     &:active {
       animation: shake 1s infinite;
     }
+    :hover {
+      transform: scale(1.2);
+    }
   }
 
   @keyframes shake {
