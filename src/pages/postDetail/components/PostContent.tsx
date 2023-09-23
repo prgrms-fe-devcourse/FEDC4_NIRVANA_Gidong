@@ -45,7 +45,7 @@ const PostContent = ({
   meditationTime
 }: PostContentProps) => {
   const [menuOpened, setMenuOpened] = useState(false);
-  const [confirmOpened, setConfirmOpened] = useState(false);
+  const [deleteConfirmOpened, setDeleteConfirmOpened] = useState(false);
   const [contentEditMode, setContentEditMode] = useState(false);
   const contentEditRef = useRef(null);
 
@@ -73,7 +73,7 @@ const PostContent = ({
 
   const handleDeleteMenuClick = () => {
     setMenuOpened(false);
-    setConfirmOpened(true);
+    setDeleteConfirmOpened(true);
   };
 
   const handleEditCancelClick = () => {
@@ -97,11 +97,11 @@ const PostContent = ({
   };
 
   const handleConfirmCancelClick = () => {
-    setConfirmOpened(false);
+    setDeleteConfirmOpened(false);
   };
 
   const handleDeleteConfirmClick = () => {
-    setConfirmOpened(false);
+    setDeleteConfirmOpened(false);
     mutateDeletePost({ postId, token });
   };
 
@@ -160,7 +160,7 @@ const PostContent = ({
           handleClick={handleEditConfirmClick}
         />
       </PostEditConfirmButtonContainer>
-      {confirmOpened && (
+      {deleteConfirmOpened && (
         <Confirm
           emoji='❗'
           content='정말 게시글을 삭제하시겠습니까?'
