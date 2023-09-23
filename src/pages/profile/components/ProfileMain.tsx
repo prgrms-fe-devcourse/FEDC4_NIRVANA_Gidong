@@ -5,27 +5,32 @@ import {
   ProfileTabItem,
   ProfileCarousel
 } from '@pages/profile/components';
-import { TabItem } from '@pages/profile/utils/createTabItems';
+import { TabItems } from '../utils/createTabItems';
 
 interface ProfileMainProps {
-  tabItems: TabItem[];
+  tabItems: TabItems;
+  fullName: string;
+  openSidebar: () => void;
 }
 
-const ProfileMain = ({ tabItems }: ProfileMainProps) => {
+const ProfileMain = ({ tabItems, openSidebar, fullName }: ProfileMainProps) => {
   return (
     <ProfileMainSection>
-      <ProfileHeader />
+      <ProfileHeader openSidebar={openSidebar} />
       <ProfileTabs>
-        {tabItems.map((tabItem, index) => (
+        {Object.entries(tabItems).map(([label, tabItem], index) => (
           <ProfileTabItem
-            key={tabItem.label}
-            title={`${tabItem.value} ${tabItem.label}`}
+            key={index}
+            title={`${tabItem.value} ${label}`}
             data={tabItem.data}
             index={index}
           />
         ))}
       </ProfileTabs>
-      <ProfileCarousel totalIndex={tabItems.length} />
+      <ProfileCarousel
+        tabItems={tabItems}
+        fullName={fullName}
+      />
     </ProfileMainSection>
   );
 };

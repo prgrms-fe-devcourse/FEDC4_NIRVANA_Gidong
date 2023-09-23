@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from '../Link';
 import {
@@ -30,32 +30,38 @@ const Confirm = ({
   ConfirmButton
 }: Partial<ConfirmProps>) => {
   const [disabled, setDisabled] = useState(false);
+  const [domReady, setDomReady] = useState(false);
+  
   const FormedCancelButton =
     typeof CancelButton === 'function' ? CancelButton() : CancelButton;
   const FormedConfirmlButton =
     typeof ConfirmButton === 'function' ? ConfirmButton() : ConfirmButton;
-  return createPortal(
-    <StyledDeemBackground disabled={disabled}>
-      <StyledConfirmBackground
-        width={330}
-        height={390}>
-        <IconContainer emojiSize={80}>{emoji}</IconContainer>
-        <ContentContainer contentFontSize={contentFontSize}>
-          {content}
-          <NavButtonContainer>
-            <CancelButtonDefaultEvent onClick={() => setDisabled(true)}>
-              {FormedCancelButton}
-            </CancelButtonDefaultEvent>
-            <Link
-              pageLink={nextPageLink}
-              state={{ ...linkState }}>
-              {FormedConfirmlButton}
-            </Link>
-          </NavButtonContainer>
-        </ContentContainer>
-      </StyledConfirmBackground>
-    </StyledDeemBackground>,
-    document.getElementById('root-modal')
+
+  useEffect(() => {
+    setDomReady(true);
+  }, []);
+
+  return (
+    domReady &&
+    createPortal(
+      <StyledDeemBackground disabled={disabled}>
+        <StyledConfirmBackground
+          width={330}
+          height={390}>
+          <IconContainer emojiSize={80}>{emoji}</IconContainer>
+          <ContentContainer contentFontSize={contentFontSize}>
+            {content}
+            <NavButtonContainer>
+              <CancelButtonDefaultEvent onClick={() => setDisabled(true)}>
+                {CancelButton}
+              </CancelButtonDefaultEvent>
+              <Link pageLink={nextPageLink}>{ConfirmButton}</Link>
+            </NavButtonContainer>
+          </ContentContainer>
+        </StyledConfirmBackground>
+      </StyledDeemBackground>,
+      document.getElementById('root-modal')
+    )
   );
 };
 export default Confirm;
