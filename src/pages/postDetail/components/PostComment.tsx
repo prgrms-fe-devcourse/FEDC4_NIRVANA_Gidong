@@ -54,11 +54,10 @@ const PostComment = ({
           {text}
         </PostCommentContentContainer>
       </PostCommentContainer>
-      {myComment && (
-        <PostCommentDeleteContainer onClick={handleCommentDeleteClick}>
-          삭제
-        </PostCommentDeleteContainer>
-      )}
+
+      <PostCommentDeleteContainer>
+        {myComment && <p onClick={handleCommentDeleteClick}>삭제</p>}
+      </PostCommentDeleteContainer>
     </>
   );
 };

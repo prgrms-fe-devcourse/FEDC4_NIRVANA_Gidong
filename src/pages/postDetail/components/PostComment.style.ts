@@ -27,8 +27,10 @@ export const PostCommentContentContainer = styled.div`
 
 export const PostCommentDeleteContainer = styled.div`
   color: ${({ theme }) => theme.color.greyLight};
+  height: 16px;
   display: flex;
   justify-content: flex-end;
-  cursor: pointer;
-  margin-bottom: 15px;
+  > p {
+    cursor: pointer;
+  }
 `;
