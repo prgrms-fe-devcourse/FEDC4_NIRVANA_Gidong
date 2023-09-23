@@ -16,6 +16,7 @@ const FollowButton = ({
   followingUserId,
   following = true
 }: FollowButtonProps) => {
+  console.log(followingDataId, followingUserId, following);
   const [followed, setFollowed] = useState(following);
   const [dataId, setDataId] = useState(followingDataId);
   const [userSessionData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
