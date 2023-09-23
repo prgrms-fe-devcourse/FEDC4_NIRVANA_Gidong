@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { Button } from '@components/Button';
 import {
   CommentAvatarContainer,
@@ -8,8 +10,6 @@ import {
   CommentInputForm
 } from './PostCommentInput.style';
 import { Avatar } from '@components/Avatar';
-import { useRef } from 'react';
-import { useMutation } from '@tanstack/react-query';
 import { postComment } from '@apis/comment';
 
 interface PostCommentInputProps {
@@ -34,9 +34,7 @@ const PostCommentInput = ({
 
   if (isSuccess) refetch();
 
-  const handleCommentSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleCommentSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     mutate({
       postId,
