@@ -25,7 +25,7 @@ const PostCommentHeader = ({
   likeCounts,
   postCommentCount = 0
 }: PostCommentHeaderProps) => {
-  const { mutate, isSuccess } = useMutation(() => {
+  const { mutate, isSuccess, isLoading } = useMutation(() => {
     return myLike ? deleteLike(myLike._id, token) : postLike(postId, token);
   });
 
@@ -33,7 +33,9 @@ const PostCommentHeader = ({
     refetch();
   }
   const handleLikeClick = () => {
-    mutate();
+    if (!isLoading) {
+      mutate();
+    }
   };
 
   return (

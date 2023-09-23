@@ -70,10 +70,6 @@ const putPost = async ({
   postData,
   token
 }: Pick<PostApiProps, 'postData' | 'token'>) => {
-  console.log(postData.get('postId'));
-  console.log(postData.get('title'));
-  console.log(postData.get('image'));
-  console.log(postData.get('channelId'));
   const response = await axios.put<Post>(
     `${API_BASE_URL}/posts/update`,
     postData,
@@ -90,7 +86,6 @@ const deletePost = async ({
   postId,
   token
 }: Pick<PostApiProps, 'postId' | 'token'>) => {
-  console.log(postId, token);
   const response = await axios.delete<Post>(`${API_BASE_URL}/posts/delete`, {
     data: { id: postId },
     headers: {
