@@ -1,4 +1,5 @@
 import formatTime from './formatTime';
-import GetMyFollowData from './GetMyFollowData';
+import getMyFollowData from './getMyFollowData';
+import getTotalMeditationTime from './getTotalMeditationTime';
 
-export { formatTime, GetMyFollowData };
+export { formatTime, getMyFollowData, getTotalMeditationTime };

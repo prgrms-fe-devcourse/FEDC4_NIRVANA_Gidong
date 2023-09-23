@@ -1,5 +1,6 @@
 import { User, Follow, Post } from '@/types';
 import { PROFILE_TABS } from '../constants/profileTabs';
+import getTotalMeditationTime from '@/utils/getTotalMeditationTime';
 
 const { MEDITATION, FOLLOWING, FOLLOWER, INFO } = PROFILE_TABS;
 
@@ -26,11 +27,11 @@ const createTabItems = (tabData: User, isLoading: boolean): TabItems => {
       value: isLoading ? 0 : tabData.followers.length,
       data: isLoading ? [] : tabData.followers
     },
-
-    {
-      label: PROFILE_TABS.INFO,
+    [INFO]: {
       value: '',
-      data: isLoading ? [] : [tabData.posts.length, tabData.posts.length]
+      data: isLoading
+        ? []
+        : [tabData.posts.length, getTotalMeditationTime(tabData.posts)]
     }
   };
 
