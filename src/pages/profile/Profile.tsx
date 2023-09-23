@@ -79,6 +79,7 @@ const Profile = () => {
             tabItems={tabItems}
             openSidebar={openSidebar}
             fullName={isLoading ? '' : data.fullName}
+            refetch={() => refetch()}
           />
         )}
       </ProfileInfoContainer>

@@ -12,6 +12,7 @@ interface FollowButtonProps {
   width?: number;
   height?: number;
   fontSize?: number;
+  refetch?: () => void;
 }
 
 const FollowButton = ({
@@ -20,7 +21,8 @@ const FollowButton = ({
   following = true,
   width = 68,
   height = 30,
-  fontSize = 12
+  fontSize = 12,
+  refetch
 }: FollowButtonProps) => {
   const [followed, setFollowed] = useState(following);
   const [dataId, setDataId] = useState(followingDataId);
@@ -32,7 +34,6 @@ const FollowButton = ({
     }
   );
   const { token } = userSessionData;
-
   const { mutate } = useMutation(
     () =>
       followed
@@ -43,7 +44,7 @@ const FollowButton = ({
         if (!followed) {
           setDataId(data._id);
         }
-
+        refetch();
         setFollowed((prev) => !prev);
       }
     }

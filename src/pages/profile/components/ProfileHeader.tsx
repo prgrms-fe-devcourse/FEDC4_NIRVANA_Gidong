@@ -12,13 +12,15 @@ interface ProfileHeaderProps {
   profileId: string;
   myFollowData: Follow;
   openSidebar: () => void;
+  refetch: () => void;
 }
 
 const ProfileHeader = ({
   myProfile,
   myFollowData,
   profileId,
-  openSidebar
+  openSidebar,
+  refetch
 }: ProfileHeaderProps) => {
   const handleEditClick = () => {
     openSidebar();
@@ -49,6 +51,7 @@ const ProfileHeader = ({
               followingUserId={profileId}
               following={myFollowData ? true : false}
               fontSize={12}
+              refetch={refetch}
             />
           </>
         )}

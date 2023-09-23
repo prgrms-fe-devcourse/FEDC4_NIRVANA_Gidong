@@ -15,6 +15,7 @@ interface ProfileMainProps {
   fullName: string;
   profileId: string;
   openSidebar: () => void;
+  refetch: () => void;
 }
 
 const ProfileMain = ({
@@ -23,7 +24,8 @@ const ProfileMain = ({
   myFollowData,
   fullName,
   profileId,
-  openSidebar
+  openSidebar,
+  refetch
 }: ProfileMainProps) => {
   return (
     <ProfileMainSection>
@@ -32,6 +34,7 @@ const ProfileMain = ({
         myFollowData={myFollowData}
         profileId={profileId}
         openSidebar={openSidebar}
+        refetch={refetch}
       />
       <ProfileTabs>
         {Object.entries(tabItems).map(([label, tabItem], index) => (
