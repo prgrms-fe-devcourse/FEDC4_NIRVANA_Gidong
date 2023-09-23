@@ -16,8 +16,6 @@ export const TimeLabel = styled.div`
   width: 120px;
   border: none;
   outline: none;
-  padding-left: 5px;
-  padding-right: 5px;
 `;
 
 export const TimeInput = styled.input`
