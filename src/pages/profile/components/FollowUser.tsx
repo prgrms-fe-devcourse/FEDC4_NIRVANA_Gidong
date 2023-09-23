@@ -13,7 +13,7 @@ const FollowUser = ({
   followUser,
   following
 }: FollowUserProps) => {
-  const { fullName, image, isOnline, email } = followUser;
+  const { _id, fullName, image, isOnline, email } = followUser;
 
   return (
     <FollowUserContainer>
@@ -22,8 +22,15 @@ const FollowUser = ({
         image={image}
         isOnline={isOnline}
         email={email}
+        id={_id}
       />
-      {following && <FollowButton followDataId={followDataId} />}
+      {following && (
+        <FollowButton
+          followingDataId={followDataId}
+          followingUserId={_id}
+          following={true}
+        />
+      )}
     </FollowUserContainer>
   );
 };
