@@ -44,7 +44,7 @@ const FollowButton = ({
         if (!followed) {
           setDataId(data._id);
         }
-        refetch();
+        refetch && refetch();
         setFollowed((prev) => !prev);
       }
     }
