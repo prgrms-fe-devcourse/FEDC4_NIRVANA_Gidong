@@ -26,7 +26,9 @@ const createTabItems = (tabData: User, isLoading: boolean): TabItems => {
       value: isLoading ? 0 : tabData.followers.length,
       data: isLoading ? [] : tabData.followers
     },
-    [INFO]: {
+
+    {
+      label: PROFILE_TABS.INFO,
       value: '',
       data: isLoading ? [] : [tabData.posts.length, tabData.posts.length]
     }
