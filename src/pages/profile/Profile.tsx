@@ -16,7 +16,7 @@ import {
   ProfileEdit,
   SettingSideBar
 } from '@pages/profile/components';
-import { GetMyFollowData } from '@/utils';
+import { getMyFollowData } from '@/utils';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -75,7 +75,7 @@ const Profile = () => {
         ) : (
           <ProfileMain
             myProfile={currentUserId === userId}
-            myFollowData={GetMyFollowData(data?.followers, currentUserId)}
+            myFollowData={getMyFollowData(data?.followers, currentUserId)}
             profileId={userId}
             tabItems={tabItems}
             openSidebar={openSidebar}

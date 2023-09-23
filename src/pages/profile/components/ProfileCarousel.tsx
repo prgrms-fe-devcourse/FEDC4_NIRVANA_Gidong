@@ -9,6 +9,8 @@ import { FollowUsers, MeditationInfo } from '@pages/profile/components';
 import { TabItems } from '../utils/createTabItems';
 import { PROFILE_TABS } from '../constants/profileTabs';
 import { Follow } from '@/types/Follow';
+import { PostPreview } from '@components/PostPreview';
+import { Post } from '@/types/Post';
 
 interface ProfileCarouselProps {
   tabItems: TabItems;
@@ -34,7 +36,16 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
           case MEDITATION:
             return (
               <ProfileCarouselItem key={index}>
-                {tabItem.value}
+                {tabItem.data &&
+                  tabItem.data.map((post, index) => (
+                    <PostPreview
+                      key={index}
+                      post={post as Post}
+                      totalLikes={post.likes.length}
+                      totalComments={post.comments.length}
+                      noneProfile={true}
+                    />
+                  ))}
               </ProfileCarouselItem>
             );
           case FOLLOWING:
