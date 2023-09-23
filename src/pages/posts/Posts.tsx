@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import type { Post } from '@/types';
 import { getPosts } from '@apis/posts';
@@ -12,7 +13,6 @@ import {
   ThemePickerContainer,
   PostsContainer
 } from './Posts.style';
-import { useQuery } from '@tanstack/react-query';
 
 const Posts = () => {
   const postsRef = useRef(null);
