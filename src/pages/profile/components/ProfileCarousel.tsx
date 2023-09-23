@@ -1,5 +1,6 @@
 import { useRecoilState } from 'recoil';
 import {
+  NonePostContainer,
   ProfileCarouselContainer,
   ProfileCarouselItem
 } from './ProfileCarousel.style';
@@ -34,7 +35,7 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
       {Object.entries(tabItems).map(([label, tabItem], index) => {
         switch (label) {
           case MEDITATION:
-            return (
+            return tabItem.data && tabItem.data.length > 0 ? (
               <ProfileCarouselItem key={index}>
                 {tabItem.data &&
                   tabItem.data.map((post, index) => (
@@ -46,6 +47,12 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
                       noneProfile={true}
                     />
                   ))}
+              </ProfileCarouselItem>
+            ) : (
+              <ProfileCarouselItem key={index}>
+                <NonePostContainer>
+                  아직 명상을 진행하지 않았습니다
+                </NonePostContainer>
               </ProfileCarouselItem>
             );
           case FOLLOWING:
