@@ -63,7 +63,6 @@ const Login = () => {
     postLogInUser({ email, password })
       .then((res) => {
         const { user, token } = res.data;
-        console.log(res.data);
         setUserSessionData({
           _id: user._id,
           token,
