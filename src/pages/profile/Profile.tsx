@@ -67,7 +67,6 @@ const Profile = () => {
           email={isLoading ? '' : data.email}
           fullName={isLoading ? '' : data.fullName}
           avatarImgSrc={isLoading ? '' : data.image}
-          meditationStack={50}
           refetch={() => refetch()}
         />
         {editMode ? (
