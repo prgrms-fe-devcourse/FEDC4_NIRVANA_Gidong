@@ -1,3 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { useState } from 'react';
+import { useRef } from 'react';
 import { Icon } from '@components/Icon';
 import {
   PostContentSection,
@@ -12,15 +16,11 @@ import {
   PostEditConfirmButtonContainer
 } from './PostContent.style';
 import { User } from '@/types/User';
-import { Avatar } from '@components/Avatar';
-import { UserId, UserName } from '@components/UserText';
-import { useState } from 'react';
 import { deletePost, putPost } from '@apis/posts';
-import { useMutation } from '@tanstack/react-query';
-import { useRef } from 'react';
+import { UserId, UserName } from '@components/UserText';
+import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
-import { useNavigate } from 'react-router-dom';
 import { createFormData, purifyContent } from '@pages/posting/utils';
 
 interface PostContentProps {

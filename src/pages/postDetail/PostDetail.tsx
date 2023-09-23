@@ -8,7 +8,7 @@ import { User } from '@/types/User';
 import { GetMyLike } from './utils';
 import formatDate from '@utils/formatDate';
 
-export const PostDetail = () => {
+const PostDetail = () => {
   const { postId } = useParams<{ postId: string }>();
 
   const { data, refetch } = useQuery({
