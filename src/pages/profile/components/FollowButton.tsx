@@ -9,12 +9,18 @@ interface FollowButtonProps {
   followingDataId: string; // 삭제용 - following data id
   followingUserId: string; // 팔로우용 - 팔로우할 userId
   following?: boolean;
+  width?: number;
+  height?: number;
+  fontSize?: number;
 }
 
 const FollowButton = ({
   followingDataId,
   followingUserId,
-  following = true
+  following = true,
+  width = 68,
+  height = 30,
+  fontSize = 12
 }: FollowButtonProps) => {
   const [followed, setFollowed] = useState(following);
   const [dataId, setDataId] = useState(followingDataId);
@@ -49,10 +55,11 @@ const FollowButton = ({
 
   return (
     <Button
-      width={68}
-      height={30}
+      width={width}
+      height={height}
       dark={followed ? false : true}
       label={followed ? '팔로우' : '팔로잉'}
+      fontSize={fontSize}
       bold={true}
       handleClick={handleClickFollow}
     />
