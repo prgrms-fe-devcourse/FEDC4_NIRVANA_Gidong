@@ -22,6 +22,7 @@ export const PostCommentUserContainer = styled.div`
 
 export const PostCommentContentContainer = styled.div`
   flex: 1;
+  margin-top: 7px;
 `;
 
 export const PostCommentDeleteContainer = styled.div`
