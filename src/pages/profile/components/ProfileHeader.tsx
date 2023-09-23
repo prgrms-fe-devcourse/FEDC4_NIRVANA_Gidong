@@ -32,17 +32,6 @@ const ProfileHeader = ({
               width={30}
               height={30}
               bold={true}
-              borderRadius={30}>
-              <Icon
-                name='send'
-                size={20}
-                color='greyLight'
-              />
-            </Button>
-            <Button
-              width={30}
-              height={30}
-              bold={true}
               fontSize={12}
               borderRadius={30}
               handleClick={handleEditClick}>
@@ -59,6 +48,7 @@ const ProfileHeader = ({
               followingDataId={myFollowData?._id}
               followingUserId={profileId}
               following={myFollowData ? true : false}
+              fontSize={12}
             />
           </>
         )}
