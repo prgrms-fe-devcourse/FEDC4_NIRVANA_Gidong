@@ -1,25 +1,51 @@
-import SearchButton from './SearchButton';
+import { useEffect, useRef, useState } from 'react';
+
+import useDebounce from '@hooks/useDebounce';
 import { Button } from '@components/Button';
 import { Icon } from '@components/Icon';
+import SearchButton from './SearchButton';
 import {
   SearchHeadContainer,
-  SearchBox,
+  SearchForm,
   SearchInput
 } from './SearchHead.style';
 
 interface SearchHeadProps {
   handleShowSearchBox: () => void;
   showSearchBox: boolean;
-  inputValue: string;
-  handleChangeInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setSearchInputValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SearchHead = ({
   handleShowSearchBox,
   showSearchBox,
-  inputValue,
-  handleChangeInput
+  setSearchInputValue
 }: SearchHeadProps) => {
+  const [text, setText] = useState('');
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+  useDebounce(
+    300,
+    () => {
+      if (text === '') setSearchInputValue('');
+      else setSearchInputValue(text);
+    },
+    [text]
+  );
+
+  const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setText(event.target.value);
+  };
+
+  const handleClickSearchButton = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSearchInputValue(text);
+  };
+
   return (
     <SearchHeadContainer>
       <Button
@@ -32,16 +58,18 @@ const SearchHead = ({
           size={25}
         />
       </Button>
-      <SearchBox>
+      <SearchForm>
         <SearchInput
-          placeholder='사용자나 게시물을 검색하세요'
-          value={inputValue}
-          onChange={(event) => {
-            handleChangeInput(event);
-          }}
+          placeholder='사용자나 게시물을 검색해보세요'
+          ref={inputRef}
+          value={text}
+          onChange={handleChangeText}
         />
-        <SearchButton searchStatus={showSearchBox} />
-      </SearchBox>
+        <SearchButton
+          searchStatus={showSearchBox}
+          handleClickButton={handleClickSearchButton}
+        />
+      </SearchForm>
     </SearchHeadContainer>
   );
 };
