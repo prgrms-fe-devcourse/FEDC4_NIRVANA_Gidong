@@ -24,12 +24,10 @@ const useUploadPhotoMutation = ({
   const uploadMutation = useMutation(
     (file: File) => postUploadPhoto(file, token, isCover),
     {
-      onMutate: (file: File) => {
-        console.log('Uploading avatar...', file);
+      onMutate: () => {
         handleMutate();
       },
-      onSuccess: (data) => {
-        console.log('Upload avatar success!', data);
+      onSuccess: () => {
         handleSuccess();
       }
     }

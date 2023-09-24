@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { deleteFollowUser, postFollowUser } from '@apis/follow';
 import { postNotifications } from '@apis/notice';
@@ -7,11 +7,18 @@ import { Button } from '@components/Button';
 import { User } from '@/types';
 
 interface FollowButtonProps {
-  followDataId: string;
+  followingDataId: string; // 삭제용 - following data id
+  followingUserId: string; // 팔로우용 - 팔로우할 userId
+  following?: boolean;
 }
 
-const FollowButton = ({ followDataId }: FollowButtonProps) => {
-  const [followed, setFollowed] = useState(true);
+const FollowButton = ({
+  followingDataId,
+  followingUserId,
+  following = true
+}: FollowButtonProps) => {
+  const [followed, setFollowed] = useState(following);
+  const [dataId, setDataId] = useState(followingDataId);
   const [userSessionData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
     'userData',
     {
@@ -19,32 +26,32 @@ const FollowButton = ({ followDataId }: FollowButtonProps) => {
       token: ''
     }
   );
-  const { token, _id } = userSessionData;
+  const { token } = userSessionData;
 
-  const { refetch } = useQuery({
-    queryKey: ['follow'],
-    queryFn: async () => {
-      const data = followed
-        ? await deleteFollowUser(followDataId, token)
-        : await postFollowUser(_id, token);
+  const { mutate } = useMutation(
+    () =>
+      followed
+        ? deleteFollowUser(dataId, token)
+        : postFollowUser(followingUserId, token),
+    {
+      onSuccess: (data) => {
+        if (!followed) {
+          setDataId(data._id);
+          postNotifications(token, {
+            notificationType: 'FOLLOW',
+            notificationTypeId: data._id,
+            userId: followingUserId,
+            postId: null
+          });
+        }
 
-      if (!followed) {
-        await postNotifications(token, {
-          notificationType: 'FOLLOW',
-          notificationTypeId: followDataId,
-          userId: _id,
-          postId: null
-        });
+        setFollowed((prev) => !prev);
       }
+    }
+  );
 
-      return data;
-    },
-    enabled: false
-  });
-
-  const handleClickFollow = async () => {
-    await refetch();
-    setFollowed((prev) => !prev);
+  const handleClickFollow = () => {
+    mutate();
   };
 
   return (

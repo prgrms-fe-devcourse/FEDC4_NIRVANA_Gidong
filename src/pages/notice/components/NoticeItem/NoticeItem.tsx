@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Comment } from '@/types/Comment';
 import { NOTICE_TYPE } from '@pages/notice/constants';
 import typeToMessage from '@pages/notice/utils/typeToMessage';
+import typeToPath from '@pages/notice/utils/typeToNavigate';
 
 import {
   NoticeItemContainer,
@@ -37,24 +38,8 @@ const NoticeItem = ({
   const [typeId, setTypeId] = useState('');
   const navigate = useNavigate();
 
-  const GoToNotificationOrigin = ({
-    type,
-    id
-  }: GoToNotificationOriginProps) => {
-    switch (type) {
-      case NOTICE_TYPE.COMMENT:
-        navigate(`/posts/${id}`);
-        return;
-      case NOTICE_TYPE.LIKE:
-        navigate(`/posts/${id}`);
-        return;
-      case NOTICE_TYPE.FOLLOW:
-        navigate(`/profile/${id}`);
-        return;
-      default:
-        return;
-    }
-  };
+  const GoToNotificationOrigin = ({ type, id }: GoToNotificationOriginProps) =>
+    navigate(typeToPath(type, id));
 
   useEffect(() => {
     if (type === NOTICE_TYPE.COMMENT) {
