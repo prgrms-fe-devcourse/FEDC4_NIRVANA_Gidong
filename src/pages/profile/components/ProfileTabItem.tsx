@@ -1,22 +1,23 @@
 import { ProfileTabItemContainer } from './ProfileTabItem.style';
-import { useRecoilState } from 'recoil';
-import { selectedTabIndexState } from '../states/selectedTabIndex';
+
 import { Post, Follow } from '@/types';
 
 interface ProfileTabItemProps {
   title: string;
-  index: number;
+  selected: boolean;
   data: Post[] | Follow[] | number[];
+  onTabItemClick: () => void;
 }
 
-const ProfileTabItem = ({ title, index }: ProfileTabItemProps) => {
-  const [selectedTabIndex, setSelectedTabIndex] = useRecoilState(
-    selectedTabIndexState
-  );
+const ProfileTabItem = ({
+  title,
+  selected,
+  onTabItemClick
+}: ProfileTabItemProps) => {
   return (
     <ProfileTabItemContainer
-      selected={index === selectedTabIndex}
-      onClick={() => setSelectedTabIndex(index)}>
+      selected={selected}
+      onClick={onTabItemClick}>
       {title}
     </ProfileTabItemContainer>
   );
