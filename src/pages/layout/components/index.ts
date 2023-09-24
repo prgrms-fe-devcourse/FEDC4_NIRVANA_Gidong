@@ -1,7 +1,7 @@
 import Search from './Search';
 import SearchButton from './SearchButton';
 import SearchHead from './SearchHead';
-import SearchMain from './SearchMain';
+import SearchBody from './SearchBody';
 import SearchFilter from './SearchFilter';
 import SearchResultPost from './SearchResultPost';
 import SearchResultUser from './SearchResultUser';
@@ -14,7 +14,7 @@ export {
   Search,
   SearchButton,
   SearchHead,
-  SearchMain,
+  SearchBody,
   SearchFilter,
   SearchResultPost,
   SearchResultUser,

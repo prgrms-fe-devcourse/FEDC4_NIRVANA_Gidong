@@ -1,26 +1,25 @@
-import SearchButton from './SearchButton';
+import { useEffect, useRef, useState } from 'react';
+
+import useDebounce from '@hooks/useDebounce';
 import { Button } from '@components/Button';
 import { Icon } from '@components/Icon';
+import SearchButton from './SearchButton';
 import {
   SearchHeadContainer,
-  SearchBox,
+  SearchForm,
   SearchInput
 } from './SearchHead.style';
-import useDebounce from '@hooks/useDebounce';
-import { useEffect, useRef, useState } from 'react';
 
 interface SearchHeadProps {
   handleShowSearchBox: () => void;
   showSearchBox: boolean;
-  inputValue: string;
-  handleChangeInput: (text: string) => void;
+  setSearchInputValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SearchHead = ({
   handleShowSearchBox,
   showSearchBox,
-
-  handleChangeInput
+  setSearchInputValue
 }: SearchHeadProps) => {
   const [text, setText] = useState('');
   const inputRef = useRef(null);
@@ -32,8 +31,8 @@ const SearchHead = ({
   useDebounce(
     300,
     () => {
-      if (text === '') handleChangeInput('');
-      else handleChangeInput(text);
+      if (text === '') setSearchInputValue('');
+      else setSearchInputValue(text);
     },
     [text]
   );
@@ -42,8 +41,9 @@ const SearchHead = ({
     setText(event.target.value);
   };
 
-  const handleClickSearchButton = () => {
-    handleChangeInput(text);
+  const handleClickSearchButton = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSearchInputValue(text);
   };
 
   return (
@@ -58,7 +58,7 @@ const SearchHead = ({
           size={25}
         />
       </Button>
-      <SearchBox>
+      <SearchForm>
         <SearchInput
           placeholder='사용자나 게시물을 검색해보세요'
           ref={inputRef}
@@ -69,7 +69,7 @@ const SearchHead = ({
           searchStatus={showSearchBox}
           handleClickButton={handleClickSearchButton}
         />
-      </SearchBox>
+      </SearchForm>
     </SearchHeadContainer>
   );
 };

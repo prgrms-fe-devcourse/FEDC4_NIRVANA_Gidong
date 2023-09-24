@@ -1,32 +1,32 @@
 import { useState } from 'react';
 import { SearchFilter } from '@pages/layout/components';
-import { SearchMainContainer, SearchResult } from './SearchMain.style';
+import { SearchResultContainer, SearchResult } from './SearchBody.style';
 import encodeURIValue from '../utils/encodeURIValue';
 import SearchResultPost from './SearchResultPost';
 import SearchResultUser from './SearchResultUser';
-import { FILTER } from '../constants/filter';
+import { FILTER } from '../constants';
 
-interface SearchMainProps {
-  inputValue: string;
+interface SearchBodyProps {
+  searchInputValue: string;
 }
 
-const SearchMain = ({ inputValue }: SearchMainProps) => {
-  const [searchFilter, setSearchFilter] = useState(FILTER[0]);
+const SearchBody = ({ searchInputValue }: SearchBodyProps) => {
+  const [searchFilter, setSearchFilter] = useState(FILTER['POST']);
 
-  const searchKeyword = encodeURIValue(inputValue);
+  const searchKeyword = encodeURIValue(searchInputValue);
 
   const handleChangeFilter = (theme: string) => {
     setSearchFilter(theme);
   };
 
   return (
-    <SearchMainContainer>
+    <SearchResultContainer>
       <SearchFilter
         handleClick={handleChangeFilter}
         filterState={searchFilter}
       />
       <SearchResult>
-        {searchFilter === FILTER[0] ? (
+        {searchFilter === FILTER['POST'] ? (
           <SearchResultPost
             searchFilter={searchFilter}
             searchKeyword={searchKeyword}
@@ -38,8 +38,8 @@ const SearchMain = ({ inputValue }: SearchMainProps) => {
           />
         )}
       </SearchResult>
-    </SearchMainContainer>
+    </SearchResultContainer>
   );
 };
 
-export default SearchMain;
+export default SearchBody;

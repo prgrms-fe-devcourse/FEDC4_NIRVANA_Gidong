@@ -1,10 +1,10 @@
 import { useQuery, useQueries } from '@tanstack/react-query';
-import { searchPost } from '@apis/search';
+import { searchAll } from '@apis/search';
 import { getUser } from '@apis/user';
 import { User } from '@/types';
 import { PostPreview } from '@components/PostPreview';
 import filterPostData from '../utils/filterPostData';
-import { FILTER } from '../constants/filter';
+import { FILTER } from '../constants';
 
 interface SearchResultPostProps {
   searchKeyword: string;
@@ -18,11 +18,11 @@ const SearchResultPost = ({
   const { data: postData } = useQuery({
     queryKey: ['search', searchKeyword, searchFilter],
     queryFn: async () => {
-      const data = await searchPost(searchKeyword);
+      const data = await searchAll(searchKeyword);
 
       return data;
     },
-    enabled: searchKeyword !== '' && searchFilter === FILTER[0]
+    enabled: searchKeyword !== '' && searchFilter === FILTER['POST']
   });
 
   const filteredData = filterPostData(postData || []);

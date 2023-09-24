@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SearchHead, SearchMain } from '@pages/layout/components';
+import { SearchHead, SearchBody } from '@pages/layout/components';
 
 interface SearchProps {
   handleShowSearchBox: () => void;
@@ -7,21 +7,16 @@ interface SearchProps {
 }
 
 const Search = ({ handleShowSearchBox, showSearchBox }: SearchProps) => {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleChangeInput = (text: string) => {
-    setInputValue(text);
-  };
+  const [searchInputValue, setSearchInputValue] = useState('');
 
   return (
     <>
       <SearchHead
         handleShowSearchBox={handleShowSearchBox}
         showSearchBox={showSearchBox}
-        inputValue={inputValue}
-        handleChangeInput={handleChangeInput}
+        setSearchInputValue={setSearchInputValue}
       />
-      <SearchMain inputValue={inputValue} />
+      <SearchBody searchInputValue={searchInputValue} />
     </>
   );
 };

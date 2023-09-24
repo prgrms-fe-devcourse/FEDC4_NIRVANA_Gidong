@@ -1,7 +1,10 @@
-import { User, Post } from '@/types';
+import { User } from '@/types';
+import { EditedPost } from './index';
 
-const isPost = (arg: User | Post): arg is Post => {
-  return 'title' in arg;
+const PROPERTY = 'title';
+
+const isPost = (arg: User | EditedPost): arg is EditedPost => {
+  return PROPERTY in arg;
 };
 
 export default isPost;

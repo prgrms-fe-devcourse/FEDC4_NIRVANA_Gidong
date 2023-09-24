@@ -12,7 +12,7 @@ export const SearchHeadContainer = styled.div`
   }
 `;
 
-export const SearchBox = styled.div`
+export const SearchForm = styled.form`
   width: 300px;
   height: 35px;
   ${({ theme }) => theme.style.flexAlignCenter}
