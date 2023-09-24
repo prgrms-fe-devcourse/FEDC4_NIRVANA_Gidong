@@ -49,7 +49,6 @@ const ProfileEdit = ({ refetch }: ProfileEditProps) => {
     event.preventDefault();
     const target = event.target as HTMLFormElement;
     const username = target.username.value;
-    console.log(userSessionData.token);
     await putUpdateUser({
       fullName: username,
       token: userSessionData.token
