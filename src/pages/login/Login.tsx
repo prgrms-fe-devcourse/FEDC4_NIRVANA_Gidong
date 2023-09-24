@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import postLogInUser from '@apis/login';
 import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
@@ -20,6 +20,8 @@ const Login = () => {
   const [password, setPassword] = useState<string>('');
   const [errorCatched, setErrorCatched] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { search } = useLocation();
+  const redirectTo = search.replace('?redirect=', '');
 
   const [userSessionData, setUserSessionData] = useSessionStorage<
     Pick<User, '_id' | 'token' | 'image' | 'fullName'>
@@ -32,9 +34,13 @@ const Login = () => {
 
   useEffect(() => {
     if (userSessionData.token) {
-      navigate('/meditation');
+      if (redirectTo) {
+        navigate(redirectTo);
+      } else {
+        navigate('/meditation');
+      }
     }
-  }, [userSessionData, navigate]);
+  }, [userSessionData.token, navigate, redirectTo, search]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
