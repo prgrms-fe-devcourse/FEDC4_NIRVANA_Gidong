@@ -15,7 +15,7 @@ const MeditationCancelConfirm = ({
       emoji={'🧘🏻'}
       content={'정말 명상을 끝내시겠어요?'}
       contentFontSize={18}
-      nextPageLink={'/'}
+      nextPageLink={'/meditation'}
       CancelButton={
         <Button
           width={120}

@@ -24,6 +24,10 @@ const Meditation = () => {
     setConfirmCaptured(false);
   };
 
+  const handleMeditationCancel = () => {
+    location.reload(); // 리팩토링 전 임시방편
+  };
+
   return (
     <>
       <MeditationPage>
@@ -38,7 +42,10 @@ const Meditation = () => {
         <MeditationTimeSetter />
         <ThemePicker themeInfo={meditationChannelInfo} />
         {confirmCaptured && (
-          <MeditationCancelConfirm handleCancelButton={handleCancelCapture} />
+          <MeditationCancelConfirm
+            handleConfirmButton={handleMeditationCancel}
+            handleCancelButton={handleCancelCapture}
+          />
         )}
       </MeditationPage>
     </>
