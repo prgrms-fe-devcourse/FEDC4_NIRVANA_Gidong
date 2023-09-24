@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 import LandingPage from '@pages/landing';
 import Layout from '@pages/layout';
@@ -28,54 +29,54 @@ const PageRoutes = () => {
             element={<Posting />}
           />
           <Route
-            path='/posts'
-            element={<Posts />}
-          />
-          <Route
             path='/setting/password-update'
             element={<PasswordUpdate />}
-          />
-          <Route
-            path='/*'
-            element={<Navigate to='/404' />}
           />
           <Route
             path='/notice'
             element={<Notice />}
           />
-          <Route
-            path='/posts/:postId'
-            element={<PostDetail />}
-          />
         </Route>
       </Route>
+
       <Route element={<Layout />}>
         <Route
           path='/meditation'
           element={<Meditation />}
         />
+        <Route
+          path='/posts'
+          element={<Posts />}
+        />
+        <Route
+          path='/posts/:postId'
+          element={<PostDetail />}
+        />
       </Route>
-      <Route
-        path='/'
-        element={<LandingPage />}
-      />
       <Route
         path='/404'
         element={<NotFound />}
       />
+
       <Route
         path='/*'
         element={<Navigate to='/404' />}
       />
-      <Route
-        path='/signup'
-        element={<SignUp />}
-      />
 
-      <Route
-        path='/login'
-        element={<LogIn />}
-      />
+      <Route element={<PublicRoute />}>
+        <Route
+          path='/'
+          element={<LandingPage />}
+        />
+        <Route
+          path='/signup'
+          element={<SignUp />}
+        />
+        <Route
+          path='/login'
+          element={<LogIn />}
+        />
+      </Route>
     </Routes>
   );
 };
