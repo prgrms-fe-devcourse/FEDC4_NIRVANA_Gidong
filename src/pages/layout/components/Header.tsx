@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { HeaderSection } from './Header.style';
+import { HeaderNavSection, HeaderSearchSection } from './Header.style';
 import { PathNav, EtcNav, Search } from '@pages/layout/components';
 
 interface HeaderProps {
-  backLink?: string;
+  pathStatus: 'back' | 'home';
 }
 
-const Header = ({ backLink }: HeaderProps) => {
+const Header = ({ pathStatus }: HeaderProps) => {
   const [showSearchBox, setShowSearchBox] = useState(false);
 
   const handleShowSearchBox = () => {
@@ -14,22 +14,24 @@ const Header = ({ backLink }: HeaderProps) => {
   };
 
   return (
-    <HeaderSection showSearchBox={showSearchBox}>
+    <>
       {showSearchBox ? (
-        <Search
-          showSearchBox={showSearchBox}
-          handleShowSearchBox={handleShowSearchBox}
-        />
+        <HeaderSearchSection>
+          <Search
+            showSearchBox={showSearchBox}
+            handleShowSearchBox={handleShowSearchBox}
+          />
+        </HeaderSearchSection>
       ) : (
-        <>
-          <PathNav backLink={backLink} />
+        <HeaderNavSection>
+          <PathNav pathStatus={pathStatus} />
           <EtcNav
             handleShowSearchBox={handleShowSearchBox}
             showSearchBox={showSearchBox}
           />
-        </>
+        </HeaderNavSection>
       )}
-    </HeaderSection>
+    </>
   );
 };
 

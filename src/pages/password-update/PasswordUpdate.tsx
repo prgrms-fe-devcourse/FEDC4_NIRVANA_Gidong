@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import putUpdatePassword from '@apis/password';
 import { Alert } from '@components/Alert';
-import { Footer } from '@components/Footer';
 import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 import useSessionStorage from '@hooks/useSessionStorage';
@@ -122,7 +121,6 @@ const PasswordUpdate = () => {
           </ButtonContainer>
         </PasswordUpdateForm>
       </PasswordUpdateContainer>
-      <Footer />
     </>
   );
 };
