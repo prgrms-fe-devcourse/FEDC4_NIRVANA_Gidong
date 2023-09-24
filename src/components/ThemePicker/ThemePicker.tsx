@@ -46,16 +46,16 @@ const MeditationThemePicker = ({
   }, []);
 
   return (
-    <NavContainer>
-      {showPrevButton && (
-        <PickerPreviousButton
-          clickPrevButton={clickPrevButton}
-          color={dark ? 'white' : 'purpleDark'}
-        />
-      )}
-      <ThemePickerContainer ref={scrollRef}>
-        {pickerShown &&
-          Array.from(themeInfo).map(([key, value]) => (
+    pickerShown && (
+      <NavContainer>
+        {showPrevButton && (
+          <PickerPreviousButton
+            clickPrevButton={clickPrevButton}
+            color={dark ? 'white' : 'purpleDark'}
+          />
+        )}
+        <ThemePickerContainer ref={scrollRef}>
+          {Array.from(themeInfo).map(([key, value]) => (
             <Button
               key={key}
               width={80}
@@ -69,14 +69,15 @@ const MeditationThemePicker = ({
               }}
             />
           ))}
-      </ThemePickerContainer>
-      {showNextButton && (
-        <PickerNextButton
-          clickNextButton={clickNextButton}
-          color={dark ? 'white' : 'purpleDark'}
-        />
-      )}
-    </NavContainer>
+        </ThemePickerContainer>
+        {showNextButton && (
+          <PickerNextButton
+            clickNextButton={clickNextButton}
+            color={dark ? 'white' : 'purpleDark'}
+          />
+        )}
+      </NavContainer>
+    )
   );
 };
 
