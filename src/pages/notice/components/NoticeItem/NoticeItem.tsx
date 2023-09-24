@@ -1,5 +1,10 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Comment } from '@/types/Comment';
-import { MESSAGE_TYPE, NOTICE_TYPE } from '@pages/notice/constants';
+import { NOTICE_TYPE } from '@pages/notice/constants';
+import typeToMessage from '@pages/notice/utils/typeToMessage';
+import typeToPath from '@pages/notice/utils/typeToNavigate';
+
 import {
   NoticeItemContainer,
   NoticeContent,
@@ -13,29 +18,44 @@ interface NoticeItemProps {
   type: string;
   comment?: Comment | null;
   authorName: string;
+  postId: string;
+  followId: string;
+}
+
+interface GoToNotificationOriginProps {
+  type: string;
+  id: string;
 }
 
 const NoticeItem = ({
   profileImage,
   type,
   comment,
-  authorName
+  authorName,
+  postId,
+  followId
 }: NoticeItemProps) => {
-  const typeToMessage = (type: string) => {
-    switch (type) {
-      case NOTICE_TYPE.COMMENT:
-        return MESSAGE_TYPE.COMMENT;
-      case NOTICE_TYPE.LIKE:
-        return MESSAGE_TYPE.LIKE;
-      case NOTICE_TYPE.FOLLOW:
-        return MESSAGE_TYPE.FOLLOW;
-      default:
-        return;
+  const [typeId, setTypeId] = useState('');
+  const navigate = useNavigate();
+
+  const GoToNotificationOrigin = ({ type, id }: GoToNotificationOriginProps) =>
+    navigate(typeToPath(type, id));
+
+  useEffect(() => {
+    if (type === NOTICE_TYPE.COMMENT) {
+      setTypeId(postId);
     }
-  };
+    if (type === NOTICE_TYPE.LIKE) {
+      setTypeId(postId);
+    }
+    if (type === NOTICE_TYPE.FOLLOW) {
+      setTypeId(followId);
+    }
+  }, [postId, followId, type, typeId]);
 
   return (
-    <NoticeItemContainer>
+    <NoticeItemContainer
+      onClick={() => GoToNotificationOrigin({ type, id: typeId })}>
       <ProfileImage profileImage={profileImage} />
       <NoticeContent>
         <Message>
@@ -43,7 +63,11 @@ const NoticeItem = ({
           {typeToMessage(type)}
         </Message>
         {type === NOTICE_TYPE.COMMENT && (
-          <MessagePreview>{comment && comment.comment}</MessagePreview>
+          <MessagePreview>
+            {comment && comment.comment.length > 25
+              ? comment.comment.slice(0, 25) + '...'
+              : comment.comment}
+          </MessagePreview>
         )}
       </NoticeContent>
     </NoticeItemContainer>
