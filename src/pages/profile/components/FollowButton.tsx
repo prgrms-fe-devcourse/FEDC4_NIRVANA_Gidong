@@ -34,7 +34,7 @@ const FollowButton = ({
         ? deleteFollowUser(dataId, token)
         : postFollowUser(followingUserId, token),
     {
-      onSuccess: async (data) => {
+      onSuccess: (data) => {
         if (!followed) {
           setDataId(data._id);
           postNotifications(token, {
