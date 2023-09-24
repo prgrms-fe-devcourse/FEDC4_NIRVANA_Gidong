@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const SignUpLabel = styled.label`
+export const Label = styled.label`
   display: flex;
   align-items: center;
   font-weight: 700;
@@ -8,7 +8,7 @@ export const SignUpLabel = styled.label`
   margin-bottom: 10px;
 `;
 
-export const SignUpInput = styled.input`
+export const Input = styled.input`
   box-sizing: border-box;
   width: 300px;
   height: 45px;
@@ -21,7 +21,7 @@ export const InputContainer = styled.div`
   margin: 10px 0;
 `;
 
-export const SignUpError = styled.span`
+export const ErrorMessage = styled.span`
   color: ${({ theme }) => theme.color.redVivid};
   font-size: 10px;
   font-weight: 400;
@@ -29,7 +29,7 @@ export const SignUpError = styled.span`
   white-space: pre-line;
 `;
 
-export const SignUpSuccess = styled.span`
+export const SuccessMessage = styled.span`
   color: ${({ theme }) => theme.color.greenVivid};
   font-size: 10px;
   font-weight: 400;

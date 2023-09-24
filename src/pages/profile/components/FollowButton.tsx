@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { deleteFollowUser, postFollowUser } from '@apis/follow';
+import { postNotifications } from '@apis/notice';
 import { Button } from '@components/Button';
 import { User } from '@/types';
 
@@ -36,6 +37,12 @@ const FollowButton = ({
       onSuccess: (data) => {
         if (!followed) {
           setDataId(data._id);
+          postNotifications(token, {
+            notificationType: 'FOLLOW',
+            notificationTypeId: data._id,
+            userId: followingUserId,
+            postId: null
+          });
         }
 
         setFollowed((prev) => !prev);
