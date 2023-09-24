@@ -1,24 +1,23 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types/User';
 import checkAuth from './utils/checkAuth';
 
-const PrivateRoute = (): React.ReactElement => {
+const PublicRoute = (): React.ReactElement => {
   const [userSessionData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
     'userData',
     { _id: '', token: '' }
   );
-  const { pathname } = useLocation();
 
   return checkAuth(userSessionData) ? (
-    <Outlet />
-  ) : (
     <Navigate
-      to={`/login?redirect=${pathname}`}
+      to={`/posts`}
       replace
     />
+  ) : (
+    <Outlet />
   );
 };
 
-export default PrivateRoute;
+export default PublicRoute;

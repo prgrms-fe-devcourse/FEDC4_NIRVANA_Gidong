@@ -8,7 +8,7 @@ interface PutUpdateUserParams {
   token: string;
 }
 
-const getUser = async (userId: string | User) => {
+const getUser = async (userId: string) => {
   const response = await axios.get<User>(`${API_BASE_URL}/users/${userId}`);
   return response.data;
 };

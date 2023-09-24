@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 import LandingPage from '@pages/landing';
 import Layout from '@pages/layout';
@@ -12,6 +13,7 @@ import PasswordUpdate from '@pages/password-update';
 import NotFound from '@pages/NotFound';
 import Posts from '@pages/posts';
 import Notice from '@pages/notice';
+import PostDetail from '@pages/postDetail/PostDetail';
 
 const PageRoutes = () => {
   return (
@@ -33,36 +35,42 @@ const PageRoutes = () => {
             element={<Posting />}
           />
           <Route
-            path='/posts'
-            element={<Posts />}
-          />
-          <Route
             path='/setting/password-update'
             element={<PasswordUpdate />}
           />
         </Route>
       </Route>
-      <Route element={<Layout headerStatus={'home'} />}>
+      <Route element={<PublicRoute />}>
         <Route
           path='/meditation'
           element={<Meditation />}
         />
+        <Route
+          path='/'
+          element={<LandingPage />}
+        />
+        <Route
+          path='/signup'
+          element={<SignUp />}
+        />
+        <Route
+          path='/login'
+          element={<LogIn />}
+        />
       </Route>
-      <Route
-        path='/'
-        element={<LandingPage />}
-      />
+      <Route element={<Layout headerStatus={'home'} />}>
+        <Route
+          path='/posts'
+          element={<Posts />}
+        />
+        <Route
+          path='/posts/:postId'
+          element={<PostDetail />}
+        />
+      </Route>
       <Route
         path='/404'
         element={<NotFound />}
-      />
-      <Route
-        path='/signup'
-        element={<SignUp />}
-      />
-      <Route
-        path='/login'
-        element={<LogIn />}
       />
       <Route
         path='/*'

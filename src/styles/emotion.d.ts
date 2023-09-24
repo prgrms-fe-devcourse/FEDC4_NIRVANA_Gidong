@@ -2,16 +2,16 @@ import '@emotion/react';
 import { color } from '@styles/colors';
 import { style } from '@styles/styles';
 
-type color = typeof color;
-type style = typeof style;
+export type Color = typeof color;
+type Style = typeof style;
 
 declare module '@emotion/react' {
   export interface Theme extends color, style {
     color: {
-      [key in keyof color]: string;
+      [key in keyof Color]: string;
     };
     style: {
-      [key in keyof style]: string;
+      [key in keyof Style]: string;
     };
   }
 }
