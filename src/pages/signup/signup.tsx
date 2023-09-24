@@ -73,6 +73,7 @@ const SignUp = () => {
         });
     }
 
+    setEmailErrorCatched(false);
     return;
   };
 
