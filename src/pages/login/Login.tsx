@@ -20,7 +20,6 @@ const Login = () => {
   const [password, setPassword] = useState<string>('');
   const [errorCatched, setErrorCatched] = useState<boolean>(false);
   const navigate = useNavigate();
-  let timer = 0;
 
   const [userSessionData, setUserSessionData] = useSessionStorage<
     Pick<User, '_id' | 'token' | 'image' | 'fullName'>
@@ -41,21 +40,16 @@ const Login = () => {
     event.preventDefault();
     const { name, value } = event.target;
 
-    if (timer) {
-      clearTimeout(timer);
+    switch (name) {
+      case 'email':
+        setEmail(value);
+        break;
+      case 'password':
+        setPassword(value);
+        break;
+      default:
+        break;
     }
-    timer = setTimeout(() => {
-      switch (name) {
-        case 'email':
-          setEmail(value);
-          break;
-        case 'password':
-          setPassword(value);
-          break;
-        default:
-          break;
-      }
-    }, 200);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
