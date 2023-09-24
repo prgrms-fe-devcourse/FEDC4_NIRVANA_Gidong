@@ -38,13 +38,13 @@ const PageRoutes = () => {
             path='/setting/password-update'
             element={<PasswordUpdate />}
           />
+          <Route
+            path='/meditation'
+            element={<Meditation />}
+          />
         </Route>
       </Route>
       <Route element={<PublicRoute />}>
-        <Route
-          path='/meditation'
-          element={<Meditation />}
-        />
         <Route
           path='/'
           element={<LandingPage />}
