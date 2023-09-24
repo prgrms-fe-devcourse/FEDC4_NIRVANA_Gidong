@@ -13,6 +13,7 @@ import ProfileInfo from './ProfileInfo';
 import ProfileMain from './ProfileMain';
 import ProfileTabItem from './ProfileTabItem';
 import ProfileTabs from './ProfileTabs';
+import SettingSideBar from './SettingSideBar';
 
 export {
   FollowUsers,
@@ -29,5 +30,6 @@ export {
   ProfileInfo,
   ProfileMain,
   ProfileTabItem,
-  ProfileTabs
+  ProfileTabs,
+  SettingSideBar
 };

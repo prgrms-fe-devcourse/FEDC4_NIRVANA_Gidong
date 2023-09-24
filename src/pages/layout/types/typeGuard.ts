@@ -1,9 +1,10 @@
-import { User, Post } from '@/types';
+import { User } from '@/types';
+import { EditedPost } from './index';
 
-const isPost = (arg: User | Post): arg is Post => {
-  if ('title' in arg) {
-    return arg.title !== undefined;
-  }
+const PROPERTY = 'title';
+
+const isPost = (arg: User | EditedPost): arg is EditedPost => {
+  return PROPERTY in arg;
 };
 
 export default isPost;

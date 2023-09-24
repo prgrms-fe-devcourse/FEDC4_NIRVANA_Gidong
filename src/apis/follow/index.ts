@@ -8,7 +8,7 @@ const postFollowUser = async (userId: string, token: string) => {
     { userId },
     {
       headers: {
-        Authorization: token
+        Authorization: `bearer ${token}`
       }
     }
   );
@@ -19,7 +19,7 @@ const deleteFollowUser = async (userId: string, token: string) => {
   const response = await axios.delete<Follow>(`${API_BASE_URL}/follow/delete`, {
     data: { id: userId },
     headers: {
-      Authorization: token
+      Authorization: `bearer ${token}`
     }
   });
   return response.data;

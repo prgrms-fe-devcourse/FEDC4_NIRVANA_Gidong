@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import putUpdatePassword from '@apis/password';
 import { Alert } from '@components/Alert';
-import { Footer } from '@components/Footer';
 import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 import useSessionStorage from '@hooks/useSessionStorage';
@@ -54,7 +53,12 @@ const PasswordUpdate = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (password && passwordConfirm && password === passwordConfirm) {
+    if (
+      password &&
+      passwordConfirm &&
+      isPasswordOk(password) &&
+      password === passwordConfirm
+    ) {
       putUpdatePassword({ password, token: `Bearer ${userSessionData.token}` })
         .then(() => setPasswordChanged(true))
         .catch((error) => console.log(error));
@@ -117,7 +121,6 @@ const PasswordUpdate = () => {
           </ButtonContainer>
         </PasswordUpdateForm>
       </PasswordUpdateContainer>
-      <Footer />
     </>
   );
 };
