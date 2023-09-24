@@ -69,7 +69,7 @@ const MeditationTimeSetter = () => {
         handleEndMeditation
       );
     };
-  }, []);
+  });
 
   const handleTime = (
     buttonType: typeof BUTTON_TYPE_SUB | typeof BUTTON_TYPE_ADD
