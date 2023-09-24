@@ -31,12 +31,11 @@ const AlertButton = () => {
   });
 
   const { data } = query;
-
-  console.log(data);
+  const alertStatus = data?.length > 0;
 
   return (
     <DotBadge
-      dot={Boolean(data?.length > 0)}
+      dot={alertStatus}
       color='orange'
       position='top'
       badgeSize={5}>
