@@ -6,6 +6,7 @@ import { Link } from '@components/Link';
 import { Icon } from '@components/Icon';
 import { DotBadge } from '@components/Badge';
 import { User } from '@/types';
+import { AlertContainer } from './AlertButton.styled';
 
 const AlertButton = () => {
   const [userSessionData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
@@ -35,21 +36,23 @@ const AlertButton = () => {
   const alertStatus = data?.length > 0;
 
   return (
-    <DotBadge
-      dot={alertStatus}
-      color='orange'
-      position='top'
-      badgeSize={5}>
-      <Link
-        pageLink='/notice'
-        size={23}>
-        <Icon
-          name='notifications'
-          color='white'
-          size={23}
-        />
-      </Link>
-    </DotBadge>
+    <AlertContainer>
+      <DotBadge
+        dot={alertStatus}
+        color='orange'
+        position='top'
+        badgeSize={5}>
+        <Link
+          pageLink='/notice'
+          size={30}>
+          <Icon
+            name='notifications'
+            color='white'
+            size={23}
+          />
+        </Link>
+      </DotBadge>
+    </AlertContainer>
   );
 };
 
