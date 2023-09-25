@@ -10,7 +10,10 @@ import {
 import useSessionStorage from '@hooks/useSessionStorage';
 
 const NotFound = () => {
-  const [user] = useSessionStorage('userData', { _id: '', token: '' });
+  const [user] = useSessionStorage('userData', {
+    _id: '',
+    token: ''
+  });
   const redirectPage = user.token === '' ? '/' : '/posts';
 
   return (
