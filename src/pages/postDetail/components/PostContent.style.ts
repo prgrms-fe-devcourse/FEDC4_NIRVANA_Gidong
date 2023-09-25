@@ -93,6 +93,7 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
 export const PostContentBody = styled.div`
   padding: 20px;
   width: 100%;
+  line-height: 1.5;
 `;
 
 export const PostEditConfirmButtonContainer = styled.div<contentEditMode>`
