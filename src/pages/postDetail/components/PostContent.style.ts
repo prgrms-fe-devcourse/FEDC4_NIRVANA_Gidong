@@ -81,7 +81,7 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
     text-align: center;
     padding: 5px;
     font-size: 14px;
-    border-bottom: 1px solid ${({ theme }) => theme.color.greyLight};
+    border-bottom: 1px solid ${({ theme }) => theme.color.white800};
     transition: all 0.3s ease;
     cursor: pointer;
     &:hover {

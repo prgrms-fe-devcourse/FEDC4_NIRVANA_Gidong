@@ -10,7 +10,7 @@ export const PreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 0.5px solid ${({ theme }) => theme.color.greyLight};
+  border-bottom: 0.5px solid ${({ theme }) => theme.color.white800};
   &:hover {
     background-color: ${({ theme }) => theme.color.white900};
   }

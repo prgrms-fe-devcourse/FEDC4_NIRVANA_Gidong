@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 
 export const CommentInputSection = styled.section`
   ${({ theme }) => theme.style.flexCenter}
-  border-top: 1px solid ${({ theme }) => theme.color.greyLight};
-  border-bottom: 1px solid ${({ theme }) => theme.color.greyLight};
+  border-top: 1px solid ${({ theme }) => theme.color.white800};
+  border-bottom: 1px solid ${({ theme }) => theme.color.white800};
   background-color: ${({ theme }) => theme.color.white};
   padding: 20px 0;
   width: 100%;
