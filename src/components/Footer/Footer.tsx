@@ -3,6 +3,7 @@ import { Link } from '../Link';
 import { StyledFooter } from './Footer.style';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types/User';
+import { useLocation } from 'react-router-dom';
 
 export const Footer = () => {
   const [userData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
@@ -15,9 +16,10 @@ export const Footer = () => {
 
   const iconInfos = [
     { name: 'home', size: 35, link: '/posts' },
-    { name: 'self_improvement', size: 35, link: '/meditation' },
+    { name: 'spa', size: 35, link: '/meditation' },
     { name: 'person', size: 35, link: `/profile/${userData._id}` }
   ];
+  const location = useLocation();
 
   return (
     <StyledFooter>
@@ -34,7 +36,8 @@ export const Footer = () => {
           <Icon
             name={icon.name}
             size={icon.size}
-            color='black'
+            fill={icon.link === location.pathname}
+            color={icon.link === location.pathname ? 'purpleLight' : 'black'}
           />
         </Link>
       ))}
