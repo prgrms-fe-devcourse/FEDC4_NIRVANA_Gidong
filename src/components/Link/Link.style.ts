@@ -1,7 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import { color } from '@styles/colors';
 import styled from '@emotion/styled';
 
-export const StyledNavLink = styled(NavLink)<{ size: number; color: string }>`
+export const StyledNavLink = styled(NavLink)<{
+  size: number;
+  color: keyof typeof color;
+}>`
   color: ${({ theme, color }) => theme.color[color]};
   font-size: ${({ size }) => size}px;
   text-decoration: none;
