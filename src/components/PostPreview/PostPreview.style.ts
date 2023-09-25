@@ -5,12 +5,12 @@ export const PreviewContainer = styled.div`
   width: 100%;
   height: 150px;
   margin: 0 auto;
-  padding: 15px 60px;
+  padding: 15px 26px;
   background-color: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 0.5px solid ${({ theme }) => theme.color.greyLight};
+  border-bottom: 0.5px solid ${({ theme }) => theme.color.white800};
   &:hover {
     background-color: ${({ theme }) => theme.color.white900};
   }
