@@ -13,6 +13,7 @@ const style = css`
     width: 100%;
     height: 100%;
     max-width: 768px;
+    margin: 0 auto;
   }
   #modal-root {
     position: absolute;

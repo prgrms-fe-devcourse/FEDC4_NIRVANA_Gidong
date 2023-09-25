@@ -24,7 +24,7 @@ export const Logo = () => {
 export const LoginContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-image: url(${logo});
   background: ${({ theme }) => theme.color.linearGradientPurple};
