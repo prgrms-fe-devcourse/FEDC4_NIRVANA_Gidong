@@ -35,7 +35,6 @@ const FollowButton = ({
     }
   );
   const { token } = userSessionData;
-  console.log(token, dataId);
   const { mutate } = useMutation(
     () =>
       followed
