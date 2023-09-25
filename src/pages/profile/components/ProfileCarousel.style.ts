@@ -11,6 +11,14 @@ export const ProfileCarouselContainer = styled.div<ProfileCarouselContainerProps
   overflow: hidden;
   user-select: none;
   scroll-behavior: smooth;
+  > div:first-of-type {
+    > div {
+      padding: 0;
+    }
+    > div:last-of-type {
+      border-bottom: none;
+    }
+  }
 `;
 
 export const ProfileCarouselItem = styled.div`
@@ -18,7 +26,7 @@ export const ProfileCarouselItem = styled.div`
   overflow: auto;
 `;
 
-export const NonePostContainer = styled.div`
+export const NoneContentContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
   width: 100%;
   height: 100%;
