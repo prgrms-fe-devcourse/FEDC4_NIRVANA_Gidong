@@ -8,7 +8,11 @@ import { GoToSignUp } from './components';
 import { LoginForm, ButtonContainer } from './Login.style';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types';
-import { Heading, LandingMain } from '@pages/landing/Landing.style';
+import {
+  Heading,
+  HeadingContentContainer,
+  LandingMain
+} from '@pages/landing/Landing.style';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
@@ -72,7 +76,9 @@ const Login = () => {
 
   return (
     <LandingMain>
-      <Heading />
+      <HeadingContentContainer>
+        <Heading />
+      </HeadingContentContainer>
       <LoginForm onSubmit={handleSubmit}>
         <UserInput
           name={USER_INPUT.EMAIL.NAME}

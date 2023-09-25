@@ -11,10 +11,6 @@ export const LoginContainer = styled.div`
 `;
 
 export const LoginForm = styled.form`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.style.flexCenter};
   flex-direction: column;
