@@ -1,4 +1,5 @@
 import { StyledButton } from './Buttons.style';
+import { color } from '@styles/colors';
 
 interface ButtonProps {
   width: number;
@@ -7,7 +8,7 @@ interface ButtonProps {
   label?: string;
   handleClick?: () => void;
   bold?: boolean;
-  textColor?: string;
+  textColor?: keyof typeof color;
   fontSize?: number;
   borderRadius?: number;
   children?: React.ReactNode;
