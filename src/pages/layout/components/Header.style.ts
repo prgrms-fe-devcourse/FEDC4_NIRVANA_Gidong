@@ -5,11 +5,15 @@ export const HeaderSection = styled.header`
   height: 50px;
   background-color: ${({ theme }) => theme.color.purpleDark};
   display: flex;
+
+  @media screen and (min-width: 500px) {
+    height: 70px;
+  }
 `;
 
 export const HeaderNavSection = styled(HeaderSection)`
   justify-content: space-between;
-  padding: 0 18px;
+  padding: 0 20px;
 `;
 
 export const HeaderSearchSection = styled(HeaderSection)`
