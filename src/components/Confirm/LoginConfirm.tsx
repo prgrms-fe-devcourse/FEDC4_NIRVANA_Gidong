@@ -4,13 +4,13 @@ import { Button } from '@components/Button';
 interface LoginConfirm {
   handleClickCancel: () => void;
   handleClickConfirm: () => void;
-  location: string;
+  path: string;
 }
 
 const LoginConfirm = ({
   handleClickCancel,
   handleClickConfirm,
-  location
+  path
 }: LoginConfirm) => {
   return (
     <Confirm
@@ -18,7 +18,7 @@ const LoginConfirm = ({
       content={`로그인이 필요한 서비스입니다.
        로그인하시겠습니까?`}
       contentFontSize={16}
-      nextPageLink={`/login?redirect=${location}`}
+      nextPageLink={`/login?redirect=${path}`}
       CancelButton={
         <Button
           width={120}

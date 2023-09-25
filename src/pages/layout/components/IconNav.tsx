@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AlertButton, SearchButton } from '@pages/layout/components';
-import { Icon } from '@components/Icon';
-import { Link } from '@components/Link';
 import { LoginConfirm } from '@components/Confirm';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { EtcNavContainer } from './IconNav.style';
@@ -22,6 +20,7 @@ const EtcNav = ({ handleShowSearchBox, showSearchBox }: EtcNavProps) => {
     }
   );
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleShowModal = () => {
     setModal((prev) => !prev);
@@ -38,7 +37,7 @@ const EtcNav = ({ handleShowSearchBox, showSearchBox }: EtcNavProps) => {
         <LoginConfirm
           handleClickCancel={handleShowModal}
           handleClickConfirm={handleShowModal}
-          location={'notice'}
+          path={pathname}
         />
       )}
       <EtcNavContainer>
@@ -47,13 +46,6 @@ const EtcNav = ({ handleShowSearchBox, showSearchBox }: EtcNavProps) => {
           searchStatus={showSearchBox}
         />
         <AlertButton handleClickAlert={handleClickAlert} />
-        <Link pageLink='/message'>
-          <Icon
-            name='chat'
-            color='white'
-            size={23}
-          />
-        </Link>
       </EtcNavContainer>
     </>
   );

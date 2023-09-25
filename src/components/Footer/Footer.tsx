@@ -1,12 +1,18 @@
-import { Icon } from '../Icon';
-import { Link } from '../Link';
-import { StyledFooter } from './Footer.style';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useSessionStorage from '@hooks/useSessionStorage';
+import { LoginConfirm } from '@components/Confirm';
+import { Icon } from '@components/Icon';
+import { Button } from '@components/Button';
+import { StyledFooter } from './Footer.style';
 import { User } from '@/types/User';
-import { useLocation } from 'react-router-dom';
 
 export const Footer = () => {
-  const [userData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
+  const [modal, setModal] = useState(false);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const [{ _id, token }] = useSessionStorage<Pick<User, '_id' | 'token'>>(
     'userData',
     {
       _id: '',
@@ -14,33 +20,52 @@ export const Footer = () => {
     }
   );
 
+  const handleShowModal = () => {
+    setModal((prev) => !prev);
+  };
+
+  const handleClickButton = (path: string) => {
+    if ((_id && token) || path === '/posts') navigate(path);
+    else setModal((prev) => !prev);
+  };
+
   const iconInfos = [
     { name: 'home', size: 35, link: '/posts' },
     { name: 'spa', size: 35, link: '/meditation' },
-    { name: 'person', size: 35, link: `/profile/${userData._id}` }
+    { name: 'person', size: 35, link: `/profile/${_id}` }
   ];
-  const location = useLocation();
 
   return (
-    <StyledFooter>
-      {iconInfos.map((icon) => (
-        <Link
-          pageLink={
-            icon.name === 'person'
-              ? `${icon.link}`
-              : userData.token
-              ? icon.link
-              : '/login'
-          }
-          key={icon.name}>
-          <Icon
-            name={icon.name}
-            size={icon.size}
-            fill={icon.link === location.pathname}
-            color={icon.link === location.pathname ? 'purpleNormal' : 'black'}
-          />
-        </Link>
-      ))}
-    </StyledFooter>
+    <>
+      {modal && (
+        <LoginConfirm
+          handleClickCancel={handleShowModal}
+          handleClickConfirm={handleShowModal}
+          path={pathname}
+        />
+      )}
+      <StyledFooter>
+        {iconInfos.map(({ name, size, link }) => (
+          <Button
+            key={name}
+            width={35}
+            height={35}
+            handleClick={() => {
+              handleClickButton(link);
+            }}
+            borderRadius={0}
+            border='none'
+            padding={false}
+            backgroundColor='transparent'>
+            <Icon
+              name={name}
+              size={size}
+              fill={link === pathname}
+              color={link === pathname ? 'purpleNormal' : 'black'}
+            />
+          </Button>
+        ))}
+      </StyledFooter>
+    </>
   );
 };
