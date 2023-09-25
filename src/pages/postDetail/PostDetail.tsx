@@ -49,6 +49,7 @@ const PostDetail = () => {
         }}
       />
       <PostComments
+        userId={data?.author._id}
         postId={postId}
         currentUserId={_id}
         token={'Bearer ' + token}
