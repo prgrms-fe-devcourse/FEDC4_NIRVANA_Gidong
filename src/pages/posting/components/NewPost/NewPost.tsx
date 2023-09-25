@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { Toast } from '@components/Toast';
 import { POSTING_DESCRIPTION, POSTING_WARNING } from '@pages/posting/constants';
-import { createFormData, purifyContent } from '@pages/posting/utils';
 import { Button } from '@components/Button';
 import useDebounce from '@hooks/useDebounce';
 import useSessionStorage from '@hooks/useSessionStorage';
-import postCreateNewPost from '@apis/posting';
 import NewPostConfirm from './NewPostConfirm';
 import {
   TextAreaContainer,
@@ -15,6 +12,7 @@ import {
   PostContainer,
   StyledTextArea
 } from './NewPost.style';
+import { UseMutateFunction } from '@tanstack/react-query';
 
 interface MeditationInfo {
   channelId: string;
@@ -23,13 +21,17 @@ interface MeditationInfo {
   totalTime: number;
 }
 
-interface NewPostProps {
-  meditationInfo: MeditationInfo;
-  customToken: string;
+interface MutationParams {
+  posting: string;
 }
 
-const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
-  const navigate = useNavigate();
+interface NewPostProps {
+  meditationInfo: MeditationInfo;
+  isLoading: boolean;
+  mutatePosting: UseMutateFunction<void, unknown, MutationParams, unknown>;
+}
+
+const NewPost = ({ meditationInfo, mutatePosting }: NewPostProps) => {
   const { PLACEHOLDER, WRITE } = POSTING_DESCRIPTION;
   const { LIMIT_LENGTH, WARNING } = POSTING_WARNING;
   const [showConfirm, setShowConfirm] = useState(false);
@@ -56,19 +58,7 @@ const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
 
   const handleConfirmButton = () => {
     if (posting.length > 0) {
-      sessionStorage.removeItem('posting');
-      const customTitle = {
-        title: purifyContent(posting),
-        meditationTime: `${meditationInfo.totalTime / 60}`
-      };
-      const formData = createFormData(
-        JSON.stringify(customTitle),
-        meditationInfo.channelId
-      );
-
-      postCreateNewPost(customToken, formData).then(() => {
-        navigate('/posts', { state: { channelId: meditationInfo.channelId } });
-      });
+      mutatePosting({ posting });
     }
   };
 
