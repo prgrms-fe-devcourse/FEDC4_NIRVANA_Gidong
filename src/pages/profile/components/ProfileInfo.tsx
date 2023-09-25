@@ -1,5 +1,4 @@
 import { Avatar } from '@components/Avatar';
-import { StackBadge } from '@components/Badge';
 import { UserId, UserName } from '@components/UserText';
 import { useRecoilValue } from 'recoil';
 import { editModeState } from '../states/editMode';
@@ -14,7 +13,6 @@ interface ProfileInfoProps {
   fullName: string;
   email: string;
   avatarImgSrc: string;
-  meditationStack: number;
   refetch: () => void;
 }
 
@@ -22,7 +20,6 @@ const ProfileInfo = ({
   email,
   fullName,
   avatarImgSrc,
-  meditationStack,
   refetch
 }: ProfileInfoProps) => {
   const editMode = useRecoilValue(editModeState);
@@ -41,7 +38,6 @@ const ProfileInfo = ({
       </ProfileAvatarContainer>
       <ProfileInfoNameAndBadge>
         <UserName>{fullName}</UserName>
-        <StackBadge stack={meditationStack} />
       </ProfileInfoNameAndBadge>
 
       <UserId email={email} />

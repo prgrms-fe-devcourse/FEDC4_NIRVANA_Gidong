@@ -1,5 +1,6 @@
 import { useRecoilState } from 'recoil';
 import {
+  NonePostContainer,
   ProfileCarouselContainer,
   ProfileCarouselItem
 } from './ProfileCarousel.style';
@@ -9,6 +10,8 @@ import { FollowUsers, MeditationInfo } from '@pages/profile/components';
 import { TabItems } from '../utils/createTabItems';
 import { PROFILE_TABS } from '../constants/profileTabs';
 import { Follow } from '@/types/Follow';
+import { PostPreview } from '@components/PostPreview';
+import { Post } from '@/types/Post';
 
 interface ProfileCarouselProps {
   tabItems: TabItems;
@@ -32,9 +35,27 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
       {Object.entries(tabItems).map(([label, tabItem], index) => {
         switch (label) {
           case MEDITATION:
-            return (
+            return tabItem.data && tabItem.data.length > 0 ? (
               <ProfileCarouselItem key={index}>
-                {tabItem.value}
+                {tabItem.data &&
+                  tabItem.data.map((post, index) => {
+                    const { likes, comments } = post as Post;
+                    return (
+                      <PostPreview
+                        key={index}
+                        post={post as Post}
+                        totalLikes={likes.length}
+                        totalComments={comments.length}
+                        noneProfile={true}
+                      />
+                    );
+                  })}
+              </ProfileCarouselItem>
+            ) : (
+              <ProfileCarouselItem key={index}>
+                <NonePostContainer>
+                  아직 명상을 진행하지 않았습니다
+                </NonePostContainer>
               </ProfileCarouselItem>
             );
           case FOLLOWING:

@@ -61,20 +61,26 @@ export const SettingUl = styled.ul<SettingSideBarProps>`
 export const SettingLi = styled.li`
   ${({ theme }) => theme.style.flexAlignCenter}
   height: 51px;
+  width: 100%;
   padding: 0 5px;
   color: ${({ theme }) => theme.color.black};
   font-size: 16px;
   border-bottom: 0.5px solid ${({ theme }) => theme.color.greyLight};
   transition: all 0.2s ease-out;
+  cursor: pointer;
 
   :hover {
     background-color: ${({ theme }) => theme.color.purpleLighter};
   }
 
-  > a.active {
+  > a.active,
+  > a,
+  > p {
+    ${({ theme }) => theme.style.flexAlignCenter}
     font-weight: normal;
     text-decoration: none;
     color: ${({ theme }) => theme.color.black};
     width: 100%;
+    height: 100%;
   }
 `;

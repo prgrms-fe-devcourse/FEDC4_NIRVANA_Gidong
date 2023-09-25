@@ -11,3 +11,9 @@ export const ProfileCarouselContainer = styled.div`
 export const ProfileCarouselItem = styled.div`
   flex: 1 0 100%;
 `;
+
+export const NonePostContainer = styled.div`
+  ${({ theme }) => theme.style.flexCenter};
+  width: 100%;
+  height: 100%;
+`;
