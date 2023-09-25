@@ -7,12 +7,19 @@ import { StyledSkipPosting } from './SkipPosting.style';
 import postCreateNewPost from '@apis/posting';
 import SkipPostingConfirm from './SkipPostingConfirm';
 
+interface MeditationInfo {
+  channelId: string;
+  validation: boolean;
+  channelLabel: string;
+  totalTime: number;
+}
+
 interface SkipPostingProps {
-  channelId?: string;
+  meditationInfo: MeditationInfo;
   customToken?: string;
 }
 
-const SkipPosting = ({ channelId, customToken }: SkipPostingProps) => {
+const SkipPosting = ({ meditationInfo, customToken }: SkipPostingProps) => {
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
   const { SKIP_POSTING } = POSTING_DESCRIPTION;
@@ -26,10 +33,19 @@ const SkipPosting = ({ channelId, customToken }: SkipPostingProps) => {
   };
 
   const handleConfirmButton = async () => {
-    const formData = createFormData('', channelId);
+    const customTitle = {
+      title: '',
+      meditationTime: `${meditationInfo.totalTime / 60}`
+    };
+    const formData = createFormData(
+      JSON.stringify(customTitle),
+      meditationInfo.channelId
+    );
+
     await postCreateNewPost(customToken, formData).then(() => {
+      setShowConfirm(false);
       sessionStorage.removeItem('posting');
-      navigate('/posts');
+      navigate('/posts', { state: { channelId: meditationInfo.channelId } });
     });
   };
 

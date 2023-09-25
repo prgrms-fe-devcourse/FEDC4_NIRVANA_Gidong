@@ -9,8 +9,8 @@ interface LinkProps {
   children: React.ReactNode;
   pageLink: string;
   size: number;
-  color: string;
   color: keyof typeof color;
+  state: State;
 }
 
 const Link = ({
