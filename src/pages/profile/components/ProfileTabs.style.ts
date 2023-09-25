@@ -8,6 +8,7 @@ export const ProfileTabsContainer = styled.div`
   display: flex;
   margin-top: 10px;
   width: 100%;
+  height: 40px;
 `;
 
 export const ProfileTabItemBottomBarContainer = styled.div<ProfileTabsProps>`

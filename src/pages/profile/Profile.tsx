@@ -8,7 +8,11 @@ import { User } from '@/types/User';
 import { getUser } from '@apis/user';
 import createTabItems from './utils/createTabItems';
 import { editModeState } from './states/editMode';
-import { ProfileInfoContainer, ProfilePage } from './Profile.style';
+import {
+  ProfileInfoContainer,
+  ProfilePage,
+  ProfileBodyContainer
+} from './Profile.style';
 import {
   ProfileInfo,
   ProfileCover,
@@ -68,6 +72,8 @@ const Profile = () => {
           avatarImgSrc={isLoading ? '' : data.image}
           refetch={() => refetch()}
         />
+      </ProfileInfoContainer>
+      <ProfileBodyContainer>
         {editMode ? (
           <ProfileEdit refetch={() => refetch()} />
         ) : (
@@ -81,7 +87,7 @@ const Profile = () => {
             refetch={() => refetch()}
           />
         )}
-      </ProfileInfoContainer>
+      </ProfileBodyContainer>
     </ProfilePage>
   );
 };
