@@ -11,7 +11,7 @@ export const StyledFooter = styled.footer`
   padding: 0 35px;
 `;
 
-export const IconContinaer = styled.div`
+export const IconContainer = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;

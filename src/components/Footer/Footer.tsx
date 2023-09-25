@@ -1,6 +1,6 @@
 import { Icon } from '../Icon';
 import { Link } from '../Link';
-import { StyledFooter, IconContinaer } from './Footer.style';
+import { StyledFooter, IconContainer } from './Footer.style';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types/User';
 import { useLocation } from 'react-router-dom';
@@ -34,14 +34,14 @@ export const Footer = () => {
               : '/login'
           }
           key={icon.name}>
-          <IconContinaer>
+          <IconContainer>
             <Icon
               name={icon.name}
               size={icon.size}
               fill={icon.link === location.pathname}
               color={icon.link === location.pathname ? 'purpleNormal' : 'black'}
             />
-          </IconContinaer>
+          </IconContainer>
         </Link>
       ))}
     </StyledFooter>
