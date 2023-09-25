@@ -34,7 +34,6 @@ const Profile = () => {
   };
 
   const closeSidebar = () => {
-    console.log('close');
     setSideBarOpened(false);
   };
 

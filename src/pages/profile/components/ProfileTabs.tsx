@@ -21,8 +21,6 @@ const ProfileTabs = ({ tabItems }: ProfileTabsProps) => {
     setSelectedTabIndex(index);
   };
 
-  console.log(selectedTabIndex);
-
   return (
     <>
       <ProfileTabsContainer>
