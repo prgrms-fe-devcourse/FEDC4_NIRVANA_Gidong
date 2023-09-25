@@ -2,14 +2,14 @@ import { StyledNavLink } from './Link.style';
 import { color } from '@styles/colors';
 
 interface State {
-  [key: string]: any;
+  [key: string]: string | boolean | number;
 }
 
 interface LinkProps {
   children: React.ReactNode;
   pageLink: string;
   size: number;
-  color: string;
+  state: State;
   color: keyof typeof color;
 }
 
