@@ -3,7 +3,7 @@ import { Icon } from '@components/Icon';
 import { ButtonBox } from './SearchButton.style';
 
 interface SearchButton {
-  handleClickButton?: () => void;
+  handleClickButton?: (event?: React.FormEvent<HTMLFormElement>) => void;
   searchStatus: boolean;
 }
 

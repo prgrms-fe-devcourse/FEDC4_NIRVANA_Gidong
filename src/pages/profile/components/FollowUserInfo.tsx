@@ -30,8 +30,8 @@ const FollowUserInfo = ({
         size={39}
         online={isOnline}
       />
-      <UserId email={email} />
       <UserName>{fullName}</UserName>
+      <UserId email={email} />
     </FollowUserInfoContainer>
   );
 };
