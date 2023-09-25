@@ -11,6 +11,7 @@ import {
 } from './PostCommentInput.style';
 import { Avatar } from '@components/Avatar';
 import { postComment } from '@apis/comment';
+import { useState } from 'react';
 
 interface PostCommentInputProps {
   postId: string;
@@ -28,6 +29,7 @@ const PostCommentInput = ({
   refetch
 }: PostCommentInputProps) => {
   const COMMENT_PLACEHOLDER = '댓글을 달아보세요.';
+  const [commentValue, setCommentValue] = useState(null);
   const commentRef = useRef(null);
 
   const { mutate, isSuccess } = useMutation(postComment);
@@ -36,12 +38,21 @@ const PostCommentInput = ({
 
   const handleCommentSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    mutate({
-      postId,
-      comment: commentRef.current.value,
-      token
-    });
+    mutate(
+      {
+        postId,
+        comment: commentValue,
+        token
+      },
+      {
+        onSuccess: () => refetch()
+      }
+    );
     commentRef.current.value = '';
+  };
+
+  const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCommentValue(event.target.value);
   };
 
   return (
@@ -58,10 +69,11 @@ const PostCommentInput = ({
           <CommentInput
             ref={commentRef}
             name='comment'
+            onChange={handleCommentChange}
             placeholder={COMMENT_PLACEHOLDER}
           />
         </CommentInputContainer>
-        <CommentButtonContainer>
+        <CommentButtonContainer buttonDisabled={commentValue ? false : true}>
           <Button
             width={50}
             height={25}
@@ -69,6 +81,7 @@ const PostCommentInput = ({
             fontSize={14}
             dark={true}
             borderRadius={5}
+            disabled={commentValue ? false : true}
           />
         </CommentButtonContainer>
       </CommentInputForm>
