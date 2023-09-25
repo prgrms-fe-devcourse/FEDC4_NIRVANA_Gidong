@@ -11,6 +11,7 @@ import {
 } from './PostCommentInput.style';
 import { Avatar } from '@components/Avatar';
 import { postComment } from '@apis/comment';
+import { postNotifications } from '@apis/notice';
 
 interface PostCommentInputProps {
   postId: string;
@@ -30,7 +31,16 @@ const PostCommentInput = ({
   const COMMENT_PLACEHOLDER = '댓글을 달아보세요.';
   const commentRef = useRef(null);
 
-  const { mutate, isSuccess } = useMutation(postComment);
+  const { mutate, isSuccess } = useMutation(postComment, {
+    onSuccess: (res) => {
+      postNotifications(token, {
+        notificationType: 'COMMENT',
+        notificationTypeId: res._id,
+        userId: res.author._id,
+        postId: res.post
+      });
+    }
+  });
 
   if (isSuccess) refetch();
 
