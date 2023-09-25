@@ -9,7 +9,7 @@ interface LinkProps {
   pageLink: string;
   size: number;
   color: string;
-  state: State;
+  state?: State;
 }
 
 const Link = ({
