@@ -1,4 +1,5 @@
 export const color = {
+  purpleNormal: '#8653ab',
   purpleDark: '#47346d',
   purpleDarker: '#272038',
   purpleLight: '#b796d0',

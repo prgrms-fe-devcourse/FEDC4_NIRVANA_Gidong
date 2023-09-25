@@ -1,4 +1,5 @@
 import { StyledNavLink } from './Link.style';
+import { color } from '@styles/colors';
 
 interface State {
   [key: string]: any;
@@ -9,14 +10,14 @@ interface LinkProps {
   pageLink: string;
   size: number;
   color: string;
-  state: State;
+  color: keyof typeof color;
 }
 
 const Link = ({
   children,
   pageLink,
   size = 14,
-  color = '#000',
+  color = 'black',
   state
 }: Partial<LinkProps>) => {
   return (

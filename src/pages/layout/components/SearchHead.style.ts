@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const SearchHeadContainer = styled.div`
   ${({ theme }) => theme.style.flexAlignCenter}
+  flex-grow : 1;
   & > button {
     border: none;
     outline: none;
@@ -11,10 +12,11 @@ export const SearchHeadContainer = styled.div`
   }
 `;
 
-export const SearchBox = styled.div`
+export const SearchForm = styled.form`
   width: 300px;
   height: 35px;
   ${({ theme }) => theme.style.flexAlignCenter}
+  flex-grow: 1;
   padding-left: 18px;
   padding-right: 11px;
   border-radius: 10px;

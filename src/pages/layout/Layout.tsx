@@ -3,10 +3,14 @@ import { Header } from '@pages/layout/components';
 import { LayoutContainer } from './Layout.style';
 import { Footer } from '@components/Footer';
 
-const Layout = () => {
+interface LayoutProps {
+  headerStatus: 'back' | 'home';
+}
+
+const Layout = ({ headerStatus }: LayoutProps) => {
   return (
     <>
-      <Header />
+      <Header pathStatus={headerStatus} />
       <LayoutContainer>
         <Outlet />
       </LayoutContainer>

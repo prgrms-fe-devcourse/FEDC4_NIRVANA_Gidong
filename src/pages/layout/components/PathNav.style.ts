@@ -12,4 +12,10 @@ export const Logo = styled.h1`
 
 export const PathNavContainer = styled.div`
   ${({ theme }) => theme.style.flexAlignCenter}
+  & > button {
+    background: none;
+    padding: 0;
+    border: 0;
+    outline: none;
+  }
 `;

@@ -56,7 +56,13 @@ const MeditationTimer = () => {
       <TimerElement
         onClick={() => toggleTimer()}
         onMouseOver={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}>
+        onMouseLeave={() => setHovered(false)}
+        onTouchStart={() => setHovered(true)}
+        onTouchEnd={(event) => {
+          setHovered(false);
+          event.preventDefault();
+          toggleTimer();
+        }}>
         <IconContainer>
           {hovered ? (
             <Icon

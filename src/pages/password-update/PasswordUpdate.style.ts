@@ -18,7 +18,7 @@ const Logo = styled.h1`
 const PasswordUpdateContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 64px);
   background: ${({ theme }) => theme.color.linearGradientPurple};
 `;

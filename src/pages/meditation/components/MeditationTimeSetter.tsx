@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { Icon } from '@components/Icon';
@@ -22,6 +22,7 @@ import {
   pickedTheme,
   totalMeditationTime
 } from '@pages/meditation/states';
+import { Toast } from '@components/Toast';
 
 const MeditationTimeSetter = () => {
   const [time, setTime] = useRecoilState<number>(meditationTime);
@@ -69,12 +70,21 @@ const MeditationTimeSetter = () => {
         handleEndMeditation
       );
     };
-  }, []);
+  });
+
+  const isValidTimeControl = (
+    buttonType: typeof BUTTON_TYPE_SUB | typeof BUTTON_TYPE_ADD
+  ) => {
+    return !(
+      (time <= 240 && buttonType === BUTTON_TYPE_SUB) ||
+      (time >= 1440 * 60 && buttonType === BUTTON_TYPE_ADD)
+    );
+  };
 
   const handleTime = (
     buttonType: typeof BUTTON_TYPE_SUB | typeof BUTTON_TYPE_ADD
   ) => {
-    if (time <= 240 && buttonType === BUTTON_TYPE_SUB) {
+    if (!isValidTimeControl(buttonType)) {
       return;
     }
     if (buttonType === BUTTON_TYPE_ADD) {
@@ -84,14 +94,20 @@ const MeditationTimeSetter = () => {
     }
   };
 
-  const handleLongClick = (buttonType: string) => {
-    if (time === 0 && buttonType === BUTTON_TYPE_SUB) {
+  const handleLongClick = (
+    buttonType: typeof BUTTON_TYPE_SUB | typeof BUTTON_TYPE_ADD
+  ) => {
+    if (!isValidTimeControl(buttonType)) {
       return;
     }
     if (buttonType === BUTTON_TYPE_ADD) {
       longClickIdRef.current = setInterval(() => {
         setTime((prevTime) => {
-          return prevTime + FIVE_MINUTES_IN_SECONDS;
+          if (prevTime < 1440 * 60) {
+            return prevTime + FIVE_MINUTES_IN_SECONDS;
+          } else {
+            return prevTime;
+          }
         });
       }, 100);
     } else {
@@ -111,8 +127,13 @@ const MeditationTimeSetter = () => {
     if (value === '') {
       setTime(0);
       return;
+    } else {
+      if (parseInt(value) > 1440) {
+        setTime(1440 * 60);
+      } else {
+        setTime(parseInt(value) * 60);
+      }
     }
-    setTime(parseInt(value) * 60);
   };
 
   return (
