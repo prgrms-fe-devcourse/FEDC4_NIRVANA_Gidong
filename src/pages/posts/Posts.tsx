@@ -1,46 +1,53 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import type { Post } from '@/types';
+import type { EditedPost } from '@/types';
 import { getPosts } from '@apis/posts';
 import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
 import { PostPreview } from '@components/PostPreview';
 import { ThemePicker } from '@components/ThemePicker';
-import useObserver from './hooks/useObserver';
 import { editPostData } from './utils/editPostData';
+import useObserver from './hooks/useObserver';
 import {
   StyledPostsPage,
   ThemePickerContainer,
   PostsContainer
 } from './Posts.style';
-import { useQuery } from '@tanstack/react-query';
+import { useLocation } from 'react-router-dom';
 
 const Posts = () => {
+  const locate = useLocation();
   const postsRef = useRef(null);
+  const [postsData, setPostsData] = useState<EditedPost[]>([]);
   const [offset, setOffset] = useState(0);
   const [observe] = useObserver(() => setOffset(offset + 11));
-  const [channelId, setChannelId] = useState('65017a41dfe8db5726b603a7');
+  const [channelId, setChannelId] = useState(
+    locate.state.channelId ? locate.state.channelId : '65017a41dfe8db5726b603a7'
+  );
   const channelInfo = new Map(meditationChannelInfo);
 
-  const { data: postsData } = useQuery({
+  const { data } = useQuery({
     queryKey: ['getChannelPosts', channelId, offset],
     queryFn: async () => {
       const data = await getPosts(channelId, offset);
       const editedData = editPostData(data);
 
-      return offset === 0 ? editedData : [...data, ...editedData];
+      return editedData;
     }
   });
+
+  useEffect(() => {
+    if (data) {
+      setPostsData(offset === 0 ? data : [...postsData, ...data]);
+    }
+  }, [data]);
 
   useEffect(() => {
     setOffset(0);
   }, [channelId]);
 
   useEffect(() => {
-    if (
-      postsRef &&
-      postsRef.current &&
-      postsRef.current.childNodes.length >= 10
-    ) {
+    if (postsRef.current && postsRef.current.childNodes.length >= 10) {
       const { lastChild } = postsRef.current;
       lastChild && observe(lastChild);
     }
@@ -60,16 +67,20 @@ const Posts = () => {
         />
       </ThemePickerContainer>
       <PostsContainer ref={postsRef}>
-        {postsData &&
-          postsData.map((post: Post, index) => (
-            <PostPreview
-              key={index}
-              post={post}
-              totalLikes={post.likes.length}
-              totalComments={post.comments.length}
-              noneProfile={false}
-            />
-          ))}
+        {postsData.map((post: EditedPost, index) => {
+          const { content, likes, comments } = post;
+          return (
+            content && (
+              <PostPreview
+                key={index}
+                post={post}
+                totalLikes={likes.length}
+                totalComments={comments.length}
+                noneProfile={false}
+              />
+            )
+          );
+        })}
       </PostsContainer>
     </StyledPostsPage>
   );

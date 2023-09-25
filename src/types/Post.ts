@@ -15,3 +15,8 @@ export interface Post {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface EditedPost extends Post {
+  meditationTime: number;
+  content: string | undefined;
+}
