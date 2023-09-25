@@ -9,6 +9,7 @@ import { FollowUsers, MeditationInfo } from '@pages/profile/components';
 import { TabItems } from '../utils/createTabItems';
 import { PROFILE_TABS } from '../constants/profileTabs';
 import { Follow } from '@/types/Follow';
+import { useEffect } from 'react';
 
 interface ProfileCarouselProps {
   tabItems: TabItems;
@@ -21,6 +22,11 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
   const [selectedTabIndex, setSelectedTabIndex] = useRecoilState(
     selectedTabIndexState
   );
+
+  useEffect(() => {
+    setSelectedTabIndex(0);
+  }, [setSelectedTabIndex]);
+
   const [carouselRef] = useCarousel(
     selectedTabIndex,
     setSelectedTabIndex,
@@ -28,7 +34,9 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
   );
 
   return (
-    <ProfileCarouselContainer ref={carouselRef}>
+    <ProfileCarouselContainer
+      selectedTabIndex={selectedTabIndex}
+      ref={carouselRef}>
       {Object.entries(tabItems).map(([label, tabItem], index) => {
         switch (label) {
           case MEDITATION:

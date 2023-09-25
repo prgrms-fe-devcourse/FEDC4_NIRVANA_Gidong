@@ -1,11 +1,16 @@
 import styled from '@emotion/styled';
 
-export const ProfileCarouselContainer = styled.div`
+interface ProfileCarouselContainerProps {
+  selectedTabIndex: number;
+}
+
+export const ProfileCarouselContainer = styled.div<ProfileCarouselContainerProps>`
   width: 100%;
   display: flex;
   flex: 1;
   overflow: hidden;
   user-select: none;
+  scroll-behavior: smooth;
 `;
 
 export const ProfileCarouselItem = styled.div`
