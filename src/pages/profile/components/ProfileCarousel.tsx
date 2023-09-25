@@ -27,7 +27,9 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
   );
 
   useEffect(() => {
-    setSelectedTabIndex(0);
+    return () => {
+      setSelectedTabIndex(0);
+    };
   }, [setSelectedTabIndex]);
 
   const [carouselRef] = useCarousel(
