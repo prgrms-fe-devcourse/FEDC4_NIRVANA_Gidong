@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const PostContainer = styled.div`
-  min-width: 330px;
+  min-width: 300px;
   width: 80%;
   height: 450px;
   position: relative;
@@ -36,4 +36,6 @@ export const ButtonContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
   bottom: 30px;
+  ${({ theme }) => theme.style.flexCenter};
+  width: 90%;
 `;
