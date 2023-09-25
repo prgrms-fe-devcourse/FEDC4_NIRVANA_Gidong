@@ -18,7 +18,7 @@ const AlertButton = () => {
 
   const location = useLocation();
   const { pathname } = location;
-  const { token } = userSessionData;
+  const { token, _id } = userSessionData;
 
   const query = useQuery({
     queryKey: ['headerAlert'],
@@ -26,6 +26,7 @@ const AlertButton = () => {
       const data = await getNotifications(`Bearer ${token}`);
       return data;
     },
+    enabled: token !== '' && _id !== '',
     refetchInterval: () => (pathname === '/notice' ? false : 5000),
     refetchIntervalInBackground: true
   });
