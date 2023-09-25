@@ -18,13 +18,14 @@ export const Input = styled.input`
   width: 100%;
   height: 45px;
   padding-left: 10px;
+  font-size: 14px;
   border: 1px solid ${({ theme }) => theme.color.white500};
   border-radius: 10px;
 `;
 
 export const ErrorMessage = styled.span`
   color: ${({ theme }) => theme.color.redVivid};
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   margin-left: 10px;
   white-space: pre-line;
