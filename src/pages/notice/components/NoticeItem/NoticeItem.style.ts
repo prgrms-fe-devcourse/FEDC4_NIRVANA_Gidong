@@ -5,6 +5,7 @@ const NoticeItemContainer = styled.div`
   justify-content: flex-start;
   padding: 10px;
   border-bottom: 0.5px solid ${({ theme }) => theme.color['greyLight']};
+  line-height: 1.5;
   margin-bottom: 10px;
 `;
 
