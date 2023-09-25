@@ -9,7 +9,7 @@ interface PutUpdateUserParams {
 }
 
 const getUser = async (userId: string) => {
-  const response = await axios.get(`${API_BASE_URL}/users/${userId}`);
+  const response = await axios.get<User>(`${API_BASE_URL}/users/${userId}`);
   return response.data;
 };
 
@@ -18,7 +18,7 @@ const putUpdateUser = async ({
   fullName,
   token
 }: PutUpdateUserParams) => {
-  const response = await axios.put(
+  const response = await axios.put<User>(
     `${API_BASE_URL}/settings/update-user`,
     {
       fullName,

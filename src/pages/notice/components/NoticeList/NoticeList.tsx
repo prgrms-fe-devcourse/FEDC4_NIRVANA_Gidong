@@ -12,11 +12,13 @@ const NoticeList = ({ list }: NoticeListProps) => {
     <NoticeListContainer>
       {list.map((notice) => (
         <NoticeItem
-          authorName={notice.author.fullName}
           key={notice._id}
           profileImage={notice.author.image}
-          comment={notice.comment}
           type={noticeTypeChecker(notice)}
+          comment={notice.comment}
+          authorName={notice.author.fullName}
+          postId={notice.post}
+          followId={notice.follow}
         />
       ))}
     </NoticeListContainer>

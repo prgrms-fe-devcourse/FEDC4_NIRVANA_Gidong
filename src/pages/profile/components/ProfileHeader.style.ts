@@ -7,17 +7,17 @@ export const ProfileHeaderSection = styled.div`
 export const ProfileHeaderButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding-top: 10px;
+  margin-top: 20px;
   > button {
+    transition: all 0.2s ease-out;
     ${({ theme }) => theme.style.flexCenter};
     margin-right: 6px;
-    &:first-of-type {
-      > span {
-        margin-left: 3px;
-      }
-    }
+
     &:last-child {
       margin-right: 0;
+    }
+    :hover {
+      background-color: ${({ theme }) => theme.color.purpleLight};
     }
   }
 `;

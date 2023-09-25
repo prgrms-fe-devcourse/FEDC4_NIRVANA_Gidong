@@ -9,6 +9,11 @@ export const ProfileCarouselContainer = styled.div`
 `;
 
 export const ProfileCarouselItem = styled.div`
-  border: 1px solid #ccc;
   flex: 1 0 100%;
+`;
+
+export const NonePostContainer = styled.div`
+  ${({ theme }) => theme.style.flexCenter};
+  width: 100%;
+  height: 100%;
 `;

@@ -24,7 +24,7 @@ const PostPreview = ({
   totalComments,
   noneProfile = false
 }: PostPreviewProps) => {
-  const { content } = post;
+  const { content, _id } = post;
   const previewContent = `${content.substring(0, 100)}${
     content.length > 100 ? '...' : ''
   }`;
@@ -41,7 +41,7 @@ const PostPreview = ({
       </PostHeaderContainer>
       <PostContentContainer>
         <Link
-          pageLink={`/post-detail/:${post._id}`}
+          pageLink={`/posts/${_id}`}
           color='black'>
           <PostContent>{previewContent}</PostContent>
         </Link>

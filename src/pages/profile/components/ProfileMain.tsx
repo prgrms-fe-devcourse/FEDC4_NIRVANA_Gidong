@@ -5,27 +5,51 @@ import {
   ProfileTabItem,
   ProfileCarousel
 } from '@pages/profile/components';
-import { TabItem } from '@pages/profile/utils/createTabItems';
+import { TabItems } from '../utils/createTabItems';
+import { Follow } from '@/types/Follow';
 
 interface ProfileMainProps {
-  tabItems: TabItem[];
+  myProfile: boolean;
+  myFollowData: Follow;
+  tabItems: TabItems;
+  fullName: string;
+  profileId: string;
+  openSidebar: () => void;
+  refetch: () => void;
 }
 
-const ProfileMain = ({ tabItems }: ProfileMainProps) => {
+const ProfileMain = ({
+  myProfile,
+  tabItems,
+  myFollowData,
+  fullName,
+  profileId,
+  openSidebar,
+  refetch
+}: ProfileMainProps) => {
   return (
     <ProfileMainSection>
-      <ProfileHeader />
+      <ProfileHeader
+        myProfile={myProfile}
+        myFollowData={myFollowData}
+        profileId={profileId}
+        openSidebar={openSidebar}
+        refetch={refetch}
+      />
       <ProfileTabs>
-        {tabItems.map((tabItem, index) => (
+        {Object.entries(tabItems).map(([label, tabItem], index) => (
           <ProfileTabItem
-            key={tabItem.label}
-            title={`${tabItem.value} ${tabItem.label}`}
+            key={index}
+            title={`${tabItem.value} ${label}`}
             data={tabItem.data}
             index={index}
           />
         ))}
       </ProfileTabs>
-      <ProfileCarousel totalIndex={tabItems.length} />
+      <ProfileCarousel
+        tabItems={tabItems}
+        fullName={fullName}
+      />
     </ProfileMainSection>
   );
 };

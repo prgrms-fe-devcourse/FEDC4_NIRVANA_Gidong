@@ -60,6 +60,9 @@ const SignUp = () => {
       nickname &&
       password &&
       passwordConfirm &&
+      isEmailOk(email) &&
+      isNicknameOk(nickname) &&
+      isPasswordOk(password) &&
       password === passwordConfirm
     ) {
       postSignUpUser({ email, password, fullName: nickname })
@@ -70,6 +73,7 @@ const SignUp = () => {
         });
     }
 
+    setEmailErrorCatched(false);
     return;
   };
 

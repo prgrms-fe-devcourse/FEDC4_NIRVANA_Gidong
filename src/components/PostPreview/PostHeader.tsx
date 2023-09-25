@@ -25,7 +25,7 @@ const PostHeader = ({
   totalComments,
   noneProfile
 }: PostHeaderProps) => {
-  const { image, author, createdAt, meditationTime } = post;
+  const { image, author, createdAt, meditationTime, _id } = post;
   const iconDescription = [
     { name: 'favorite', size: 12, total: totalLikes },
     { name: 'chat', size: 12, total: totalComments }
@@ -36,11 +36,11 @@ const PostHeader = ({
       {!noneProfile && (
         <AvatarContainer>
           <Link
-            pageLink={`/profile/:${post.author}`}
+            pageLink={`/profile/${author._id}`}
             color='black'>
             <Avatar
               alt={'유저 프로필'}
-              src={image}
+              src={author.image}
               size={35}
             />
           </Link>
@@ -48,7 +48,7 @@ const PostHeader = ({
       )}
       <PostInfoContainer>
         <Link
-          pageLink={`/post-detail/${post._id}`}
+          pageLink={`/posts/${_id}`}
           color='black'>
           {!noneProfile && (
             <UserNameContainer>{author.fullName}</UserNameContainer>
