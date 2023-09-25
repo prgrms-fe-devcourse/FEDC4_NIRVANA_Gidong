@@ -4,3 +4,8 @@ export const POSTING_DESCRIPTION = {
   UPLOAD: '업로드',
   SKIP_POSTING: '건너뛰기 >'
 };
+
+export const POSTING_WARNING = {
+  LIMIT_LENGTH: 500,
+  WARNING: '포스팅은 최대 500글자까지 가능합니다.'
+};

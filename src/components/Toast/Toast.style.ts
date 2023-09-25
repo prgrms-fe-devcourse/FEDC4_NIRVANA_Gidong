@@ -1,3 +1,4 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 interface StyledToastProps {
@@ -10,7 +11,8 @@ const ChildContainer = (backgroundColor: string, textColor: string) => {
   return `
   background-color: ${backgroundColor};
   color: ${textColor};
-  border-left: 10px solid ${textColor};`;
+  border-left: 10px solid ${textColor};
+  `;
 };
 
 const StyledToast = styled.div<StyledToastProps>`
@@ -21,10 +23,8 @@ const StyledToast = styled.div<StyledToastProps>`
   top: 50px;
   display: flex;
   justify-content: space-between;
-  transition: 3s all ease-out;
-  animation: hide 3s ease-out forwards;
-  opacity: 1;
   padding: 0px 30px;
+  transition: 1s all ease-out;
   ${({ theme }) => theme.style.flexAlignCenter};
   ${({ toastType, theme }) =>
     toastType === 'ERROR'
@@ -43,18 +43,23 @@ const StyledToast = styled.div<StyledToastProps>`
       ? ChildContainer(theme.color.bluePastel, theme.color.blue)
       : ''}
 
-  @keyframes hide {
+
+  @keyframes fade-in-out {
     0% {
+      opacity: 0;
+    }
+    30% {
       opacity: 1;
     }
-    80% {
+    70% {
       opacity: 1;
     }
     100% {
       opacity: 0;
-      display: none;
     }
   }
+
+  animation: fade-in-out 5s ease-out forwards;
 `;
 
 const IconContainer = styled.div`
