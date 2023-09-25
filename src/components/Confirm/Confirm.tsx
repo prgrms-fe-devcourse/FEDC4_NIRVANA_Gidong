@@ -17,7 +17,7 @@ interface ConfirmProps {
   nextPageLink: string;
   CancelButton: React.ReactNode | (() => JSX.Element);
   ConfirmButton: React.ReactNode | (() => JSX.Element);
-  linkState: { [key: string]: any };
+  linkState?: { [key: string]: any };
 }
 
 const Confirm = ({
@@ -31,7 +31,7 @@ const Confirm = ({
 }: Partial<ConfirmProps>) => {
   const [disabled, setDisabled] = useState(false);
   const [domReady, setDomReady] = useState(false);
-  
+
   const FormedCancelButton =
     typeof CancelButton === 'function' ? CancelButton() : CancelButton;
   const FormedConfirmlButton =
@@ -53,9 +53,13 @@ const Confirm = ({
             {content}
             <NavButtonContainer>
               <CancelButtonDefaultEvent onClick={() => setDisabled(true)}>
-                {CancelButton}
+                {FormedCancelButton}
               </CancelButtonDefaultEvent>
-              <Link pageLink={nextPageLink}>{ConfirmButton}</Link>
+              <Link
+                state={linkState}
+                pageLink={nextPageLink}>
+                {FormedConfirmlButton}
+              </Link>
             </NavButtonContainer>
           </ContentContainer>
         </StyledConfirmBackground>

@@ -7,15 +7,8 @@ import {
   ContentContainer,
   NavButtonContainer
 } from '@components/Alert/Alert.style';
-import useSessionStorage from '@hooks/useSessionStorage';
 
 const NotFound = () => {
-  const [user] = useSessionStorage('userData', {
-    _id: '',
-    token: ''
-  });
-  const redirectPage = user.token === '' ? '/' : '/posts';
-
   return (
     <LandingMain>
       <StyledAlertBackground
@@ -25,7 +18,7 @@ const NotFound = () => {
         <ContentContainer contentFontSize={16}>
           {'404! 잘못된 페이지 접근이에요!'}
           <NavButtonContainer>
-            <Link pageLink={redirectPage}>
+            <Link pageLink={'/'}>
               <Button
                 width={300}
                 height={50}
