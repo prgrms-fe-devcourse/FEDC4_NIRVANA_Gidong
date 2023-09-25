@@ -1,5 +1,10 @@
 import styled from '@emotion/styled';
 
+export const InputContainer = styled.div`
+  width: 100%;
+  max-width: 300px;
+  margin: 10px 0;
+`;
 export const Label = styled.label`
   display: flex;
   align-items: center;
@@ -10,15 +15,11 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   box-sizing: border-box;
-  width: 300px;
+  width: 100%;
   height: 45px;
   padding-left: 10px;
-  border: 0.5px solid #7e7e7e;
+  border: 1px solid ${({ theme }) => theme.color.white500};
   border-radius: 10px;
-`;
-
-export const InputContainer = styled.div`
-  margin: 10px 0;
 `;
 
 export const ErrorMessage = styled.span`
