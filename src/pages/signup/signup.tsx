@@ -7,12 +7,11 @@ import { isEmailOk, isNicknameOk, isPasswordOk } from './validations';
 import postSignUpUser from '@apis/signup';
 import { USER_INPUT, MODAL } from './constants';
 import {
-  SignUpForm,
-  ButtonContainer,
-  SignUpContainer,
-  LogoContainer
-} from './signup.style';
-import { Logo } from '@pages/signup/components';
+  LandingMain,
+  HeadingContentContainer,
+  Heading
+} from '@pages/landing/Landing.style';
+import { SignUpForm, ButtonContainer } from './signup.style';
 
 const SignUp = () => {
   const [email, setEmail] = useState<string>('');
@@ -78,10 +77,10 @@ const SignUp = () => {
   };
 
   return (
-    <SignUpContainer>
-      <LogoContainer>
-        <Logo />
-      </LogoContainer>
+    <LandingMain>
+      <HeadingContentContainer>
+        <Heading />
+      </HeadingContentContainer>
 
       {emailErrorCatched && (
         <Alert
@@ -161,7 +160,7 @@ const SignUp = () => {
           />
         </ButtonContainer>
       </SignUpForm>
-    </SignUpContainer>
+    </LandingMain>
   );
 };
 
