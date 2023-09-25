@@ -34,7 +34,6 @@ const Posting = () => {
     if (location.state === null) {
       navigate('/404');
     }
-    console.log(location.state);
     setMeditationInfo(location.state);
   }, []);
 
