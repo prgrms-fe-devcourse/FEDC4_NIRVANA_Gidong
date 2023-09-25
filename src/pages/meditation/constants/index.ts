@@ -1,4 +1,4 @@
-const FIVE_MINUTES_IN_SECONDS = 3;
+const FIVE_MINUTES_IN_SECONDS = 300;
 const COUNTER_BUTTON_SIZE = 80;
 const BUTTON_TYPE_ADD = 'add';
 const BUTTON_TYPE_SUB = 'sub';
