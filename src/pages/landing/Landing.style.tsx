@@ -5,7 +5,6 @@ export const LandingMain = styled.main`
   background: ${({ theme }) => theme.color.linearGradientPurple};
   ${({ theme }) => theme.style.flexAlignCenter};
   flex-direction: column;
-  justify-content: space-between;
   width: 100%;
   height: 100%;
 `;
@@ -29,6 +28,8 @@ export const Heading = styled.h1`
 `;
 
 export const BottomContentContainer = styled.div`
+  position: absolute;
+  bottom: 20px;
   width: 100%;
   margin-bottom: 50px;
 `;
