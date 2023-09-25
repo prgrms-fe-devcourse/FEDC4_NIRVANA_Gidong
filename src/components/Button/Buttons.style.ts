@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { color } from '@styles/colors';
 
 export const StyledButton = styled.button<{
   width: number;
@@ -7,7 +8,7 @@ export const StyledButton = styled.button<{
   bold?: boolean;
   borderRadius?: number;
   fontSize?: number;
-  textColor?: string;
+  textColor?: keyof typeof color;
 }>`
   cursor: pointer;
   width: ${({ width }) => width}px;

@@ -1,7 +1,7 @@
 import { useQuery, useQueries } from '@tanstack/react-query';
 import { searchAll } from '@apis/search';
 import { getUser } from '@apis/user';
-import { User } from '@/types';
+import { EditedPost, User } from '@/types';
 import { PostPreview } from '@components/PostPreview';
 import filterPostData from '../utils/filterPostData';
 import { FILTER } from '../constants';
@@ -55,7 +55,7 @@ const SearchResultPost = ({
 
           return (
             <PostPreview
-              post={post}
+              post={post as EditedPost}
               key={_id}
               totalLikes={likes.length}
               totalComments={comments.length}
