@@ -9,8 +9,9 @@ interface LinkProps {
   children: React.ReactNode;
   pageLink: string;
   size: number;
-  color: string;
   color: keyof typeof color;
+  state: State;
+  setActiveStyle?: boolean;
 }
 
 const Link = ({
@@ -18,14 +19,16 @@ const Link = ({
   pageLink,
   size = 14,
   color = 'black',
-  state
+  state,
+  setActiveStyle = true
 }: Partial<LinkProps>) => {
   return (
     <StyledNavLink
       state={{ ...state }}
       to={pageLink}
       size={size}
-      color={color}>
+      color={color}
+      setActiveStyle={setActiveStyle}>
       {children}
     </StyledNavLink>
   );
