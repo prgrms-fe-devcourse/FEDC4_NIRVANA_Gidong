@@ -22,6 +22,8 @@ const NoticeContent = styled.div`
 `;
 
 const Message = styled.div`
+  display: flex;
+  align-items: center;
   font-weight: 700;
   font-size: 0.8rem;
   color: ${({ theme }) => theme.color['black']};

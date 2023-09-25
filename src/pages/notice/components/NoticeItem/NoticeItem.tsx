@@ -65,10 +65,7 @@ const NoticeItem = ({
         />
       </ProfileImage>
       <NoticeContent>
-        <Message>
-          <span>{authorName}</span>
-          {typeToMessage(type)}
-        </Message>
+        <Message>{typeToMessage(type)}</Message>
         {type === NOTICE_TYPE.COMMENT && (
           <MessagePreview>
             {comment && comment.comment.length > 25
