@@ -16,13 +16,6 @@ const EtcNav = ({ handleShowSearchBox, showSearchBox }: EtcNavProps) => {
         searchStatus={showSearchBox}
       />
       <AlertButton />
-      <Link pageLink='/message'>
-        <Icon
-          name='chat'
-          color='white'
-          size={23}
-        />
-      </Link>
     </EtcNavContainer>
   );
 };
