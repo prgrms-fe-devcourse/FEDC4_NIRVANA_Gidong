@@ -24,31 +24,7 @@ export const PostLikeContainer = styled.div`
     transition: transform 0.2s ease-in-out;
     margin-top: 1px;
     &:active {
-      animation: shake 1s infinite;
-    }
-    :hover {
       transform: scale(1.2);
-    }
-  }
-
-  @keyframes shake {
-    0% {
-      transform: rotate(0) scale(1.2);
-    }
-    10% {
-      transform: rotate(15deg) scale(1.2);
-    }
-    30% {
-      transform: rotate(-15deg) scale(1.2);
-    }
-    50% {
-      transform: rotate(15deg) scale(1.2);
-    }
-    70% {
-      transform: rotate(0) scale(1.2);
-    }
-    100% {
-      transform: rotate(0) scale(1.2);
     }
   }
 `;

@@ -16,7 +16,7 @@ export const ProfileHeaderButtonContainer = styled.div`
     &:last-child {
       margin-right: 0;
     }
-    :hover {
+    :active {
       background-color: ${({ theme }) => theme.color.purpleLight};
     }
   }

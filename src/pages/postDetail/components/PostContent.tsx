@@ -22,6 +22,7 @@ import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
 import { createFormData, purifyContent } from '@pages/posting/utils';
+import { Link } from 'react-router-dom';
 
 interface PostContentProps {
   author: User;
@@ -109,11 +110,13 @@ const PostContent = ({
     <PostContentSection>
       <PostContentHeader>
         <PostContentAvatarContainer>
-          <Avatar
-            src={author?.image}
-            alt={author?.fullName}
-            size={39}
-          />
+          <Link to={`/profile/${author?._id}`}>
+            <Avatar
+              src={author?.image}
+              alt={author?.fullName}
+              size={39}
+            />
+          </Link>
         </PostContentAvatarContainer>
         <PostContentUserInfo>
           <PostContentUserName>
@@ -121,7 +124,7 @@ const PostContent = ({
             <UserId email={author ? author.email : ''} />
           </PostContentUserName>
           <PostContentTime>
-            {createdAt} / {meditationTime}
+            {createdAt} / {meditationTime}분
           </PostContentTime>
         </PostContentUserInfo>
         {currentUserId === author?._id && (

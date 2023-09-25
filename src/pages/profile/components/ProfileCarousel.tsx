@@ -1,8 +1,8 @@
 import { useRecoilState } from 'recoil';
 import {
-  NonePostContainer,
   ProfileCarouselContainer,
-  ProfileCarouselItem
+  ProfileCarouselItem,
+  NoneContentContainer
 } from './ProfileCarousel.style';
 import { useCarousel } from '../hooks/useCarousel';
 import { selectedTabIndexState } from '../states/selectedTabIndex';
@@ -10,6 +10,7 @@ import { FollowUsers, MeditationInfo } from '@pages/profile/components';
 import { TabItems } from '../utils/createTabItems';
 import { PROFILE_TABS } from '../constants/profileTabs';
 import { Follow } from '@/types/Follow';
+import { useEffect } from 'react';
 import { PostPreview } from '@components/PostPreview';
 import { Post } from '@/types/Post';
 import { editPostData } from '@pages/posts/utils/editPostData';
@@ -25,6 +26,11 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
   const [selectedTabIndex, setSelectedTabIndex] = useRecoilState(
     selectedTabIndexState
   );
+
+  useEffect(() => {
+    setSelectedTabIndex(0);
+  }, [setSelectedTabIndex]);
+
   const [carouselRef] = useCarousel(
     selectedTabIndex,
     setSelectedTabIndex,
@@ -32,11 +38,15 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
   );
 
   return (
-    <ProfileCarouselContainer ref={carouselRef}>
+    <ProfileCarouselContainer
+      selectedTabIndex={selectedTabIndex}
+      ref={carouselRef}>
       {Object.entries(tabItems).map(([label, tabItem], index) => {
+        const { data, value } = tabItem;
         switch (label) {
           case MEDITATION:
             const editedData = editPostData(tabItem.data as Post[]);
+
             return editedData && editedData.length > 0 ? (
               <ProfileCarouselItem key={index}>
                 {editedData.map((post, index) => {
@@ -56,44 +66,54 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
               </ProfileCarouselItem>
             ) : (
               <ProfileCarouselItem key={index}>
-                <NonePostContainer>
+                <NoneContentContainer>
                   아직 명상을 진행하지 않았습니다
-                </NonePostContainer>
+                </NoneContentContainer>
               </ProfileCarouselItem>
             );
           case FOLLOWING:
-            return (
+            return data && data.length > 0 ? (
               <ProfileCarouselItem key={index}>
                 <FollowUsers
                   following={true}
-                  data={tabItem.data as Follow[]}
+                  data={data as Follow[]}
                 />
+              </ProfileCarouselItem>
+            ) : (
+              <ProfileCarouselItem key={index}>
+                <NoneContentContainer>
+                  아직 팔로우한 유저가 없습니다.
+                </NoneContentContainer>
               </ProfileCarouselItem>
             );
           case FOLLOWER:
-            return (
+            return data && data.length > 0 ? (
               <ProfileCarouselItem key={index}>
                 <FollowUsers
                   following={false}
-                  data={tabItem.data as Follow[]}
+                  data={data as Follow[]}
                 />
+              </ProfileCarouselItem>
+            ) : (
+              <ProfileCarouselItem key={index}>
+                <NoneContentContainer>
+                  아직 팔로워가 없습니다.
+                </NoneContentContainer>
               </ProfileCarouselItem>
             );
           case INFO:
             return (
               <ProfileCarouselItem key={index}>
                 <MeditationInfo
-                  data={tabItem.data as number[]}
+                  data={data as number[]}
                   fullName={fullName}
                 />
-                {tabItem.value}
+                {value}
               </ProfileCarouselItem>
             );
           default:
             return (
-              <ProfileCarouselItem key={index}>
-                {tabItem.value}
-              </ProfileCarouselItem>
+              <ProfileCarouselItem key={index}>{value}</ProfileCarouselItem>
             );
         }
       })}

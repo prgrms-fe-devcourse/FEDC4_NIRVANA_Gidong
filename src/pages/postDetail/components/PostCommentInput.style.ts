@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+interface CommentButtonProps {
+  buttonDisabled: boolean;
+}
+
 export const CommentInputSection = styled.section`
   ${({ theme }) => theme.style.flexCenter}
   border-top: 1px solid ${({ theme }) => theme.color.greyLight};
@@ -29,10 +33,20 @@ export const CommentInputContainer = styled.div`
   padding: 0 10px;
 `;
 
-export const CommentButtonContainer = styled.div`
+export const CommentButtonContainer = styled.div<CommentButtonProps>`
   ${({ theme }) => theme.style.flexCenter}
   width: 50px;
   height: 100%;
+  > button {
+    transition: all 0.2s ease-in-out;
+    background-color: ${({ buttonDisabled, theme }) =>
+      buttonDisabled ? theme.color.greyLight : theme.color.purpleDark};
+  }
+
+  > button:active {
+    transform: ${({ buttonDisabled }) =>
+      buttonDisabled ? 'none' : 'scale(0.9)'};
+  }
 `;
 
 export const CommentInput = styled.input`
