@@ -7,6 +7,7 @@ export const InputContainer = styled.div`
 `;
 export const Label = styled.label`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   font-weight: 700;
   margin-left: 10px;
@@ -23,17 +24,29 @@ export const Input = styled.input`
   border-radius: 10px;
 `;
 
+export const StyledTitle = styled.span`
+  min-width: 50px;
+  min-height: 20px;
+  ${({ theme }) => theme.style.flexAlignCenter};
+`;
+
 export const ErrorMessage = styled.span`
+  line-height: 1.2;
+  min-width: 200px;
+  min-height: 20px;
+  ${({ theme }) => theme.style.flexAlignCenter};
   color: ${({ theme }) => theme.color.redVivid};
   font-size: 12px;
   font-weight: 400;
-  margin-left: 10px;
   white-space: pre-line;
 `;
 
 export const SuccessMessage = styled.span`
+  line-height: 1.2;
+  min-width: 200px;
+  min-height: 20px;
+  ${({ theme }) => theme.style.flexAlignCenter};
   color: ${({ theme }) => theme.color.greenVivid};
   font-size: 10px;
   font-weight: 400;
-  margin-left: 10px;
 `;
