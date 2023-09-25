@@ -53,12 +53,16 @@ export const PostContentMenuIconContainer = styled.div<PostContentMenuProps>`
   cursor: pointer;
   width: 50px;
   height: 100%;
-  border-radius: 0 10px 10px 0;
+  border-radius: 50%;
   border-left: none;
   z-index: 2;
   > span {
     transition: transform 0.4s ease-in-out;
     transform: rotate(${(props) => (props.opened ? '-180deg' : '0deg')});
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.white800};
   }
 `;
 
@@ -76,7 +80,7 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
     props.opened ? 'translateX(0)' : 'translateX(60px)'};
   transition: all 0.3s ease;
 
-  > p {
+  & > p {
     width: 100%;
     text-align: center;
     padding: 5px;
@@ -85,8 +89,18 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
     transition: all 0.3s ease;
     cursor: pointer;
     &:hover {
-      background-color: ${({ theme }) => theme.color.white900};
+      background-color: ${({ theme }) => theme.color.white800};
     }
+  }
+
+  & > p:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  & > p:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 `;
 
