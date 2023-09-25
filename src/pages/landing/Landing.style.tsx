@@ -4,49 +4,62 @@ import logo from '../../assets/logo.svg';
 export const LandingMain = styled.main`
   background: ${({ theme }) => theme.color.linearGradientPurple};
   ${({ theme }) => theme.style.flexAlignCenter};
-  justify-content: center;
-  height: 100vh;
-  min-height: 844px;
   flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+`;
+
+export const HeadingContentContainer = styled.div`
+  width: 100%;
+  height: 30%;
+  max-height: 300px;
+  min-height: 100px;
+  ${({ theme }) => theme.style.flexAlignCenter};
 `;
 
 export const Heading = styled.h1`
-  width: 216px;
+  width: 230px;
   height: 45px;
   background-image: url(${logo});
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-top: 101px;
-  margin-bottom: 469px;
+  margin: 50px auto;
+`;
+
+export const BottomContentContainer = styled.div`
+  width: 100%;
+  margin-bottom: 50px;
 `;
 
 export const LinkContainer = styled.div`
-  & > a {
-    display: block;
+  ${({ theme }) => theme.style.flexAlignCenter};
+  flex-direction: column;
+
+  > a {
+    margin: 5px 0px;
   }
-  & > a + a {
-    margin-top: 16px;
-  }
-  margin-bottom: 48px;
 `;
 
 export const PreviewLink = styled.div`
   ${({ theme }) => theme.style.flexAlignCenter};
   flex-direction: column;
-  margin-bottom: 26px;
+  margin-bottom: 20px;
   & > span {
     color: ${({ theme }) => theme.color.white};
     margin-bottom: 2px;
     text-align: center;
-    letter-spacing: 0.03rem;
+    letter-spacing: 0.5px;
+    font-size: 12px;
   }
 
   & > a {
     ${({ theme }) => theme.style.flexAlignCenter};
     border-bottom: 1px solid ${({ theme }) => theme.color.white};
-    font-weight: 700;
-    padding: 4px 7px 4px 5px;
+    font-weight: bold;
+    padding: 5px 0px;
+    font-size: 12px;
   }
 
   & > a > span {
