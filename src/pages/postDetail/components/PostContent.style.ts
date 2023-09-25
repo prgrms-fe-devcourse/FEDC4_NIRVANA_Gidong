@@ -85,7 +85,7 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
     transition: all 0.3s ease;
     cursor: pointer;
     &:hover {
-      background-color: ${({ theme }) => theme.color.purpleLight};
+      background-color: ${({ theme }) => theme.color.white900};
     }
   }
 `;
@@ -105,7 +105,7 @@ export const PostEditConfirmButtonContainer = styled.div<contentEditMode>`
     transition: all 0.2s ease-out;
     cursor: ${(props) => (props.contentEditMode ? 'pointer' : 'default')};
     :hover {
-      background-color: ${({ theme }) => theme.color.purpleLight};
+      background-color: ${({ theme }) => theme.color.white800};
     }
     &:first-of-type {
       margin-right: 5px;

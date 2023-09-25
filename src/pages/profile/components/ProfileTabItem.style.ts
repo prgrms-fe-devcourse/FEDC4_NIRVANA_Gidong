@@ -17,8 +17,12 @@ export const ProfileTabItemContainer = styled.div<ProfileTabsItemProps>`
   flex: 1;
   cursor: pointer;
   user-select: none;
-  font-size: 12px;
+  font-size: 14px;
   > strong {
     font-weight: bold;
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.white900};
   }
 `;

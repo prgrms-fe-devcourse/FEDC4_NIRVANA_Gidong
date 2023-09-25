@@ -17,7 +17,7 @@ export const ProfileHeaderButtonContainer = styled.div`
       margin-right: 0;
     }
     :hover {
-      background-color: ${({ theme }) => theme.color.purpleLight};
+      background-color: ${({ theme }) => theme.color.white900};
     }
   }
 `;
