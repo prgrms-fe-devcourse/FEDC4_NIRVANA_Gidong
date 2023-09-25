@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Toast } from '@components/Toast';
-import { POSTING_DESCRIPTION } from '@pages/posting/constants';
+import { POSTING_DESCRIPTION, POSTING_WARNING } from '@pages/posting/constants';
 import { createFormData, purifyContent } from '@pages/posting/utils';
 import { Button } from '@components/Button';
 import useDebounce from '@hooks/useDebounce';
@@ -31,6 +31,7 @@ interface NewPostProps {
 const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
   const navigate = useNavigate();
   const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
+  const { LIMIT_LENGTH, WARNING } = POSTING_WARNING;
   const [showConfirm, setShowConfirm] = useState(false);
   const [posting, setPosting] = useState('');
   const [prevPosting, savePosting] = useSessionStorage('posting', {
@@ -80,9 +81,9 @@ const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
 
   return (
     <>
-      {posting.length >= 500 && (
+      {posting.length >= LIMIT_LENGTH && (
         <Toast
-          content='포스팅은 최대 500글자까지 가능합니다.'
+          content={WARNING}
           type='WARNING'
         />
       )}
