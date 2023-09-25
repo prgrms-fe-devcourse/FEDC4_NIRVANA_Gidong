@@ -124,7 +124,7 @@ const PostContent = ({
             <UserId email={author ? author.email : ''} />
           </PostContentUserName>
           <PostContentTime>
-            {createdAt} / {meditationTime}
+            {createdAt} / {meditationTime}분
           </PostContentTime>
         </PostContentUserInfo>
         {currentUserId === author?._id && (
