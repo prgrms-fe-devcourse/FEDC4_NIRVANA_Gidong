@@ -12,6 +12,7 @@ import {
 import { Avatar } from '@components/Avatar';
 import { postComment } from '@apis/comment';
 import { useState } from 'react';
+import { postNotifications } from '@apis/notice';
 
 interface PostCommentInputProps {
   postId: string;
@@ -32,7 +33,16 @@ const PostCommentInput = ({
   const [commentValue, setCommentValue] = useState(null);
   const commentRef = useRef(null);
 
-  const { mutate, isSuccess } = useMutation(postComment);
+  const { mutate, isSuccess } = useMutation(postComment, {
+    onSuccess: (res) => {
+      postNotifications(token, {
+        notificationType: 'COMMENT',
+        notificationTypeId: res._id,
+        userId: res.author._id,
+        postId: res.post
+      });
+    }
+  });
 
   if (isSuccess) refetch();
 

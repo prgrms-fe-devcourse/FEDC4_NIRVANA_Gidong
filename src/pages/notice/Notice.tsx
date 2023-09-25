@@ -6,6 +6,7 @@ import { User } from '@/types/User';
 import { Notification } from '@/types/Notification';
 import NoticeList from './components/NoticeList/NoticeList';
 import { NoticePage, Header } from './Notice.style';
+import { Button } from '@components/Button';
 
 const Notice = () => {
   const [list, setList] = useState([]);
@@ -22,7 +23,6 @@ const Notice = () => {
       (res) => res.filter((item: Notification) => !item.seen)
     );
     setList(res);
-    await putNotifications(`Bearer ${userSessionData.token}`);
     return res;
   };
 
@@ -34,7 +34,18 @@ const Notice = () => {
 
   return (
     <NoticePage>
-      <Header>알림창</Header>
+      <Header>
+        알림창
+        <Button
+          width={80}
+          height={30}
+          label='모두 읽음'
+          handleClick={() => {
+            putNotifications(`Bearer ${userSessionData.token}`);
+            fetchNotifications();
+          }}
+        />
+      </Header>
       <NoticeList list={list} />
     </NoticePage>
   );

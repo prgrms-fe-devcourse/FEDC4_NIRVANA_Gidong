@@ -8,8 +8,7 @@ const NoticeItemContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-const ProfileImage = styled.div<{ profileImage: string }>`
-  background-image: url(${({ profileImage }) => profileImage});
+const ProfileImage = styled.div`
   width: 39px;
   height: 39px;
   margin-right: 20px;

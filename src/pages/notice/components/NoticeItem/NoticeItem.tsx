@@ -4,6 +4,7 @@ import { Comment } from '@/types/Comment';
 import { NOTICE_TYPE } from '@pages/notice/constants';
 import typeToMessage from '@pages/notice/utils/typeToMessage';
 import typeToPath from '@pages/notice/utils/typeToNavigate';
+import { Avatar } from '@components/Avatar';
 
 import {
   NoticeItemContainer,
@@ -56,7 +57,13 @@ const NoticeItem = ({
   return (
     <NoticeItemContainer
       onClick={() => GoToNotificationOrigin({ type, id: typeId })}>
-      <ProfileImage profileImage={profileImage} />
+      <ProfileImage>
+        <Avatar
+          alt={authorName}
+          src={profileImage}
+          size={40}
+        />
+      </ProfileImage>
       <NoticeContent>
         <Message>
           <span>{authorName}</span>
