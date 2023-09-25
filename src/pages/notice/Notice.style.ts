@@ -5,6 +5,8 @@ export const Header = styled.h1`
   font-weight: 500;
   font-size: 1.5rem;
   margin-bottom: 2rem;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const NoticePage = styled.div`
