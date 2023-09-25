@@ -1,4 +1,4 @@
-import type { Post } from '@/types';
+import type { EditedPost } from '@/types';
 import { Icon } from '../Icon';
 import { Avatar } from '../Avatar';
 import {
@@ -10,7 +10,10 @@ import {
 import { Link } from '@components/Link';
 
 interface PostHeaderProps {
-  post: Pick<Post, '_id' | 'image' | 'title' | 'author' | 'createdAt'>;
+  post: Pick<
+    EditedPost,
+    '_id' | 'image' | 'author' | 'createdAt' | 'meditationTime'
+  >;
   totalLikes: number;
   totalComments: number;
   noneProfile: boolean;
@@ -22,7 +25,7 @@ const PostHeader = ({
   totalComments,
   noneProfile
 }: PostHeaderProps) => {
-  const { author, createdAt, _id } = post;
+  const { image, author, createdAt, meditationTime, _id } = post;
   const iconDescription = [
     { name: 'favorite', size: 12, total: totalLikes },
     { name: 'chat', size: 12, total: totalComments }
@@ -51,7 +54,7 @@ const PostHeader = ({
             <UserNameContainer>{author.fullName}</UserNameContainer>
           )}
           <PostDetailInfoContainer>
-            {createdAt}
+            {createdAt} / {meditationTime}분
             {iconDescription.map((iconInfo, index) => {
               return (
                 <div key={index}>

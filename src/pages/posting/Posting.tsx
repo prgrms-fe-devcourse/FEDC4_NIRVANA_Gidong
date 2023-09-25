@@ -14,15 +14,18 @@ interface ReceiveState {
   totalTime: number;
   channelId: string;
   channelLabel: string;
+  validation: boolean;
 }
 
 const Posting = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const { token } = JSON.parse(sessionStorage.getItem('userData'));
   const [meditationInfo, setMeditationInfo] = useState<ReceiveState>({
     totalTime: 0,
     channelId: '',
-    channelLabel: ''
+    channelLabel: '',
+    validation: false
   });
   const { totalTime, channelLabel, channelId } = meditationInfo;
   const customToken = `bearer ${token}`;
@@ -45,7 +48,7 @@ const Posting = () => {
           />
         </StyledDescription>
         <NewPost
-          meditationInfo={channelId}
+          meditationInfo={meditationInfo}
           customToken={customToken}
         />
         <SkipPosting
