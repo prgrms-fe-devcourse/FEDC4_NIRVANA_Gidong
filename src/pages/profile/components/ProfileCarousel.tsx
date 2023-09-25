@@ -38,15 +38,18 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
             return tabItem.data && tabItem.data.length > 0 ? (
               <ProfileCarouselItem key={index}>
                 {tabItem.data &&
-                  tabItem.data.map((post, index) => (
-                    <PostPreview
-                      key={index}
-                      post={post as Post}
-                      totalLikes={post.likes.length}
-                      totalComments={post.comments.length}
-                      noneProfile={true}
-                    />
-                  ))}
+                  tabItem.data.map((post, index) => {
+                    const { likes, comments } = post as Post;
+                    return (
+                      <PostPreview
+                        key={index}
+                        post={post as Post}
+                        totalLikes={likes.length}
+                        totalComments={comments.length}
+                        noneProfile={true}
+                      />
+                    );
+                  })}
               </ProfileCarouselItem>
             ) : (
               <ProfileCarouselItem key={index}>
