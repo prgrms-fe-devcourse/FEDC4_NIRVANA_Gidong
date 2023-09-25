@@ -37,14 +37,10 @@ const Posting = () => {
   });
   const { totalTime, channelLabel, channelId } = meditationInfo;
   const customToken = `bearer ${token}`;
-  const { mutate, isLoading, isError } = useMutation({
+  const { mutate, isLoading, isError, isSuccess } = useMutation({
     mutationFn: async ({ posting = '' }: MutationParams) => {
       const formData = createPostingForm(posting);
-      postCreateNewPost(customToken, formData);
-    },
-    onSuccess: () => {
-      sessionStorage.removeItem('posting');
-      navigate('/posts', { state: { channelId: channelId } });
+      await postCreateNewPost(customToken, formData);
     }
   });
 
@@ -63,6 +59,13 @@ const Posting = () => {
 
     return formData;
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      sessionStorage.removeItem('posting');
+      navigate('/posts', { state: { channelId: channelId } });
+    }
+  }, [isSuccess]);
 
   useEffect(() => {
     if (location.state === null) {
