@@ -25,8 +25,8 @@ export const Input = styled.input`
 `;
 
 export const StyledTitle = styled.span`
-  min-width: 50px;
   min-height: 20px;
+  margin-right: 5px;
   ${({ theme }) => theme.style.flexAlignCenter};
 `;
 
@@ -47,6 +47,7 @@ export const SuccessMessage = styled.span`
   min-height: 20px;
   ${({ theme }) => theme.style.flexAlignCenter};
   color: ${({ theme }) => theme.color.greenVivid};
-  font-size: 10px;
+  font-size: 12px;
+  white-space: pre-line;
   font-weight: 400;
 `;
