@@ -13,6 +13,7 @@ export const LoginForm = styled.form`
   max-height: 400px;
   padding: 25px 20px;
   border-radius: 10px;
+  margin-bottom: 50px;
   box-shadow: 2px 2px 10px ${({ theme }) => theme.color.black250};
 `;
 

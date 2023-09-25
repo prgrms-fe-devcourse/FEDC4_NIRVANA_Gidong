@@ -12,6 +12,7 @@ export const LandingMain = styled.main`
 export const HeadingContentContainer = styled.div`
   width: 100%;
   flex-grow: 1;
+  flex-shrink: 2;
   max-height: 250px;
   min-height: 150px;
   ${({ theme }) => theme.style.flexAlignCenter};
