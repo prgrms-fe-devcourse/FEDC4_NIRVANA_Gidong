@@ -1,10 +1,11 @@
 import { StyledIcon } from './Icon.style';
-import { GOOGLE_ICON_CLASSNAME } from '../../constants/Components';
+import { GOOGLE_ICON_CLASSNAME } from '@constants/Components';
+import { color } from '@styles/colors';
 
 interface IconProps {
   size: number;
   name: string;
-  color: string;
+  color: keyof typeof color;
   fill?: boolean;
 }
 

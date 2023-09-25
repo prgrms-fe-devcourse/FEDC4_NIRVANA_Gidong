@@ -12,6 +12,7 @@ import { PROFILE_TABS } from '../constants/profileTabs';
 import { Follow } from '@/types/Follow';
 import { PostPreview } from '@components/PostPreview';
 import { Post } from '@/types/Post';
+import { editPostData } from '@pages/posts/utils/editPostData';
 
 interface ProfileCarouselProps {
   tabItems: TabItems;
@@ -35,21 +36,23 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
       {Object.entries(tabItems).map(([label, tabItem], index) => {
         switch (label) {
           case MEDITATION:
-            return tabItem.data && tabItem.data.length > 0 ? (
+            const editedData = editPostData(tabItem.data as Post[]);
+            return editedData && editedData.length > 0 ? (
               <ProfileCarouselItem key={index}>
-                {tabItem.data &&
-                  tabItem.data.map((post, index) => {
-                    const { likes, comments } = post as Post;
-                    return (
+                {editedData.map((post, index) => {
+                  const { content, likes, comments } = post;
+                  return (
+                    content && (
                       <PostPreview
                         key={index}
-                        post={post as Post}
+                        post={post}
                         totalLikes={likes.length}
                         totalComments={comments.length}
                         noneProfile={true}
                       />
-                    );
-                  })}
+                    )
+                  );
+                })}
               </ProfileCarouselItem>
             ) : (
               <ProfileCarouselItem key={index}>
