@@ -10,12 +10,20 @@ interface FollowButtonProps {
   followingDataId: string; // 삭제용 - following data id
   followingUserId: string; // 팔로우용 - 팔로우할 userId
   following?: boolean;
+  width?: number;
+  height?: number;
+  fontSize?: number;
+  refetch?: () => void;
 }
 
 const FollowButton = ({
   followingDataId,
   followingUserId,
-  following = true
+  following = true,
+  width = 68,
+  height = 30,
+  fontSize = 12,
+  refetch
 }: FollowButtonProps) => {
   const [followed, setFollowed] = useState(following);
   const [dataId, setDataId] = useState(followingDataId);
@@ -27,7 +35,7 @@ const FollowButton = ({
     }
   );
   const { token } = userSessionData;
-
+  console.log(token, dataId);
   const { mutate } = useMutation(
     () =>
       followed
@@ -44,7 +52,7 @@ const FollowButton = ({
             postId: null
           });
         }
-
+        refetch && refetch();
         setFollowed((prev) => !prev);
       }
     }
@@ -56,10 +64,11 @@ const FollowButton = ({
 
   return (
     <Button
-      width={68}
-      height={30}
+      width={width}
+      height={height}
       dark={followed ? false : true}
       label={followed ? '팔로우' : '팔로잉'}
+      fontSize={fontSize}
       bold={true}
       handleClick={handleClickFollow}
     />

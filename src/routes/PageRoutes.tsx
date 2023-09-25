@@ -19,11 +19,17 @@ const PageRoutes = () => {
   return (
     <Routes>
       <Route element={<PrivateRoute />}>
-        <Route element={<Layout />}>
+        <Route element={<Layout headerStatus={'back'} />}>
           <Route
             path='/profile/:userId'
             element={<Profile />}
           />
+          <Route
+            path='/notice'
+            element={<Notice />}
+          />
+        </Route>
+        <Route element={<Layout headerStatus={'home'} />}>
           <Route
             path='/posting'
             element={<Posting />}
@@ -33,36 +39,11 @@ const PageRoutes = () => {
             element={<PasswordUpdate />}
           />
           <Route
-            path='/notice'
-            element={<Notice />}
+            path='/meditation'
+            element={<Meditation />}
           />
         </Route>
       </Route>
-
-      <Route element={<Layout />}>
-        <Route
-          path='/meditation'
-          element={<Meditation />}
-        />
-        <Route
-          path='/posts'
-          element={<Posts />}
-        />
-        <Route
-          path='/posts/:postId'
-          element={<PostDetail />}
-        />
-      </Route>
-      <Route
-        path='/404'
-        element={<NotFound />}
-      />
-
-      <Route
-        path='/*'
-        element={<Navigate to='/404' />}
-      />
-
       <Route element={<PublicRoute />}>
         <Route
           path='/'
@@ -77,6 +58,24 @@ const PageRoutes = () => {
           element={<LogIn />}
         />
       </Route>
+      <Route element={<Layout headerStatus={'home'} />}>
+        <Route
+          path='/posts'
+          element={<Posts />}
+        />
+        <Route
+          path='/posts/:postId'
+          element={<PostDetail />}
+        />
+      </Route>
+      <Route
+        path='/404'
+        element={<NotFound />}
+      />
+      <Route
+        path='/*'
+        element={<Navigate to='/404' />}
+      />
     </Routes>
   );
 };

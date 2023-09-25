@@ -32,7 +32,7 @@ const FollowUsers = ({ following, data = dumyData }: FollowUsersProps) => {
     queries: data.map((element) => {
       return {
         queryKey: ['followUser', element._id],
-        queryFn: () => getUser(element.user),
+        queryFn: () => getUser(following ? element.user : element.follower),
         select: (data: User) => {
           return {
             ...element,

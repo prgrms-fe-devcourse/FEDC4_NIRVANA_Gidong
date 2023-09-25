@@ -18,7 +18,7 @@ const putUpdateUser = async ({
   fullName,
   token
 }: PutUpdateUserParams) => {
-  const response = await axios.put(
+  const response = await axios.put<User>(
     `${API_BASE_URL}/settings/update-user`,
     {
       fullName,
