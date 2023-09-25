@@ -30,7 +30,7 @@ interface NewPostProps {
 
 const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
   const navigate = useNavigate();
-  const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
+  const { PLACEHOLDER, WRITE } = POSTING_DESCRIPTION;
   const { LIMIT_LENGTH, WARNING } = POSTING_WARNING;
   const [showConfirm, setShowConfirm] = useState(false);
   const [posting, setPosting] = useState('');
@@ -110,7 +110,7 @@ const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
             width={300}
             height={50}
             dark={true}
-            label={UPLOAD}
+            label={WRITE}
             bold={true}
             fontSize={16}
             borderRadius={10}
