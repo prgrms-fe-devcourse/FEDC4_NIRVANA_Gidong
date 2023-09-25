@@ -31,7 +31,7 @@ const Confirm = ({
 }: Partial<ConfirmProps>) => {
   const [disabled, setDisabled] = useState(false);
   const [domReady, setDomReady] = useState(false);
-  
+
   const FormedCancelButton =
     typeof CancelButton === 'function' ? CancelButton() : CancelButton;
   const FormedConfirmlButton =
@@ -53,9 +53,9 @@ const Confirm = ({
             {content}
             <NavButtonContainer>
               <CancelButtonDefaultEvent onClick={() => setDisabled(true)}>
-                {CancelButton}
+                {FormedCancelButton}
               </CancelButtonDefaultEvent>
-              <Link pageLink={nextPageLink}>{ConfirmButton}</Link>
+              <Link pageLink={nextPageLink}>{FormedConfirmlButton}</Link>
             </NavButtonContainer>
           </ContentContainer>
         </StyledConfirmBackground>
