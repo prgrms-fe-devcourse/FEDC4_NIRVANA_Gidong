@@ -17,7 +17,6 @@ const GoToSignUp = () => {
           size={14}
           color={'redVivid'}
         />
-        &nbsp;
         <Link
           color='black'
           pageLink={'/signup'}>
