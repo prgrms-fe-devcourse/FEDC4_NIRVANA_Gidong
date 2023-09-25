@@ -11,9 +11,9 @@ export const LandingMain = styled.main`
 
 export const HeadingContentContainer = styled.div`
   width: 100%;
-  height: 30%;
-  max-height: 300px;
-  min-height: 100px;
+  flex-grow: 1;
+  max-height: 250px;
+  min-height: 150px;
   ${({ theme }) => theme.style.flexAlignCenter};
 `;
 
@@ -24,7 +24,7 @@ export const Heading = styled.h1`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin: 50px auto;
+  margin: 0 auto;
 `;
 
 export const BottomContentContainer = styled.div`
