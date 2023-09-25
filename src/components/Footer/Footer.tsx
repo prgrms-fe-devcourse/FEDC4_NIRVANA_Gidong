@@ -37,7 +37,7 @@ export const Footer = () => {
             name={icon.name}
             size={icon.size}
             fill={icon.link === location.pathname}
-            color={icon.link === location.pathname ? 'purpleLight' : 'black'}
+            color={icon.link === location.pathname ? 'purpleNormal' : 'black'}
           />
         </Link>
       ))}
