@@ -36,6 +36,7 @@ const SearchResultUser = ({
               email={email}
               isOnline={isOnline}
               id={_id}
+              avatarSize={50}
             />
           </SearchItem>
         );
