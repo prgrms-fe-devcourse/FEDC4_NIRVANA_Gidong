@@ -5,6 +5,7 @@ import formatTime from '@utils/formatTime';
 import {
   IconContainer,
   TimerContainer,
+  TimerElementBorder,
   TimerElement
 } from './MeditationTimer.style';
 import {
@@ -52,7 +53,8 @@ const MeditationTimer = () => {
   };
 
   return (
-    <TimerContainer timerPaused={timerId && paused}>
+    <TimerContainer>
+      <TimerElementBorder timerPaused={timerId && paused} />
       <TimerElement
         timerPaused={timerId && paused}
         onClick={() => toggleTimer()}
