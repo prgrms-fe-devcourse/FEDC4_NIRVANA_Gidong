@@ -29,6 +29,39 @@ const Posting = () => {
   });
   const { totalTime, channelLabel, channelId } = meditationInfo;
   const customToken = `bearer ${token}`;
+  const { mutate, isLoading, isError } = useMutation({
+    mutationFn: async ({ posting = '' }: MutationParams) => {
+      const formData = createPostingForm(posting);
+      await postCreateNewPost(customToken, formData);
+    },
+    onSuccess: () => {
+      sessionStorage.removeItem('posting');
+      navigate('/posts', {
+        state: {
+          channelInfo: {
+            id: meditationInfo.channelId,
+            label: meditationInfo.channelLabel
+          }
+        }
+      });
+    }
+  });
+
+  const createPostingForm = (posting: string) => {
+    const customPosting = {
+      title: purifyContent(posting),
+      meditationTime: `${totalTime / 60}`
+    };
+    const formKey = ['title', 'channelId', 'image'];
+    const formData = appendFormData(
+      formKey,
+      JSON.stringify(customPosting),
+      meditationInfo.channelId,
+      null
+    );
+
+    return formData;
+  };
 
   useEffect(() => {
     if (location.state === null) {
@@ -51,10 +84,7 @@ const Posting = () => {
           meditationInfo={meditationInfo}
           customToken={customToken}
         />
-        <SkipPosting
-          channelId={channelId}
-          customToken={customToken}
-        />
+        <SkipPosting mutatePosting={mutate} />
       </ContentContainer>
     </StyledPosting>
   );

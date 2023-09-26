@@ -51,6 +51,7 @@ const Notice = () => {
           />
         </ReadButtonContainer>
       </Header>
+      {list.length < 1 && <div>알림이 없습니다.</div>}
       <NoticeList list={list} />
     </NoticePage>
   );

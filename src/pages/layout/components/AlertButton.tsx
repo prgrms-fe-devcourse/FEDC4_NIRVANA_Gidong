@@ -16,10 +16,9 @@ const AlertButton = () => {
       token: ''
     }
   );
-
   const location = useLocation();
   const { pathname } = location;
-  const { token, _id } = userSessionData;
+  const { token } = userSessionData;
 
   const query = useQuery({
     queryKey: ['headerAlert'],
@@ -27,32 +26,36 @@ const AlertButton = () => {
       const data = await getNotifications(`Bearer ${token}`);
       return data;
     },
-    enabled: token !== '' && _id !== '',
+    enabled: (token !== '' || !token) && pathname !== '/notice',
     refetchInterval: () => (pathname === '/notice' ? false : 5000),
     refetchIntervalInBackground: true
   });
 
   const { data } = query;
-  const alertStatus = data?.length > 0;
+  const alertStatus = data?.filter(({ seen }) => !seen).length > 0;
 
   return (
-    <AlertContainer>
-      <DotBadge
-        dot={alertStatus}
-        color='orange'
-        position='top'
-        badgeSize={5}>
-        <Link
-          pageLink='/notice'
-          size={30}>
-          <Icon
-            name='notifications'
-            color='white'
-            size={23}
-          />
-        </Link>
-      </DotBadge>
-    </AlertContainer>
+
+    <DotBadge
+      dot={alertStatus && pathname !== '/notice'}
+      color='orange'
+      position='top'
+      badgeSize={5}>
+      <Button
+        width={25}
+        height={25}
+        handleClick={handleClickAlert}
+        borderRadius={0}
+        border='none'
+        padding={false}
+        backgroundColor='transparent'>
+        <Icon
+          name='notifications'
+          color='white'
+          size={23}
+        />
+      </Button>
+    </DotBadge>
   );
 };
 

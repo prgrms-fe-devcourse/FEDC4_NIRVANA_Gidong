@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { Icon } from '@components/Icon';
 import {
   BUTTON_TYPE_ADD,
@@ -17,18 +17,15 @@ import {
   TimeSetterContainer
 } from './MeditationTimeSetter.style';
 import MeditationEndButton from '@pages/meditation/components/MeditationEndButton';
-import {
-  meditationTime,
-  pickedTheme,
-  totalMeditationTime
-} from '@pages/meditation/states';
+import { meditationTime, totalMeditationTime } from '@pages/meditation/states';
 import { Toast } from '@components/Toast';
+import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
 
-const MeditationTimeSetter = () => {
+const MeditationTimeSetter = (themePicked: ThemeInfoType) => {
   const [time, setTime] = useRecoilState<number>(meditationTime);
   const longClickIdRef = useRef<number>(null);
   const [totalTime, setTotalTime] = useRecoilState(totalMeditationTime);
-  const themePicked = useRecoilValue(pickedTheme);
+
   const [meditationStatus, setMeditationStatus] = useState({
     started: false,
     ended: false

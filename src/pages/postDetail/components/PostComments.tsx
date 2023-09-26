@@ -11,6 +11,7 @@ interface PostCommentsProps {
   refetch: () => void;
   myLike: Like;
   likeCounts: number;
+  userId?: string;
 }
 
 const PostComments = ({
@@ -20,11 +21,13 @@ const PostComments = ({
   refetch,
   comments,
   myLike,
-  likeCounts
+  likeCounts,
+  userId
 }: PostCommentsProps) => {
   return (
     <PostCommentsSection>
       <PostCommentHeader
+        userId={userId}
         postId={postId}
         token={token}
         refetch={refetch}
