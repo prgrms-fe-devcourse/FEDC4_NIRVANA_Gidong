@@ -41,9 +41,10 @@ const SearchHead = ({
     setText(event.target.value);
   };
 
-  const handleClickSearchButton = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSearchInputValue(text);
+    inputRef.current.blur();
   };
 
   return (
@@ -58,7 +59,7 @@ const SearchHead = ({
           size={25}
         />
       </Button>
-      <SearchForm>
+      <SearchForm onSubmit={handleSubmitSearch}>
         <SearchInput
           placeholder='사용자나 게시물을 검색해보세요'
           ref={inputRef}
@@ -67,7 +68,7 @@ const SearchHead = ({
         />
         <SearchButton
           searchStatus={showSearchBox}
-          handleClickButton={handleClickSearchButton}
+          handleClickButton={handleSubmitSearch}
         />
       </SearchForm>
     </SearchHeadContainer>

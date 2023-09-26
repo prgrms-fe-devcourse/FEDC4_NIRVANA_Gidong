@@ -1,10 +1,11 @@
 import { useQuery, useQueries } from '@tanstack/react-query';
 import { searchAll } from '@apis/search';
 import { getUser } from '@apis/user';
-import { EditedPost, User } from '@/types';
+import { User, EditedPost, Post } from '@/types';
 import { PostPreview } from '@components/PostPreview';
 import filterPostData from '../utils/filterPostData';
 import { FILTER } from '../constants';
+import { editPostData } from '@pages/posts/utils/editPostData';
 
 interface SearchResultPostProps {
   searchKeyword: string;
@@ -32,7 +33,7 @@ const SearchResultPost = ({
       return {
         queryKey: ['searchPostUser', element.author],
         queryFn: () => getUser(element.author),
-        select: (data: User) => {
+        select: (data: User): Post => {
           return {
             ...element,
             author: data
@@ -47,15 +48,21 @@ const SearchResultPost = ({
     (element) => !element.isSuccess
   ).length;
 
+  let postPreviewData: EditedPost[] = [];
+
+  if (Failed < 1 && postWithUserData) {
+    postPreviewData = editPostData(postWithUserData.map(({ data }) => data));
+  }
+
   return (
     <>
       {Failed < 1 &&
-        postWithUserData.map(({ data: post }) => {
+        postPreviewData.map((post) => {
           const { _id, likes, comments } = post;
 
           return (
             <PostPreview
-              post={post as EditedPost}
+              post={post}
               key={_id}
               totalLikes={likes.length}
               totalComments={comments.length}
