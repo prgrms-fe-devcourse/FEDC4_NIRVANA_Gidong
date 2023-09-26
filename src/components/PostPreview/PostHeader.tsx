@@ -25,7 +25,7 @@ const PostHeader = ({
   totalComments,
   noneProfile
 }: PostHeaderProps) => {
-  const { image, author, createdAt, meditationTime, _id } = post;
+  const { author, createdAt, meditationTime, _id } = post;
   const iconDescription = [
     { name: 'favorite', size: 12, total: totalLikes },
     { name: 'chat', size: 12, total: totalComments }
@@ -39,9 +39,9 @@ const PostHeader = ({
             pageLink={`/profile/${author._id}`}
             color='black'>
             <Avatar
-              alt={'유저 프로필'}
+              alt={author.fullName}
               src={author.image}
-              size={35}
+              size={45}
             />
           </Link>
         </AvatarContainer>
