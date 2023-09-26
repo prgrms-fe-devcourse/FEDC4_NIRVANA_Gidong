@@ -1,5 +1,3 @@
-import { Icon } from '@components/Icon';
-import { Link } from '@components/Link';
 import { AlertButton, SearchButton } from '@pages/layout/components';
 import { EtcNavContainer } from './IconNav.style';
 
@@ -16,13 +14,6 @@ const EtcNav = ({ handleShowSearchBox, showSearchBox }: EtcNavProps) => {
         searchStatus={showSearchBox}
       />
       <AlertButton />
-      <Link pageLink='/message'>
-        <Icon
-          name='chat'
-          color='white'
-          size={23}
-        />
-      </Link>
     </EtcNavContainer>
   );
 };
