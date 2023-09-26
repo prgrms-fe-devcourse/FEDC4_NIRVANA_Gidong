@@ -9,10 +9,7 @@ import {
 import { Link } from '@components/Link';
 
 interface PostPreviewProps {
-  post: Pick<
-    EditedPost,
-    '_id' | 'image' | 'content' | 'author' | 'createdAt' | 'meditationTime'
-  >;
+  post: EditedPost;
   totalLikes: number;
   totalComments: number;
   noneProfile: boolean;
