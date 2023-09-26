@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 export const StyledNavLink = styled(NavLink)<{
   size: number;
+  setActiveStyle: boolean;
   color: keyof typeof color;
 }>`
   color: ${({ theme, color }) => theme.color[color]};
@@ -11,8 +12,11 @@ export const StyledNavLink = styled(NavLink)<{
   text-decoration: none;
   text-align: left;
   &.active {
-    font-weight: bold;
-    text-decoration: underline;
-    text-decoration-color: ${({ theme }) => theme.color.purpleDark};
+    ${({ setActiveStyle }) =>
+      setActiveStyle ? 'text-decoration: underline; font-weight: bold;' : ''};
+    ${({ theme, setActiveStyle }) =>
+      setActiveStyle
+        ? `text-decoration-color: ${theme.color.purpleDark};`
+        : ''};
   }
 `;

@@ -16,13 +16,13 @@ export const StyledButton = styled.button<{
   cursor: pointer;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  border: ${({ theme, dark, border }) =>
-    dark ? 0 : border ? border : `0.5px solid ${theme.color.greyLight}`};
-  background-color: ${({ theme, dark, backgroundColor }) =>
-    dark
+  border: ${({ theme, dark }) =>
+    dark === undefined || dark ? 0 : `1px solid ${theme.color.white800}`};
+  background-color: ${({ theme, dark }) =>
+    dark === undefined
+      ? 'transparent'
+      : dark
       ? theme.color.purpleDark
-      : backgroundColor
-      ? backgroundColor
       : theme.color.white};
   color: ${({ theme, dark, textColor = 'black' }) =>
     dark ? theme.color.white : theme.color[textColor]};

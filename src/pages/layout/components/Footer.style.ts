@@ -7,6 +7,17 @@ export const StyledFooter = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 0.03125rem ${({ theme }) => theme.color.greyLight} solid;
+  border-top: 1px solid ${({ theme }) => theme.color.white800};
   padding: 0 35px;
+`;
+
+export const IconContainer = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  ${({ theme }) => theme.style.flexCenter};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.white900};
+  }
 `;
