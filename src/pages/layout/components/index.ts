@@ -9,6 +9,7 @@ import PathNav from './PathNav';
 import EtcNav from './IconNav';
 import AlertButton from './AlertButton';
 import Header from './Header';
+import { Footer } from './Footer';
 
 export {
   Search,
@@ -21,5 +22,6 @@ export {
   PathNav,
   EtcNav,
   AlertButton,
-  Header
+  Header,
+  Footer
 };
