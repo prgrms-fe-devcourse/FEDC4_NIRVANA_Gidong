@@ -27,8 +27,11 @@ const EtcNav = ({ handleShowSearchBox, showSearchBox }: EtcNavProps) => {
   };
 
   const handleClickAlert = () => {
-    if (_id && token) navigate('/notice');
-    else setModal((prev) => !prev);
+    if (_id && token) {
+      navigate('/notice');
+    } else {
+      setModal((prev) => !prev);
+    }
   };
 
   return (
