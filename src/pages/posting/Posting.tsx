@@ -44,7 +44,14 @@ const Posting = () => {
     },
     onSuccess: () => {
       sessionStorage.removeItem('posting');
-      navigate('/posts', { state: { channelId: channelId } });
+      navigate('/posts', {
+        state: {
+          channelInfo: {
+            id: meditationInfo.channelId,
+            label: meditationInfo.channelLabel
+          }
+        }
+      });
     }
   });
 
@@ -57,7 +64,7 @@ const Posting = () => {
     const formData = appendFormData(
       formKey,
       JSON.stringify(customPosting),
-      channelId,
+      meditationInfo.channelId,
       null
     );
 
@@ -90,7 +97,6 @@ const Posting = () => {
           meditationInfo={meditationInfo}
           mutatePosting={mutate}
           isLoading={isLoading}
-        />
         />
         <SkipPosting mutatePosting={mutate} />
       </ContentContainer>
