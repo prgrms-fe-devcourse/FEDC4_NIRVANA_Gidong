@@ -52,7 +52,7 @@ const MeditationTimer = () => {
   };
 
   return (
-    <TimerContainer>
+    <TimerContainer timerPaused={timerId && paused}>
       <TimerElement
         onClick={() => toggleTimer()}
         onMouseOver={() => setHovered(true)}

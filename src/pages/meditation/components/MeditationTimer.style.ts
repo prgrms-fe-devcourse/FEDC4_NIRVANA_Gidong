@@ -1,11 +1,18 @@
 import styled from '@emotion/styled';
 
-export const TimerContainer = styled.div`
+interface TimerContainerProps {
+  timerPaused: boolean;
+}
+
+export const TimerContainer = styled.div<TimerContainerProps>`
   ${({ theme }) => theme.style.flexCenter};
   width: 170px;
   height: 170px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.color.linearGradientPurpleVivid};
+  background: ${({ theme, timerPaused }) =>
+    timerPaused
+      ? theme.color.linearGradientRedVivid
+      : theme.color.linearGradientPurpleVivid};
   margin-top: 100px;
 `;
 
