@@ -27,6 +27,6 @@ export const color = {
   linearGradientPurple:
     'linear-gradient(160deg, #2a2427 0%, #47346d 50%, #7e4ea4 75%, #b796d0 100%)',
   linearGradientPurpleVivid: `linear-gradient(90deg, #47346d 0%, #5e12ff 100%)`,
-  linearGradientRedVivid: `linear-gradient(90deg, #4b111f 0%, #ff2012 100%)`,
+  linearGradientGreyVivid: `linear-gradient(90deg, #3e3e3e 0%, #b3b3b3 100%)`,
   transparentGreyBackground: 'rgba(126, 126, 126, 0.5)'
 };
