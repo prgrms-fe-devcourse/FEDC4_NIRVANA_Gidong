@@ -35,7 +35,7 @@ const Posting = () => {
     channelLabel: '',
     validation: false
   });
-  const { totalTime, channelLabel, channelId } = meditationInfo;
+  const { totalTime, channelLabel } = meditationInfo;
   const customToken = `bearer ${token}`;
   const { mutate, isLoading, isError } = useMutation({
     mutationFn: async ({ posting = '' }: MutationParams) => {
@@ -90,6 +90,7 @@ const Posting = () => {
           meditationInfo={meditationInfo}
           mutatePosting={mutate}
           isLoading={isLoading}
+        />
         />
         <SkipPosting mutatePosting={mutate} />
       </ContentContainer>

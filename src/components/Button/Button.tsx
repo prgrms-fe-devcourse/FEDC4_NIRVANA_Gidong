@@ -1,4 +1,5 @@
 import { StyledButton } from './Buttons.style';
+import { color } from '@styles/colors';
 
 interface ButtonProps {
   width: number;
@@ -7,11 +8,14 @@ interface ButtonProps {
   label?: string;
   handleClick?: () => void;
   bold?: boolean;
-  textColor?: string;
+  textColor?: keyof typeof color;
   fontSize?: number;
   borderRadius?: number;
   children?: React.ReactNode;
   disabled?: boolean;
+  backgroundColor?: string;
+  border?: string;
+  padding?: boolean;
 }
 
 const Button = ({
@@ -22,10 +26,13 @@ const Button = ({
   dark,
   bold,
   textColor,
+  backgroundColor,
+  border,
   fontSize,
   borderRadius,
-  children,
-  disabled
+  disabled,
+  padding,
+  children
 }: ButtonProps) => (
   <StyledButton
     width={width}
@@ -36,7 +43,10 @@ const Button = ({
     bold={bold}
     fontSize={fontSize}
     borderRadius={borderRadius}
-    disabled={disabled}>
+    disabled={disabled}
+    backgroundColor={backgroundColor}
+    border={border}
+    padding={padding}>
     {label}
     {children}
   </StyledButton>

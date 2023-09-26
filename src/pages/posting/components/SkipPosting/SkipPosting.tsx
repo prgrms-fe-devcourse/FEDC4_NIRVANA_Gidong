@@ -25,9 +25,8 @@ const SkipPosting = ({ mutatePosting }: SkipPostingProps) => {
     setShowConfirm(false);
   };
 
-  const handleConfirmButton = async () => {
+  const handleConfirmButton = () => {
     setShowConfirm(false);
-
     mutatePosting({ posting: '' });
   };
 

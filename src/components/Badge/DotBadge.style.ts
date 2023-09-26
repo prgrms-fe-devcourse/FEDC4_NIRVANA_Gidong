@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
+import { color } from '@styles/colors';
 
 interface SuperProps {
   position: 'top' | 'middle' | 'bottom';
-  color: string;
+  color: keyof typeof color;
   badgeSize?: number;
 }
 
