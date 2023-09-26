@@ -2,7 +2,7 @@ import { StyledNavLink } from './Link.style';
 import { color } from '@styles/colors';
 
 interface State {
-  [key: string]: any;
+  [key: string]: string | boolean | number;
 }
 
 interface LinkProps {
