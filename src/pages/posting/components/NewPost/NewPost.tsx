@@ -31,7 +31,11 @@ interface NewPostProps {
   mutatePosting: UseMutateFunction<void, unknown, MutationParams, unknown>;
 }
 
-const NewPost = ({ meditationInfo, mutatePosting }: NewPostProps) => {
+const NewPost = ({
+  meditationInfo,
+  mutatePosting,
+  isLoading
+}: NewPostProps) => {
   const { PLACEHOLDER, WRITE } = POSTING_DESCRIPTION;
   const { LIMIT_LENGTH, WARNING } = POSTING_WARNING;
   const [showConfirm, setShowConfirm] = useState(false);
@@ -97,6 +101,7 @@ const NewPost = ({ meditationInfo, mutatePosting }: NewPostProps) => {
         </TextAreaContainer>
         <ButtonContainer>
           <Button
+            disabled={isLoading}
             width={300}
             height={50}
             dark={true}
