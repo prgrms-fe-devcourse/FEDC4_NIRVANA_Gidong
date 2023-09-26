@@ -12,7 +12,8 @@ export const PreviewContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border-bottom: 0.5px solid ${({ theme }) => theme.color.white800};
-  &:hover {
+  &:hover,
+  &:active {
     background-color: ${({ theme }) => theme.color.white900};
   }
 `;

@@ -50,7 +50,8 @@ const StyledPickerButton = styled.button`
   border: none;
   background-color: transparent;
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: ${({ theme }) => theme.color.black250};
   }
 `;

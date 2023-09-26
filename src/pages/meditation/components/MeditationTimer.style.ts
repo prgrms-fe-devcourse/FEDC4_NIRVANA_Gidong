@@ -21,7 +21,8 @@ export const TimerElement = styled.button`
   color: ${({ theme }) => theme.color.white};
   font-size: 1.5rem;
   font-weight: bold;
-  &:hover {
+  &:hover,
+  &:active {
     filter: brightness(50%);
     transition: 0.3s;
   }

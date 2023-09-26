@@ -11,7 +11,8 @@ export const ButtonBox = styled.div`
     padding: 0;
   }
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: ${({ theme }) => theme.color.black250};
   }
 `;

@@ -23,7 +23,8 @@ export const ReadButtonContainer = styled.div`
   border-radius: 10px;
   ${({ theme }) => theme.style.flexCenter};
   font-weight: 300;
-  &:hover {
+  &:hover,
+  &:active {
     background-color: ${({ theme }) => theme.color.white900};
   }
 `;

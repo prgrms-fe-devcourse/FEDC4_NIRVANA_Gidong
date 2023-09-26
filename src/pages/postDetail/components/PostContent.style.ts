@@ -34,7 +34,8 @@ export const PostContentMenuIconContainer = styled.div<PostContentMenuProps>`
     transform: rotate(${(props) => (props.opened ? '-180deg' : '0deg')});
   }
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: ${({ theme }) => theme.color.white800};
   }
 `;
@@ -61,7 +62,8 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
     border-bottom: 1px solid ${({ theme }) => theme.color.white800};
     transition: all 0.3s ease;
     cursor: pointer;
-    &:hover {
+    &:hover,
+    &:active {
       background-color: ${({ theme }) => theme.color.white800};
     }
   }
@@ -92,7 +94,8 @@ export const PostEditConfirmButtonContainer = styled.div<contentEditMode>`
   > button {
     transition: all 0.2s ease-out;
     cursor: ${(props) => (props.contentEditMode ? 'pointer' : 'default')};
-    :hover {
+    :hover,
+    &:active {
       background-color: ${({ theme }) => theme.color.white800};
     }
     &:first-of-type {

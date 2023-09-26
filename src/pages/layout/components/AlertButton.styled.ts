@@ -6,7 +6,8 @@ export const AlertContainer = styled.div`
   border-radius: 50%;
   ${({ theme }) => theme.style.flexCenter};
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: ${({ theme }) => theme.color.black250};
   }
 `;
