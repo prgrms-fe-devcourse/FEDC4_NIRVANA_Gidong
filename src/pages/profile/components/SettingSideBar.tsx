@@ -54,7 +54,7 @@ const SettingSideBar = ({
         <LogoutConfirm
           handleLogoutClick={() => {
             setModal((prev) => !prev);
-            navigate('/');
+            navigate('/', { replace: true });
           }}
         />
       )}
