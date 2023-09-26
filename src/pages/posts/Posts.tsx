@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, Suspense } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import type { EditedPost } from '@/types';
@@ -14,10 +15,9 @@ import {
   ThemePickerContainer,
   PostsContainer
 } from './Posts.style';
-import { useLocation } from 'react-router-dom';
 import { SkeletonPosting } from '@pages/posting/components/SkeletonPosting';
 
-const PostsMain = () => {
+const Posts = () => {
   const locate = useLocation();
   const postsRef = useRef(null);
   const [postsData, setPostsData] = useState<EditedPost[]>([]);
@@ -97,4 +97,4 @@ const PostsMain = () => {
   );
 };
 
-export default PostsMain;
+export default Posts;
