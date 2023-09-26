@@ -27,14 +27,13 @@ const Posting = () => {
     channelLabel: '',
     validation: false
   });
-  const { totalTime, channelLabel, channelId } = meditationInfo;
+  const { totalTime, channelLabel } = meditationInfo;
   const customToken = `bearer ${token}`;
 
   useEffect(() => {
     if (location.state === null) {
       navigate('/404');
     }
-    console.log(location.state);
     setMeditationInfo(location.state);
   }, []);
 
@@ -52,7 +51,7 @@ const Posting = () => {
           customToken={customToken}
         />
         <SkipPosting
-          channelId={channelId}
+          meditationInfo={meditationInfo}
           customToken={customToken}
         />
       </ContentContainer>
