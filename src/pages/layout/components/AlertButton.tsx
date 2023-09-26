@@ -2,12 +2,16 @@ import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getNotifications } from '@apis/notice';
 import useSessionStorage from '@hooks/useSessionStorage';
-import { Link } from '@components/Link';
 import { Icon } from '@components/Icon';
 import { DotBadge } from '@components/Badge';
 import { User } from '@/types';
+import { Button } from '@components/Button';
 
-const AlertButton = () => {
+interface AlertButtonProps {
+  handleClickAlert: () => void;
+}
+
+const AlertButton = ({ handleClickAlert }: AlertButtonProps) => {
   const [userSessionData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
     'userData',
     {
@@ -18,7 +22,7 @@ const AlertButton = () => {
 
   const location = useLocation();
   const { pathname } = location;
-  const { token } = userSessionData;
+  const { token, _id } = userSessionData;
 
   const query = useQuery({
     queryKey: ['headerAlert'],
@@ -26,6 +30,7 @@ const AlertButton = () => {
       const data = await getNotifications(`Bearer ${token}`);
       return data;
     },
+    enabled: token !== '' && _id !== '',
     refetchInterval: () => (pathname === '/notice' ? false : 5000),
     refetchIntervalInBackground: true
   });
@@ -39,15 +44,20 @@ const AlertButton = () => {
       color='orange'
       position='top'
       badgeSize={5}>
-      <Link
-        pageLink='/notice'
-        size={23}>
+      <Button
+        width={25}
+        height={25}
+        handleClick={handleClickAlert}
+        borderRadius={0}
+        border='none'
+        padding={false}
+        backgroundColor='transparent'>
         <Icon
           name='notifications'
           color='white'
           size={23}
         />
-      </Link>
+      </Button>
     </DotBadge>
   );
 };

@@ -5,7 +5,7 @@ export const MeditationInfoItemSection = styled.div`
   flex-direction: column;
   width: 100%;
   flex: 1;
-  border-bottom: 1px solid ${({ theme }) => theme.color.greyLight};
+  border-bottom: 1px solid ${({ theme }) => theme.color.white800};
   :last-child {
     border-bottom: none;
   }

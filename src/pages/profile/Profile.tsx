@@ -8,7 +8,11 @@ import { User } from '@/types/User';
 import { getUser } from '@apis/user';
 import createTabItems from './utils/createTabItems';
 import { editModeState } from './states/editMode';
-import { ProfileInfoContainer, ProfilePage } from './Profile.style';
+import {
+  ProfileInfoContainer,
+  ProfilePage,
+  ProfileBodyContainer
+} from './Profile.style';
 import {
   ProfileInfo,
   ProfileCover,
@@ -19,7 +23,7 @@ import {
 import { getMyFollowData } from '@/utils';
 
 const Profile = () => {
-  const { userId } = useParams<{ userId: string }>();
+  const { userId: profileUserId } = useParams<{ userId: string }>();
   const location = useLocation();
   const [sideBarOpened, setSideBarOpened] = useState(false);
   const [editMode, setEditMode] = useRecoilState(editModeState);
@@ -28,11 +32,10 @@ const Profile = () => {
     setEditMode(location.hash === '#edit');
   }, [location.hash, setEditMode]);
 
-  const { data, isLoading, refetch } = useQuery(
-    ['userData', userId],
-    () => getUser(userId),
-    { enabled: !!userId }
-  );
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ['userData', profileUserId],
+    queryFn: async () => await getUser(profileUserId)
+  });
 
   const [{ _id: currentUserId }] = useSessionStorage<Pick<User, '_id'>>(
     'userData',
@@ -46,7 +49,6 @@ const Profile = () => {
   };
 
   const closeSidebar = () => {
-    console.log('close');
     setSideBarOpened(false);
   };
 
@@ -69,20 +71,24 @@ const Profile = () => {
           avatarImgSrc={isLoading ? '' : data.image}
           refetch={() => refetch()}
         />
+      </ProfileInfoContainer>
+      <ProfileBodyContainer>
         {editMode ? (
           <ProfileEdit refetch={() => refetch()} />
         ) : (
           <ProfileMain
-            myProfile={currentUserId === userId}
-            myFollowData={getMyFollowData(data?.followers, currentUserId)}
-            profileId={userId}
+            myProfile={currentUserId === profileUserId}
+            myFollowData={
+              isLoading ? null : getMyFollowData(data?.followers, currentUserId)
+            }
+            profileId={profileUserId}
             tabItems={tabItems}
             openSidebar={openSidebar}
             fullName={isLoading ? '' : data.fullName}
             refetch={() => refetch()}
           />
         )}
-      </ProfileInfoContainer>
+      </ProfileBodyContainer>
     </ProfilePage>
   );
 };

@@ -8,6 +8,7 @@ import {
   SettingLi
 } from './SettingSideBar.style';
 import useSessionStorage from '@hooks/useSessionStorage';
+import { useNavigate } from 'react-router-dom';
 
 interface SettingSideBarProps {
   closeSidebar: () => void;
@@ -28,9 +29,11 @@ const SettingSideBar = ({
     token: ''
   });
 
+  const navigate = useNavigate();
+
   const handleLogoutClick = () => {
     deleteUserValue();
-    window.location.reload();
+    navigate('/');
   };
 
   return (

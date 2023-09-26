@@ -5,7 +5,7 @@ const GetMyFollowData = (
   currentUserId: string
 ): Follow => {
   if (followers && followers.length > 0 && currentUserId) {
-    return followers.find((follow) => follow._id === currentUserId);
+    return followers.find((follow) => follow.follower === currentUserId);
   }
 };
 

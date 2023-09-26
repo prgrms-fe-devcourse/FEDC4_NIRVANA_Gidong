@@ -5,20 +5,22 @@ interface ProfileTabsItemProps {
 }
 
 export const ProfileTabItemContainer = styled.div<ProfileTabsItemProps>`
-  height: 50px;
-  border-bottom: 3px solid
-    ${({ selected, theme }) =>
-      selected ? theme.color.purpleVivid : 'transparent'};
+  height: 35px;
   color: ${({ selected, theme }) =>
     selected ? theme.color.black : theme.color.greyLight};
+  font-weight: ${({ selected }) => (selected ? 'bold' : 'normal')};
   display: flex;
   align-items: center;
   justify-content: center;
   flex: 1;
   cursor: pointer;
   user-select: none;
-  font-size: 12px;
+  font-size: 14px;
   > strong {
     font-weight: bold;
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.white900};
   }
 `;

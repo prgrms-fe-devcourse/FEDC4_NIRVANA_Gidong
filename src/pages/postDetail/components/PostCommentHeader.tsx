@@ -8,6 +8,7 @@ import {
   PostLikeContainer
 } from './PostCommentHeader.style';
 import { Like } from '@/types/Like';
+import { postNotifications } from '@apis/notice';
 
 interface PostCommentHeaderProps {
   postId: string;
@@ -27,9 +28,21 @@ const PostCommentHeader = ({
   postCommentCount = 0
 }: PostCommentHeaderProps) => {
   const [possibleMutateLike, setPossibleMutateLike] = useState(true);
-  const { mutate, isSuccess, isLoading } = useMutation(() => {
-    return myLike ? deleteLike(myLike._id, token) : postLike(postId, token);
-  });
+  const { mutate, isSuccess, isLoading } = useMutation(
+    () => {
+      return myLike ? deleteLike(myLike._id, token) : postLike(postId, token);
+    },
+    {
+      onSuccess: (res) => {
+        postNotifications(token, {
+          notificationType: 'LIKE',
+          notificationTypeId: res._id,
+          userId: res.user,
+          postId: res.post
+        });
+      }
+    }
+  );
 
   useEffect(() => {
     setPossibleMutateLike(true);
