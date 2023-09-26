@@ -15,7 +15,6 @@ import {
   PostsContainer
 } from './Posts.style';
 import { useLocation } from 'react-router-dom';
-import { SkeletonPosting } from '@pages/posting/components/SkeletonPosting';
 
 const PostsMain = () => {
   const locate = useLocation();
@@ -28,14 +27,15 @@ const PostsMain = () => {
   );
   const channelInfo = new Map(meditationChannelInfo);
 
-  const { data, isLoading, isError, isSuccess } = useQuery({
+  const { data, isError } = useQuery({
     queryKey: ['getChannelPosts', channelId, offset],
     queryFn: async () => {
       const { data } = await getPosts(channelId, offset);
       const editedData = editPostData(data);
 
       return editedData;
-    }
+    },
+    suspense: true
   });
 
   useEffect(() => {
@@ -74,25 +74,22 @@ const PostsMain = () => {
           content={'포스트를 불러오는 데 실패했습니다. 다시 시도해주세요.'}
         />
       )}
-      {isLoading && <SkeletonPosting />}
-      {isSuccess && (
-        <PostsContainer ref={postsRef}>
-          {postsData.map((post: EditedPost, index) => {
-            const { content, likes, comments } = post;
-            return (
-              content && (
-                <PostPreview
-                  key={index}
-                  post={post}
-                  totalLikes={likes.length}
-                  totalComments={comments.length}
-                  noneProfile={false}
-                />
-              )
-            );
-          })}
-        </PostsContainer>
-      )}
+      <PostsContainer ref={postsRef}>
+        {postsData.map((post: EditedPost, index) => {
+          const { content, likes, comments } = post;
+          return (
+            content && (
+              <PostPreview
+                key={index}
+                post={post}
+                totalLikes={likes.length}
+                totalComments={comments.length}
+                noneProfile={false}
+              />
+            )
+          );
+        })}
+      </PostsContainer>
     </StyledPostsPage>
   );
 };
