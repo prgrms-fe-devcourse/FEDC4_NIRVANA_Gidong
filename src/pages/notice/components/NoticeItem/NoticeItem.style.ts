@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 const NoticeItemContainer = styled.div`
   display: flex;
-  /* justify-content: flex-start; */
   padding: 14px;
   border-bottom: 0.5px solid ${({ theme }) => theme.color['greyLight']};
   line-height: 1.5;
