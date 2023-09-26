@@ -1,4 +1,4 @@
-import { StyledNavLink } from './Link.style';
+import { StyledNavLink, StyledLink } from './Link.style';
 import { color } from '@styles/colors';
 
 interface State {
@@ -11,6 +11,7 @@ interface LinkProps {
   size: number;
   state: State;
   color: keyof typeof color;
+  setActiveStyle?: boolean;
 }
 
 const Link = ({
@@ -18,16 +19,29 @@ const Link = ({
   pageLink,
   size = 14,
   color = 'black',
-  state
+  state,
+  setActiveStyle = false
 }: Partial<LinkProps>) => {
   return (
-    <StyledNavLink
-      state={{ ...state }}
-      to={pageLink}
-      size={size}
-      color={color}>
-      {children}
-    </StyledNavLink>
+    <>
+      {setActiveStyle ? (
+        <StyledNavLink
+          state={{ ...state }}
+          to={pageLink}
+          size={size}
+          color={color}>
+          {children}
+        </StyledNavLink>
+      ) : (
+        <StyledLink
+          state={{ ...state }}
+          to={pageLink}
+          size={size}
+          color={color}>
+          {children}
+        </StyledLink>
+      )}
+    </>
   );
 };
 
