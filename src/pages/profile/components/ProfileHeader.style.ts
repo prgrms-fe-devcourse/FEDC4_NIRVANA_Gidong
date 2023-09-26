@@ -9,7 +9,7 @@ export const ProfileHeaderButtonContainer = styled.div`
   justify-content: flex-end;
   margin-top: 20px;
   > button {
-    transition: all 0.2s ease-out;
+    transition: all 0.3s ease-in-out;
     ${({ theme }) => theme.style.flexCenter};
     margin-right: 6px;
 
@@ -17,7 +17,7 @@ export const ProfileHeaderButtonContainer = styled.div`
       margin-right: 0;
     }
     :active {
-      background-color: ${({ theme }) => theme.color.purpleLight};
+      transform: scale(0.9);
     }
   }
 `;

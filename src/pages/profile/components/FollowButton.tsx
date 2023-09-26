@@ -65,11 +65,12 @@ const FollowButton = ({
     <Button
       width={width}
       height={height}
-      dark={followed ? false : true}
-      label={followed ? '팔로우' : '팔로잉'}
+      label={followed ? '팔로잉' : '팔로우'}
       fontSize={fontSize}
       bold={true}
       handleClick={handleClickFollow}
+      textColor={followed ? 'greyLight' : 'white'}
+      backgroundColor={followed ? 'white' : 'purpleDark'}
     />
   );
 };
