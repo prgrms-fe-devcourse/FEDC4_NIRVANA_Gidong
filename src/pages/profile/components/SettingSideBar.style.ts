@@ -65,12 +65,12 @@ export const SettingLi = styled.li`
   padding: 0 5px;
   color: ${({ theme }) => theme.color.black};
   font-size: 16px;
-  border-bottom: 0.5px solid ${({ theme }) => theme.color.greyLight};
+  border-bottom: 1px solid ${({ theme }) => theme.color.white800};
   transition: all 0.2s ease-out;
   cursor: pointer;
 
   :hover {
-    background-color: ${({ theme }) => theme.color.purpleLighter};
+    background-color: ${({ theme }) => theme.color.white900};
   }
 
   > a.active,

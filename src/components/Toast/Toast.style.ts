@@ -20,6 +20,7 @@ const StyledToast = styled.div<StyledToastProps>`
   max-width: 768px;
   min-height: ${({ height }) => (height ? `${height}px` : `70px`)};
   position: absolute;
+  z-index: 999;
   top: 50px;
   display: flex;
   justify-content: space-between;

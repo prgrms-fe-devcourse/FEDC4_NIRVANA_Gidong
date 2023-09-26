@@ -22,7 +22,7 @@ import { UserId, UserName } from '@components/UserText';
 import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
-import { createFormData, purifyContent } from '@pages/posting/utils';
+import { appendFormData, purifyContent } from '@pages/posting/utils';
 import { Link } from 'react-router-dom';
 
 interface PostContentProps {
@@ -95,7 +95,8 @@ const PostContent = ({
         title: purifyContent(contentEditRef.current?.textContent || ''),
         meditationTime
       };
-      const newFormData = createFormData(
+      const newFormData = appendFormData(
+        ['title', 'channelId', 'image', 'postId'],
         JSON.stringify(newCustomTitle),
         channelId,
         postId

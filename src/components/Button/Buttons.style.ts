@@ -10,14 +10,20 @@ export const StyledButton = styled.button<{
   fontSize?: number;
   textColor?: keyof typeof color;
   backgroundColor?: keyof typeof color;
+  border?: string;
+  padding?: boolean;
 }>`
   cursor: pointer;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   border: ${({ theme, dark }) =>
-    dark ? 0 : `0.5px solid ${theme.color.greyLight}`};
+    dark === undefined || dark ? 0 : `1px solid ${theme.color.white800}`};
   background-color: ${({ theme, dark }) =>
-    dark ? theme.color.purpleDark : theme.color.white};
+    dark === undefined
+      ? 'transparent'
+      : dark
+      ? theme.color.purpleDark
+      : theme.color.white};
   color: ${({ theme, dark, textColor = 'black' }) =>
     dark ? theme.color.white : theme.color[textColor]};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
@@ -25,4 +31,5 @@ export const StyledButton = styled.button<{
   font-size: ${({ fontSize }) => (fontSize ? fontSize : 16)}px;
   background-color: ${({ backgroundColor, theme }) =>
     theme.color[backgroundColor]};
+  ${({ padding }) => !padding && `padding: 0`}
 `;

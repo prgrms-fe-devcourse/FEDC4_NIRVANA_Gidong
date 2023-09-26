@@ -14,6 +14,7 @@ interface ButtonProps {
   children?: React.ReactNode;
   disabled?: boolean;
   backgroundColor?: keyof typeof color;
+  border?: number;
 }
 
 const Button = ({
@@ -24,10 +25,13 @@ const Button = ({
   dark,
   bold,
   textColor,
+  backgroundColor,
+  border,
   fontSize,
   borderRadius,
-  children,
   disabled,
+  padding,
+  children,
   backgroundColor
 }: ButtonProps) => (
   <StyledButton
@@ -39,8 +43,9 @@ const Button = ({
     bold={bold}
     fontSize={fontSize}
     borderRadius={borderRadius}
-    disabled={disabled}
-    backgroundColor={backgroundColor}>
+    backgroundColor={backgroundColor}
+    border={border}
+    disabled={disabled}>
     {label}
     {children}
   </StyledButton>
