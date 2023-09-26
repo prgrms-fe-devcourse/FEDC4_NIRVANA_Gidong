@@ -12,7 +12,8 @@ import useObserver from './hooks/useObserver';
 import {
   StyledPostsPage,
   ThemePickerContainer,
-  PostsContainer
+  PostsContainer,
+  StyledNoPosts
 } from './Posts.style';
 import { useLocation } from 'react-router-dom';
 import { CONCENTRATION_KEY } from '@pages/meditation/constants';
@@ -71,20 +72,24 @@ const Posts = () => {
         />
       </ThemePickerContainer>
       <PostsContainer ref={postsRef}>
-        {postsData.map((post: EditedPost, index) => {
-          const { content, likes, comments } = post;
-          return (
-            content && (
-              <PostPreview
-                key={index}
-                post={post}
-                totalLikes={likes.length}
-                totalComments={comments.length}
-                noneProfile={false}
-              />
-            )
-          );
-        })}
+        {postsData.length >= 0 ? (
+          postsData.map((post: EditedPost, index) => {
+            const { content, likes, comments } = post;
+            return (
+              content && (
+                <PostPreview
+                  key={index}
+                  post={post}
+                  totalLikes={likes.length}
+                  totalComments={comments.length}
+                  noneProfile={false}
+                />
+              )
+            );
+          })
+        ) : (
+          <StyledNoPosts>현재 발행된 포스트가 없습니다.</StyledNoPosts>
+        )}
       </PostsContainer>
     </StyledPostsPage>
   );
