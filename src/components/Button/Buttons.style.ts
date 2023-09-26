@@ -26,4 +26,5 @@ export const StyledButton = styled.button<{
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : 10)}px;
   font-size: ${({ fontSize }) => (fontSize ? fontSize : 16)}px;
+  ${({ theme }) => theme.style.flexCenter};
 `;

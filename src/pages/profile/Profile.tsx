@@ -70,6 +70,12 @@ const Profile = () => {
           fullName={isLoading ? '' : data.fullName}
           avatarImgSrc={isLoading ? '' : data.image}
           refetch={() => refetch()}
+          myProfile={currentUserId === profileUserId}
+          profileId={profileUserId}
+          myFollowData={
+            isLoading ? null : getMyFollowData(data?.followers, currentUserId)
+          }
+          openSidebar={openSidebar}
         />
       </ProfileInfoContainer>
       <ProfileBodyContainer>
@@ -77,15 +83,8 @@ const Profile = () => {
           <ProfileEdit refetch={() => refetch()} />
         ) : (
           <ProfileMain
-            myProfile={currentUserId === profileUserId}
-            myFollowData={
-              isLoading ? null : getMyFollowData(data?.followers, currentUserId)
-            }
-            profileId={profileUserId}
             tabItems={tabItems}
-            openSidebar={openSidebar}
             fullName={isLoading ? '' : data.fullName}
-            refetch={() => refetch()}
           />
         )}
       </ProfileBodyContainer>

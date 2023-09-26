@@ -6,9 +6,11 @@ interface ProfileCarouselContainerProps {
 
 export const ProfileCarouselContainer = styled.div<ProfileCarouselContainerProps>`
   width: 100%;
+  height: 100%;
   flex: 1;
   display: flex;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   user-select: none;
   scroll-behavior: smooth;
   > div:first-of-type {

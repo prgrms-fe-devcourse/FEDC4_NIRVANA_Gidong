@@ -10,6 +10,7 @@ export const StyledNavLink = styled(NavLink)<{
   font-size: ${({ size }) => size}px;
   text-decoration: none;
   text-align: left;
+  ${({ theme }) => theme.style.flexAlignCenter};
   &.active {
     font-weight: bold;
     text-decoration: underline;
@@ -21,6 +22,7 @@ export const StyledLink = styled(Link)<{
   size: number;
   color: keyof typeof color;
 }>`
+  ${({ theme }) => theme.style.flexAlignCenter};
   color: ${({ theme, color }) => theme.color[color]};
   font-size: ${({ size }) => size}px;
   text-decoration: none;

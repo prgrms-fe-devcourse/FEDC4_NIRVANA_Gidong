@@ -60,11 +60,11 @@ export const IdContainer = styled.div`
   color: ${({ theme }) => theme.color.greyLight};
 `;
 
-export const PostDetailInfoContainer = styled.div`
+export const PostDetailInfoContainer = styled.div<{ noneProfile: boolean }>`
   width: 100%;
   height: 50%;
   color: ${({ theme }) => theme.color.greyLight};
-  font-size: 14px;
+  font-size: ${({ noneProfile }) => (noneProfile ? 16 : 14)}px;
   display: flex;
   align-items: center;
 

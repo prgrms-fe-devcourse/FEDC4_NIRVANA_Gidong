@@ -61,7 +61,7 @@ const PostHeader = ({
               </IdContainer>
             </UserContainer>
           )}
-          <PostDetailInfoContainer>
+          <PostDetailInfoContainer noneProfile={noneProfile}>
             {createdAt} / {meditationTime}분
             {showCommentStatus &&
               iconDescription.map((iconInfo, index) => {

@@ -37,6 +37,7 @@ const PostPreview = ({
           totalLikes={totalLikes}
           totalComments={totalComments}
           noneProfile={noneProfile}
+          showCommentStatus={true}
         />
       </PostHeaderContainer>
       <PostContentContainer>

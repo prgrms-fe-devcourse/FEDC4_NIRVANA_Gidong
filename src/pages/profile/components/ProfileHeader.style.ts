@@ -1,23 +1,24 @@
 import styled from '@emotion/styled';
 
 export const ProfileHeaderSection = styled.div`
-  height: 82px;
+  width: 100%;
 `;
 
 export const ProfileHeaderButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  ${({ theme }) => theme.style.flexCenter};
   > button {
     transition: all 0.2s ease-out;
-    ${({ theme }) => theme.style.flexCenter};
-    margin-right: 6px;
-
-    &:last-child {
-      margin-right: 0;
-    }
     :active {
-      background-color: ${({ theme }) => theme.color.purpleLight};
+      background-color: ${({ theme }) => theme.color.white800};
+    }
+    :hover {
+      background-color: ${({ theme }) => theme.color.white800};
     }
   }
 `;
