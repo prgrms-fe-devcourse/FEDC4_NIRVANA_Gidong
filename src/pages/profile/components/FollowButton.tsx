@@ -25,16 +25,13 @@ const FollowButton = ({
   fontSize = 12,
   refetch
 }: FollowButtonProps) => {
+  const [{ token }] = useSessionStorage<Pick<User, 'token'>>('userData', {
+    token: ''
+  });
+
   const [followed, setFollowed] = useState(following);
   const [dataId, setDataId] = useState(followingDataId);
-  const [userSessionData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
-    'userData',
-    {
-      _id: '',
-      token: ''
-    }
-  );
-  const { token } = userSessionData;
+
   const { mutate } = useMutation(
     () =>
       followed

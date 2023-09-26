@@ -1,7 +1,9 @@
-import { useQueries } from '@tanstack/react-query';
+import { useQueries, useQuery } from '@tanstack/react-query';
 import { Follow, User } from '@/types';
 import { getUser } from '@apis/user';
 import { FollowUser } from '@pages/profile/components';
+import useSessionStorage from '@hooks/useSessionStorage';
+import checkMyFollow from '@utils/checkMyFollow';
 
 const dumyData = [
   // following
@@ -28,6 +30,15 @@ interface FollowUsersProps {
 }
 
 const FollowUsers = ({ following, data = dumyData }: FollowUsersProps) => {
+  const [{ _id: myUserId }] = useSessionStorage<Pick<User, '_id'>>('userData', {
+    _id: ''
+  });
+
+  const { data: myUserData } = useQuery({
+    queryKey: ['userData', myUserId],
+    queryFn: async () => await getUser(myUserId)
+  });
+
   const followUsers = useQueries({
     queries: data.map((element) => {
       return {
@@ -50,12 +61,13 @@ const FollowUsers = ({ following, data = dumyData }: FollowUsersProps) => {
     Failed === 0 && (
       <>
         {followUsers.map(({ data }) => {
+          console.log(myUserData?.following, data.user._id);
           return (
             <FollowUser
               followDataId={data._id}
               followUser={data.user}
               key={data._id}
-              following={following}
+              following={checkMyFollow(myUserData?.following, data.user._id)}
             />
           );
         })}

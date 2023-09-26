@@ -24,13 +24,13 @@ const FollowUser = ({
         email={email}
         id={_id}
       />
-      {following && (
+      {
         <FollowButton
           followingDataId={followDataId}
           followingUserId={_id}
-          following={true}
+          following={following}
         />
-      )}
+      }
     </FollowUserContainer>
   );
 };
