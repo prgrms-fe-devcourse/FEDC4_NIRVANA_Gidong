@@ -12,12 +12,13 @@ import { PROFILE_TABS } from '../constants/profileTabs';
 import { Follow } from '@/types/Follow';
 import { useEffect } from 'react';
 import { PostPreview } from '@components/PostPreview';
-import { Post } from '@/types/Post';
+import { Post, User } from '@/types/';
 import { editPostData } from '@pages/posts/utils/editPostData';
 
 interface ProfileCarouselProps {
   tabItems: TabItems;
   fullName: string;
+  myProfileData?: User;
 }
 
 const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
