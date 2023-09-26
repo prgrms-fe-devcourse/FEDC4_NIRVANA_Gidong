@@ -15,7 +15,7 @@ const GoToSignUp = () => {
         <Icon
           name={'arrow_forward'}
           size={14}
-          color={'red'}
+          color={'redVivid'}
         />
         &nbsp;
         <Link

@@ -29,23 +29,21 @@ const ProfileHeader = ({
     <ProfileHeaderSection>
       <ProfileHeaderButtonContainer>
         {myProfile ? (
-          <>
-            <Button
-              width={30}
-              height={30}
-              bold={true}
-              fontSize={12}
-              borderRadius={30}
-              handleClick={handleEditClick}>
-              <Icon
-                name='settings'
-                size={20}
-                color='greyLight'
-              />
-            </Button>
-          </>
+          <Button
+            width={30}
+            height={30}
+            bold={true}
+            fontSize={12}
+            borderRadius={30}
+            handleClick={handleEditClick}>
+            <Icon
+              name='settings'
+              size={20}
+              color='greyLight'
+            />
+          </Button>
         ) : (
-          <>
+          myFollowData !== null && (
             <FollowButton
               followingDataId={myFollowData?._id}
               followingUserId={profileId}
@@ -53,7 +51,7 @@ const ProfileHeader = ({
               fontSize={12}
               refetch={refetch}
             />
-          </>
+          )
         )}
       </ProfileHeaderButtonContainer>
     </ProfileHeaderSection>

@@ -1,8 +1,9 @@
 import { Icon } from '@components/Icon';
 import { StyledPreviousButton } from './ThemePicker.style';
+import { color } from '@styles/colors';
 
 interface PickerPreviousButtonProps {
-  color: string;
+  color: keyof typeof color;
   clickPrevButton: (move: number) => void;
 }
 

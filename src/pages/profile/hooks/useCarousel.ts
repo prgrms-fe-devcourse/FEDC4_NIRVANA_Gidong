@@ -31,10 +31,7 @@ export const useCarousel = (
       } else {
         distanceX = event.pageX - startX;
       }
-      if (Math.abs(distanceX) < MIN_DISTANCE) {
-        carousel.scrollLeft =
-          carousel.clientWidth * selectedTabIndex - distanceX;
-      }
+      carousel.scrollLeft = carousel.clientWidth * selectedTabIndex - distanceX;
     };
 
     const handlePointerUp = () => {
@@ -51,7 +48,6 @@ export const useCarousel = (
       ) {
         setSelectedTabIndex(selectedTabIndex + 1);
       }
-      carousel.style.marginLeft = `0px`;
       carousel.removeEventListener('mousemove', handlePointerMove);
       carousel.removeEventListener('touchmove', handlePointerMove);
     };

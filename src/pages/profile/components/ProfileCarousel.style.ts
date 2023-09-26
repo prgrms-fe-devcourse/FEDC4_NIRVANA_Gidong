@@ -1,18 +1,32 @@
 import styled from '@emotion/styled';
 
-export const ProfileCarouselContainer = styled.div`
+interface ProfileCarouselContainerProps {
+  selectedTabIndex: number;
+}
+
+export const ProfileCarouselContainer = styled.div<ProfileCarouselContainerProps>`
   width: 100%;
-  display: flex;
   flex: 1;
+  display: flex;
   overflow: hidden;
   user-select: none;
+  scroll-behavior: smooth;
+  > div:first-of-type {
+    > div {
+      padding: 0;
+    }
+    > div:last-of-type {
+      border-bottom: none;
+    }
+  }
 `;
 
 export const ProfileCarouselItem = styled.div`
   flex: 1 0 100%;
+  overflow: auto;
 `;
 
-export const NonePostContainer = styled.div`
+export const NoneContentContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
   width: 100%;
   height: 100%;
