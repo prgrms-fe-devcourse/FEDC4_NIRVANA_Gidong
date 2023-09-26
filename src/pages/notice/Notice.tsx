@@ -41,8 +41,8 @@ const Notice = () => {
             width={80}
             height={30}
             label='모두 읽음'
-            handleClick={() => {
-              putNotifications(`Bearer ${userSessionData.token}`);
+            handleClick={async () => {
+              await putNotifications(`Bearer ${userSessionData.token}`);
               fetchNotifications();
             }}
           />
