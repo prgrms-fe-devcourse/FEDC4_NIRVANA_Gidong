@@ -4,7 +4,7 @@ const USER_INPUT = {
     PLACE_HOLDER: '이메일을 입력해주세요.',
     TITLE: '이메일',
     ERROR_MESSAGE: '이메일 형식을 확인해주세요.',
-    SUCCESS_MESSAGE: '사용 가능한 이메일입니다.'
+    SUCCESS_MESSAGE: '올바른 이메일 형식입니다.'
   },
   NICKNAME: {
     NAME: 'nickname',

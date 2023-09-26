@@ -19,6 +19,7 @@ interface PostCommentInputProps {
   token: string;
   avatarSrc: string;
   userName: string;
+  userId?: string;
   refetch: () => void;
 }
 
@@ -27,6 +28,7 @@ const PostCommentInput = ({
   userName,
   token,
   postId,
+  userId,
   refetch
 }: PostCommentInputProps) => {
   const COMMENT_PLACEHOLDER = '댓글을 달아보세요.';
@@ -38,7 +40,7 @@ const PostCommentInput = ({
       postNotifications(token, {
         notificationType: 'COMMENT',
         notificationTypeId: res._id,
-        userId: res.author._id,
+        userId: userId,
         postId: res.post
       });
     }
