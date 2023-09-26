@@ -53,7 +53,6 @@ const SearchResultPost = ({
   if (Failed < 1 && postWithUserData) {
     postPreviewData = editPostData(postWithUserData.map(({ data }) => data));
   }
-  console.log(postPreviewData);
 
   return (
     <>
