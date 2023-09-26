@@ -1,8 +1,9 @@
 import { Icon } from '@components/Icon';
 import { StyledNextButton } from './ThemePicker.style';
+import { color } from '@styles/colors';
 
 interface PickerNextButtonProps {
-  color: string;
+  color: keyof typeof color;
   clickNextButton: (move: number) => void;
 }
 

@@ -1,5 +1,6 @@
 import { color } from '@styles/colors';
 import { StyledButton } from './Buttons.style';
+import { color } from '@styles/colors';
 
 interface ButtonProps {
   width: number;

@@ -1,9 +1,10 @@
 import { BadgeContainer, Super } from './DotBadge.style';
+import { color } from '@styles/colors';
 
 interface BadgeProps {
   children: React.ReactNode;
   dot: boolean;
-  color: string;
+  color: keyof typeof color;
   position: 'top' | 'middle' | 'bottom';
   badgeSize?: number;
 }
