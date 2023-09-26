@@ -15,7 +15,6 @@ import {
   ThemePickerContainer,
   PostsContainer
 } from './Posts.style';
-import { SkeletonPosting } from '@pages/posting/components/SkeletonPosting';
 
 const Posts = () => {
   const locate = useLocation();
