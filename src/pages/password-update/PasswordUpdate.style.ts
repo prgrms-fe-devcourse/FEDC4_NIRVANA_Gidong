@@ -1,19 +1,4 @@
 import styled from '@emotion/styled';
-import logo from '@assets/logo.svg';
-
-const LogoContainer = styled.div`
-  margin-bottom: 80px;
-`;
-
-const Logo = styled.h1`
-  width: 221px;
-  height: 41px;
-  background-image: url(${logo});
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  margin-bottom: 80px;
-`;
 
 const PasswordUpdateContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
@@ -38,10 +23,4 @@ const ButtonContainer = styled.div`
   margin-top: 15px;
 `;
 
-export {
-  PasswordUpdateForm,
-  ButtonContainer,
-  PasswordUpdateContainer,
-  LogoContainer,
-  Logo
-};
+export { PasswordUpdateForm, ButtonContainer, PasswordUpdateContainer };
