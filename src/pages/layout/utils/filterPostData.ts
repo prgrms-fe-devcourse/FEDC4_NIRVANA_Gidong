@@ -1,8 +1,10 @@
 import { User } from '@/types';
-import { EditedPost } from '../types';
+import { SearchEditedPost } from '@/types';
 import isPost from '../types/typeGuard';
 
-const filterPostData = (resultData: (User | EditedPost)[]): EditedPost[] => {
+const filterPostData = (
+  resultData: (User | SearchEditedPost)[]
+): SearchEditedPost[] => {
   return resultData.filter(isPost);
 };
 

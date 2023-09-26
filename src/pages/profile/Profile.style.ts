@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ProfilePage = styled.div`
+  background-color: ${({ theme }) => theme.color.white};
   display: flex;
   position: relative;
   flex-direction: column;

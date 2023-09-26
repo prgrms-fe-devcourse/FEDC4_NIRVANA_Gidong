@@ -6,6 +6,7 @@ import { getPosts } from '@apis/posts';
 import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
 import { PostPreview } from '@components/PostPreview';
 import { ThemePicker } from '@components/ThemePicker';
+import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
 import { editPostData } from './utils/editPostData';
 import useObserver from './hooks/useObserver';
 import {
@@ -14,6 +15,7 @@ import {
   PostsContainer
 } from './Posts.style';
 import { useLocation } from 'react-router-dom';
+import { CONCENTRATION_KEY } from '@pages/meditation/constants';
 
 const Posts = () => {
   const locate = useLocation();
@@ -21,15 +23,17 @@ const Posts = () => {
   const [postsData, setPostsData] = useState<EditedPost[]>([]);
   const [offset, setOffset] = useState(0);
   const [observe] = useObserver(() => setOffset(offset + 11));
-  const [channelId, setChannelId] = useState(
-    locate.state.channelId ? locate.state.channelId : '65017a41dfe8db5726b603a7'
+  const [channel, setChannel] = useState<ThemeInfoType>(
+    locate.state
+      ? locate.state.channelInfo
+      : meditationChannelInfo.get(CONCENTRATION_KEY)
   );
   const channelInfo = new Map(meditationChannelInfo);
 
   const { data } = useQuery({
-    queryKey: ['getChannelPosts', channelId, offset],
+    queryKey: ['getChannelPosts', channel.id, offset],
     queryFn: async () => {
-      const data = await getPosts(channelId, offset);
+      const data = await getPosts(channel.id, offset);
       const editedData = editPostData(data);
 
       return editedData;
@@ -44,7 +48,7 @@ const Posts = () => {
 
   useEffect(() => {
     setOffset(0);
-  }, [channelId]);
+  }, [channel.id]);
 
   useEffect(() => {
     if (postsRef.current && postsRef.current.childNodes.length >= 10) {
@@ -53,8 +57,8 @@ const Posts = () => {
     }
   }, [postsData]);
 
-  const clickThemePicker = (selectedId: string) => {
-    setChannelId(selectedId);
+  const clickThemePicker = (selected: ThemeInfoType) => {
+    setChannel(selected);
   };
 
   return (

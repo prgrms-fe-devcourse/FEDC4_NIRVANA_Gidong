@@ -11,9 +11,7 @@ import { PasswordHint } from '@pages/password-update/components';
 import {
   PasswordUpdateForm,
   ButtonContainer,
-  PasswordUpdateContainer,
-  LogoContainer,
-  Logo
+  PasswordUpdateContainer
 } from './PasswordUpdate.style';
 
 const PasswordUpdate = () => {
@@ -68,10 +66,6 @@ const PasswordUpdate = () => {
   return (
     <>
       <PasswordUpdateContainer>
-        <LogoContainer>
-          <Logo />
-        </LogoContainer>
-
         {passwordChanged && (
           <Alert
             emoji={'✅'}

@@ -19,10 +19,9 @@ const AlertButton = ({ handleClickAlert }: AlertButtonProps) => {
       token: ''
     }
   );
-
   const location = useLocation();
   const { pathname } = location;
-  const { token, _id } = userSessionData;
+  const { token } = userSessionData;
 
   const query = useQuery({
     queryKey: ['headerAlert'],
@@ -30,17 +29,17 @@ const AlertButton = ({ handleClickAlert }: AlertButtonProps) => {
       const data = await getNotifications(`Bearer ${token}`);
       return data;
     },
-    enabled: token !== '' && _id !== '',
+    enabled: (token !== '' || !token) && pathname !== '/notice',
     refetchInterval: () => (pathname === '/notice' ? false : 5000),
     refetchIntervalInBackground: true
   });
 
   const { data } = query;
-  const alertStatus = data?.length > 0;
+  const alertStatus = data?.filter(({ seen }) => !seen).length > 0;
 
   return (
     <DotBadge
-      dot={alertStatus}
+      dot={alertStatus && pathname !== '/notice'}
       color='orange'
       position='top'
       badgeSize={5}>

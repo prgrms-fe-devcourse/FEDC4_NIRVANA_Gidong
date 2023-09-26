@@ -1,9 +1,9 @@
 import { User } from '@/types';
-import { EditedPost } from './index';
+import { SearchEditedPost } from '@/types';
 
 const PROPERTY = 'title';
 
-const isPost = (arg: User | EditedPost): arg is EditedPost => {
+const isPost = (arg: User | SearchEditedPost): arg is SearchEditedPost => {
   return PROPERTY in arg;
 };
 
