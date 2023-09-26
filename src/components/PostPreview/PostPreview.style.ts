@@ -70,15 +70,15 @@ export const PostDetailInfoContainer = styled.div`
 `;
 
 export const PostContentContainer = styled.div`
+  flex-grow: 1;
   width: 100%;
 `;
 
 export const PostContent = styled.div`
   width: 100%;
-  height: 70px;
+  height: 100%;
   padding: 15px 5px;
   padding-bottom: 0px;
-  flex-grow: 1
   font-size: 16px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
