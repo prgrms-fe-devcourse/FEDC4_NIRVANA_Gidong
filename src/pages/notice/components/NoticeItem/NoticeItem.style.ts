@@ -2,10 +2,9 @@ import styled from '@emotion/styled';
 
 const NoticeItemContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
-  padding: 10px;
+  padding: 14px;
   border-bottom: 0.5px solid ${({ theme }) => theme.color['greyLight']};
-  margin-bottom: 10px;
+  line-height: 1.5;
 `;
 
 const ProfileImage = styled.div`
@@ -16,19 +15,17 @@ const ProfileImage = styled.div`
 `;
 
 const NoticeContent = styled.div`
-  flex-direction: column;
-  justify-content: flex-start;
   align-self: center;
 `;
 
 const Message = styled.div`
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 13px;
   color: ${({ theme }) => theme.color['black']};
 `;
 
 const MessagePreview = styled.div`
-  font-size: 0.6rem;
+  font-size: 11px;
   color: ${({ theme }) => theme.color['greyLight']};
 `;
 

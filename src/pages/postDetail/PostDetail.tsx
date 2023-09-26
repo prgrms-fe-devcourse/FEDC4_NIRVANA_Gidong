@@ -39,6 +39,7 @@ const PostDetail = () => {
         createdAt={formatDate(data?.createdAt)}
       />
       <PostCommentInput
+        userId={data?.author._id}
         postId={postId}
         token={'Bearer ' + token}
         avatarSrc={image}
@@ -48,6 +49,7 @@ const PostDetail = () => {
         }}
       />
       <PostComments
+        userId={data?.author._id}
         postId={postId}
         currentUserId={_id}
         token={'Bearer ' + token}
