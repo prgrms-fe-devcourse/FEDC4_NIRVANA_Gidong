@@ -9,6 +9,7 @@ import {
   CommentInput,
   CommentInputForm
 } from './PostCommentInput.style';
+import { purifyContent } from '@pages/posting/utils';
 import { Toast } from '@components/Toast';
 import { Avatar } from '@components/Avatar';
 import { postComment } from '@apis/comment';
@@ -52,7 +53,7 @@ const PostCommentInput = ({
     event.preventDefault();
     mutate({
       postId,
-      comment: commentValue,
+      comment: purifyContent(commentValue),
       token
     });
     commentRef.current.value = '';
