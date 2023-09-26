@@ -1,14 +1,11 @@
 import styled from '@emotion/styled';
 
 export const HeaderSection = styled.header`
-  position: relative;
+  width: 100%;
   height: 50px;
+  position: relative;
   background-color: ${({ theme }) => theme.color.purpleDark};
   display: flex;
-
-  @media screen and (min-width: 500px) {
-    height: 70px;
-  }
 `;
 
 export const HeaderNavSection = styled(HeaderSection)`
@@ -18,5 +15,5 @@ export const HeaderNavSection = styled(HeaderSection)`
 
 export const HeaderSearchSection = styled(HeaderSection)`
   align-items: center;
-  padding: 0 44px 0 14px;
+  ${({ theme }) => theme.style.flexCenter};
 `;
