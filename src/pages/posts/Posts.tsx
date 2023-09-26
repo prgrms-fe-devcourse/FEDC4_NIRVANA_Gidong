@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import type { EditedPost } from '@/types';
 import { getPosts } from '@apis/posts';
 import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
+import { Toast } from '@components/Toast';
 import { PostPreview } from '@components/PostPreview';
 import { ThemePicker } from '@components/ThemePicker';
 import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
@@ -31,14 +33,15 @@ const Posts = () => {
   );
   const channelInfo = new Map(meditationChannelInfo);
 
-  const { data } = useQuery({
-    queryKey: ['getChannelPosts', channel.id, offset],
+  const { data, isError } = useQuery({
+    queryKey: ['getChannelPosts', channelId, offset],
     queryFn: async () => {
-      const data = await getPosts(channel.id, offset);
+      const { data } = await getPosts(channelId, offset);
       const editedData = editPostData(data);
 
       return editedData;
-    }
+    },
+    suspense: true
   });
 
   useEffect(() => {
@@ -71,6 +74,12 @@ const Posts = () => {
           dark={false}
         />
       </ThemePickerContainer>
+      {isError && (
+        <Toast
+          type={'ERROR'}
+          content={'포스트를 불러오는 데 실패했습니다. 다시 시도해주세요.'}
+        />
+      )}
       <PostsContainer ref={postsRef}>
         {postsData.length >= 0 ? (
           postsData.map((post: EditedPost, index) => {
