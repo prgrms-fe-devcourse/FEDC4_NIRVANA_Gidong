@@ -1,4 +1,3 @@
-import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 interface StyledToastProps {
@@ -17,6 +16,7 @@ const ChildContainer = (backgroundColor: string, textColor: string) => {
 
 const StyledToast = styled.div<StyledToastProps>`
   width: ${({ width }) => (width ? `${width}px` : `100%`)};
+  z-index: 100;
   max-width: 768px;
   min-height: ${({ height }) => (height ? `${height}px` : `70px`)};
   position: absolute;
