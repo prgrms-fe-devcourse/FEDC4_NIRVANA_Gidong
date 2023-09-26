@@ -20,3 +20,9 @@ export interface EditedPost extends Post {
   meditationTime: number;
   content: string | undefined;
 }
+
+type OmitPost = Omit<Post, 'author'>;
+
+export interface EditedSearchPost extends OmitPost {
+  author: string;
+}

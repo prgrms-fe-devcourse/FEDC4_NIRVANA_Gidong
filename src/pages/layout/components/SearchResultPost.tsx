@@ -1,30 +1,28 @@
-import { useQuery, useQueries } from '@tanstack/react-query';
-import { searchAll } from '@apis/search';
+import { useQueries } from '@tanstack/react-query';
 import { getUser } from '@apis/user';
-import { EditedPost, User } from '@/types';
+import { User } from '@/types';
 import { PostPreview } from '@components/PostPreview';
 import filterPostData from '../utils/filterPostData';
-import { FILTER } from '../constants';
+import { EditedSearchPost, Post, EditedPost } from '@/types';
+import { editPostData } from '@pages/posts/utils/editPostData';
+
+type AddedPostData = Pick<
+  EditedPost,
+  | '_id'
+  | 'image'
+  | 'content'
+  | 'author'
+  | 'createdAt'
+  | 'meditationTime'
+  | 'likes'
+  | 'comments'
+>[];
 
 interface SearchResultPostProps {
-  searchKeyword: string;
-  searchFilter: string;
+  postData: EditedSearchPost[];
 }
 
-const SearchResultPost = ({
-  searchKeyword,
-  searchFilter
-}: SearchResultPostProps) => {
-  const { data: postData } = useQuery({
-    queryKey: ['search', searchKeyword, searchFilter],
-    queryFn: async () => {
-      const data = await searchAll(searchKeyword);
-
-      return data;
-    },
-    enabled: searchKeyword !== '' && searchFilter === FILTER['POST']
-  });
-
+const SearchResultPost = ({ postData }: SearchResultPostProps) => {
   const filteredData = filterPostData(postData || []);
 
   const postWithUserData = useQueries({
@@ -32,7 +30,7 @@ const SearchResultPost = ({
       return {
         queryKey: ['searchPostUser', element.author],
         queryFn: () => getUser(element.author),
-        select: (data: User) => {
+        select: (data: User): Post => {
           return {
             ...element,
             author: data
@@ -47,15 +45,21 @@ const SearchResultPost = ({
     (element) => !element.isSuccess
   ).length;
 
+  let addedResultData: AddedPostData = [];
+
+  if (Failed < 1) {
+    addedResultData = editPostData(postWithUserData.map(({ data }) => data));
+  }
+
   return (
     <>
       {Failed < 1 &&
-        postWithUserData.map(({ data: post }) => {
+        addedResultData.map((post) => {
           const { _id, likes, comments } = post;
 
           return (
             <PostPreview
-              post={post as EditedPost}
+              post={post}
               key={_id}
               totalLikes={likes.length}
               totalComments={comments.length}

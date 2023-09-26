@@ -14,12 +14,15 @@ interface SearchHeadProps {
   handleShowSearchBox: () => void;
   showSearchBox: boolean;
   setSearchInputValue: React.Dispatch<React.SetStateAction<string>>;
+  searchFilter: string;
+  refetch: () => void;
 }
 
 const SearchHead = ({
   handleShowSearchBox,
   showSearchBox,
-  setSearchInputValue
+  setSearchInputValue,
+  refetch
 }: SearchHeadProps) => {
   const [text, setText] = useState('');
   const inputRef = useRef(null);
@@ -43,7 +46,8 @@ const SearchHead = ({
 
   const handleClickSearchButton = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSearchInputValue(text);
+    refetch();
+    inputRef.current.blur();
   };
 
   return (
@@ -58,17 +62,14 @@ const SearchHead = ({
           size={25}
         />
       </Button>
-      <SearchForm>
+      <SearchForm onSubmit={handleClickSearchButton}>
         <SearchInput
           placeholder='사용자나 게시물을 검색해보세요'
           ref={inputRef}
           value={text}
           onChange={handleChangeText}
         />
-        <SearchButton
-          searchStatus={showSearchBox}
-          handleClickButton={handleClickSearchButton}
-        />
+        <SearchButton searchStatus={showSearchBox} />
       </SearchForm>
     </SearchHeadContainer>
   );

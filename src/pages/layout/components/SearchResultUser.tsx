@@ -1,28 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
-import { searchUser } from '@apis/search';
 import { User } from '@/types';
 import { FollowUserInfo } from '@pages/profile/components';
-import { SearchItem } from './SearchBody.style';
-import { FILTER } from '../constants';
+import { SearchItem } from './SearchResults.style';
 
 interface SearchResultUserProps {
-  searchKeyword: string;
-  searchFilter: string;
+  userData: User[];
 }
 
-const SearchResultUser = ({
-  searchKeyword,
-  searchFilter
-}: SearchResultUserProps) => {
-  const { data: userData } = useQuery({
-    queryKey: ['search', searchKeyword, searchFilter],
-    queryFn: async () => {
-      const data = await searchUser(searchKeyword);
-      return data;
-    },
-    enabled: searchKeyword !== '' && searchFilter === FILTER['USER']
-  });
-
+const SearchResultUser = ({ userData }: SearchResultUserProps) => {
   return (
     <>
       {userData?.map((element: User) => {

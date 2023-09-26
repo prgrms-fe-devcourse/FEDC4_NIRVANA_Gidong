@@ -2,11 +2,14 @@ import { Button } from '@components/Button';
 import { FilterButtonContainer } from './SearchFilter.style';
 
 interface SearchFilterProps {
-  handleClick: (theme: string) => void;
+  handleChangeFilter: (theme: string) => void;
   filterState: string;
 }
 
-const SearchFilter = ({ handleClick, filterState }: SearchFilterProps) => {
+const SearchFilter = ({
+  handleChangeFilter,
+  filterState
+}: SearchFilterProps) => {
   const filterData = [
     { theme: 'post', text: '포스트' },
     { theme: 'user', text: '사용자' }
@@ -22,7 +25,9 @@ const SearchFilter = ({ handleClick, filterState }: SearchFilterProps) => {
           fontSize={14}
           borderRadius={30}
           textColor='greyLight'
-          handleClick={() => handleClick(theme)}>
+          handleClick={() => {
+            handleChangeFilter(theme);
+          }}>
           {text}
         </Button>
       ))}

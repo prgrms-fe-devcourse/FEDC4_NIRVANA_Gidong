@@ -25,8 +25,8 @@ const PostPreview = ({
   noneProfile = false
 }: PostPreviewProps) => {
   const { content, _id } = post;
-  const previewContent = `${content.substring(0, 100)}${
-    content.length > 100 ? '...' : ''
+  const previewContent = `${content?.substring(0, 100)}${
+    content?.length > 100 ? '...' : ''
   }`;
 
   return (
