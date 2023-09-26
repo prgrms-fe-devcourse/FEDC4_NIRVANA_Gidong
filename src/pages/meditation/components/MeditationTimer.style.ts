@@ -13,9 +13,10 @@ const rotate = keyframes`
 export const TimerContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
   flex-direction: column;
-  height: 300px;
+  height: 180px;
   width: 100%;
   background: transparent;
+  margin-top: 100px;
 `;
 
 export const TimerElementBorder = styled.div<{ timerPaused: boolean }>`
