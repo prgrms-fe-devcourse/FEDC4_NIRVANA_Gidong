@@ -15,3 +15,15 @@ export const NoticePage = styled.div`
   padding: 2rem;
   background: ${({ theme }) => theme.color.white};
 `;
+
+export const ReadButtonContainer = styled.div`
+  width: 80px;
+  height: 30px;
+  border: 1px solid ${({ theme }) => theme.color.white800};
+  border-radius: 10px;
+  ${({ theme }) => theme.style.flexCenter};
+  font-weight: 300;
+  &:hover {
+    background-color: ${({ theme }) => theme.color.white900};
+  }
+`;

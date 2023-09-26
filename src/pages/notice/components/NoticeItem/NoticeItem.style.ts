@@ -1,35 +1,50 @@
 import styled from '@emotion/styled';
 
 const NoticeItemContainer = styled.div`
+  cursor: pointer;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
   display: flex;
-  justify-content: flex-start;
   padding: 10px;
-  border-bottom: 0.5px solid ${({ theme }) => theme.color['greyLight']};
-  margin-bottom: 10px;
+  border-bottom: 0.5px solid ${({ theme }) => theme.color.white800};
+
+  &:hover,
+  &:active {
+    background-color: ${({ theme }) => theme.color.white900};
+  }
 `;
 
 const ProfileImage = styled.div`
-  width: 39px;
-  height: 39px;
-  margin-right: 20px;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
   border-radius: 50%;
+  ${({ theme }) => theme.style.flexCenter};
 `;
 
 const NoticeContent = styled.div`
+  width: calc(100% - 60px);
+  height: 100%;
   flex-direction: column;
-  justify-content: flex-start;
   align-self: center;
+  line-height: 1.5;
 `;
 
 const Message = styled.div`
-  font-weight: 700;
-  font-size: 0.8rem;
-  color: ${({ theme }) => theme.color['black']};
+  font-weight: 400;
+  font-size: 14px;
+  color: ${({ theme }) => theme.color.black};
 `;
 
 const MessagePreview = styled.div`
-  font-size: 0.6rem;
-  color: ${({ theme }) => theme.color['greyLight']};
+  width: 100%;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  color: ${({ theme }) => theme.color.greyLight};
 `;
 
 export {
