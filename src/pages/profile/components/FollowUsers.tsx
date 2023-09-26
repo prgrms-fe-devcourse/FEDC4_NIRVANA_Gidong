@@ -5,31 +5,12 @@ import { FollowUser } from '@pages/profile/components';
 import useSessionStorage from '@hooks/useSessionStorage';
 import checkMyFollow from '@utils/checkMyFollow';
 
-const dumyData = [
-  // following
-  {
-    _id: '64ff5428cd98920f0d4cab1e',
-    user: '64ff4bc7e044e9076a2cb3dd',
-    follower: '64ff16cc169c79057b5f8ec0',
-    createdAt: '2023-09-11T17:53:44.961Z',
-    updatedAt: '2023-09-11T17:53:44.961Z',
-    __v: 0
-  },
-  {
-    _id: '65012092ba302b4a8f4f8f1c',
-    user: '64ff1661169c79057b5f8eb8',
-    follower: '64ff16cc169c79057b5f8ec0',
-    createdAt: '2023-09-13T02:38:10.952Z',
-    updatedAt: '2023-09-13T02:38:10.952Z',
-    __v: 0
-  }
-];
 interface FollowUsersProps {
-  following: boolean;
+  possibleDeleteFollow: boolean;
   data?: Follow[];
 }
 
-const FollowUsers = ({ following, data = dumyData }: FollowUsersProps) => {
+const FollowUsers = ({ possibleDeleteFollow, data }: FollowUsersProps) => {
   const [{ _id: myUserId }] = useSessionStorage<Pick<User, '_id'>>('userData', {
     _id: ''
   });
@@ -43,7 +24,8 @@ const FollowUsers = ({ following, data = dumyData }: FollowUsersProps) => {
     queries: data.map((element) => {
       return {
         queryKey: ['followUser', element._id],
-        queryFn: () => getUser(following ? element.user : element.follower),
+        queryFn: () =>
+          getUser(possibleDeleteFollow ? element.user : element.follower),
         select: (data: User) => {
           return {
             ...element,
@@ -61,13 +43,16 @@ const FollowUsers = ({ following, data = dumyData }: FollowUsersProps) => {
     Failed === 0 && (
       <>
         {followUsers.map(({ data }) => {
-          console.log(myUserData?.following, data.user._id);
           return (
             <FollowUser
               followDataId={data._id}
+              possibleDeleteFollow={possibleDeleteFollow}
               followUser={data.user}
               key={data._id}
-              following={checkMyFollow(myUserData?.following, data.user._id)}
+              FollowedThisUser={checkMyFollow(
+                myUserData?.following,
+                data.user._id
+              )}
             />
           );
         })}

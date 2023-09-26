@@ -72,26 +72,11 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
                 </NoneContentContainer>
               </ProfileCarouselItem>
             );
-          case FOLLOWING:
-            return data && data.length > 0 ? (
-              <ProfileCarouselItem key={index}>
-                <FollowUsers
-                  following={true}
-                  data={data as Follow[]}
-                />
-              </ProfileCarouselItem>
-            ) : (
-              <ProfileCarouselItem key={index}>
-                <NoneContentContainer>
-                  아직 팔로우한 유저가 없습니다.
-                </NoneContentContainer>
-              </ProfileCarouselItem>
-            );
           case FOLLOWER:
             return data && data.length > 0 ? (
               <ProfileCarouselItem key={index}>
                 <FollowUsers
-                  following={false}
+                  possibleDeleteFollow={false}
                   data={data as Follow[]}
                 />
               </ProfileCarouselItem>
@@ -99,6 +84,21 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
               <ProfileCarouselItem key={index}>
                 <NoneContentContainer>
                   아직 팔로워가 없습니다.
+                </NoneContentContainer>
+              </ProfileCarouselItem>
+            );
+          case FOLLOWING:
+            return data && data.length > 0 ? (
+              <ProfileCarouselItem key={index}>
+                <FollowUsers
+                  possibleDeleteFollow={true}
+                  data={data as Follow[]}
+                />
+              </ProfileCarouselItem>
+            ) : (
+              <ProfileCarouselItem key={index}>
+                <NoneContentContainer>
+                  아직 팔로우한 유저가 없습니다.
                 </NoneContentContainer>
               </ProfileCarouselItem>
             );
