@@ -13,6 +13,13 @@ const ThemePickerContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
 `;
 
+const StyledNoPosts = styled.div`
+  width: 100%;
+  height: 300px;
+  ${({ theme }) => theme.style.flexCenter};
+  color: ${({ theme }) => theme.color.greyLight};
+`;
+
 const PostsContainer = styled.div``;
 
-export { StyledPostsPage, ThemePickerContainer, PostsContainer };
+export { StyledPostsPage, ThemePickerContainer, PostsContainer, StyledNoPosts };
