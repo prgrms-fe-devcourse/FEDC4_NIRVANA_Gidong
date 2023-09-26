@@ -1,15 +1,18 @@
 import styled from '@emotion/styled';
 
-export const TimerContainer = styled.div`
+export const TimerContainer = styled.div<{ timerPaused: boolean }>`
   ${({ theme }) => theme.style.flexCenter};
   width: 170px;
   height: 170px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.color.linearGradientPurpleVivid};
+  background: ${({ theme, timerPaused }) =>
+    timerPaused
+      ? theme.color.linearGradientGreyVivid
+      : theme.color.linearGradientPurpleVivid};
   margin-top: 100px;
 `;
 
-export const TimerElement = styled.button`
+export const TimerElement = styled.button<{ timerPaused: boolean }>`
   ${({ theme }) => theme.style.flexCenter};
   border: none;
   outline: none;
@@ -18,7 +21,8 @@ export const TimerElement = styled.button`
   height: 150px;
   border-radius: 50%;
   background-color: #211730;
-  color: ${({ theme }) => theme.color.white};
+  color: ${({ theme, timerPaused }) =>
+    timerPaused ? theme.color.greyLight : theme.color.white};
   font-size: 1.5rem;
   font-weight: bold;
   &:hover {
