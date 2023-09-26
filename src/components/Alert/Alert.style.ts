@@ -27,6 +27,7 @@ export const StyledDeemBackground = styled.div<DeemBackgroundProps>`
   display: ${({ disabled }) => (disabled ? 'none' : 'flex')};
   justify-content: center;
   align-items: center;
+  z-index: 2;
 `;
 
 export const StyledAlertBackground = styled.div<AlertBackgroundProps>`
