@@ -42,13 +42,22 @@ export const PostInfoContainer = styled.div`
   line-height: 1.5;
 `;
 
-export const UserNameContainer = styled.div`
+export const UserContainer = styled.div`
   width: 100%;
   height: 50%;
-  font-weight: bold;
-  font-size: 16px;
   display: flex;
   align-items: center;
+`;
+
+export const NameContainer = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+`;
+
+export const IdContainer = styled.div`
+  padding-left: 5px;
+  font-weight: 300;
+  color: ${({ theme }) => theme.color.greyLight};
 `;
 
 export const PostDetailInfoContainer = styled.div`

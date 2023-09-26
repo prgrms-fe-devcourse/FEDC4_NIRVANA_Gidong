@@ -1,28 +1,23 @@
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
-import { useRef } from 'react';
+
+import type { User } from '@/types/User';
+
 import { Icon } from '@components/Icon';
+import PostHeader from '@components/PostPreview/PostHeader';
 import {
   PostContentSection,
   PostContentHeader,
-  PostContentAvatarContainer,
   PostContentBody,
   PostContentMenuIconContainer,
-  PostContentTime,
-  PostContentUserInfo,
-  PostContentUserName,
   PostContentMenu,
   PostEditConfirmButtonContainer
 } from './PostContent.style';
-import { User } from '@/types/User';
 import { deletePost, putPost } from '@apis/posts';
-import { UserId, UserName } from '@components/UserText';
-import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
 import { createFormData, purifyContent } from '@pages/posting/utils';
-import { Link } from 'react-router-dom';
 
 interface PostContentProps {
   author: User;
@@ -32,7 +27,7 @@ interface PostContentProps {
   token: string;
   createdAt: string;
   content: string;
-  meditationTime: string;
+  meditationTime: number;
 }
 
 const PostContent = ({
@@ -109,24 +104,11 @@ const PostContent = ({
   return (
     <PostContentSection>
       <PostContentHeader>
-        <PostContentAvatarContainer>
-          <Link to={`/profile/${author?._id}`}>
-            <Avatar
-              src={author?.image}
-              alt={author?.fullName}
-              size={39}
-            />
-          </Link>
-        </PostContentAvatarContainer>
-        <PostContentUserInfo>
-          <PostContentUserName>
-            <UserName>{author?.fullName}</UserName>
-            <UserId email={author ? author.email : ''} />
-          </PostContentUserName>
-          <PostContentTime>
-            {createdAt} / {meditationTime}분
-          </PostContentTime>
-        </PostContentUserInfo>
+        <PostHeader
+          post={{ _id: postId, author, createdAt, meditationTime }}
+          noneProfile={false}
+          showCommentStatus={false}
+        />
         {currentUserId === author?._id && (
           <>
             <PostContentMenuIconContainer

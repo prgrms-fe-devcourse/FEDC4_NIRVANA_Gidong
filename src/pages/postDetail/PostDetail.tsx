@@ -1,17 +1,20 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { PostCommentInput, PostComments, PostContent } from './components';
-import { PostDetailPage } from './PostDetail.style';
-import { getPost } from '@apis/posts';
-import useSessionStorage from '@hooks/useSessionStorage';
-import { User } from '@/types/User';
+
+import type { User } from '@/types/User';
+
 import { GetMyLike } from './utils';
+import { PostDetailPage } from './PostDetail.style';
+import { PostCommentInput, PostComments, PostContent } from './components';
+import { getPost } from '@apis/posts';
 import formatDate from '@utils/formatDate';
+import useSessionStorage from '@hooks/useSessionStorage';
+import { PostPreviewSkeleton } from '@components/Skeleton';
 
 const PostDetail = () => {
   const { postId } = useParams<{ postId: string }>();
 
-  const { data, refetch } = useQuery({
+  const { isLoading, data, refetch } = useQuery({
     queryKey: ['postDetail', postId],
     queryFn: async () => getPost(postId),
     enabled: !!postId
@@ -28,16 +31,20 @@ const PostDetail = () => {
 
   return (
     <PostDetailPage>
-      <PostContent
-        token={'Bearer ' + token}
-        postId={postId}
-        channelId={data?.channel._id}
-        author={data?.author}
-        currentUserId={_id}
-        content={data ? JSON.parse(data.title).title : ''}
-        meditationTime={data ? JSON.parse(data.title).meditationTime : ''}
-        createdAt={formatDate(data?.createdAt)}
-      />
+      {isLoading ? (
+        <PostPreviewSkeleton />
+      ) : (
+        <PostContent
+          token={'Bearer ' + token}
+          postId={postId}
+          channelId={data?.channel._id}
+          author={data?.author}
+          currentUserId={_id}
+          content={data ? JSON.parse(data.title).title : ''}
+          meditationTime={data ? JSON.parse(data.title).meditationTime : ''}
+          createdAt={formatDate(data?.createdAt)}
+        />
+      )}
       <PostCommentInput
         postId={postId}
         token={'Bearer ' + token}

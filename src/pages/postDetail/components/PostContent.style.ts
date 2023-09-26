@@ -19,33 +19,6 @@ export const PostContentHeader = styled.header`
   height: 50px;
 `;
 
-export const PostContentAvatarContainer = styled.div`
-  ${({ theme }) => theme.style.flexCenter}
-  width: 50px;
-  height: 100%;
-`;
-
-export const PostContentUserInfo = styled.div`
-  ${({ theme }) => theme.style.flexJustifyCenter}
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-left: 6px;
-`;
-
-export const PostContentUserName = styled.div`
-  ${({ theme }) => theme.style.flexAlignCenter}
-  > span:first-of-type {
-    margin-right: 2px;
-  }
-  margin-bottom: 3px;
-`;
-
-export const PostContentTime = styled.div`
-  color: ${({ theme }) => theme.color.greyLight};
-  font-size: 12px;
-`;
-
 export const PostContentMenuIconContainer = styled.div<PostContentMenuProps>`
   ${({ theme }) => theme.style.flexCenter}
   user-select: none;
@@ -53,12 +26,16 @@ export const PostContentMenuIconContainer = styled.div<PostContentMenuProps>`
   cursor: pointer;
   width: 50px;
   height: 100%;
-  border-radius: 0 10px 10px 0;
+  border-radius: 50%;
   border-left: none;
   z-index: 2;
   > span {
     transition: transform 0.4s ease-in-out;
     transform: rotate(${(props) => (props.opened ? '-180deg' : '0deg')});
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.white800};
   }
 `;
 
@@ -76,17 +53,27 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
     props.opened ? 'translateX(0)' : 'translateX(60px)'};
   transition: all 0.3s ease;
 
-  > p {
+  & > p {
     width: 100%;
     text-align: center;
     padding: 5px;
     font-size: 14px;
-    border-bottom: 1px solid ${({ theme }) => theme.color.greyLight};
+    border-bottom: 1px solid ${({ theme }) => theme.color.white800};
     transition: all 0.3s ease;
     cursor: pointer;
     &:hover {
-      background-color: ${({ theme }) => theme.color.purpleLight};
+      background-color: ${({ theme }) => theme.color.white800};
     }
+  }
+
+  & > p:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  & > p:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 `;
 
@@ -106,7 +93,7 @@ export const PostEditConfirmButtonContainer = styled.div<contentEditMode>`
     transition: all 0.2s ease-out;
     cursor: ${(props) => (props.contentEditMode ? 'pointer' : 'default')};
     :hover {
-      background-color: ${({ theme }) => theme.color.purpleLight};
+      background-color: ${({ theme }) => theme.color.white800};
     }
     &:first-of-type {
       margin-right: 5px;

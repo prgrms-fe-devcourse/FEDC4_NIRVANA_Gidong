@@ -5,25 +5,27 @@ import {
   AvatarContainer,
   PostInfoContainer,
   PostDetailInfoContainer,
-  UserNameContainer
+  UserContainer,
+  NameContainer,
+  IdContainer
 } from './PostPreview.style';
 import { Link } from '@components/Link';
+import { UserId } from '@components/UserText';
 
 interface PostHeaderProps {
-  post: Pick<
-    EditedPost,
-    '_id' | 'image' | 'author' | 'createdAt' | 'meditationTime'
-  >;
-  totalLikes: number;
-  totalComments: number;
+  post: Pick<EditedPost, '_id' | 'author' | 'createdAt' | 'meditationTime'>;
+  totalLikes?: number;
+  totalComments?: number;
   noneProfile: boolean;
+  showCommentStatus: boolean;
 }
 
 const PostHeader = ({
   post,
   totalLikes,
   totalComments,
-  noneProfile
+  noneProfile,
+  showCommentStatus
 }: PostHeaderProps) => {
   const { author, createdAt, meditationTime, _id } = post;
   const iconDescription = [
@@ -48,25 +50,32 @@ const PostHeader = ({
       )}
       <PostInfoContainer>
         <Link
+          setActiveStyle={false}
           pageLink={`/posts/${_id}`}
           color='black'>
           {!noneProfile && (
-            <UserNameContainer>{author.fullName}</UserNameContainer>
+            <UserContainer>
+              <NameContainer>{author.fullName}</NameContainer>
+              <IdContainer>
+                <UserId email={author.email} />
+              </IdContainer>
+            </UserContainer>
           )}
           <PostDetailInfoContainer>
             {createdAt} / {meditationTime}분
-            {iconDescription.map((iconInfo, index) => {
-              return (
-                <div key={index}>
-                  <Icon
-                    name={iconInfo.name}
-                    size={iconInfo.size}
-                    color={'greyLight'}
-                  />
-                  {iconInfo.total}
-                </div>
-              );
-            })}
+            {showCommentStatus &&
+              iconDescription.map((iconInfo, index) => {
+                return (
+                  <div key={index}>
+                    <Icon
+                      name={iconInfo.name}
+                      size={iconInfo.size}
+                      color={'greyLight'}
+                    />
+                    {iconInfo.total}
+                  </div>
+                );
+              })}
           </PostDetailInfoContainer>
         </Link>
       </PostInfoContainer>

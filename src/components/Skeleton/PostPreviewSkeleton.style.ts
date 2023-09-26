@@ -8,7 +8,7 @@ const SkeletonContainer = styled.div`
   width: 100%;
   height: 150px;
   margin: 0 auto;
-  padding: 15px 60px;
+  padding: 15px;
   background-color: transparent;
   display: flex;
   flex-direction: column;
