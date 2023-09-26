@@ -9,7 +9,7 @@ import {
   SettingLi
 } from './SettingSideBar.style';
 import useSessionStorage from '@hooks/useSessionStorage';
-import LogoutConfirm from './LogoutConfirm';
+import LogoutAlert from './LogoutAlert';
 import { useNavigate } from 'react-router-dom';
 
 interface SettingSideBarProps {
@@ -21,7 +21,7 @@ const SettingSideBar = ({
   closeSidebar,
   sideBarOpened
 }: SettingSideBarProps) => {
-  const [modal, setModal] = useState(false);
+  const [logoutModal, setLogoutModal] = useState(false);
   const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     closeSidebar();
@@ -36,24 +36,24 @@ const SettingSideBar = ({
 
   useEffect(() => {
     return () => {
-      if (modal) {
-        setModal(false);
+      if (logoutModal) {
+        setLogoutModal(false);
       }
     };
-  }, [modal]);
+  }, [logoutModal]);
 
   const handleLogoutClick = () => {
     closeSidebar();
-    setModal((prev) => !prev);
+    setLogoutModal((prev) => !prev);
     deleteUserValue();
   };
 
   return (
     <>
-      {modal && (
-        <LogoutConfirm
+      {logoutModal && (
+        <LogoutAlert
           handleLogoutClick={() => {
-            setModal((prev) => !prev);
+            setLogoutModal((prev) => !prev);
             navigate('/', { replace: true });
           }}
         />
