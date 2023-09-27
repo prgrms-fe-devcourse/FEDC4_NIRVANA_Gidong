@@ -58,7 +58,7 @@ const Posts = () => {
       const { lastChild } = postsRef.current;
       lastChild && observe(lastChild);
     }
-  }, [postsData, observe]);
+  }, [postsData]);
 
   const clickThemePicker = (selected: ThemeInfoType) => {
     setChannel(selected);
