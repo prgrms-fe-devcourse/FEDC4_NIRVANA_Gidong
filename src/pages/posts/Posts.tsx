@@ -17,7 +17,6 @@ import {
   PostsContainer,
   StyledNoPosts
 } from './Posts.style';
-import { useLocation } from 'react-router-dom';
 import { CONCENTRATION_KEY } from '@pages/meditation/constants';
 
 const Posts = () => {
@@ -34,9 +33,9 @@ const Posts = () => {
   const channelInfo = new Map(meditationChannelInfo);
 
   const { data, isError } = useQuery({
-    queryKey: ['getChannelPosts', channelId, offset],
+    queryKey: ['getChannelPosts', channel.id, offset],
     queryFn: async () => {
-      const { data } = await getPosts(channelId, offset);
+      const { data } = await getPosts(channel.id, offset);
       const editedData = editPostData(data);
 
       return editedData;
