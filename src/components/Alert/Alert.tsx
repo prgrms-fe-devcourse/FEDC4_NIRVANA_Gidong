@@ -19,6 +19,7 @@ interface AlertProps {
   contentFontSize: number;
   buttonLabel: string;
   nextPageLink: string;
+  handleClickButton?: () => void;
 }
 
 const Alert = ({
@@ -29,7 +30,8 @@ const Alert = ({
   content,
   contentFontSize = 16,
   buttonLabel,
-  nextPageLink
+  nextPageLink,
+  handleClickButton
 }: Partial<AlertProps>) => {
   const [disabled, setDisabled] = useState(false);
   const [domReady, setDomReady] = useState(false);
@@ -66,6 +68,7 @@ const Alert = ({
                   dark={true}
                   bold={true}
                   label={buttonLabel}
+                  handleClick={handleClickButton}
                 />
               )}
             </NavButtonContainer>

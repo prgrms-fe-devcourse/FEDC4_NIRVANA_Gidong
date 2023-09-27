@@ -19,13 +19,13 @@ const createTabItems = (tabData: User, isLoading: boolean): TabItems => {
       value: isLoading ? 0 : tabData.posts.length,
       data: isLoading ? [] : tabData.posts
     },
-    [FOLLOWING]: {
-      value: isLoading ? 0 : tabData.following.length,
-      data: isLoading ? [] : tabData.following
-    },
     [FOLLOWER]: {
       value: isLoading ? 0 : tabData.followers.length,
       data: isLoading ? [] : tabData.followers
+    },
+    [FOLLOWING]: {
+      value: isLoading ? 0 : tabData.following.length,
+      data: isLoading ? [] : tabData.following
     },
     [INFO]: {
       value: '',

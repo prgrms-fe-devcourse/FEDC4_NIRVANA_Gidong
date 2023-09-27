@@ -16,6 +16,7 @@ import Notice from '@pages/notice';
 import PostDetail from '@pages/postDetail/PostDetail';
 import { Suspense } from 'react';
 import { PostDetailSkeleton, ProfileSkeleton } from '@components/Skeleton';
+import { SkeletonPosting } from '@pages/posting/components/SkeletonPosting';
 
 const PageRoutes = () => {
   return (
@@ -67,7 +68,11 @@ const PageRoutes = () => {
       <Route element={<Layout headerStatus={'home'} />}>
         <Route
           path='/posts'
-          element={<Posts />}
+          element={
+            <Suspense fallback={<SkeletonPosting />}>
+              <Posts />
+            </Suspense>
+          }
         />
         <Route
           path='/posts/:postId'

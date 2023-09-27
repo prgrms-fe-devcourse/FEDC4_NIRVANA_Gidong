@@ -20,6 +20,9 @@ export const color = {
   white800: '#eeeeee',
   white600: '#e4e4e4',
   white500: '#d9d9d9',
+  white400: '#cccccc',
+  white300: '#bfbfbf',
+  white200: '#b3b3b3',
   black: '#000000',
   black250: '#00000040',
   black600: '#00000099',
@@ -27,5 +30,6 @@ export const color = {
   linearGradientPurple:
     'linear-gradient(160deg, #2a2427 0%, #47346d 50%, #7e4ea4 75%, #b796d0 100%)',
   linearGradientPurpleVivid: `linear-gradient(90deg, #47346d 0%, #5e12ff 100%)`,
+  linearGradientGreyVivid: `linear-gradient(90deg, #3e3e3e 0%, #b3b3b3 100%)`,
   transparentGreyBackground: 'rgba(126, 126, 126, 0.5)'
 };
