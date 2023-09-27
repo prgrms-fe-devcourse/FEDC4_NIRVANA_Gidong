@@ -34,7 +34,8 @@ const Profile = () => {
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['userData', profileUserId],
-    queryFn: async () => await getUser(profileUserId)
+    queryFn: async () => await getUser(profileUserId),
+    suspense: true
   });
 
   const [{ _id: currentUserId }] = useSessionStorage<Pick<User, '_id'>>(
