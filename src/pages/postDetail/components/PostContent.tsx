@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
 import type { User } from '@/types';
@@ -13,6 +13,7 @@ import {
   PostContentMenu,
   PostEditConfirmButtonContainer
 } from './PostContent.style';
+import PostHeader from '@components/PostPreview/PostHeader';
 import { Toast } from '@components/Toast';
 import { deletePost, putPost } from '@apis/posts';
 import { Button } from '@components/Button';

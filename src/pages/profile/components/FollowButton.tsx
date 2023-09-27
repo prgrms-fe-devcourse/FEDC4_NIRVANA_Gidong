@@ -22,7 +22,7 @@ const FollowButton = ({
   followingUserId,
   possibleDeleteFollow,
   followedThisUser = true,
-  width = 68,
+  width = 80,
   height = 30,
   fontSize = 12,
   refetch
@@ -67,6 +67,7 @@ const FollowButton = ({
     <Button
       width={width}
       height={height}
+      borderRadius={30}
       label={followed ? '팔로잉' : '팔로우'}
       fontSize={fontSize}
       bold={true}
