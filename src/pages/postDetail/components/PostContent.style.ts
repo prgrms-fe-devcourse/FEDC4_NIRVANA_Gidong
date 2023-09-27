@@ -68,7 +68,7 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
     }
   }
 
-  & > p:first-child {
+  & > p:first-of-type {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
