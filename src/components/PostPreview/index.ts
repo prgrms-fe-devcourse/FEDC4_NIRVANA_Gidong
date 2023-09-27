@@ -1,3 +1,4 @@
 import PostPreview from './PostPreview';
+import PostHeader from './PostHeader';
 
-export { PostPreview };
+export { PostPreview, PostHeader };
