@@ -1,23 +1,11 @@
-import styled from '@emotion/styled';
 import { Link } from '@components/Link';
 import { Icon } from '@components/Icon';
-import { MESSAGE, LABEL } from '../constants';
-
-const GoToSignUpContainer = styled.div`
-  margin-top: 30px;
-  ${({ theme }) => theme.style.flexAlignCenter};
-  flex-direction: column;
-`;
-
-const Message = styled.span`
-  color: ${({ theme }) => theme.color.greyLight};
-  font-size: 14px;
-  margin-bottom: 10px;
-`;
-
-const LinkContainer = styled.div`
-  ${({ theme }) => theme.style.flexCenter};
-`;
+import { LABEL, MESSAGE } from '../constants';
+import {
+  GoToSignUpContainer,
+  LinkContainer,
+  Message
+} from './GoToSignUp.style';
 
 const GoToSignUp = () => {
   return (
@@ -27,9 +15,8 @@ const GoToSignUp = () => {
         <Icon
           name={'arrow_forward'}
           size={14}
-          color={'red'}
+          color={'redVivid'}
         />
-        &nbsp;
         <Link
           color='black'
           pageLink={'/signup'}>

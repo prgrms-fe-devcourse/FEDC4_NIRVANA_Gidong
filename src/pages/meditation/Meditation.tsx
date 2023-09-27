@@ -1,50 +1,70 @@
-import { useRecoilState } from 'recoil';
-import MeditationLabel from '@pages/meditation/components/MeditationLabel';
-import MeditationTimer from '@pages/meditation/components/MeditationTimer';
-import MeditationTimeSetter from '@pages/meditation/components/MeditationTimeSetter';
-import { MeditationThemePicker } from '@pages/meditation/components/MeditationThemePicker';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { useState } from 'react';
+import { endButtonPushed, meditationStatus } from './states';
 import { MeditationPage } from './Meditation.style';
-import { endButtonPushed } from '@pages/meditation/components/MeditationEndButton/MeditationEndButton';
-import { Confirm } from '@components/Confirm';
-import { Button } from '@components/Button';
+import { ThemePicker } from '@components/ThemePicker';
+import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
+import { meditationChannelInfo } from './models/channelInfo';
+import {
+  MeditationCancelConfirm,
+  MeditationLabel,
+  MeditationTimer,
+  MeditationTimeSetter,
+  PrevPostingConfirm
+} from '@pages/meditation/components';
+import { CONCENTRATION_KEY } from '@pages/meditation/constants';
 
-export const Meditation = () => {
+const Meditation = () => {
   const [confirmCaptured, setConfirmCaptured] = useRecoilState(endButtonPushed);
+  const [selectedTheme, setSelectedTheme] = useState(
+    meditationChannelInfo.get(CONCENTRATION_KEY)
+  );
+  const status = useRecoilValue(meditationStatus);
+  const prevPosting = JSON.parse(sessionStorage.getItem('posting'));
+
+  const handleCancelPrevPosting = () => {
+    sessionStorage.removeItem('posting');
+  };
+
+  const handleCancelCapture = () => {
+    setConfirmCaptured(false);
+  };
+
+  const handleMeditationCancel = () => {
+    location.reload(); // 리팩토링 전 임시방편
+  };
+
+  const handleThemeInfo = (selected: ThemeInfoType) => {
+    setSelectedTheme(selected);
+  };
+
   return (
     <>
-      <MeditationPage>
+      <MeditationPage timerPaused={status}>
+        {prevPosting && (
+          <PrevPostingConfirm
+            prevPostingInfo={prevPosting}
+            handleCancelButton={handleCancelPrevPosting}
+          />
+        )}
         <MeditationLabel />
         <MeditationTimer />
-        <MeditationTimeSetter />
-        <MeditationThemePicker />
+        <MeditationTimeSetter themePicked={selectedTheme} />
+        {!status.started && (
+          <ThemePicker
+            themeInfo={meditationChannelInfo}
+            handleClickTheme={handleThemeInfo}
+          />
+        )}
         {confirmCaptured && (
-          <Confirm
-            emoji={'🧘🏻'}
-            content={'정말 명상을 끝내시겠어요?'}
-            contentFontSize={18}
-            nextPageLink={'/'}
-            CancelButton={
-              <Button
-                width={120}
-                height={50}
-                bold={true}
-                dark={false}
-                label={'취소'}
-                handleClick={() => setConfirmCaptured(false)}
-              />
-            }
-            ConfirmButton={
-              <Button
-                width={120}
-                height={50}
-                bold={true}
-                dark={true}
-                label={'끝내기'}
-              />
-            }
+          <MeditationCancelConfirm
+            handleConfirmButton={handleMeditationCancel}
+            handleCancelButton={handleCancelCapture}
           />
         )}
       </MeditationPage>
     </>
   );
 };
+
+export default Meditation;

@@ -1,13 +1,15 @@
-import type { Post } from '@/types';
+import type { EditedPost } from '@/types';
 import PostHeader from './PostHeader';
 import {
-  PreviewContainer,
+  PostContent,
+  PostContentContainer,
   PostHeaderContainer,
-  PostContent
+  PreviewContainer
 } from './PostPreview.style';
+import { Link } from '@components/Link';
 
 interface PostPreviewProps {
-  post: Pick<Post, 'image' | 'title' | 'author' | 'createdAt'>;
+  post: EditedPost;
   totalLikes: number;
   totalComments: number;
   noneProfile: boolean;
@@ -19,9 +21,10 @@ const PostPreview = ({
   totalComments,
   noneProfile = false
 }: PostPreviewProps) => {
-  const { title } = post;
-  const previewTitle = title.substring(0, 100);
-  // todo: 명상 시간 데이터는 아직 못받아왔으므로 추후에 제외시켜놓은 거 추가하기
+  const { content, _id } = post;
+  const previewContent = `${content.substring(0, 100)}${
+    content.length > 100 ? '...' : ''
+  }`;
 
   return (
     <PreviewContainer>
@@ -31,9 +34,16 @@ const PostPreview = ({
           totalLikes={totalLikes}
           totalComments={totalComments}
           noneProfile={noneProfile}
+          showCommentStatus={true}
         />
       </PostHeaderContainer>
-      <PostContent>{previewTitle}...</PostContent>
+      <PostContentContainer>
+        <Link
+          pageLink={`/posts/${_id}`}
+          color='black'>
+          <PostContent>{previewContent}</PostContent>
+        </Link>
+      </PostContentContainer>
     </PreviewContainer>
   );
 };

@@ -1,9 +1,10 @@
 import {
-  SignUpLabel,
-  SignUpInput,
+  ErrorMessage,
+  Input,
   InputContainer,
-  SignUpError,
-  SignUpSuccess
+  Label,
+  SuccessMessage,
+  StyledTitle
 } from './UserInput.style';
 
 interface UserInputProps {
@@ -35,19 +36,20 @@ const UserInput = ({
 }: Partial<UserInputProps>) => {
   return (
     <InputContainer>
-      <SignUpLabel>
-        {title}
+      <Label>
+        <StyledTitle>{title}</StyledTitle>
         {show && success && (
-          <SignUpSuccess color={successColor}>{successMessage}</SignUpSuccess>
+          <SuccessMessage color={successColor}>{successMessage}</SuccessMessage>
         )}
         {show && !success && (
-          <SignUpError color={errorColor}>{errorMessage}</SignUpError>
+          <ErrorMessage color={errorColor}>{errorMessage}</ErrorMessage>
         )}
-      </SignUpLabel>
-      <SignUpInput
+      </Label>
+      <Input
         type={type}
         name={name}
         placeholder={placeholder}
+        autoComplete={type === 'password' ? 'off' : 'on'}
         onChange={(event) => handleChange(event)}
       />
     </InputContainer>

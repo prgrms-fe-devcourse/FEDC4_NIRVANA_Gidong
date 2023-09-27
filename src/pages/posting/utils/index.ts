@@ -1,4 +1,4 @@
-import validateContent from './validateContent';
-import createFormData from './createFormData';
+import purifyContent from './purifyContent';
+import appendFormData from './appendFormData';
 
-export { createFormData, validateContent };
+export { appendFormData, purifyContent };

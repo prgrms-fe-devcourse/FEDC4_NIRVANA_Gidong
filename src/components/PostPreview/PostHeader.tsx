@@ -1,27 +1,32 @@
-import type { Post } from '@/types';
+import type { EditedPost } from '@/types';
 import { Icon } from '../Icon';
 import { Avatar } from '../Avatar';
 import {
   AvatarContainer,
-  PostInfoContainer,
   PostDetailInfoContainer,
-  UserNameContainer
+  UserContainer,
+  NameContainer,
+  IdContainer
 } from './PostPreview.style';
+import { Link } from '@components/Link';
+import { UserId } from '@components/UserText';
 
 interface PostHeaderProps {
-  post: Pick<Post, 'image' | 'title' | 'author' | 'createdAt'>;
-  totalLikes: number;
-  totalComments: number;
+  post: Pick<EditedPost, '_id' | 'author' | 'createdAt' | 'meditationTime'>;
+  totalLikes?: number;
+  totalComments?: number;
   noneProfile: boolean;
+  showCommentStatus: boolean;
 }
 
 const PostHeader = ({
   post,
   totalLikes,
   totalComments,
-  noneProfile
+  noneProfile,
+  showCommentStatus
 }: PostHeaderProps) => {
-  const { image, author, createdAt } = post;
+  const { author, createdAt, meditationTime, _id } = post;
   const iconDescription = [
     { name: 'favorite', size: 12, total: totalLikes },
     { name: 'chat', size: 12, total: totalComments }
@@ -30,34 +35,49 @@ const PostHeader = ({
   return (
     <>
       {!noneProfile && (
-        <>
-          <AvatarContainer>
+        <AvatarContainer>
+          <Link
+            pageLink={`/profile/${author._id}`}
+            color='black'>
             <Avatar
-              alt={'유저 프로필'}
-              src={image}
-              size={25}
+              alt={author.fullName}
+              src={author.image}
+              size={45}
             />
-          </AvatarContainer>
-          <PostInfoContainer>
-            <UserNameContainer>{author.fullName}</UserNameContainer>
-          </PostInfoContainer>
-        </>
+          </Link>
+        </AvatarContainer>
       )}
-      <PostDetailInfoContainer>
-        {createdAt}
-        {iconDescription.map((iconInfo, index) => {
-          return (
-            <div key={index}>
-              <Icon
-                name={iconInfo.name}
-                size={iconInfo.size}
-                color={'greyLight'}
-              />
-              {iconInfo.total}
-            </div>
-          );
-        })}
-      </PostDetailInfoContainer>
+      <PostInfoContainer>
+        <Link
+          setActiveStyle={false}
+          pageLink={`/posts/${_id}`}
+          color='black'>
+          {!noneProfile && (
+            <UserContainer>
+              <NameContainer>{author.fullName}</NameContainer>
+              <IdContainer>
+                <UserId email={author.email} />
+              </IdContainer>
+            </UserContainer>
+          )}
+          <PostDetailInfoContainer noneProfile={noneProfile}>
+            {createdAt} / {meditationTime}분
+            {showCommentStatus &&
+              iconDescription.map((iconInfo, index) => {
+                return (
+                  <div key={index}>
+                    <Icon
+                      name={iconInfo.name}
+                      size={iconInfo.size}
+                      color={'greyLight'}
+                    />
+                    {iconInfo.total}
+                  </div>
+                );
+              })}
+          </PostDetailInfoContainer>
+        </Link>
+      </PostInfoContainer>
     </>
   );
 };

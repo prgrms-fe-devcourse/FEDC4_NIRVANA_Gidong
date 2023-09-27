@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const UserIdSpan = styled.span`
-  font-size: 16px;
-  color: ${({ theme }) => theme.greyLight};
+export const UserIdSpan = styled.span<{ size: number }>`
+  font-size: ${({ size }) => size}px;
+  color: ${({ theme }) => theme.color.greyLight};
 `;

@@ -15,3 +15,14 @@ export interface Post {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface EditedPost extends Post {
+  meditationTime: number;
+  content: string | undefined;
+}
+
+type OmitPost = Omit<Post, 'author'>;
+
+export interface SearchEditedPost extends OmitPost {
+  author: string;
+}

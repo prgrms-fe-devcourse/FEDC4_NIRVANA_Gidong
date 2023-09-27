@@ -27,6 +27,7 @@ export const StyledDeemBackground = styled.div<DeemBackgroundProps>`
   display: ${({ disabled }) => (disabled ? 'none' : 'flex')};
   justify-content: center;
   align-items: center;
+  z-index: 100;
 `;
 
 export const StyledAlertBackground = styled.div<AlertBackgroundProps>`
@@ -46,8 +47,9 @@ export const IconContainer = styled.div<IconContainerProps>`
 `;
 
 export const ContentContainer = styled.div<ContentContainerProps>`
-  width: 100%;
+  width: 80%;
   height: 50%;
+  white-space: pre-line;
   text-align: center;
   font-weight: bold;
   font-size: ${({ contentFontSize }) => contentFontSize}px;

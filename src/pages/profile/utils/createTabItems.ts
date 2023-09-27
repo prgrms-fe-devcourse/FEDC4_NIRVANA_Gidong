@@ -1,35 +1,39 @@
-import { User, Follow, Post } from '@/types';
+import { Follow, Post, User } from '@/types';
 import { PROFILE_TABS } from '../constants/profileTabs';
+import getTotalMeditationTime from '@/utils/getTotalMeditationTime';
 
-export interface TabItem {
-  label: string;
+const { MEDITATION, FOLLOWING, FOLLOWER, INFO } = PROFILE_TABS;
+
+export interface TabItem<T> {
   value: string | number;
-  data: number[] | Post[] | Follow[];
+  data: T;
 }
 
-const createTabItems = (tabData: User, isLoading: boolean): TabItem[] => {
-  const tabItems = [
-    {
-      label: PROFILE_TABS.MEDITATION,
+export interface TabItems {
+  [key: string]: TabItem<Follow[] | Post[] | number[]>;
+}
+
+const createTabItems = (tabData: User, isLoading: boolean): TabItems => {
+  const tabItems = {
+    [MEDITATION]: {
       value: isLoading ? 0 : tabData.posts.length,
       data: isLoading ? [] : tabData.posts
     },
-    {
-      label: PROFILE_TABS.FOLLOWING,
-      value: isLoading ? 0 : tabData.following.length,
-      data: isLoading ? [] : tabData.following
-    },
-    {
-      label: PROFILE_TABS.FOLLOWER,
+    [FOLLOWER]: {
       value: isLoading ? 0 : tabData.followers.length,
       data: isLoading ? [] : tabData.followers
     },
-    {
-      label: PROFILE_TABS.INFO,
+    [FOLLOWING]: {
+      value: isLoading ? 0 : tabData.following.length,
+      data: isLoading ? [] : tabData.following
+    },
+    [INFO]: {
       value: '',
-      data: isLoading ? [] : [tabData.posts.length]
+      data: isLoading
+        ? []
+        : [tabData.posts.length, getTotalMeditationTime(tabData.posts)]
     }
-  ];
+  };
 
   return tabItems;
 };

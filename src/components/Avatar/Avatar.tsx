@@ -1,4 +1,5 @@
 import { AvatarContainer, AvatarImage, AvatarText } from './Avatar.style';
+
 interface AvatarProps {
   alt: string;
   src: string;
@@ -15,7 +16,7 @@ const Avatar = ({ alt, src, size, children }: AvatarProps) => {
           alt={alt}
         />
       ) : (
-        <AvatarText>{alt.charAt(0).toUpperCase()}</AvatarText>
+        <AvatarText>{alt?.charAt(0).toUpperCase()}</AvatarText>
       )}
       {children}
     </AvatarContainer>

@@ -1,37 +1,53 @@
 import styled from '@emotion/styled';
 
-export const SignUpLabel = styled.label`
+export const InputContainer = styled.div`
+  width: 100%;
+  max-width: 300px;
+  margin: 10px 0;
+`;
+export const Label = styled.label`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   font-weight: 700;
   margin-left: 10px;
   margin-bottom: 10px;
 `;
 
-export const SignUpInput = styled.input`
+export const Input = styled.input`
   box-sizing: border-box;
-  width: 300px;
+  width: 100%;
   height: 45px;
   padding-left: 10px;
-  border: 0.5px solid #7e7e7e;
+  font-size: 14px;
+  border: 1px solid ${({ theme }) => theme.color.white500};
   border-radius: 10px;
 `;
 
-export const InputContainer = styled.div`
-  margin: 10px 0;
+export const StyledTitle = styled.span`
+  min-height: 20px;
+  margin-right: 5px;
+  ${({ theme }) => theme.style.flexAlignCenter};
 `;
 
-export const SignUpError = styled.span`
+export const ErrorMessage = styled.span`
+  line-height: 1.2;
+  min-width: 200px;
+  min-height: 20px;
+  ${({ theme }) => theme.style.flexAlignCenter};
   color: ${({ theme }) => theme.color.redVivid};
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
-  margin-left: 10px;
   white-space: pre-line;
 `;
 
-export const SignUpSuccess = styled.span`
+export const SuccessMessage = styled.span`
+  line-height: 1.2;
+  min-width: 200px;
+  min-height: 20px;
+  ${({ theme }) => theme.style.flexAlignCenter};
   color: ${({ theme }) => theme.color.greenVivid};
-  font-size: 10px;
+  font-size: 12px;
+  white-space: pre-line;
   font-weight: 400;
-  margin-left: 10px;
 `;

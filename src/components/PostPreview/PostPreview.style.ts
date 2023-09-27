@@ -3,14 +3,19 @@ import styled from '@emotion/styled';
 export const PreviewContainer = styled.div`
   max-width: 600px;
   width: 100%;
-  height: 150px;
+  min-height: 160px;
+  max-height: 200px;
   margin: 0 auto;
-  padding: 15px 60px;
+  padding: 15px 26px;
   background-color: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 0.5px solid ${({ theme }) => theme.color.greyLight };
+  border-bottom: 0.5px solid ${({ theme }) => theme.color.white800};
+  &:hover,
+  &:active {
+    background-color: ${({ theme }) => theme.color.white900};
+  }
 `;
 
 export const PostHeaderContainer = styled.div`
@@ -31,25 +36,41 @@ export const AvatarContainer = styled.div`
 export const PostInfoContainer = styled.div`
   width: calc(100% - 50px);
   height: 50px;
-  display: flex;
-  flex-direction: column;
+  ${({ theme }) => theme.style.flexAlignCenter};
   padding-left: 10px;
+  line-height: 1.5;
+
+  > a {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    ${({ theme }) => theme.style.flexAlignCenter}
+  }
 `;
 
-export const UserNameContainer = styled.div`
+export const UserContainer = styled.div`
   width: 100%;
   height: 50%;
-  font-weight: bold;
-  font-size: 16px;
   display: flex;
   align-items: center;
 `;
 
-export const PostDetailInfoContainer = styled.div`
+export const NameContainer = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+`;
+
+export const IdContainer = styled.div`
+  padding-left: 5px;
+  font-weight: 300;
+  color: ${({ theme }) => theme.color.greyLight};
+`;
+
+export const PostDetailInfoContainer = styled.div<{ noneProfile: boolean }>`
   width: 100%;
   height: 50%;
-  color: ${({ theme }) => theme.color.greyLight };
-  font-size: 14px;
+  color: ${({ theme }) => theme.color.greyLight};
+  font-size: ${({ noneProfile }) => (noneProfile ? 16 : 14)}px;
   display: flex;
   align-items: center;
 
@@ -63,10 +84,16 @@ export const PostDetailInfoContainer = styled.div`
   }
 `;
 
+export const PostContentContainer = styled.div`
+  flex-grow: 1;
+  width: 100%;
+`;
+
 export const PostContent = styled.div`
   width: 100%;
-  height: 100px;
-  padding: 5px;
+  height: 100%;
+  padding: 15px 5px;
+  padding-bottom: 0px;
   font-size: 16px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
