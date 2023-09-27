@@ -5,14 +5,15 @@ import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types';
-import { USER_INPUT, LABEL, PASSWORD_HINT } from './constants';
+import { LABEL, PASSWORD_HINT, USER_INPUT } from './constants';
 import isPasswordOk from './utils/isPasswordOk';
 import { PasswordHint } from '@pages/password-update/components';
+import { PasswordUpdateForm, ButtonContainer } from './PasswordUpdate.style';
 import {
-  PasswordUpdateForm,
-  ButtonContainer,
-  PasswordUpdateContainer
-} from './PasswordUpdate.style';
+  Heading,
+  HeadingContentContainer,
+  LandingMain
+} from '@pages/landing/Landing.style';
 
 const PasswordUpdate = () => {
   const [password, setPassword] = useState<string>('');
@@ -64,58 +65,57 @@ const PasswordUpdate = () => {
   };
 
   return (
-    <>
-      <PasswordUpdateContainer>
-        {passwordChanged && (
-          <Alert
-            emoji={'✅'}
-            content={'비밀번호가 정상적으로 변경되었습니다.'}
-            buttonLabel={'확인'}
-            nextPageLink={
-              userSessionData.token
-                ? `/profile/${userSessionData._id}`
-                : '/login'
-            }
-          />
-        )}
+    <LandingMain>
+      <HeadingContentContainer>
+        <Heading />
+      </HeadingContentContainer>
+      {passwordChanged && (
+        <Alert
+          emoji={'✅'}
+          content={'비밀번호가 정상적으로 변경되었습니다.'}
+          buttonLabel={'확인'}
+          nextPageLink={
+            userSessionData.token ? `/profile/${userSessionData._id}` : '/login'
+          }
+        />
+      )}
 
-        <PasswordUpdateForm onSubmit={handleSubmit}>
-          <PasswordHint text={PASSWORD_HINT} />
-          <UserInput
-            name={USER_INPUT.NEW_PASSWORD.NAME}
-            placeholder={USER_INPUT.NEW_PASSWORD.PLACE_HOLDER}
-            title={USER_INPUT.NEW_PASSWORD.TITLE}
-            handleChange={handleInputChange}
-            show={password.length > 0}
-            success={isPasswordOk(password)}
-            type={USER_INPUT.NEW_PASSWORD.TYPE}
-            errorMessage={USER_INPUT.NEW_PASSWORD.ERROR_MESSAGE}
-            successMessage={USER_INPUT.NEW_PASSWORD.SUCCESS_MESSAGE}
+      <PasswordUpdateForm onSubmit={handleSubmit}>
+        <PasswordHint text={PASSWORD_HINT} />
+        <UserInput
+          name={USER_INPUT.NEW_PASSWORD.NAME}
+          placeholder={USER_INPUT.NEW_PASSWORD.PLACE_HOLDER}
+          title={USER_INPUT.NEW_PASSWORD.TITLE}
+          handleChange={handleInputChange}
+          show={password.length > 0}
+          success={isPasswordOk(password)}
+          type={USER_INPUT.NEW_PASSWORD.TYPE}
+          errorMessage={USER_INPUT.NEW_PASSWORD.ERROR_MESSAGE}
+          successMessage={USER_INPUT.NEW_PASSWORD.SUCCESS_MESSAGE}
+        />
+        <UserInput
+          name={USER_INPUT.NEW_PASSWORD_CONFIRM.NAME}
+          placeholder={USER_INPUT.NEW_PASSWORD_CONFIRM.PLACE_HOLDER}
+          title={USER_INPUT.NEW_PASSWORD_CONFIRM.TITLE}
+          handleChange={handleInputChange}
+          show={passwordConfirm.length > 0}
+          success={password === passwordConfirm}
+          type={USER_INPUT.NEW_PASSWORD_CONFIRM.TYPE}
+          errorMessage={USER_INPUT.NEW_PASSWORD_CONFIRM.ERROR_MESSAGE}
+          successMessage={USER_INPUT.NEW_PASSWORD_CONFIRM.SUCCESS_MESSAGE}
+        />
+        <ButtonContainer>
+          <Button
+            label={LABEL.CHANGE_PASSWORD}
+            width={300}
+            height={45}
+            bold={false}
+            dark={true}
+            handleClick={() => handleSubmit}
           />
-          <UserInput
-            name={USER_INPUT.NEW_PASSWORD_CONFIRM.NAME}
-            placeholder={USER_INPUT.NEW_PASSWORD_CONFIRM.PLACE_HOLDER}
-            title={USER_INPUT.NEW_PASSWORD_CONFIRM.TITLE}
-            handleChange={handleInputChange}
-            show={passwordConfirm.length > 0}
-            success={password === passwordConfirm}
-            type={USER_INPUT.NEW_PASSWORD_CONFIRM.TYPE}
-            errorMessage={USER_INPUT.NEW_PASSWORD_CONFIRM.ERROR_MESSAGE}
-            successMessage={USER_INPUT.NEW_PASSWORD_CONFIRM.SUCCESS_MESSAGE}
-          />
-          <ButtonContainer>
-            <Button
-              label={LABEL.CHANGE_PASSWORD}
-              width={300}
-              height={45}
-              bold={false}
-              dark={true}
-              handleClick={() => handleSubmit}
-            />
-          </ButtonContainer>
-        </PasswordUpdateForm>
-      </PasswordUpdateContainer>
-    </>
+        </ButtonContainer>
+      </PasswordUpdateForm>
+    </LandingMain>
   );
 };
 

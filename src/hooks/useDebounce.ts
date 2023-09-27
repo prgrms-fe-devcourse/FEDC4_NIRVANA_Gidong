@@ -1,4 +1,4 @@
-import { useRef, useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 const useDebounce = <T, U>(
   time: number,
@@ -28,7 +28,7 @@ const useDebounce = <T, U>(
 
   useEffect(() => {
     run();
-  }, dependency);
+  }, [dependency, run]);
 
   useEffect(() => clear, [clear]);
 

@@ -5,7 +5,6 @@ const StyledSkeleton = styled.div`
   overflow: hidden;
   isolation: isolate;
   background-color: ${({ theme }) => theme.color.white800};
-
   @keyframes loading {
     0% {
       transform: translateX(0);
@@ -20,9 +19,10 @@ const StyledSkeleton = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 60px;
+    min-width: 100px;
+    width: 50%;
     height: 100%;
-    background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
+    background: linear-gradient(to right, #eeee, #f9f9f9, #eeee);
     animation: loading 2s infinite linear;
   }
 `;

@@ -1,7 +1,8 @@
+import { useSetRecoilState } from 'recoil';
+
 import { useFileUpload } from '@hooks/useFileUpload';
 import { EditIconContainer } from './ProfileAvatarEdit.style';
 import { Icon } from '@components/Icon';
-import { useSetRecoilState } from 'recoil';
 import { isEditLoadingState } from '@pages/profile/states/editLoading';
 import useUploadPhotoMutation from '@pages/profile/hooks/useUploadPhotoMutation';
 

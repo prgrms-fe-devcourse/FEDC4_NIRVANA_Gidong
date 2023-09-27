@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -15,7 +15,7 @@ import Posts from '@pages/posts';
 import Notice from '@pages/notice';
 import PostDetail from '@pages/postDetail/PostDetail';
 import { Suspense } from 'react';
-import { SkeletonPosting } from '@pages/posting/components/SkeletonPosting';
+import { SkeletonPosts } from '@components/Skeleton/SkeletonPosts';
 
 const PageRoutes = () => {
   return (
@@ -64,7 +64,7 @@ const PageRoutes = () => {
         <Route
           path='/posts'
           element={
-            <Suspense fallback={<SkeletonPosting />}>
+            <Suspense fallback={<SkeletonPosts />}>
               <Posts />
             </Suspense>
           }

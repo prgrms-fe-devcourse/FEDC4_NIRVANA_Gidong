@@ -37,6 +37,7 @@ export const CommentButtonContainer = styled.div<CommentButtonProps>`
   ${({ theme }) => theme.style.flexCenter}
   width: 50px;
   height: 100%;
+
   > button {
     transition: all 0.2s ease-in-out;
     background-color: ${({ buttonDisabled, theme }) =>
@@ -56,6 +57,7 @@ export const CommentInput = styled.input`
   flex: 1;
   font-size: 16px;
   border: none;
+
   :focus {
     outline: none;
   }

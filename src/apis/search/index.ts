@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@constants/Api';
-import { User, SearchEditedPost } from '@/types';
+import { SearchEditedPost, User } from '@/types';
 
 const searchUser = async (query: string) => {
   const response = await axios.get<User[]>(

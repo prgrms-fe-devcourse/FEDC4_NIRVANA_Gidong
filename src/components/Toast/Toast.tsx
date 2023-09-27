@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { Icon } from '@components/Icon';
-import { StyledToast, IconContainer } from './Toast.style';
+import { IconContainer, StyledToast } from './Toast.style';
 
 interface ToastProps {
   width?: number;

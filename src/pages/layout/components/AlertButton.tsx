@@ -1,12 +1,13 @@
+import { useRecoilState } from 'recoil';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+
+import type { User } from '@/types';
 import { getNotifications } from '@apis/notice';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { Icon } from '@components/Icon';
 import { DotBadge } from '@components/Badge';
-import { User } from '@/types';
 import { Button } from '@components/Button';
-import { useRecoilState } from 'recoil';
 import { readAlert } from '@pages/notice/states/readAlert';
 
 interface AlertButtonProps {
@@ -57,8 +58,7 @@ const AlertButton = ({ handleClickAlert }: AlertButtonProps) => {
         height={25}
         handleClick={handleClickAlert}
         borderRadius={0}
-        border='none'
-        padding={false}
+        border='transparent'
         backgroundColor='transparent'>
         <Icon
           name='notifications'

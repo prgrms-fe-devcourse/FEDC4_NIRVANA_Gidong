@@ -9,7 +9,6 @@ export const ProfileCoverImage = styled.img`
   object-fit: cover;
   width: 100%;
   height: fit-content;
-  min-height: 100px;
   top: 0;
   display: ${({ src }) => (src ? 'block' : 'none')};
 `;
@@ -17,13 +16,17 @@ export const ProfileCoverImage = styled.img`
 export const ProfileCoverImageContainer = styled.div<ProfileCoverImageProps>`
   background-image: ${({ theme }) => theme.color.linearGradientPurple};
   ${({ theme }) => theme.style.flexCenter};
-  height: 100px;
   width: 100%;
+  height: 100px;
   position: relative;
   overflow: hidden;
   > button {
     position: absolute;
     top: 10px;
     right: 15px;
+  }
+
+  @media (min-width: 600px) {
+    height: 150px;
   }
 `;

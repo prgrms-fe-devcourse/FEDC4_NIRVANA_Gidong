@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@/constants/Api';
-import { Post, Channel } from '@/types';
+import { Channel, Post } from '@/types';
 
 interface PostApiProps {
   postId: string;

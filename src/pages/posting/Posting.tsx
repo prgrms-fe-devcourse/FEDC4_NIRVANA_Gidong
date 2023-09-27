@@ -1,28 +1,27 @@
 import { useEffect, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { purifyContent, appendFormData } from './utils';
+import postCreateNewPost from '@apis/posting';
 import { NewPost } from './components/NewPost';
 import { SkipPosting } from './components/SkipPosting';
-import { appendFormData, purifyContent } from './utils';
 import {
   ContentContainer,
   StyledDescription,
   StyledPosting
 } from './Posting.style';
 import PostingHelper from './components/NewPost/PostingHelper';
-import { useMutation } from '@tanstack/react-query';
-import postCreateNewPost from '@apis/posting';
-import { Toast } from '@components/Toast';
+
+interface MutationParams {
+  posting: string;
+}
 
 interface ReceiveState {
   totalTime: number;
   channelId: string;
   channelLabel: string;
   validation: boolean;
-}
-
-interface MutationParams {
-  posting: string;
 }
 
 const Posting = () => {
@@ -35,7 +34,7 @@ const Posting = () => {
     channelLabel: '',
     validation: false
   });
-  const { totalTime, channelLabel } = meditationInfo;
+  const { totalTime, channelLabel, channelId } = meditationInfo;
   const customToken = `bearer ${token}`;
   const { mutate, isLoading, isError } = useMutation({
     mutationFn: async ({ posting = '' }: MutationParams) => {
@@ -76,16 +75,10 @@ const Posting = () => {
       navigate('/404');
     }
     setMeditationInfo(location.state);
-  }, []);
+  }, [location.state, navigate]);
 
   return (
     <StyledPosting>
-      {isError && (
-        <Toast
-          type={'ERROR'}
-          content='포스트를 발행하는 데 실패했습니다. 다시 시도해주세요.'
-        />
-      )}
       <ContentContainer>
         <StyledDescription>
           <PostingHelper

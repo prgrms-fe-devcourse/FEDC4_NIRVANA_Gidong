@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
@@ -12,12 +12,11 @@ import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
 import { editPostData } from './utils/editPostData';
 import useObserver from './hooks/useObserver';
 import {
-  StyledPostsPage,
-  ThemePickerContainer,
   PostsContainer,
-  StyledNoPosts
+  StyledNoPosts,
+  StyledPostsPage,
+  ThemePickerContainer
 } from './Posts.style';
-import { useLocation } from 'react-router-dom';
 import { CONCENTRATION_KEY } from '@pages/meditation/constants';
 
 const Posts = () => {
@@ -34,9 +33,9 @@ const Posts = () => {
   const channelInfo = new Map(meditationChannelInfo);
 
   const { data, isError } = useQuery({
-    queryKey: ['getChannelPosts', channelId, offset],
+    queryKey: ['getChannelPosts', channel.id, offset],
     queryFn: async () => {
-      const { data } = await getPosts(channelId, offset);
+      const { data } = await getPosts(channel.id, offset);
       const editedData = editPostData(data);
 
       return editedData;
@@ -59,7 +58,7 @@ const Posts = () => {
       const { lastChild } = postsRef.current;
       lastChild && observe(lastChild);
     }
-  }, [postsData]);
+  }, [postsData, observe]);
 
   const clickThemePicker = (selected: ThemeInfoType) => {
     setChannel(selected);

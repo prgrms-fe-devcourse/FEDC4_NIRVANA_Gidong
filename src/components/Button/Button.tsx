@@ -8,11 +8,14 @@ interface ButtonProps {
   label?: string;
   handleClick?: () => void;
   bold?: boolean;
+  border?: keyof typeof color;
   textColor?: keyof typeof color;
   fontSize?: number;
   borderRadius?: number;
   children?: React.ReactNode;
   disabled?: boolean;
+  padding?: boolean;
+  border?: string;
   backgroundColor?: keyof typeof color;
 }
 
@@ -28,22 +31,27 @@ const Button = ({
   borderRadius,
   children,
   disabled,
+  border = 'transparent',
   backgroundColor
-}: ButtonProps) => (
-  <StyledButton
-    width={width}
-    height={height}
-    onClick={handleClick}
-    dark={dark}
-    textColor={textColor}
-    bold={bold}
-    fontSize={fontSize}
-    borderRadius={borderRadius}
-    disabled={disabled}
-    backgroundColor={backgroundColor}>
-    {label}
-    {children}
-  </StyledButton>
-);
+}: ButtonProps) => {
+  return (
+    <StyledButton
+      width={width}
+      height={height}
+      onClick={handleClick}
+      dark={dark}
+      textColor={textColor}
+      bold={bold}
+      border={border}
+      fontSize={fontSize}
+      borderRadius={borderRadius}
+      disabled={disabled}
+      backgroundColor={backgroundColor}>
+      {label}
+      {children}
+    </StyledButton>
+  );
+};
+
 
 export default Button;

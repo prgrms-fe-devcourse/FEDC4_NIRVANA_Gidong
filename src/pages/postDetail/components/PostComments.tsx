@@ -1,5 +1,5 @@
 import { PostCommentsSection } from './PostComments.style';
-import { PostCommentHeader, PostComment } from './';
+import { PostComment, PostCommentHeader } from './';
 import { Comment } from '@/types/Comment';
 import { Like } from '@/types/Like';
 

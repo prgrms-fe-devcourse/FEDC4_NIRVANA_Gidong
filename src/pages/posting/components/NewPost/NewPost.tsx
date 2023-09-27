@@ -7,10 +7,10 @@ import useDebounce from '@hooks/useDebounce';
 import useSessionStorage from '@hooks/useSessionStorage';
 import NewPostConfirm from './NewPostConfirm';
 import {
-  TextAreaContainer,
   ButtonContainer,
   PostContainer,
-  StyledTextArea
+  StyledTextArea,
+  TextAreaContainer
 } from './NewPost.style';
 import { UseMutateFunction } from '@tanstack/react-query';
 
@@ -51,11 +51,9 @@ const NewPost = ({
     },
     [posting]
   );
-
   const handlePostButton = () => {
     setShowConfirm(true);
   };
-
   const handleCancelButton = () => {
     setShowConfirm(false);
   };
@@ -72,7 +70,7 @@ const NewPost = ({
     }
     return () => clear();
   }, []);
-
+  
   return (
     <>
       {posting.length >= LIMIT_LENGTH && (
@@ -116,5 +114,4 @@ const NewPost = ({
     </>
   );
 };
-
 export default NewPost;

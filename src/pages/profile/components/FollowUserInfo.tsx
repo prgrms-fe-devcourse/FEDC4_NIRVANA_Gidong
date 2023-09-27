@@ -9,6 +9,7 @@ interface FollowUserInfoProps {
   email: string;
   isOnline: boolean;
   id: string;
+  avatarSize?: number;
 }
 
 const FollowUserInfo = ({
@@ -16,7 +17,8 @@ const FollowUserInfo = ({
   isOnline,
   email,
   image,
-  id
+  id,
+  avatarSize = 40
 }: FollowUserInfoProps) => {
   const navigate = useNavigate();
 
@@ -27,7 +29,7 @@ const FollowUserInfo = ({
       <BadgeAvatar
         alt={fullName}
         src={image}
-        size={39}
+        size={avatarSize}
         online={isOnline}
       />
       <UserName>{fullName}</UserName>

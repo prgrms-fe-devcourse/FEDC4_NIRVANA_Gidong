@@ -11,8 +11,8 @@ const SearchButton = ({ handleClickButton, searchStatus }: SearchButton) => {
   return (
     <ButtonBox>
       <Button
-        width={24}
-        height={24}
+        width={25}
+        height={25}
         handleClick={handleClickButton}>
         <Icon
           name='search'

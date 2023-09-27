@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
 
 export const ProfileEditSection = styled.section`
-  margin-top: 100px;
   height: 100%;
+  width: 100%;
 `;
 
 export const ProfileEditContainer = styled.div`
-  ${({ theme }) => theme.style.flexJustifyCenter}
+  height: 100%;
+  width: 100%;
 `;
 
 export const ProfileEditForm = styled.form`

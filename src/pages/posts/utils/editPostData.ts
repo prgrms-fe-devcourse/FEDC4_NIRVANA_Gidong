@@ -1,4 +1,4 @@
-import type { Post, EditedPost } from '@/types';
+import type { EditedPost, Post } from '@/types';
 
 const editTimeForm = (time: string) => {
   return time.split('T')[0].split('-').join('.');
