@@ -5,15 +5,14 @@ import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 import { USER_INPUT } from './constants';
 import { GoToSignUp } from './components';
-import {
-  LoginForm,
-  ButtonContainer,
-  LoginContainer,
-  LogoContainer,
-  Logo
-} from './Login.style';
+import { LoginForm, ButtonContainer } from './Login.style';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types';
+import {
+  Heading,
+  HeadingContentContainer,
+  LandingMain
+} from '@pages/landing/Landing.style';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
@@ -70,18 +69,16 @@ const Login = () => {
           fullName: user.fullName
         });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         setErrorCatched(true);
       });
   };
 
   return (
-    <LoginContainer>
-      <LogoContainer>
-        <Logo />
-      </LogoContainer>
-
+    <LandingMain>
+      <HeadingContentContainer>
+        <Heading />
+      </HeadingContentContainer>
       <LoginForm onSubmit={handleSubmit}>
         <UserInput
           name={USER_INPUT.EMAIL.NAME}
@@ -110,7 +107,7 @@ const Login = () => {
         </ButtonContainer>
         <GoToSignUp />
       </LoginForm>
-    </LoginContainer>
+    </LandingMain>
   );
 };
 

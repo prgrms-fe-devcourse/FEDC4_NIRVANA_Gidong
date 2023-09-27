@@ -17,7 +17,7 @@ export const StyledButton = styled.button<{
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   border: ${({ theme, dark }) =>
-    dark === undefined || dark ? 0 : `1px solid ${theme.color.white800}`};
+    dark === undefined || dark ? 0 : `1px solid ${theme.color.white500}`};
   background-color: ${({ theme, dark }) =>
     dark === undefined
       ? 'transparent'

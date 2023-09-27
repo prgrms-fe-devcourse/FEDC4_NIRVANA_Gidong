@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { StyledFooter } from './Footer.style';
+
+import type { User } from '@/types/User';
+
 import useSessionStorage from '@hooks/useSessionStorage';
 import { LoginConfirm } from '@components/Confirm';
 import { Icon } from '@components/Icon';
 import { Button } from '@components/Button';
-import { StyledFooter } from './Footer.style';
-import { User } from '@/types/User';
 import { useRecoilState } from 'recoil';
 import { openSearch } from '../states/openSearch';
 

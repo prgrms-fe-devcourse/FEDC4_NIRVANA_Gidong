@@ -1,33 +1,49 @@
 import styled from '@emotion/styled';
 
 const NoticeItemContainer = styled.div`
+  cursor: pointer;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
   display: flex;
+  padding: 10px;
+  border-bottom: 1px solid ${({ theme }) => theme.color.white800};
+  &:hover,
+  &:active {
+    background-color: ${({ theme }) => theme.color.white900};
+  }
   padding: 14px;
-  border-bottom: 0.5px solid ${({ theme }) => theme.color['greyLight']};
   line-height: 1.5;
 `;
 
 const ProfileImage = styled.div`
-  width: 39px;
-  height: 39px;
-  margin-right: 20px;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
   border-radius: 50%;
+  ${({ theme }) => theme.style.flexCenter};
 `;
 
 const NoticeContent = styled.div`
+  width: calc(100% - 60px);
+  height: 100%;
+  flex-direction: column;
   align-self: center;
+  line-height: 1.5;
 `;
 
 const Message = styled.div`
+  font-weight: 400;
+  font-size: 14px;
+  color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.style.flexAlignCenter};
   font-weight: 700;
-  font-size: 13px;
-  color: ${({ theme }) => theme.color['black']};
+  color: ${({ theme }) => theme.color.black};
 `;
 
 const MessagePreview = styled.div`
-  font-size: 11px;
-  color: ${({ theme }) => theme.color['greyLight']};
+  font-size: 0.6rem;
+  color: ${({ theme }) => theme.color.greyLight};
 `;
 
 const MessageText = styled.span`

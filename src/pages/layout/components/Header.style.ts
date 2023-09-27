@@ -1,18 +1,19 @@
 import styled from '@emotion/styled';
 
 export const HeaderSection = styled.header`
-  position: relative;
+  width: 100%;
   height: 50px;
+  position: relative;
   background-color: ${({ theme }) => theme.color.purpleDark};
   display: flex;
 `;
 
 export const HeaderNavSection = styled(HeaderSection)`
   justify-content: space-between;
-  padding: 0 18px;
+  padding: 0 20px;
 `;
 
 export const HeaderSearchSection = styled(HeaderSection)`
   align-items: center;
-  padding: 0 44px 0 14px;
+  ${({ theme }) => theme.style.flexCenter};
 `;

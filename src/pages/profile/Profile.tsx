@@ -71,6 +71,12 @@ const Profile = () => {
           fullName={isLoading ? '' : currentPageProfileData.fullName}
           avatarImgSrc={isLoading ? '' : currentPageProfileData.image}
           refetch={() => refetch()}
+          myProfile={currentUserId === profileUserId}
+          profileId={profileUserId}
+          myFollowData={
+            isLoading ? null : getMyFollowData(data?.followers, currentUserId)
+          }
+          openSidebar={openSidebar}
         />
       </ProfileInfoContainer>
       <ProfileBodyContainer>

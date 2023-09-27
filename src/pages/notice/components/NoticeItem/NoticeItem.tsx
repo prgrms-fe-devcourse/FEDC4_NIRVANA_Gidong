@@ -80,7 +80,7 @@ const NoticeItem = ({
         {type === NOTICE_TYPE.COMMENT && (
           <MessagePreview>
             {comment && comment.comment.length > 25
-              ? comment.comment.slice(0, 25) + '...'
+              ? comment.comment.slice(0, 50) + '...'
               : comment.comment}
           </MessagePreview>
         )}

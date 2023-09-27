@@ -1,29 +1,25 @@
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
-import { useRef } from 'react';
+
+import type { User } from '@/types/User';
+
 import { Icon } from '@components/Icon';
+import PostHeader from '@components/PostPreview/PostHeader';
 import {
   PostContentSection,
   PostContentHeader,
-  PostContentAvatarContainer,
   PostContentBody,
   PostContentMenuIconContainer,
-  PostContentTime,
-  PostContentUserInfo,
-  PostContentUserName,
   PostContentMenu,
   PostEditConfirmButtonContainer
 } from './PostContent.style';
 import { Toast } from '@components/Toast';
 import { User } from '@/types/User';
 import { deletePost, putPost } from '@apis/posts';
-import { UserId, UserName } from '@components/UserText';
-import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
-import { appendFormData, purifyContent } from '@pages/posting/utils';
-import { Link } from 'react-router-dom';
+import { createFormData, purifyContent } from '@pages/posting/utils';
 
 interface PostContentProps {
   author: User;
@@ -33,7 +29,7 @@ interface PostContentProps {
   token: string;
   createdAt: string;
   content: string;
-  meditationTime: string;
+  meditationTime: number;
 }
 
 const PostContent = ({
