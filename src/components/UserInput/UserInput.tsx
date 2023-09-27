@@ -3,7 +3,6 @@ import {
   Input,
   InputContainer,
   Label,
-  ErrorMessage,
   SuccessMessage,
   StyledTitle
 } from './UserInput.style';

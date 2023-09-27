@@ -13,6 +13,7 @@ interface ButtonProps {
   borderRadius?: number;
   children?: React.ReactNode;
   disabled?: boolean;
+  padding?: boolean;
   border?: string;
   backgroundColor?: keyof typeof color;
 }
@@ -29,6 +30,7 @@ const Button = ({
   borderRadius,
   children,
   disabled,
+  padding,
   border,
   backgroundColor
 }: ButtonProps) => (
@@ -42,6 +44,7 @@ const Button = ({
     border={border}
     fontSize={fontSize}
     borderRadius={borderRadius}
+    padding={padding}
     disabled={disabled}
     backgroundColor={backgroundColor}>
     {label}
