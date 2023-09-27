@@ -1,5 +1,4 @@
-import { User } from '@/types';
-import { SearchEditedPost } from '@/types';
+import { SearchEditedPost, User } from '@/types';
 
 const PROPERTY = 'title';
 

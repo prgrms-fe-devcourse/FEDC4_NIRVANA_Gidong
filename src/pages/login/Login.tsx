@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import postLogInUser from '@apis/login';
 import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';
 import { USER_INPUT } from './constants';
 import { GoToSignUp } from './components';
 import {
-  LoginForm,
   ButtonContainer,
   LoginContainer,
-  LogoContainer,
-  Logo
+  LoginForm,
+  Logo,
+  LogoContainer
 } from './Login.style';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types';

@@ -7,10 +7,10 @@ import useDebounce from '@hooks/useDebounce';
 import useSessionStorage from '@hooks/useSessionStorage';
 import NewPostConfirm from './NewPostConfirm';
 import {
-  TextAreaContainer,
   ButtonContainer,
   PostContainer,
-  StyledTextArea
+  StyledTextArea,
+  TextAreaContainer
 } from './NewPost.style';
 import { UseMutateFunction } from '@tanstack/react-query';
 

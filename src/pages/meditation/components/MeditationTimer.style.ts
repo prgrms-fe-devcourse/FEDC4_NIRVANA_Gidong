@@ -49,10 +49,12 @@ export const TimerElement = styled.button<{ timerPaused: boolean }>`
     timerPaused ? theme.color.greyLight : theme.color.white};
   font-size: 24px;
   font-weight: bold;
+
   &:hover {
     filter: brightness(50%);
     transition: 0.3s;
   }
+
   z-index: 2;
 `;
 

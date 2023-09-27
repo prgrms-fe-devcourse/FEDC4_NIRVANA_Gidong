@@ -1,10 +1,10 @@
 import type { EditedPost } from '@/types';
 import PostHeader from './PostHeader';
 import {
-  PreviewContainer,
-  PostHeaderContainer,
+  PostContent,
   PostContentContainer,
-  PostContent
+  PostHeaderContainer,
+  PreviewContainer
 } from './PostPreview.style';
 import { Link } from '@components/Link';
 

@@ -4,9 +4,9 @@ import { useRecoilValue } from 'recoil';
 import { editModeState } from '../states/editMode';
 import { ProfileAvatarEdit } from '@pages/profile/components';
 import {
+  ProfileAvatarContainer,
   ProfileInfoContainer,
-  ProfileInfoNameAndBadge,
-  ProfileAvatarContainer
+  ProfileInfoNameAndBadge
 } from './ProfileInfo.style';
 
 interface ProfileInfoProps {

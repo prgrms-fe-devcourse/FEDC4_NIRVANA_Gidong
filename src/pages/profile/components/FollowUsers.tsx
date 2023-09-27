@@ -22,6 +22,7 @@ const dumyData = [
     __v: 0
   }
 ];
+
 interface FollowUsersProps {
   following: boolean;
   data?: Follow[];

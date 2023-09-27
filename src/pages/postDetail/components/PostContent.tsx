@@ -1,18 +1,17 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Icon } from '@components/Icon';
 import {
-  PostContentSection,
-  PostContentHeader,
   PostContentAvatarContainer,
   PostContentBody,
+  PostContentHeader,
+  PostContentMenu,
   PostContentMenuIconContainer,
+  PostContentSection,
   PostContentTime,
   PostContentUserInfo,
   PostContentUserName,
-  PostContentMenu,
   PostEditConfirmButtonContainer
 } from './PostContent.style';
 import { User } from '@/types/User';
@@ -22,7 +21,6 @@ import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
 import { appendFormData, purifyContent } from '@pages/posting/utils';
-import { Link } from 'react-router-dom';
 
 interface PostContentProps {
   author: User;

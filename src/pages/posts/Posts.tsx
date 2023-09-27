@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
@@ -12,10 +12,10 @@ import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
 import { editPostData } from './utils/editPostData';
 import useObserver from './hooks/useObserver';
 import {
-  StyledPostsPage,
-  ThemePickerContainer,
   PostsContainer,
-  StyledNoPosts
+  StyledNoPosts,
+  StyledPostsPage,
+  ThemePickerContainer
 } from './Posts.style';
 import { CONCENTRATION_KEY } from '@pages/meditation/constants';
 

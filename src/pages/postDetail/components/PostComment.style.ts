@@ -15,6 +15,7 @@ export const PostCommentAvatarContainer = styled.div`
 
 export const PostCommentUserContainer = styled.div`
   height: 20px;
+
   > span:last-of-type {
     margin-left: 5px;
   }
@@ -31,6 +32,7 @@ export const PostCommentDeleteContainer = styled.div`
   height: 16px;
   display: flex;
   justify-content: flex-end;
+
   > p {
     cursor: pointer;
   }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SearchHead, SearchBody } from '@pages/layout/components';
+import { SearchBody, SearchHead } from '@pages/layout/components';
 
 interface SearchProps {
   handleShowSearchBox: () => void;

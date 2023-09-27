@@ -2,11 +2,11 @@ import { Link } from '@components/Link';
 import { Button } from '@components/Button';
 import { Icon } from '@components/Icon';
 import {
-  LandingMain,
   Heading,
+  LandingMain,
+  LinkContainer,
   PreviewLink,
-  PreviewSpan,
-  LinkContainer
+  PreviewSpan
 } from './Landing.style';
 
 const LandingPage = () => {

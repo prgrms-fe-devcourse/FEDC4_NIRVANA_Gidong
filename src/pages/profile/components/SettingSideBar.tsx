@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Link } from '@components/Link';
 import {
+  Heading,
+  SettingLi,
+  SettingRightSideBar,
   SettingSideBarBackground,
   SettingSideBarSection,
-  SettingRightSideBar,
-  Heading,
-  SettingUl,
-  SettingLi
+  SettingUl
 } from './SettingSideBar.style';
 import useSessionStorage from '@hooks/useSessionStorage';
 import LogoutAlert from './LogoutAlert';

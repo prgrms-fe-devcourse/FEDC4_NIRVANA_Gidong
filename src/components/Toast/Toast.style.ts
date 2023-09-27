@@ -33,18 +33,13 @@ const StyledToast = styled.div<StyledToastProps>`
   ${({ toastType, theme }) =>
     toastType === 'WARNING'
       ? ChildContainer(theme.color.orangePastel, theme.color.orange)
-      : ''}
-  ${({ toastType, theme }) =>
+      : ''} ${({ toastType, theme }) =>
     toastType === 'SUCCESS'
       ? ChildContainer(theme.color.greenDarkPastel, theme.color.greenDark)
-      : ''}
-  ${({ toastType, theme }) =>
+      : ''} ${({ toastType, theme }) =>
     toastType === 'CONFIRM'
       ? ChildContainer(theme.color.bluePastel, theme.color.blue)
-      : ''}
-
-
-  @keyframes fade-in-out {
+      : ''} @keyframes fade-in-out {
     0% {
       opacity: 0;
     }

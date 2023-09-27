@@ -5,6 +5,7 @@ import { LoginConfirm } from '@components/Confirm';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { EtcNavContainer } from './IconNav.style';
 import { User } from '@/types';
+
 interface EtcNavProps {
   handleShowSearchBox: () => void;
   showSearchBox: boolean;

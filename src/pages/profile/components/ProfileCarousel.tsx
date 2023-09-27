@@ -1,8 +1,8 @@
 import { useRecoilState } from 'recoil';
 import {
+  NoneContentContainer,
   ProfileCarouselContainer,
-  ProfileCarouselItem,
-  NoneContentContainer
+  ProfileCarouselItem
 } from './ProfileCarousel.style';
 import { useCarousel } from '../hooks/useCarousel';
 import { selectedTabIndexState } from '../states/selectedTabIndex';

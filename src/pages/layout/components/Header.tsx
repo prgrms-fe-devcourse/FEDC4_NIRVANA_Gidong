@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { HeaderNavSection, HeaderSearchSection } from './Header.style';
-import { PathNav, EtcNav, Search } from '@pages/layout/components';
+import { EtcNav, PathNav, Search } from '@pages/layout/components';
 
 interface HeaderProps {
   pathStatus: 'back' | 'home';

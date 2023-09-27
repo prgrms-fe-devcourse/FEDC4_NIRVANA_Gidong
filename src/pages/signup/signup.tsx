@@ -5,12 +5,12 @@ import { UserInput } from '@components/UserInput';
 import { Alert } from '@components/Alert';
 import { isEmailOk, isNicknameOk, isPasswordOk } from './validations';
 import postSignUpUser from '@apis/signup';
-import { USER_INPUT, MODAL } from './constants';
+import { MODAL, USER_INPUT } from './constants';
 import {
-  SignUpForm,
   ButtonContainer,
+  LogoContainer,
   SignUpContainer,
-  LogoContainer
+  SignUpForm
 } from './signup.style';
 import { Logo } from '@pages/signup/components';
 

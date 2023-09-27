@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Button } from '@components/Button';
 import { NavContainer, ThemePickerContainer } from './ThemePicker.style';
 import PickerPreviousButton from './PickerPreviousButton';

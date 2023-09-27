@@ -1,7 +1,7 @@
-import { useQuery, useQueries } from '@tanstack/react-query';
+import { useQueries, useQuery } from '@tanstack/react-query';
 import { searchAll } from '@apis/search';
 import { getUser } from '@apis/user';
-import { User, EditedPost, Post } from '@/types';
+import { EditedPost, Post, User } from '@/types';
 import { PostPreview } from '@components/PostPreview';
 import filterPostData from '../utils/filterPostData';
 import { FILTER } from '../constants';

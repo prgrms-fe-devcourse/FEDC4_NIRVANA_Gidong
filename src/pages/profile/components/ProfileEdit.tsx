@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import {
   ProfileEditContainer,
-  ProfileEditSection,
-  ProfileEditForm
+  ProfileEditForm,
+  ProfileEditSection
 } from './ProfileEdit.style';
 import { UserInput } from '@components/UserInput';
 import { USER_INPUT } from '@pages/signup/constants';

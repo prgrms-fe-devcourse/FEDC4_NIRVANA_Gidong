@@ -7,10 +7,10 @@ import typeToPath from '@pages/notice/utils/typeToNavigate';
 import { Avatar } from '@components/Avatar';
 
 import {
-  NoticeItemContainer,
-  NoticeContent,
   Message,
   MessagePreview,
+  NoticeContent,
+  NoticeItemContainer,
   ProfileImage
 } from './NoticeItem.style';
 

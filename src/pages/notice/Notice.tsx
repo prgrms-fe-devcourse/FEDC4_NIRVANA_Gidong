@@ -5,7 +5,7 @@ import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types/User';
 import { Notification } from '@/types/Notification';
 import NoticeList from './components/NoticeList/NoticeList';
-import { NoticePage, Header } from './Notice.style';
+import { Header, NoticePage } from './Notice.style';
 import { Button } from '@components/Button';
 
 const Notice = () => {

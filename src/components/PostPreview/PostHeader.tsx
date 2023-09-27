@@ -3,8 +3,8 @@ import { Icon } from '../Icon';
 import { Avatar } from '../Avatar';
 import {
   AvatarContainer,
-  PostInfoContainer,
   PostDetailInfoContainer,
+  PostInfoContainer,
   UserNameContainer
 } from './PostPreview.style';
 import { Link } from '@components/Link';

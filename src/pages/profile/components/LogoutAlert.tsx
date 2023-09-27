@@ -1,7 +1,9 @@
 import { Alert } from '@components/Alert';
+
 interface LogoutAlertProps {
   handleLogoutClick: () => void;
 }
+
 const LogoutAlert = ({ handleLogoutClick }: LogoutAlertProps) => {
   return (
     <Alert

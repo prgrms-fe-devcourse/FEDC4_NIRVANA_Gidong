@@ -1,17 +1,16 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { Button } from '@components/Button';
 import {
   CommentAvatarContainer,
   CommentButtonContainer,
-  CommentInputContainer,
-  CommentInputSection,
   CommentInput,
-  CommentInputForm
+  CommentInputContainer,
+  CommentInputForm,
+  CommentInputSection
 } from './PostCommentInput.style';
 import { Avatar } from '@components/Avatar';
 import { postComment } from '@apis/comment';
-import { useState } from 'react';
 import { postNotifications } from '@apis/notice';
 
 interface PostCommentInputProps {

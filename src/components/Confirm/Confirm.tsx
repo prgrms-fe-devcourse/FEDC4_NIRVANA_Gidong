@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from '../Link';
 import {
-  StyledDeemBackground,
-  StyledConfirmBackground,
-  IconContainer,
+  CancelButtonDefaultEvent,
   ContentContainer,
+  IconContainer,
   NavButtonContainer,
-  CancelButtonDefaultEvent
+  StyledConfirmBackground,
+  StyledDeemBackground
 } from './Confirm.style';
 
 interface ConfirmProps {

@@ -1,10 +1,10 @@
 import { Avatar } from '@components/Avatar';
 import {
-  PostCommentContainer,
   PostCommentAvatarContainer,
-  PostCommentUserContainer,
+  PostCommentContainer,
   PostCommentContentContainer,
-  PostCommentDeleteContainer
+  PostCommentDeleteContainer,
+  PostCommentUserContainer
 } from './PostComment.style';
 import { UserId, UserName } from '@components/UserText';
 import { User } from '@/types/User';

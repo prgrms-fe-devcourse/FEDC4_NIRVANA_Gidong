@@ -9,15 +9,15 @@ import { getUser } from '@apis/user';
 import createTabItems from './utils/createTabItems';
 import { editModeState } from './states/editMode';
 import {
+  ProfileBodyContainer,
   ProfileInfoContainer,
-  ProfilePage,
-  ProfileBodyContainer
+  ProfilePage
 } from './Profile.style';
 import {
-  ProfileInfo,
   ProfileCover,
-  ProfileMain,
   ProfileEdit,
+  ProfileInfo,
+  ProfileMain,
   SettingSideBar
 } from '@pages/profile/components';
 import { getMyFollowData } from '@/utils';
