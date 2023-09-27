@@ -80,6 +80,7 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
 `;
 
 export const PostContentBody = styled.div`
+  margin-top: 10px;
   padding: 20px;
   width: 100%;
   line-height: 1.5;
