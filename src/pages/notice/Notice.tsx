@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { getNotifications, putNotifications } from '@apis/notice';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types/User';
@@ -42,15 +42,17 @@ const Notice = () => {
     <NoticePage>
       <Header>
         알림창
-        <Button
-          width={80}
-          height={30}
-          label='모두 읽음'
-          handleClick={async () => {
-            await putNotifications(`Bearer ${userSessionData.token}`);
-            fetchNotifications();
-          }}
-        />
+        {list.length > 0 && (
+          <Button
+            width={80}
+            height={30}
+            label='모두 읽음'
+            handleClick={async () => {
+              await putNotifications(`Bearer ${userSessionData.token}`);
+              fetchNotifications();
+            }}
+          />
+        )}
       </Header>
       {list.length < 1 && <div>알림이 없습니다.</div>}
       <NoticeList list={list} />

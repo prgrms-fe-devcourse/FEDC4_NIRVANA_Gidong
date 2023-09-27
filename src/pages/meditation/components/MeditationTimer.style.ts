@@ -1,7 +1,26 @@
 import styled from '@emotion/styled';
+import { css, keyframes } from '@emotion/react';
 
-export const TimerContainer = styled.div<{ timerPaused: boolean }>`
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const TimerContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
+  flex-direction: column;
+  height: 180px;
+  width: 100%;
+  background: transparent;
+  margin-top: 100px;
+`;
+
+export const TimerElementBorder = styled.div<{ timerPaused: boolean }>`
+  position: absolute;
   width: 170px;
   height: 170px;
   border-radius: 50%;
@@ -9,11 +28,16 @@ export const TimerContainer = styled.div<{ timerPaused: boolean }>`
     timerPaused
       ? theme.color.linearGradientGreyVivid
       : theme.color.linearGradientPurpleVivid};
-  margin-top: 100px;
+  ${({ timerPaused }) =>
+    !timerPaused &&
+    css`
+      animation: ${rotate} 2s linear infinite;
+    `}
+  z-index: 1;
 `;
 
 export const TimerElement = styled.button<{ timerPaused: boolean }>`
-  ${({ theme }) => theme.style.flexCenter};
+  position: absolute;
   border: none;
   outline: none;
   cursor: pointer;
@@ -23,12 +47,13 @@ export const TimerElement = styled.button<{ timerPaused: boolean }>`
   background-color: #211730;
   color: ${({ theme, timerPaused }) =>
     timerPaused ? theme.color.greyLight : theme.color.white};
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: bold;
   &:hover {
     filter: brightness(50%);
     transition: 0.3s;
   }
+  z-index: 2;
 `;
 
 export const IconContainer = styled.div`

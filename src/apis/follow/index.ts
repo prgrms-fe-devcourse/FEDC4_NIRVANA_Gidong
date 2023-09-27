@@ -15,9 +15,9 @@ const postFollowUser = async (userId: string, token: string) => {
   return response.data;
 };
 
-const deleteFollowUser = async (userId: string, token: string) => {
+const deleteFollowUser = async (dataId: string, token: string) => {
   const response = await axios.delete<Follow>(`${API_BASE_URL}/follow/delete`, {
-    data: { id: userId },
+    data: { id: dataId },
     headers: {
       Authorization: `bearer ${token}`
     }

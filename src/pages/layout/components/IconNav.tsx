@@ -6,12 +6,12 @@ import useSessionStorage from '@hooks/useSessionStorage';
 import { EtcNavContainer } from './IconNav.style';
 import { User } from '@/types';
 interface EtcNavProps {
-  handleShowSearchBox: () => void;
+  handleOpenSearchBox: () => void;
   showSearchBox: boolean;
 }
 
-const EtcNav = ({ handleShowSearchBox, showSearchBox }: EtcNavProps) => {
-  const [modal, setModal] = useState(false);
+const EtcNav = ({ handleOpenSearchBox, showSearchBox }: EtcNavProps) => {
+  const [loginConfirm, setLoginConfirm] = useState(false);
   const [{ _id, token }] = useSessionStorage<Pick<User, '_id' | 'token'>>(
     'userData',
     {
@@ -22,30 +22,30 @@ const EtcNav = ({ handleShowSearchBox, showSearchBox }: EtcNavProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const handleShowModal = () => {
-    setModal((prev) => !prev);
+  const handleShowLoginConfirm = () => {
+    setLoginConfirm((prev) => !prev);
   };
 
   const handleClickAlert = () => {
     if (_id && token) {
       navigate('/notice');
     } else {
-      setModal((prev) => !prev);
+      setLoginConfirm((prev) => !prev);
     }
   };
 
   return (
     <>
-      {modal && (
+      {loginConfirm && (
         <LoginConfirm
-          handleClickCancel={handleShowModal}
-          handleClickConfirm={handleShowModal}
+          handleClickCancel={handleShowLoginConfirm}
+          handleClickConfirm={handleShowLoginConfirm}
           path={pathname}
         />
       )}
       <EtcNavContainer>
         <SearchButton
-          handleClickButton={handleShowSearchBox}
+          handleClickButton={handleOpenSearchBox}
           searchStatus={showSearchBox}
         />
         <AlertButton handleClickAlert={handleClickAlert} />

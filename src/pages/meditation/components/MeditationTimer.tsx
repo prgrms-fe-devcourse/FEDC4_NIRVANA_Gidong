@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { Icon } from '@components/Icon';
 import formatTime from '@utils/formatTime';
 import {
   IconContainer,
   TimerContainer,
+  TimerElementBorder,
   TimerElement
 } from './MeditationTimer.style';
 import {
@@ -50,9 +51,21 @@ const MeditationTimer = () => {
       startTimer();
     }
   };
+  useEffect(() => {
+    const headerEl = document.querySelector('header');
+    const footerEl = document.querySelector('footer');
+    if (paused) {
+      headerEl.style.display = 'flex';
+      footerEl.style.display = 'flex';
+    } else {
+      headerEl.style.display = 'none';
+      footerEl.style.display = 'none';
+    }
+  }, [paused]);
 
   return (
-    <TimerContainer timerPaused={timerId && paused}>
+    <TimerContainer>
+      <TimerElementBorder timerPaused={timerId && paused} />
       <TimerElement
         timerPaused={timerId && paused}
         onClick={() => toggleTimer()}
