@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const PostCommentContainer = styled.div`
   display: flex;
   width: 100%;
+  margin-bottom: 20px;
 `;
 
 export const PostCommentAvatarContainer = styled.div`
@@ -35,6 +36,8 @@ export const PostCommentDeleteContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   > p {
+    margin-top: 8px;
+    height: 20px;
     cursor: pointer;
   }
 `;

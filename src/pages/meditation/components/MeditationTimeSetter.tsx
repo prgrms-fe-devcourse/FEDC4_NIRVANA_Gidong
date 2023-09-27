@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { Icon } from '@components/Icon';
 import {
   BUTTON_TYPE_ADD,
@@ -18,28 +18,29 @@ import {
 } from './MeditationTimeSetter.style';
 import MeditationEndButton from '@pages/meditation/components/MeditationEndButton';
 import {
+  meditationStatus,
   meditationTime,
-  pickedTheme,
   totalMeditationTime
 } from '@pages/meditation/states';
-import { Toast } from '@components/Toast';
+import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
 
-const MeditationTimeSetter = () => {
+interface MeditationTimeSetterProps {
+  themePicked: ThemeInfoType;
+}
+
+const MeditationTimeSetter = ({ themePicked }: MeditationTimeSetterProps) => {
   const [time, setTime] = useRecoilState<number>(meditationTime);
   const longClickIdRef = useRef<number>(null);
   const [totalTime, setTotalTime] = useRecoilState(totalMeditationTime);
-  const themePicked = useRecoilValue(pickedTheme);
-  const [meditationStatus, setMeditationStatus] = useState({
-    started: false,
-    ended: false
-  });
+  const [status, setStatus] = useRecoilState(meditationStatus);
+
   const navigate = useNavigate();
   useEffect(() => {
     const handleStartMeditation = () => {
       if (totalTime === 0) {
         setTotalTime(time);
       }
-      setMeditationStatus({ ...meditationStatus, started: true });
+      setStatus({ ...status, started: true });
     };
 
     const handleEndMeditation = () => {
@@ -51,7 +52,7 @@ const MeditationTimeSetter = () => {
           validation: true
         }
       });
-      setMeditationStatus({ ...meditationStatus, ended: true });
+      setStatus({ ...status, ended: true });
     };
 
     document.addEventListener(
@@ -138,7 +139,7 @@ const MeditationTimeSetter = () => {
 
   return (
     <>
-      {!meditationStatus.started && (
+      {!status.started && (
         <TimeSetterContainer>
           <SetTimeButton
             onClick={() => handleTime(BUTTON_TYPE_SUB)}
@@ -176,9 +177,7 @@ const MeditationTimeSetter = () => {
           </SetTimeButton>
         </TimeSetterContainer>
       )}
-      {meditationStatus.started && !meditationStatus.ended && (
-        <MeditationEndButton />
-      )}
+      {status.started && !status.ended && <MeditationEndButton />}
     </>
   );
 };

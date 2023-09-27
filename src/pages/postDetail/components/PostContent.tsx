@@ -14,6 +14,8 @@ import {
   PostContentMenu,
   PostEditConfirmButtonContainer
 } from './PostContent.style';
+import { Toast } from '@components/Toast';
+import { User } from '@/types/User';
 import { deletePost, putPost } from '@apis/posts';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
@@ -41,6 +43,7 @@ const PostContent = ({
   meditationTime
 }: PostContentProps) => {
   const [menuOpened, setMenuOpened] = useState(false);
+  const [showContentErrorToast, setShowContentErrorToast] = useState(false);
   const [deleteConfirmOpened, setDeleteConfirmOpened] = useState(false);
   const [contentEditMode, setContentEditMode] = useState(false);
   const contentEditRef = useRef(null);
@@ -74,22 +77,28 @@ const PostContent = ({
 
   const handleEditCancelClick = () => {
     setContentEditMode(false);
+    contentEditRef.current.textContent = content;
     contentEditRef.current?.setAttribute('contenteditable', 'false');
   };
 
   const handleEditConfirmClick = () => {
-    setContentEditMode(false);
-    contentEditRef.current?.setAttribute('contenteditable', 'false');
-    const newCustomTitle = {
-      title: purifyContent(contentEditRef.current?.textContent || ''),
-      meditationTime
-    };
-    const newFormData = createFormData(
-      JSON.stringify(newCustomTitle),
-      channelId,
-      postId
-    );
-    mutatePutPost({ postData: newFormData, token });
+    if (contentEditRef.current?.textContent === '') {
+      setShowContentErrorToast(true);
+    } else {
+      setContentEditMode(false);
+      contentEditRef.current?.setAttribute('contenteditable', 'false');
+      const newCustomTitle = {
+        title: purifyContent(contentEditRef.current?.textContent || ''),
+        meditationTime
+      };
+      const newFormData = appendFormData(
+        ['title', 'channelId', 'image', 'postId'],
+        JSON.stringify(newCustomTitle),
+        channelId,
+        postId
+      );
+      mutatePutPost({ postData: newFormData, token });
+    }
   };
 
   const handleConfirmCancelClick = () => {
@@ -102,77 +111,100 @@ const PostContent = ({
   };
 
   return (
-    <PostContentSection>
-      <PostContentHeader>
-        <PostHeader
-          post={{ _id: postId, author, createdAt, meditationTime }}
-          noneProfile={false}
-          showCommentStatus={false}
-        />
-        {currentUserId === author?._id && (
-          <>
-            <PostContentMenuIconContainer
-              opened={menuOpened}
-              onClick={handleMenuClick}>
-              <Icon
-                size={24}
-                name='menu'
-              />
-            </PostContentMenuIconContainer>
-            <PostContentMenu opened={menuOpened}>
-              <p onClick={handleDeleteMenuClick}>삭제하기</p>
-              <p onClick={handleEditMenuClick}>수정하기</p>
-            </PostContentMenu>
-          </>
-        )}
-      </PostContentHeader>
-      <PostContentBody ref={contentEditRef}>{content}</PostContentBody>
-      <PostEditConfirmButtonContainer contentEditMode={contentEditMode}>
-        <Button
-          width={50}
-          height={25}
-          dark={true}
-          fontSize={12}
-          label='취소'
-          handleClick={handleEditCancelClick}
-        />
-        <Button
-          width={50}
-          height={25}
-          dark={true}
-          fontSize={12}
-          label='저장'
-          handleClick={handleEditConfirmClick}
-        />
-      </PostEditConfirmButtonContainer>
-      {deleteConfirmOpened && (
-        <Confirm
-          emoji='❗'
-          content='정말 게시글을 삭제하시겠습니까?'
-          contentFontSize={14}
-          CancelButton={
-            <Button
-              width={120}
-              height={50}
-              bold={true}
-              dark={false}
-              label={'취소'}
-              handleClick={handleConfirmCancelClick}
-            />
-          }
-          ConfirmButton={
-            <Button
-              width={120}
-              height={50}
-              bold={true}
-              dark={true}
-              label={'삭제'}
-              handleClick={handleDeleteConfirmClick}
-            />
-          }
+    <>
+      {showContentErrorToast && (
+        <Toast
+          content='게시글의 내용을 입력해주세요.'
+          type='WARNING'
         />
       )}
-    </PostContentSection>
+      <PostContentSection>
+        <PostContentHeader>
+          <PostContentAvatarContainer>
+            <Link to={`/profile/${author?._id}`}>
+              <Avatar
+                src={author?.image}
+                alt={author?.fullName}
+                size={39}
+              />
+            </Link>
+          </PostContentAvatarContainer>
+          <PostContentUserInfo>
+            <PostContentUserName>
+              <UserName>{author?.fullName}</UserName>
+              <UserId email={author ? author.email : ''} />
+            </PostContentUserName>
+            <PostContentTime>
+              {createdAt} / {meditationTime}분
+            </PostContentTime>
+          </PostContentUserInfo>
+          {currentUserId === author?._id && (
+            <>
+              <PostContentMenuIconContainer
+                opened={menuOpened}
+                onClick={handleMenuClick}>
+                <Icon
+                  size={24}
+                  name='menu'
+                />
+              </PostContentMenuIconContainer>
+              <PostContentMenu opened={menuOpened}>
+                <p onClick={handleDeleteMenuClick}>삭제하기</p>
+                <p onClick={handleEditMenuClick}>수정하기</p>
+              </PostContentMenu>
+            </>
+          )}
+        </PostContentHeader>
+        <PostContentBody ref={contentEditRef}>
+          <p>{content}</p>
+        </PostContentBody>
+        <PostEditConfirmButtonContainer contentEditMode={contentEditMode}>
+          <Button
+            width={50}
+            height={25}
+            dark={true}
+            fontSize={12}
+            label='취소'
+            handleClick={handleEditCancelClick}
+          />
+          <Button
+            width={50}
+            height={25}
+            dark={true}
+            fontSize={12}
+            label='저장'
+            handleClick={handleEditConfirmClick}
+          />
+        </PostEditConfirmButtonContainer>
+        {deleteConfirmOpened && (
+          <Confirm
+            emoji='❗'
+            content='정말 게시글을 삭제하시겠습니까?'
+            contentFontSize={14}
+            CancelButton={
+              <Button
+                width={120}
+                height={50}
+                bold={true}
+                dark={false}
+                label={'취소'}
+                handleClick={handleConfirmCancelClick}
+              />
+            }
+            ConfirmButton={
+              <Button
+                width={120}
+                height={50}
+                bold={true}
+                dark={true}
+                label={'삭제'}
+                handleClick={handleDeleteConfirmClick}
+              />
+            }
+          />
+        )}
+      </PostContentSection>
+    </>
   );
 };
 

@@ -42,9 +42,10 @@ const SearchHead = ({
     setText(event.target.value);
   };
 
-  const handleClickSearchButton = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSearchInputValue(text);
+    inputRef.current.blur();
   };
 
   return (
@@ -70,7 +71,7 @@ const SearchHead = ({
         />
         <SearchButton
           searchStatus={showSearchBox}
-          handleClickButton={handleClickSearchButton}
+          handleClickButton={handleSubmitSearch}
         />
       </SearchForm>
     </SearchHeadContainer>

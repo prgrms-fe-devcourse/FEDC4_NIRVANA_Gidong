@@ -13,18 +13,14 @@ const getPosts = async (
   offset: number = 0,
   limit: number = 10
 ) => {
-  try {
-    const url = `${API_BASE_URL}/posts/channel/${channelId}`;
-    const params = new URLSearchParams({
-      offset: `${offset}`,
-      limit: `${limit}`
-    });
-    const response = await axios.get<Post[]>(`${url}?${params}`);
+  const url = `${API_BASE_URL}/posts/channel/${channelId}`;
+  const params = new URLSearchParams({
+    offset: `${offset}`,
+    limit: `${limit}`
+  });
+  const response = await axios.get<Post[]>(`${url}?${params}`);
 
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return response;
 };
 
 const getChannels = async (channelName: string) => {

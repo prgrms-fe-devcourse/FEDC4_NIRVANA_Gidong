@@ -17,7 +17,7 @@ export const totalMeditationTime = atom({
   default: 0
 });
 
-export const pickedTheme = atom({
-  key: 'pickedTheme',
-  default: meditationChannelInfo.get(CONCENTRATION_KEY)
+export const meditationStatus = atom({
+  key: 'meditationStatus',
+  default: { started: false, ended: false }
 });

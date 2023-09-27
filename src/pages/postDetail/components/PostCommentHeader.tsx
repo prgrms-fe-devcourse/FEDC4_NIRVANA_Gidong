@@ -17,6 +17,7 @@ interface PostCommentHeaderProps {
   refetch: () => void;
   myLike: Like;
   postCommentCount: number;
+  userId?: string;
 }
 
 const PostCommentHeader = ({
@@ -25,6 +26,7 @@ const PostCommentHeader = ({
   refetch,
   myLike,
   likeCounts,
+  userId,
   postCommentCount = 0
 }: PostCommentHeaderProps) => {
   const [possibleMutateLike, setPossibleMutateLike] = useState(true);
@@ -34,12 +36,13 @@ const PostCommentHeader = ({
     },
     {
       onSuccess: (res) => {
-        postNotifications(token, {
-          notificationType: 'LIKE',
-          notificationTypeId: res._id,
-          userId: res.user,
-          postId: res.post
-        });
+        !myLike &&
+          postNotifications(token, {
+            notificationType: 'LIKE',
+            notificationTypeId: res._id,
+            userId: userId,
+            postId: res.post
+          });
       }
     }
   );

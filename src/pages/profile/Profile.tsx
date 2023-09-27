@@ -32,17 +32,18 @@ const Profile = () => {
     setEditMode(location.hash === '#edit');
   }, [location.hash, setEditMode]);
 
-  const { data, isLoading, refetch } = useQuery({
+  const {
+    data: currentPageProfileData,
+    isLoading,
+    refetch
+  } = useQuery({
     queryKey: ['userData', profileUserId],
     queryFn: async () => await getUser(profileUserId)
   });
 
-  const [{ _id: currentUserId }] = useSessionStorage<Pick<User, '_id'>>(
-    'userData',
-    {
-      _id: ''
-    }
-  );
+  const [{ _id: myUserId }] = useSessionStorage<Pick<User, '_id'>>('userData', {
+    _id: ''
+  });
 
   const openSidebar = () => {
     setSideBarOpened(true);
@@ -52,7 +53,7 @@ const Profile = () => {
     setSideBarOpened(false);
   };
 
-  const tabItems = createTabItems(data, isLoading);
+  const tabItems = createTabItems(currentPageProfileData, isLoading);
 
   return (
     <ProfilePage>
@@ -62,13 +63,13 @@ const Profile = () => {
       />
       <ProfileCover
         refetch={() => refetch()}
-        src={isLoading ? '' : data.coverImage}
+        src={isLoading ? '' : currentPageProfileData.coverImage}
       />
       <ProfileInfoContainer>
         <ProfileInfo
-          email={isLoading ? '' : data.email}
-          fullName={isLoading ? '' : data.fullName}
-          avatarImgSrc={isLoading ? '' : data.image}
+          email={isLoading ? '' : currentPageProfileData.email}
+          fullName={isLoading ? '' : currentPageProfileData.fullName}
+          avatarImgSrc={isLoading ? '' : currentPageProfileData.image}
           refetch={() => refetch()}
           myProfile={currentUserId === profileUserId}
           profileId={profileUserId}
@@ -83,8 +84,17 @@ const Profile = () => {
           <ProfileEdit refetch={() => refetch()} />
         ) : (
           <ProfileMain
+            myProfile={myUserId === profileUserId}
+            myFollowData={
+              isLoading
+                ? null
+                : getMyFollowData(currentPageProfileData?.followers, myUserId)
+            }
+            profileId={profileUserId}
             tabItems={tabItems}
-            fullName={isLoading ? '' : data.fullName}
+            openSidebar={openSidebar}
+            fullName={isLoading ? '' : currentPageProfileData.fullName}
+            refetch={() => refetch()}
           />
         )}
       </ProfileBodyContainer>

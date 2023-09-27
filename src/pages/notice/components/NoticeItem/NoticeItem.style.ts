@@ -13,6 +13,8 @@ const NoticeItemContainer = styled.div`
   &:active {
     background-color: ${({ theme }) => theme.color.white900};
   }
+  padding: 14px;
+  line-height: 1.5;
 `;
 
 const ProfileImage = styled.div`
@@ -35,16 +37,18 @@ const Message = styled.div`
   font-weight: 400;
   font-size: 14px;
   color: ${({ theme }) => theme.color.black};
+  ${({ theme }) => theme.style.flexAlignCenter};
+  font-weight: 700;
+  color: ${({ theme }) => theme.color.black};
 `;
 
 const MessagePreview = styled.div`
-  width: 100%;
-  font-size: 12px;
-  overflow: hidden;
-  white-space: nowrap;
-  word-break: break-all;
-  text-overflow: ellipsis;
+  font-size: 0.6rem;
   color: ${({ theme }) => theme.color.greyLight};
+`;
+
+const MessageText = styled.span`
+  margin-right: 2px;
 `;
 
 export {
@@ -52,5 +56,6 @@ export {
   ProfileImage,
   NoticeContent,
   Message,
-  MessagePreview
+  MessagePreview,
+  MessageText
 };

@@ -37,20 +37,23 @@ const Notice = () => {
     <NoticePage>
       <Header>
         알림창
-        <ReadButtonContainer>
+        {list.length > 0 && (
+          <ReadButtonContainer>
           <Button
-            width={80}
-            height={30}
-            borderRadius={10}
+              width={80}
+              height={30}
+              borderRadius={10}
             fontSize={14}
             label='모두 읽음'
-            handleClick={() => {
-              putNotifications(`Bearer ${userSessionData.token}`);
-              fetchNotifications();
-            }}
-          />
+              handleClick={async () => {
+                await putNotifications(`Bearer ${userSessionData.token}`);
+                fetchNotifications();
+              }}
+            />
+        )}
         </ReadButtonContainer>
       </Header>
+      {list.length < 1 && <div>알림이 없습니다.</div>}
       <NoticeList list={list} />
     </NoticePage>
   );

@@ -48,6 +48,7 @@ const ProfileHeader = ({
               followingUserId={profileId}
               following={myFollowData ? true : false}
               fontSize={12}
+              possibleDeleteFollow
               refetch={refetch}
             />
           )

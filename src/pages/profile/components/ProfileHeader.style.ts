@@ -13,12 +13,24 @@ export const ProfileHeaderButtonContainer = styled.div`
   border-radius: 50%;
   ${({ theme }) => theme.style.flexCenter};
   > button {
+<<<<<<< HEAD
     transition: all 0.2s ease-out;
     :active {
       background-color: ${({ theme }) => theme.color.white800};
     }
     :hover {
       background-color: ${({ theme }) => theme.color.white800};
+=======
+    transition: all 0.3s ease-in-out;
+    ${({ theme }) => theme.style.flexCenter};
+    margin-right: 6px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+    :active {
+      transform: scale(0.9);
+>>>>>>> a20a74fdbfb510e43a6df37cf2af1283d351403d
     }
   }
 `;
