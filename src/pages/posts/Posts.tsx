@@ -47,7 +47,7 @@ const Posts = () => {
     if (data) {
       setPostsData(offset === 0 ? data : [...postsData, ...data]);
     }
-  }, [data]);
+  }, [data, offset, postsData]);
 
   useEffect(() => {
     setOffset(0);
