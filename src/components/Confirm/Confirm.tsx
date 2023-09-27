@@ -9,6 +9,7 @@ import {
   StyledConfirmBackground,
   StyledDeemBackground
 } from './Confirm.style';
+import { prevPostingInfo } from '@pages/meditation/components/PrevPostingConfirm';
 
 interface ConfirmProps {
   emoji: string;
@@ -17,7 +18,7 @@ interface ConfirmProps {
   nextPageLink: string;
   CancelButton: React.ReactNode | (() => JSX.Element);
   ConfirmButton: React.ReactNode | (() => JSX.Element);
-  linkState?: { [key: string]: number | string | boolean };
+  linkState?: { [key: string]: string | number | boolean | prevPostingInfo };
 }
 
 const Confirm = ({
@@ -34,7 +35,7 @@ const Confirm = ({
 
   const FormedCancelButton =
     typeof CancelButton === 'function' ? CancelButton() : CancelButton;
-  const FormedConfirmlButton =
+  const FormedConfirmButton =
     typeof ConfirmButton === 'function' ? ConfirmButton() : ConfirmButton;
 
   useEffect(() => {
@@ -59,10 +60,10 @@ const Confirm = ({
                 <Link
                   state={linkState}
                   pageLink={nextPageLink}>
-                  {FormedConfirmlButton}
+                  {FormedConfirmButton}
                 </Link>
               ) : (
-                FormedConfirmlButton
+                FormedConfirmButton
               )}
             </NavButtonContainer>
           </ContentContainer>

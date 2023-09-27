@@ -7,8 +7,7 @@ import {
   PostDetailInfoContainer,
   UserContainer,
   NameContainer,
-  IdContainer,
-  PostInfoContainer
+  IdContainer
 } from './PostPreview.style';
 import { Link } from '@components/Link';
 import { UserId } from '@components/UserText';

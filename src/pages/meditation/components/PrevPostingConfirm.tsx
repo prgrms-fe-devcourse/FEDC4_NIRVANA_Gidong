@@ -1,7 +1,7 @@
 import { Confirm } from '@components/Confirm';
 import { Button } from '@components/Button';
 
-interface prevPostingInfo {
+export interface prevPostingInfo {
   posting: string;
   channelId: string;
   validation: boolean;
@@ -57,7 +57,7 @@ const PrevPostingConfirm = ({
         ConfirmButton={ConfirmButton}
         CancelButton={CancelButton}
         nextPageLink='/posting'
-        linkState={prevPostingInfo}
+        linkState={{ prevPostingInfo }}
       />
       ;
     </>
