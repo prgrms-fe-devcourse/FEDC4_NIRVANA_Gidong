@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
-import type { User } from '@/types/User';
+import type { User } from '@/types';
 
 import { Icon } from '@components/Icon';
 import PostHeader from '@components/PostPreview/PostHeader';
@@ -15,11 +15,10 @@ import {
   PostEditConfirmButtonContainer
 } from './PostContent.style';
 import { Toast } from '@components/Toast';
-import { User } from '@/types/User';
 import { deletePost, putPost } from '@apis/posts';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
-import { createFormData, purifyContent } from '@pages/posting/utils';
+import { appendFormData, purifyContent } from '@pages/posting/utils';
 
 interface PostContentProps {
   author: User;
@@ -120,24 +119,11 @@ const PostContent = ({
       )}
       <PostContentSection>
         <PostContentHeader>
-          <PostContentAvatarContainer>
-            <Link to={`/profile/${author?._id}`}>
-              <Avatar
-                src={author?.image}
-                alt={author?.fullName}
-                size={39}
-              />
-            </Link>
-          </PostContentAvatarContainer>
-          <PostContentUserInfo>
-            <PostContentUserName>
-              <UserName>{author?.fullName}</UserName>
-              <UserId email={author ? author.email : ''} />
-            </PostContentUserName>
-            <PostContentTime>
-              {createdAt} / {meditationTime}분
-            </PostContentTime>
-          </PostContentUserInfo>
+          <PostHeader
+            post={{ _id: postId, author, createdAt, meditationTime }}
+            noneProfile={false}
+            showCommentStatus={false}
+          />
           {currentUserId === author?._id && (
             <>
               <PostContentMenuIconContainer

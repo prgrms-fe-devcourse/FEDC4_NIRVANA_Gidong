@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { purifyContent, appendFormData } from './utils';
+import postCreateNewPost from '@apis/posting';
 import { NewPost } from './components/NewPost';
 import { SkipPosting } from './components/SkipPosting';
 import {
@@ -9,6 +12,10 @@ import {
   StyledPosting
 } from './Posting.style';
 import PostingHelper from './components/NewPost/PostingHelper';
+
+interface MutationParams {
+  posting: string;
+}
 
 interface ReceiveState {
   totalTime: number;
@@ -67,7 +74,6 @@ const Posting = () => {
     if (location.state === null) {
       navigate('/404');
     }
-    console.log(location.state);
     setMeditationInfo(location.state);
   }, []);
 
@@ -82,7 +88,8 @@ const Posting = () => {
         </StyledDescription>
         <NewPost
           meditationInfo={meditationInfo}
-          customToken={customToken}
+          mutatePosting={mutate}
+          isLoading={isLoading}
         />
         <SkipPosting mutatePosting={mutate} />
       </ContentContainer>
