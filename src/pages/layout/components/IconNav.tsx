@@ -7,8 +7,6 @@ import { AlertButton, SearchButton } from '@pages/layout/components';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { LoginConfirm } from '@components/Confirm';
 import { EtcNavContainer } from './IconNav.style';
-import { User } from '@/types';
-
 
 interface EtcNavProps {
   handleOpenSearchBox: () => void;

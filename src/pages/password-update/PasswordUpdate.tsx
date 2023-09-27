@@ -66,9 +66,6 @@ const PasswordUpdate = () => {
 
   return (
     <LandingMain>
-      <HeadingContentContainer>
-        <Heading />
-      </HeadingContentContainer>
       {passwordChanged && (
         <Alert
           emoji={'✅'}

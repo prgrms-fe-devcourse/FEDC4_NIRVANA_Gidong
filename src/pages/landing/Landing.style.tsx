@@ -3,7 +3,7 @@ import logo from '../../assets/logo.svg';
 
 export const LandingMain = styled.main`
   background: ${({ theme }) => theme.color.linearGradientPurple};
-  ${({ theme }) => theme.style.flexAlignCenter};
+  ${({ theme }) => theme.style.flexCenter};
   flex-direction: column;
   width: 100%;
   height: 100%;

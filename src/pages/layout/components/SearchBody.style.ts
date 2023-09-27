@@ -7,12 +7,11 @@ export const SearchResultContainer = styled.div`
   position: absolute;
   top: 50px;
   left: 0;
+  overflow-y: scroll;
   z-index: 100;
 `;
 
-export const SearchResult = styled.div`
-  overflow: auto;
-`;
+export const SearchResult = styled.div``;
 
 export const SearchItem = styled.div`
   ${({ theme }) => theme.style.flexAlignCenter}

@@ -45,6 +45,11 @@ const MeditationTimeSetter = ({ themePicked }: MeditationTimeSetterProps) => {
     };
 
     const handleEndMeditation = () => {
+      const headerEl = document.querySelector('header');
+      const footerEl = document.querySelector('footer');
+
+      headerEl.style.display = 'flex';
+      footerEl.style.display = 'flex';
       navigate('/posting', {
         state: {
           channelId: themePicked.id,

@@ -3,11 +3,11 @@ import { Icon } from '../Icon';
 import { Avatar } from '../Avatar';
 import {
   AvatarContainer,
+  PostInfoContainer,
   PostDetailInfoContainer,
   UserContainer,
   NameContainer,
-  IdContainer,
-  PostInfoContainer
+  IdContainer
 } from './PostPreview.style';
 import { Link } from '@components/Link';
 import { UserId } from '@components/UserText';

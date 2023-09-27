@@ -9,10 +9,4 @@ export const FollowUserContainer = styled.div`
   &:active {
     background-color: ${({ theme }) => theme.color.white900};
   }
-
-  & > button {
-    display: inline-block;
-    border-radius: 30px;
-    font-size: 12px;
-  }
 `;
