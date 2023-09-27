@@ -15,7 +15,7 @@ import Posts from '@pages/posts';
 import Notice from '@pages/notice';
 import PostDetail from '@pages/postDetail/PostDetail';
 import { Suspense } from 'react';
-import { SkeletonPosts } from '@pages/posts/components/SkeletonPosts';
+import { SkeletonPosts } from '@components/Skeleton/SkeletonPosts';
 
 const PageRoutes = () => {
   return (

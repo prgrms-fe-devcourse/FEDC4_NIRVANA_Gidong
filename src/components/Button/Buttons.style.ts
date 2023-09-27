@@ -10,17 +10,21 @@ export const StyledButton = styled.button<{
   fontSize?: number;
   textColor?: keyof typeof color;
   backgroundColor?: keyof typeof color;
-  border?: string;
+  border?: keyof typeof color;
   padding?: boolean;
 }>`
   cursor: pointer;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  border: ${({ theme, dark }) =>
-    dark === undefined || dark ? 0 : `1px solid ${theme.color.white500}`};
-  background-color: ${({ theme, dark }) =>
-    dark === undefined
-      ? 'transparent'
+  border: ${({ theme, dark, border }) =>
+    dark === true
+      ? 'none'
+      : dark === false
+      ? `1px solid ${theme.color.white500}`
+      : `1px solid ${theme.color[border]}`};
+  background-color: ${({ theme, dark, backgroundColor }) =>
+    backgroundColor
+      ? theme.color[backgroundColor]
       : dark
       ? theme.color.purpleDark
       : theme.color.white};

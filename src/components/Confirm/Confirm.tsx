@@ -55,11 +55,15 @@ const Confirm = ({
               <CancelButtonDefaultEvent onClick={() => setDisabled(true)}>
                 {FormedCancelButton}
               </CancelButtonDefaultEvent>
-              <Link
-                state={linkState}
-                pageLink={nextPageLink}>
-                {FormedConfirmlButton}
-              </Link>
+              {nextPageLink ? (
+                <Link
+                  state={linkState}
+                  pageLink={nextPageLink}>
+                  {FormedConfirmlButton}
+                </Link>
+              ) : (
+                FormedConfirmlButton
+              )}
             </NavButtonContainer>
           </ContentContainer>
         </StyledConfirmBackground>

@@ -66,9 +66,7 @@ const Footer = () => {
               handleClickButton(link);
             }}
             borderRadius={0}
-            border='none'
-            padding={false}
-            backgroundColor='transparent'>
+            backgroundColor={'transparent'}>
             <Icon
               name={name}
               size={size}
