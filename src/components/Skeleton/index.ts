@@ -5,7 +5,6 @@ import PostDetailSkeleton from './PostDetailSkeleton';
 import SearchFollowSkeleton from './SearchFollowSkeleton';
 import SearchPostPreviewSkeleton from './SearchPostPreviewSkeleton';
 
-export { PostPreviewSkeleton, SearchFollowSkeleton, SearchPostPreviewSkeleton };
 export {
   PostPreviewSkeleton,
   SkeletonFollowUserInfo,

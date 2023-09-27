@@ -4,7 +4,7 @@ import useSessionStorage from '@hooks/useSessionStorage';
 import { deleteFollowUser, postFollowUser } from '@apis/follow';
 import { postNotifications } from '@apis/notice';
 import { Button } from '@components/Button';
-import type { User } from '@/types';
+import { User } from '@/types';
 
 interface FollowButtonProps {
   followingDataId: string; // 삭제용 - following data id
@@ -71,7 +71,6 @@ const FollowButton = ({
       label={followed ? '팔로잉' : '팔로우'}
       fontSize={fontSize}
       bold={true}
-      dark={followed ? false : true}
       handleClick={handleClickFollow}
       textColor={followed ? 'greyLight' : 'white'}
       backgroundColor={followed ? 'white' : 'purpleDark'}
