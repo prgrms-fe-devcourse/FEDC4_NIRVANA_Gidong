@@ -36,11 +36,16 @@ export const AvatarContainer = styled.div`
 export const PostInfoContainer = styled.div`
   width: calc(100% - 50px);
   height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  ${({ theme }) => theme.style.flexAlignCenter};
   padding-left: 10px;
   line-height: 1.5;
+
+  > a {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    ${({ theme }) => theme.style.flexAlignCenter}
+  }
 `;
 
 export const UserContainer = styled.div`
