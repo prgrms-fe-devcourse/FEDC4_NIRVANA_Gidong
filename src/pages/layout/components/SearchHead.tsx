@@ -54,6 +54,7 @@ const SearchHead = ({
         <Button
           width={30}
           height={30}
+          backgroundColor={'transparent'}
           handleClick={handleShowSearchBox}>
           <Icon
             name='arrow_back_ios'
