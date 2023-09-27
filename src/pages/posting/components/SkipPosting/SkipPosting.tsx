@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import { UseMutateFunction } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 import { POSTING_DESCRIPTION } from '@pages/posting/constants';
+import { createFormData } from '@pages/posting/utils';
 import { StyledSkipPosting } from './SkipPosting.style';
+import postCreateNewPost from '@apis/posting';
 import SkipPostingConfirm from './SkipPostingConfirm';
 
-interface MutationParams {
-  posting: string;
-}
-
 interface SkipPostingProps {
-  mutatePosting: UseMutateFunction<void, unknown, MutationParams, unknown>;
+  channelId?: string;
+  customToken?: string;
 }
 
-const SkipPosting = ({ mutatePosting }: SkipPostingProps) => {
+const SkipPosting = ({ channelId, customToken }: SkipPostingProps) => {
+  const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
   const { SKIP_POSTING } = POSTING_DESCRIPTION;
 
@@ -25,9 +25,12 @@ const SkipPosting = ({ mutatePosting }: SkipPostingProps) => {
     setShowConfirm(false);
   };
 
-  const handleConfirmButton = () => {
-    setShowConfirm(false);
-    mutatePosting({ posting: '' });
+  const handleConfirmButton = async () => {
+    const formData = createFormData('', channelId);
+    await postCreateNewPost(customToken, formData).then(() => {
+      sessionStorage.removeItem('posting');
+      navigate('/posts');
+    });
   };
 
   return (

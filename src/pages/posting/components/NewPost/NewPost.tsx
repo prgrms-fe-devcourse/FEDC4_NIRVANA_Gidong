@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Toast } from '@components/Toast';
 import { POSTING_DESCRIPTION, POSTING_WARNING } from '@pages/posting/constants';
+import { createFormData, purifyContent } from '@pages/posting/utils';
 import { Button } from '@components/Button';
 import useDebounce from '@hooks/useDebounce';
 import useSessionStorage from '@hooks/useSessionStorage';
+import postCreateNewPost from '@apis/posting';
 import NewPostConfirm from './NewPostConfirm';
 import {
-  TextAreaContainer,
   ButtonContainer,
   PostContainer,
-  StyledTextArea
+  StyledTextArea,
+  TextAreaContainer
 } from './NewPost.style';
-import { UseMutateFunction } from '@tanstack/react-query';
 
 interface MeditationInfo {
   channelId: string;
@@ -21,22 +23,14 @@ interface MeditationInfo {
   totalTime: number;
 }
 
-interface MutationParams {
-  posting: string;
-}
-
 interface NewPostProps {
   meditationInfo: MeditationInfo;
-  isLoading: boolean;
-  mutatePosting: UseMutateFunction<void, unknown, MutationParams, unknown>;
+  customToken: string;
 }
 
-const NewPost = ({
-  meditationInfo,
-  mutatePosting,
-  isLoading
-}: NewPostProps) => {
-  const { PLACEHOLDER, WRITE } = POSTING_DESCRIPTION;
+const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
+  const navigate = useNavigate();
+  const { PLACEHOLDER, UPLOAD } = POSTING_DESCRIPTION;
   const { LIMIT_LENGTH, WARNING } = POSTING_WARNING;
   const [showConfirm, setShowConfirm] = useState(false);
   const [posting, setPosting] = useState('');
@@ -62,7 +56,19 @@ const NewPost = ({
 
   const handleConfirmButton = () => {
     if (posting.length > 0) {
-      mutatePosting({ posting });
+      sessionStorage.removeItem('posting');
+      const customTitle = {
+        title: purifyContent(posting),
+        meditationTime: `${meditationInfo.totalTime / 60}`
+      };
+      const formData = createFormData(
+        JSON.stringify(customTitle),
+        meditationInfo.channelId
+      );
+
+      postCreateNewPost(customToken, formData).then(() => {
+        navigate('/posts', { state: { channelId: meditationInfo.channelId } });
+      });
     }
   };
 
@@ -71,7 +77,7 @@ const NewPost = ({
       setPosting(prevPosting.posting);
     }
     return () => clear();
-  }, []);
+  }, [clear, prevPosting.posting]);
 
   return (
     <>
@@ -101,11 +107,10 @@ const NewPost = ({
         </TextAreaContainer>
         <ButtonContainer>
           <Button
-            disabled={isLoading}
             width={300}
             height={50}
             dark={true}
-            label={WRITE}
+            label={UPLOAD}
             bold={true}
             fontSize={16}
             borderRadius={10}

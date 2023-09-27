@@ -17,7 +17,7 @@ export const StyledButton = styled.button<{
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   border: ${({ theme, dark }) =>
-    dark === undefined || dark ? 0 : `1px solid ${theme.color.white800}`};
+    dark === undefined || dark ? 0 : `1px solid ${theme.color.white500}`};
   background-color: ${({ theme, dark }) =>
     dark === undefined
       ? 'transparent'
@@ -29,7 +29,5 @@ export const StyledButton = styled.button<{
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : 10)}px;
   font-size: ${({ fontSize }) => (fontSize ? fontSize : 16)}px;
-  background-color: ${({ backgroundColor, theme }) =>
-    theme.color[backgroundColor]};
   ${({ padding }) => !padding && `padding: 0`}
 `;

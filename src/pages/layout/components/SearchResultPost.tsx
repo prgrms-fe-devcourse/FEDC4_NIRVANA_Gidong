@@ -1,13 +1,15 @@
-import { useQuery, useQueries } from '@tanstack/react-query';
+import { useQueries, useQuery } from '@tanstack/react-query';
+
+import type { EditedPost, Post, User } from '@/types';
 
 import { searchAll } from '@apis/search';
 import { getUser } from '@apis/user';
+
 import { PostPreview } from '@components/PostPreview';
 import { Toast } from '@components/Toast';
 import SearchNoResult from './SearchNoResult';
 import { editPostData } from '@pages/posts/utils/editPostData';
 import filterPostData from '../utils/filterPostData';
-import { User, EditedPost, Post } from '@/types';
 import { FILTER } from '../constants';
 
 interface SearchResultPostProps {

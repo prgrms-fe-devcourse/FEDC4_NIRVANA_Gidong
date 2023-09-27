@@ -11,6 +11,11 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'],
+  settings: {
+    react: {
+      version: 'detect'
+    },
+  },
   rules: {
     'prettier/prettier': [
       'error',

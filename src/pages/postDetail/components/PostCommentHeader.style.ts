@@ -12,7 +12,7 @@ export const PostCommentHeaderContainer = styled.header`
 export const PostCommentHeaderText = styled.p`
   margin: 0 5px 0 3px;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 600;
 `;
 
 export const PostLikeContainer = styled.div`

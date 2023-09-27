@@ -1,10 +1,10 @@
 import { Link } from '@components/Link';
 import { Icon } from '@components/Icon';
-import { MESSAGE, LABEL } from '../constants';
+import { LABEL, MESSAGE } from '../constants';
 import {
   GoToSignUpContainer,
-  Message,
-  LinkContainer
+  LinkContainer,
+  Message
 } from './GoToSignUp.style';
 
 const GoToSignUp = () => {
@@ -17,7 +17,6 @@ const GoToSignUp = () => {
           size={14}
           color={'redVivid'}
         />
-        &nbsp;
         <Link
           color='black'
           pageLink={'/signup'}>

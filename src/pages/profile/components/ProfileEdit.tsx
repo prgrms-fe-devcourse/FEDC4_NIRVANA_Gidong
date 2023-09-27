@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import {
   ProfileEditContainer,
-  ProfileEditSection,
-  ProfileEditForm
+  ProfileEditForm,
+  ProfileEditSection
 } from './ProfileEdit.style';
 import { UserInput } from '@components/UserInput';
 import { USER_INPUT } from '@pages/signup/constants';

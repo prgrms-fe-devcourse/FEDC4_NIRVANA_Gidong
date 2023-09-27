@@ -69,7 +69,8 @@ export const SettingLi = styled.li`
   transition: all 0.2s ease-out;
   cursor: pointer;
 
-  :hover {
+  :hover,
+  :active {
     background-color: ${({ theme }) => theme.color.white900};
   }
 

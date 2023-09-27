@@ -1,22 +1,30 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { color } from '@styles/colors';
 import styled from '@emotion/styled';
 
 export const StyledNavLink = styled(NavLink)<{
   size: number;
-  setActiveStyle: boolean;
   color: keyof typeof color;
 }>`
   color: ${({ theme, color }) => theme.color[color]};
   font-size: ${({ size }) => size}px;
   text-decoration: none;
   text-align: left;
+  ${({ theme }) => theme.style.flexAlignCenter};
   &.active {
-    ${({ setActiveStyle }) =>
-      setActiveStyle ? 'text-decoration: underline; font-weight: bold;' : ''};
-    ${({ theme, setActiveStyle }) =>
-      setActiveStyle
-        ? `text-decoration-color: ${theme.color.purpleDark};`
-        : ''};
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: ${({ theme }) => theme.color.purpleDark};
   }
+`;
+
+export const StyledLink = styled(Link)<{
+  size: number;
+  color: keyof typeof color;
+}>`
+  ${({ theme }) => theme.style.flexAlignCenter};
+  color: ${({ theme, color }) => theme.color[color]};
+  font-size: ${({ size }) => size}px;
+  text-decoration: none;
+  text-align: left;
 `;

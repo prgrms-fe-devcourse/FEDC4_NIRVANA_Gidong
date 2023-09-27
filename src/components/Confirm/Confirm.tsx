@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from '../Link';
 import {
-  StyledDeemBackground,
-  StyledConfirmBackground,
-  IconContainer,
+  CancelButtonDefaultEvent,
   ContentContainer,
+  IconContainer,
   NavButtonContainer,
-  CancelButtonDefaultEvent
+  StyledConfirmBackground,
+  StyledDeemBackground
 } from './Confirm.style';
 
 interface ConfirmProps {
@@ -17,7 +17,7 @@ interface ConfirmProps {
   nextPageLink: string;
   CancelButton: React.ReactNode | (() => JSX.Element);
   ConfirmButton: React.ReactNode | (() => JSX.Element);
-  linkState?: { [key: string]: any };
+  linkState?: { [key: string]: number | string | boolean };
 }
 
 const Confirm = ({
@@ -55,15 +55,11 @@ const Confirm = ({
               <CancelButtonDefaultEvent onClick={() => setDisabled(true)}>
                 {FormedCancelButton}
               </CancelButtonDefaultEvent>
-              {nextPageLink ? (
-                <Link
-                  state={linkState}
-                  pageLink={nextPageLink}>
-                  {FormedConfirmlButton}
-                </Link>
-              ) : (
-                FormedConfirmlButton
-              )}
+              <Link
+                state={linkState}
+                pageLink={nextPageLink}>
+                {FormedConfirmlButton}
+              </Link>
             </NavButtonContainer>
           </ContentContainer>
         </StyledConfirmBackground>

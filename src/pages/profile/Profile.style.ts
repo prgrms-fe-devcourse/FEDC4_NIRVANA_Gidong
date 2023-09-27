@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export const ProfilePage = styled.div`
-  background-color: ${({ theme }) => theme.color.white};
   display: flex;
   position: relative;
   flex-direction: column;
@@ -14,8 +13,7 @@ export const ProfileInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  flex-grow: 1;
-  padding: 0 26px;
+  height: 150px;
   border-radius: 10px 10px 0 0;
   bottom: 0;
   position: relative;
@@ -23,7 +21,10 @@ export const ProfileInfoContainer = styled.div`
 
 export const ProfileBodyContainer = styled.section`
   width: 100%;
-  height: calc(100% - 100px);
-  padding: 0 26px;
-  position: relative;
+  height: calc(100% - 250px);
+  padding: 0px 30px;
+
+  @media (min-width: 600px) {
+    height: calc(100% - 300px);
+  }
 `;

@@ -6,11 +6,11 @@ import { ThemePicker } from '@components/ThemePicker';
 import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
 import { meditationChannelInfo } from './models/channelInfo';
 import {
-  PrevPostingConfirm,
+  MeditationCancelConfirm,
   MeditationLabel,
   MeditationTimer,
   MeditationTimeSetter,
-  MeditationCancelConfirm
+  PrevPostingConfirm
 } from '@pages/meditation/components';
 import { CONCENTRATION_KEY } from '@pages/meditation/constants';
 

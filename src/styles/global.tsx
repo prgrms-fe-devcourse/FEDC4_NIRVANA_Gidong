@@ -1,14 +1,15 @@
-import { Global, css } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 
 const style = css`
   * {
     box-sizing: border-box;
   }
+
   body {
     width: 100vw;
     height: 100vh;
-    background-color: #eeeeee;
   }
+
   #root {
     font-family: 'Pretendard Variable', sans-serif;
     width: 100%;
@@ -16,6 +17,7 @@ const style = css`
     max-width: 768px;
     margin: 0 auto;
   }
+
   #modal-root {
     position: absolute;
     left: 0;

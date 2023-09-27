@@ -1,7 +1,7 @@
 import { Icon } from '@components/Icon';
 import { useMutation } from '@tanstack/react-query';
-import { useState, useEffect } from 'react';
-import { postLike, deleteLike } from '@apis/Like';
+import { useEffect, useState } from 'react';
+import { deleteLike, postLike } from '@apis/Like';
 import {
   PostCommentHeaderContainer,
   PostCommentHeaderText,

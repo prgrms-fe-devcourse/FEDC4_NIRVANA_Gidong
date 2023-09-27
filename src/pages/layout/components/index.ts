@@ -24,6 +24,5 @@ export {
   PathNav,
   EtcNav,
   AlertButton,
-  Header,
-  Footer
+  Header
 };

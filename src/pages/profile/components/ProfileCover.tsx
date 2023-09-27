@@ -4,7 +4,7 @@ import {
   ProfileCoverImage,
   ProfileCoverImageContainer
 } from './ProfileCover.style';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { editModeState } from '../states/editMode';
 import useUploadPhotoMutation from '@pages/profile/hooks/useUploadPhotoMutation';
 import { Spinner } from '@components/Loader';

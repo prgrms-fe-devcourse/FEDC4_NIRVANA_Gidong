@@ -1,14 +1,16 @@
+import { useMutation } from '@tanstack/react-query';
+
+import type { User } from '@/types/User';
+import { Link } from '@components/Link';
 import { Avatar } from '@components/Avatar';
 import {
-  PostCommentContainer,
   PostCommentAvatarContainer,
-  PostCommentUserContainer,
+  PostCommentContainer,
   PostCommentContentContainer,
-  PostCommentDeleteContainer
+  PostCommentDeleteContainer,
+  PostCommentUserContainer
 } from './PostComment.style';
 import { UserId, UserName } from '@components/UserText';
-import { User } from '@/types/User';
-import { useMutation } from '@tanstack/react-query';
 import { deleteComment } from '@apis/comment';
 
 interface PostCommentProps {
@@ -40,11 +42,15 @@ const PostComment = ({
     <>
       <PostCommentContainer>
         <PostCommentAvatarContainer>
-          <Avatar
-            size={39}
-            src={author.image ? author.image : ''}
-            alt={author.fullName}
-          />
+          <Link
+            setActiveStyle={false}
+            pageLink={`/profile/${author._id}`}>
+            <Avatar
+              size={40}
+              src={author.image ? author.image : ''}
+              alt={author.fullName}
+            />
+          </Link>
         </PostCommentAvatarContainer>
         <PostCommentContentContainer>
           <PostCommentUserContainer>
