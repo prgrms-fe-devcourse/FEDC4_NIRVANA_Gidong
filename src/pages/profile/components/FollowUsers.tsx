@@ -6,11 +6,11 @@ import useSessionStorage from '@hooks/useSessionStorage';
 import checkMyFollow from '@utils/checkMyFollow';
 
 interface FollowUsersProps {
-  possibleDeleteFollow: boolean;
   data?: Follow[];
+  followerTab?: boolean;
 }
 
-const FollowUsers = ({ possibleDeleteFollow, data }: FollowUsersProps) => {
+const FollowUsers = ({ data, followerTab }: FollowUsersProps) => {
   const [{ _id: myUserId }] = useSessionStorage<Pick<User, '_id'>>('userData', {
     _id: ''
   });
@@ -24,8 +24,7 @@ const FollowUsers = ({ possibleDeleteFollow, data }: FollowUsersProps) => {
     queries: data.map((element) => {
       return {
         queryKey: ['followUser', element._id],
-        queryFn: () =>
-          getUser(possibleDeleteFollow ? element.user : element.follower),
+        queryFn: () => getUser(!followerTab ? element.user : element.follower),
         select: (data: User) => {
           return {
             ...element,
@@ -46,10 +45,10 @@ const FollowUsers = ({ possibleDeleteFollow, data }: FollowUsersProps) => {
           return (
             <FollowUser
               followDataId={data._id}
-              possibleDeleteFollow={possibleDeleteFollow}
+              followerTab={followerTab}
               followUser={data.user}
               key={data._id}
-              FollowedThisUser={checkMyFollow(
+              followedThisUser={checkMyFollow(
                 myUserData?.following,
                 data.user._id
               )}

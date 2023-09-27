@@ -19,7 +19,6 @@ import { deletePost, putPost } from '@apis/posts';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
 import { appendFormData, purifyContent } from '@pages/posting/utils';
-import PostHeader from '@components/PostPreview/PostHeader';
 
 interface PostContentProps {
   author: User;

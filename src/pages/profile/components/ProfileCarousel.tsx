@@ -78,7 +78,7 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
             return data && data.length > 0 ? (
               <ProfileCarouselItem key={index}>
                 <FollowUsers
-                  possibleDeleteFollow={false}
+                  followerTab={true}
                   data={data as Follow[]}
                 />
               </ProfileCarouselItem>
@@ -93,7 +93,7 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
             return data && data.length > 0 ? (
               <ProfileCarouselItem key={index}>
                 <FollowUsers
-                  possibleDeleteFollow={true}
+                  followerTab={false}
                   data={data as Follow[]}
                 />
               </ProfileCarouselItem>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { deleteFollowUser, postFollowUser } from '@apis/follow';
 import { postNotifications } from '@apis/notice';
@@ -9,8 +10,8 @@ import { User } from '@/types';
 interface FollowButtonProps {
   followingDataId: string; // 삭제용 - following data id
   followingUserId: string; // 팔로우용 - 팔로우할 userId
-  followedThisUser?: boolean;
-  possibleDeleteFollow: boolean;
+  followedThisUser: boolean;
+  followerTab?: boolean;
   refetch?: () => void;
   width?: number;
   height?: number;
@@ -20,16 +21,23 @@ interface FollowButtonProps {
 const FollowButton = ({
   followingDataId,
   followingUserId,
-  possibleDeleteFollow,
-  followedThisUser = true,
+  followedThisUser,
+  followerTab,
   width = 68,
   height = 30,
   fontSize = 12,
+
   refetch
 }: FollowButtonProps) => {
-  const [{ token }] = useSessionStorage<Pick<User, 'token'>>('userData', {
-    token: ''
-  });
+  const [{ token, _id: myId }] = useSessionStorage<Pick<User, 'token' | '_id'>>(
+    'userData',
+    {
+      token: '',
+      _id: ''
+    }
+  );
+
+  const { userId: profileUserId } = useParams<{ userId: string }>();
 
   const [followed, setFollowed] = useState(followedThisUser);
   const [dataId, setDataId] = useState(followingDataId);
@@ -58,23 +66,34 @@ const FollowButton = ({
   );
 
   const handleClickFollow = () => {
-    if (!followed || possibleDeleteFollow) {
-      mutate();
+    mutate();
+  };
+  const checkFollowButtonVisibility = () => {
+    if (profileUserId !== myId && myId !== followingUserId) {
+      return true;
+    } else if (myId === followingUserId) {
+      return false;
+    } else if (followerTab && followed) {
+      return false;
+    } else {
+      return true;
     }
   };
 
   return (
-    <Button
-      width={width}
-      height={height}
-      dark={followed ? false : true}
-      label={followed ? '팔로잉' : '팔로우'}
-      fontSize={fontSize}
-      bold={true}
-      handleClick={handleClickFollow}
-      textColor={followed ? 'greyLight' : 'white'}
-      backgroundColor={followed ? 'white' : 'purpleDark'}
-    />
+    checkFollowButtonVisibility() && (
+      <Button
+        width={width}
+        height={height}
+        dark={followed ? false : true}
+        label={followed ? '팔로잉' : '팔로우'}
+        fontSize={fontSize}
+        bold={true}
+        handleClick={handleClickFollow}
+        textColor={followed ? 'greyLight' : 'white'}
+        backgroundColor={followed ? 'white' : 'purpleDark'}
+      />
+    )
   );
 };
 
