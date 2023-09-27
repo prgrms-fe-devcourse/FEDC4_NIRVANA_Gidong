@@ -9,7 +9,7 @@ import type { User } from '@/types';
 interface FollowButtonProps {
   followingDataId: string; // 삭제용 - following data id
   followingUserId: string; // 팔로우용 - 팔로우할 userId
-  FollowedThisUser?: boolean;
+  followedThisUser?: boolean;
   possibleDeleteFollow: boolean;
   refetch?: () => void;
   width?: number;
@@ -21,7 +21,7 @@ const FollowButton = ({
   followingDataId,
   followingUserId,
   possibleDeleteFollow,
-  FollowedThisUser = true,
+  followedThisUser = true,
   width = 68,
   height = 30,
   fontSize = 12,
@@ -31,7 +31,7 @@ const FollowButton = ({
     token: ''
   });
 
-  const [followed, setFollowed] = useState(FollowedThisUser);
+  const [followed, setFollowed] = useState(followedThisUser);
   const [dataId, setDataId] = useState(followingDataId);
 
   const { mutate } = useMutation(

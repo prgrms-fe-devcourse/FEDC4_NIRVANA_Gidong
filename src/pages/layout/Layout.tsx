@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router';
+import { Footer, Header } from '@pages/layout/components';
 import { LayoutContainer } from './Layout.style';
-import { Header } from './components';
-import { Footer } from './components';
 
 interface LayoutProps {
   headerStatus: 'back' | 'home';

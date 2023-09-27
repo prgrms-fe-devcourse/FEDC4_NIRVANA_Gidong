@@ -1,6 +1,6 @@
 import { ProfileTabItemContainer } from './ProfileTabItem.style';
 
-import { Post, Follow } from '@/types';
+import { Follow, Post } from '@/types';
 
 interface ProfileTabItemProps {
   title: string;

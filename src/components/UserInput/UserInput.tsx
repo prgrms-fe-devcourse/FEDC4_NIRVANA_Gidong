@@ -1,8 +1,8 @@
 import {
-  Label,
+  ErrorMessage,
   Input,
   InputContainer,
-  ErrorMessage,
+  Label,
   SuccessMessage,
   StyledTitle
 } from './UserInput.style';

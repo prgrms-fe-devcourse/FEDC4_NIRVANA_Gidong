@@ -14,6 +14,8 @@ interface ButtonProps {
   borderRadius?: number;
   children?: React.ReactNode;
   disabled?: boolean;
+  padding?: boolean;
+  border?: string;
   backgroundColor?: keyof typeof color;
 }
 
@@ -50,5 +52,6 @@ const Button = ({
     </StyledButton>
   );
 };
+
 
 export default Button;

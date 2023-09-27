@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import postLogInUser from '@apis/login';
 import { Button } from '@components/Button';
 import { UserInput } from '@components/UserInput';

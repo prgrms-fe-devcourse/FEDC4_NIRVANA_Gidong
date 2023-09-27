@@ -75,7 +75,7 @@ const Posting = () => {
       navigate('/404');
     }
     setMeditationInfo(location.state);
-  }, []);
+  }, [location.state, navigate]);
 
   return (
     <StyledPosting>

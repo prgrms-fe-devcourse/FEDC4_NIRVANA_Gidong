@@ -1,6 +1,4 @@
 import { atom } from 'recoil';
-import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
-import { CONCENTRATION_KEY } from '@pages/meditation/constants';
 
 export const endButtonPushed = atom({
   key: 'endButtonPushed',

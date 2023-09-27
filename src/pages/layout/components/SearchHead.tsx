@@ -5,9 +5,9 @@ import { Button } from '@components/Button';
 import { Icon } from '@components/Icon';
 import SearchButton from './SearchButton';
 import {
-  SearchHeadContainer,
   PrevButtonContainer,
   SearchForm,
+  SearchHeadContainer,
   SearchInput
 } from './SearchHead.style';
 

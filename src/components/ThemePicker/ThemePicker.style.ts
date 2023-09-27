@@ -5,6 +5,7 @@ const NavContainer = styled.div`
   width: 80%;
   height: 28px;
   position: relative;
+
   > * {
     position: absolute;
     top: 50%;
@@ -20,9 +21,11 @@ const ThemePickerContainer = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   scroll-behavior: smooth;
+
   &::-webkit-scrollbar {
     display: none;
   }
+
   & > button {
     margin: 0px 5px;
     flex-shrink: 0;
@@ -30,6 +33,7 @@ const ThemePickerContainer = styled.div`
 
   & > button:last-child {
     position: relative;
+
     &:after {
       content: '';
       display: block;

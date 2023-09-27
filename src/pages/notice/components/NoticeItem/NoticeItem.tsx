@@ -7,14 +7,13 @@ import typeToPath from '@pages/notice/utils/typeToNavigate';
 import typeToIconName from '@pages/notice/utils/typeToIcon';
 import { Icon } from '@components/Icon';
 import { Avatar } from '@components/Avatar';
-
 import {
-  NoticeItemContainer,
-  NoticeContent,
   Message,
   MessagePreview,
-  MessageText,
-  ProfileImage
+  NoticeContent,
+  NoticeItemContainer,
+  ProfileImage,
+  MessageText
 } from './NoticeItem.style';
 
 interface NoticeItemProps {

@@ -1,6 +1,6 @@
 import { useState, Suspense } from 'react';
 import { SearchFilter } from '@pages/layout/components';
-import { SearchResultContainer, SearchResult } from './SearchBody.style';
+import { SearchResult, SearchResultContainer } from './SearchBody.style';
 import encodeURIValue from '../utils/encodeURIValue';
 import SearchResultPost from './SearchResultPost';
 import SearchResultUser from './SearchResultUser';

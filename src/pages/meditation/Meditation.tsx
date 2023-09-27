@@ -1,4 +1,4 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { useState } from 'react';
 import { endButtonPushed, meditationStatus } from './states';
 import { MeditationPage } from './Meditation.style';
@@ -6,11 +6,11 @@ import { ThemePicker } from '@components/ThemePicker';
 import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
 import { meditationChannelInfo } from './models/channelInfo';
 import {
-  PrevPostingConfirm,
+  MeditationCancelConfirm,
   MeditationLabel,
   MeditationTimer,
   MeditationTimeSetter,
-  MeditationCancelConfirm
+  PrevPostingConfirm
 } from '@pages/meditation/components';
 import { CONCENTRATION_KEY } from '@pages/meditation/constants';
 
@@ -19,7 +19,7 @@ const Meditation = () => {
   const [selectedTheme, setSelectedTheme] = useState(
     meditationChannelInfo.get(CONCENTRATION_KEY)
   );
-  const [status, setStatus] = useRecoilState(meditationStatus);
+  const status = useRecoilValue(meditationStatus);
   const prevPosting = JSON.parse(sessionStorage.getItem('posting'));
 
   const handleCancelPrevPosting = () => {
@@ -40,7 +40,7 @@ const Meditation = () => {
 
   return (
     <>
-      <MeditationPage>
+      <MeditationPage timerPaused={status}>
         {prevPosting && (
           <PrevPostingConfirm
             prevPostingInfo={prevPosting}

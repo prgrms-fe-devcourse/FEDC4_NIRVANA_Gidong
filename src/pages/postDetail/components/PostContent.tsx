@@ -1,16 +1,15 @@
 import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
 import type { User } from '@/types';
 
 import { Icon } from '@components/Icon';
-import PostHeader from '@components/PostPreview/PostHeader';
 import {
-  PostContentSection,
-  PostContentHeader,
   PostContentBody,
+  PostContentHeader,
   PostContentMenuIconContainer,
+  PostContentSection,
   PostContentMenu,
   PostEditConfirmButtonContainer
 } from './PostContent.style';

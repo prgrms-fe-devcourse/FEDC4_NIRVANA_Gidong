@@ -13,10 +13,12 @@ export const ProfileCarouselContainer = styled.div<ProfileCarouselContainerProps
   overflow-y: auto;
   user-select: none;
   scroll-behavior: smooth;
+
   > div:first-of-type {
     > div {
       padding: 0;
     }
+
     > div:last-of-type {
       border-bottom: none;
     }

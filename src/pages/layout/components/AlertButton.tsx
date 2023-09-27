@@ -1,11 +1,15 @@
+import { useRecoilState } from 'recoil';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+
+import type { User } from '@/types';
+
 import { getNotifications } from '@apis/notice';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { Icon } from '@components/Icon';
 import { DotBadge } from '@components/Badge';
-import { User } from '@/types';
 import { Button } from '@components/Button';
+import { readAlert } from '@pages/notice/states/readAlert';
 
 interface AlertButtonProps {
   handleClickAlert: () => void;
@@ -19,27 +23,34 @@ const AlertButton = ({ handleClickAlert }: AlertButtonProps) => {
       token: ''
     }
   );
+
   const location = useLocation();
   const { pathname } = location;
   const { token } = userSessionData;
+  const [readStatus] = useRecoilState(readAlert);
 
-  const query = useQuery({
-    queryKey: ['headerAlert'],
+  const { data, isError } = useQuery({
+    queryKey: ['headerAlert', pathname],
     queryFn: async () => {
       const data = await getNotifications(`Bearer ${token}`);
       return data;
     },
-    enabled: (token !== '' || !token) && pathname !== '/notice',
-    refetchInterval: () => (pathname === '/notice' ? false : 5000),
-    refetchIntervalInBackground: true
+
+    enabled: token !== '' && !token && pathname !== '/notice',
+    refetchInterval: 5000,
+    cacheTime: 0,
+    staleTime: 0
   });
 
-  const { data } = query;
+  if (isError) {
+    console.log('헤더 알림 에러!');
+  }
+
   const alertStatus = data?.filter(({ seen }) => !seen).length > 0;
 
   return (
     <DotBadge
-      dot={alertStatus && pathname !== '/notice'}
+      dot={pathname === '/notice' ? readStatus : alertStatus}
       color='orange'
       position='top'
       badgeSize={5}>

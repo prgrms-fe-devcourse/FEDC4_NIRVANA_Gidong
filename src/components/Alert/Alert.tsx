@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import {
-  StyledDeemBackground,
-  StyledAlertBackground,
-  IconContainer,
   ContentContainer,
-  NavButtonContainer
+  IconContainer,
+  NavButtonContainer,
+  StyledAlertBackground,
+  StyledDeemBackground
 } from './Alert.style';
 import { Button } from '../Button';
 import { Link } from '../Link';
