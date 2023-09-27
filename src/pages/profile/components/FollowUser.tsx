@@ -31,7 +31,7 @@ const FollowUser = ({
           followingDataId={followDataId}
           followingUserId={_id}
           possibleDeleteFollow={possibleDeleteFollow}
-          FollowedThisUser={FollowedThisUser}
+          followedThisUser={FollowedThisUser}
         />
       }
     </FollowUserContainer>
