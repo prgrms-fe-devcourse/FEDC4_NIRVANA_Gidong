@@ -56,7 +56,7 @@ export const TimerElement = styled.button<{ timerPaused: boolean }>`
     transition: 0.3s;
   }
 
-  z-index: 2;
+  z-index: 1;
 `;
 
 export const IconContainer = styled.div`
