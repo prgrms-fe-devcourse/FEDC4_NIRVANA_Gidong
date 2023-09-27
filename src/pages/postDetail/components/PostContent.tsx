@@ -94,6 +94,7 @@ const PostContent = ({
         ['title', 'channelId', 'image', 'postId'],
         JSON.stringify(newCustomTitle),
         channelId,
+        null,
         postId
       );
       mutatePutPost({ postData: newFormData, token });
