@@ -7,7 +7,7 @@ import { Button } from '@components/Button';
 import { StyledFooter } from './Footer.style';
 import { User } from '@/types/User';
 
-export const Footer = () => {
+const Footer = () => {
   const [modal, setModal] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -69,3 +69,5 @@ export const Footer = () => {
     </>
   );
 };
+
+export default Footer;
