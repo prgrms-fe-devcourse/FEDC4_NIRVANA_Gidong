@@ -7,13 +7,15 @@ interface FollowUserProps {
   followUser: User;
   followerTab?: boolean;
   followDataId: string;
+  myProfile: boolean;
 }
 
 const FollowUser = ({
   followDataId,
   followUser,
   followerTab,
-  followedThisUser
+  followedThisUser,
+  myProfile
 }: FollowUserProps) => {
   const { _id, fullName, image, isOnline, email } = followUser;
 
@@ -26,14 +28,14 @@ const FollowUser = ({
         email={email}
         id={_id}
       />
-      {
+      {myProfile && (
         <FollowButton
           followingDataId={followDataId}
           followingUserId={_id}
           followerTab={followerTab}
           followedThisUser={followedThisUser}
         />
-      }
+      )}
     </FollowUserContainer>
   );
 };

@@ -6,11 +6,12 @@ import useSessionStorage from '@hooks/useSessionStorage';
 import checkMyFollow from '@utils/checkMyFollow';
 
 interface FollowUsersProps {
-  data?: Follow[];
-  followerTab?: boolean;
+  data: Follow[];
+  followerTab: boolean;
+  myProfile: boolean;
 }
 
-const FollowUsers = ({ data, followerTab }: FollowUsersProps) => {
+const FollowUsers = ({ data, followerTab, myProfile }: FollowUsersProps) => {
   const [{ _id: myUserId }] = useSessionStorage<Pick<User, '_id'>>('userData', {
     _id: ''
   });
@@ -48,6 +49,7 @@ const FollowUsers = ({ data, followerTab }: FollowUsersProps) => {
               followerTab={followerTab}
               followUser={data.user}
               key={data._id}
+              myProfile={myProfile}
               followedThisUser={checkMyFollow(
                 myUserData?.following,
                 data.user._id

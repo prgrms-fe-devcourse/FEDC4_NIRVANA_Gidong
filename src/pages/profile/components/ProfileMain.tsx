@@ -5,15 +5,17 @@ import { TabItems } from '../utils/createTabItems';
 interface ProfileMainProps {
   tabItems: TabItems;
   fullName: string;
+  myProfile: boolean;
 }
 
-const ProfileMain = ({ tabItems, fullName }: ProfileMainProps) => {
+const ProfileMain = ({ tabItems, fullName, myProfile }: ProfileMainProps) => {
   return (
     <ProfileMainSection>
       <ProfileTabs tabItems={tabItems}></ProfileTabs>
       <ProfileCarousel
         tabItems={tabItems}
         fullName={fullName}
+        myProfile={myProfile}
       />
     </ProfileMainSection>
   );

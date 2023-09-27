@@ -89,6 +89,7 @@ const Profile = () => {
           <ProfileMain
             fullName={isLoading ? '' : currentPageProfileData.fullName}
             tabItems={tabItems}
+            myProfile={myUserId === profileUserId}
           />
         )}
       </ProfileBodyContainer>

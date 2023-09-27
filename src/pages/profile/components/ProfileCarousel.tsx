@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
-import type { EditedPost, Post, User, Follow } from '@/types';
+import type { EditedPost, Post, Follow } from '@/types';
 
 import {
   NoneContentContainer,
@@ -19,10 +19,14 @@ import { editPostData } from '@pages/posts/utils/editPostData';
 interface ProfileCarouselProps {
   tabItems: TabItems;
   fullName: string;
-  myProfileData?: User;
+  myProfile: boolean;
 }
 
-const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
+const ProfileCarousel = ({
+  tabItems,
+  fullName,
+  myProfile
+}: ProfileCarouselProps) => {
   const { MEDITATION, FOLLOWING, FOLLOWER, INFO } = PROFILE_TABS;
 
   const [selectedTabIndex, setSelectedTabIndex] = useRecoilState(
@@ -78,6 +82,7 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
             return data && data.length > 0 ? (
               <ProfileCarouselItem key={index}>
                 <FollowUsers
+                  myProfile={myProfile}
                   followerTab={true}
                   data={data as Follow[]}
                 />
@@ -93,6 +98,7 @@ const ProfileCarousel = ({ tabItems, fullName }: ProfileCarouselProps) => {
             return data && data.length > 0 ? (
               <ProfileCarouselItem key={index}>
                 <FollowUsers
+                  myProfile={myProfile}
                   followerTab={false}
                   data={data as Follow[]}
                 />

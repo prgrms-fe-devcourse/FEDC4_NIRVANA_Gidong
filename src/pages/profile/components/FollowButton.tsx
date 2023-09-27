@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+
 import useSessionStorage from '@hooks/useSessionStorage';
 import { deleteFollowUser, postFollowUser } from '@apis/follow';
 import { postNotifications } from '@apis/notice';
@@ -29,15 +29,9 @@ const FollowButton = ({
 
   refetch
 }: FollowButtonProps) => {
-  const [{ token, _id: myId }] = useSessionStorage<Pick<User, 'token' | '_id'>>(
-    'userData',
-    {
-      token: '',
-      _id: ''
-    }
-  );
-
-  const { userId: profileUserId } = useParams<{ userId: string }>();
+  const [{ token }] = useSessionStorage<Pick<User, 'token'>>('userData', {
+    token: ''
+  });
 
   const [followed, setFollowed] = useState(followedThisUser);
   const [dataId, setDataId] = useState(followingDataId);
@@ -69,11 +63,7 @@ const FollowButton = ({
     mutate();
   };
   const checkFollowButtonVisibility = () => {
-    if (profileUserId !== myId && myId !== followingUserId) {
-      return true;
-    } else if (myId === followingUserId) {
-      return false;
-    } else if (followerTab && followed) {
+    if (followerTab && followed) {
       return false;
     } else {
       return true;

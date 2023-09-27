@@ -19,3 +19,5 @@ export const FollowUserInfoContainer = styled.div`
     right: 1px;
   }
 `;
+
+export const FollowAvatarContainer = styled.div``;
