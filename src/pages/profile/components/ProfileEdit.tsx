@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import {
   ProfileEditContainer,
   ProfileEditForm,
@@ -28,6 +29,12 @@ const ProfileEdit = ({ refetch }: ProfileEditProps) => {
     }
   );
 
+  const { mutate } = useMutation(putUpdateUser, {
+    onSuccess: () => {
+      refetch();
+    }
+  });
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const { value } = event.target;
@@ -49,12 +56,12 @@ const ProfileEdit = ({ refetch }: ProfileEditProps) => {
     event.preventDefault();
     const target = event.target as HTMLFormElement;
     const username = target.username.value;
-    await putUpdateUser({
-      fullName: username,
-      token: userSessionData.token
-    }).then(() => {
-      refetch();
-    });
+    if (success) {
+      mutate({
+        fullName: username,
+        token: userSessionData.token
+      });
+    }
   };
 
   return (

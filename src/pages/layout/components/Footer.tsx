@@ -6,9 +6,12 @@ import { Icon } from '@components/Icon';
 import { Button } from '@components/Button';
 import { StyledFooter } from './Footer.style';
 import { User } from '@/types/User';
+import { useRecoilState } from 'recoil';
+import { openSearch } from '../states/openSearch';
 
-export const Footer = () => {
-  const [modal, setModal] = useState(false);
+const Footer = () => {
+  const [loginConfirm, setLoginConfirm] = useState(false);
+  const [showSearchBox, setShowSearchBox] = useRecoilState(openSearch);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -20,13 +23,20 @@ export const Footer = () => {
     }
   );
 
-  const handleShowModal = () => {
-    setModal((prev) => !prev);
+  const handleShowLoginConfirm = () => {
+    setLoginConfirm((prev) => !prev);
   };
 
   const handleClickButton = (path: string) => {
-    if ((_id && token) || path === '/posts') navigate(path);
-    else setModal((prev) => !prev);
+    if (showSearchBox) {
+      setShowSearchBox(false);
+    }
+
+    if ((_id && token) || path === '/posts') {
+      navigate(path);
+    } else {
+      setLoginConfirm((prev) => !prev);
+    }
   };
 
   const iconInfos = [
@@ -37,10 +47,10 @@ export const Footer = () => {
 
   return (
     <>
-      {modal && (
+      {loginConfirm && (
         <LoginConfirm
-          handleClickCancel={handleShowModal}
-          handleClickConfirm={handleShowModal}
+          handleClickCancel={handleShowLoginConfirm}
+          handleClickConfirm={handleShowLoginConfirm}
           path={pathname}
         />
       )}
@@ -69,3 +79,5 @@ export const Footer = () => {
     </>
   );
 };
+
+export default Footer;

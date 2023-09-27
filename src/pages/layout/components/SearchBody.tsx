@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { SearchFilter } from '@pages/layout/components';
 import { SearchResult, SearchResultContainer } from './SearchBody.style';
 import encodeURIValue from '../utils/encodeURIValue';
 import SearchResultPost from './SearchResultPost';
 import SearchResultUser from './SearchResultUser';
 import { FILTER } from '../constants';
+import {
+  SearchPostPreviewSkeleton,
+  SearchFollowSkeleton
+} from '@components/Skeleton';
 
 interface SearchBodyProps {
   searchInputValue: string;
@@ -27,15 +31,19 @@ const SearchBody = ({ searchInputValue }: SearchBodyProps) => {
       />
       <SearchResult>
         {searchFilter === FILTER['POST'] ? (
-          <SearchResultPost
-            searchFilter={searchFilter}
-            searchKeyword={searchKeyword}
-          />
+          <Suspense fallback={<SearchPostPreviewSkeleton />}>
+            <SearchResultPost
+              searchFilter={searchFilter}
+              searchKeyword={searchKeyword}
+            />
+          </Suspense>
         ) : (
-          <SearchResultUser
-            searchFilter={searchFilter}
-            searchKeyword={searchKeyword}
-          />
+          <Suspense fallback={<SearchFollowSkeleton />}>
+            <SearchResultUser
+              searchFilter={searchFilter}
+              searchKeyword={searchKeyword}
+            />
+          </Suspense>
         )}
       </SearchResult>
     </SearchResultContainer>

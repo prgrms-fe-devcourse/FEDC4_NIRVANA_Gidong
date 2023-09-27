@@ -4,6 +4,7 @@ interface StyledToastProps {
   width?: number;
   height?: number;
   toastType: string;
+  top?: number;
 }
 
 const ChildContainer = (backgroundColor: string, textColor: string) => {
@@ -16,11 +17,12 @@ const ChildContainer = (backgroundColor: string, textColor: string) => {
 
 const StyledToast = styled.div<StyledToastProps>`
   width: ${({ width }) => (width ? `${width}px` : `100%`)};
+  z-index: 100;
   max-width: 768px;
   min-height: ${({ height }) => (height ? `${height}px` : `70px`)};
   position: absolute;
   z-index: 999;
-  top: 50px;
+  top: ${({ top }) => (top ? `${top}px` : `50px`)};
   display: flex;
   justify-content: space-between;
   padding: 0px 30px;

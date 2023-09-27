@@ -6,11 +6,12 @@ import { IconContainer, StyledToast } from './Toast.style';
 interface ToastProps {
   width?: number;
   height?: number;
+  top?: number;
   content: string;
   type: 'WARNING' | 'ERROR' | 'CONFIRM' | 'SUCCESS';
 }
 
-const Toast = ({ width, height, content, type }: ToastProps) => {
+const Toast = ({ width, height, top, content, type }: ToastProps) => {
   const [toastShow, setToastShow] = useState(true);
 
   const clickCancelIcon = () => {
@@ -28,6 +29,7 @@ const Toast = ({ width, height, content, type }: ToastProps) => {
       <StyledToast
         width={width}
         height={height}
+        top={top}
         toastType={type}>
         {content}
         <IconContainer onClick={clickCancelIcon}>

@@ -4,6 +4,8 @@ import { Comment } from '@/types/Comment';
 import { NOTICE_TYPE } from '@pages/notice/constants';
 import typeToMessage from '@pages/notice/utils/typeToMessage';
 import typeToPath from '@pages/notice/utils/typeToNavigate';
+import typeToIconName from '@pages/notice/utils/typeToIcon';
+import { Icon } from '@components/Icon';
 import { Avatar } from '@components/Avatar';
 
 import {
@@ -65,7 +67,15 @@ const NoticeItem = ({
         />
       </ProfileImage>
       <NoticeContent>
-        <Message>{typeToMessage(type)}</Message>
+        <Message>
+          <MessageText>{typeToMessage(type)}</MessageText>
+          <Icon
+            name={typeToIconName(type)}
+            color={'purpleNormal'}
+            fill={true}
+            size={13}
+          />
+        </Message>
         {type === NOTICE_TYPE.COMMENT && (
           <MessagePreview>
             {comment && comment.comment.length > 25

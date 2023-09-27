@@ -3,15 +3,17 @@ import { FollowButton, FollowUserInfo } from '@pages/profile/components';
 import { User } from '@/types';
 
 interface FollowUserProps {
-  following: boolean;
+  FollowedThisUser: boolean;
   followUser: User;
+  possibleDeleteFollow: boolean;
   followDataId: string;
 }
 
 const FollowUser = ({
   followDataId,
   followUser,
-  following
+  possibleDeleteFollow,
+  FollowedThisUser
 }: FollowUserProps) => {
   const { _id, fullName, image, isOnline, email } = followUser;
 
@@ -24,13 +26,14 @@ const FollowUser = ({
         email={email}
         id={_id}
       />
-      {following && (
+      {
         <FollowButton
           followingDataId={followDataId}
           followingUserId={_id}
-          following={true}
+          possibleDeleteFollow={possibleDeleteFollow}
+          FollowedThisUser={FollowedThisUser}
         />
-      )}
+      }
     </FollowUserContainer>
   );
 };
