@@ -20,7 +20,7 @@ const Notice = () => {
     }
   );
 
-  const [, setReadStatus] = useRecoilState(readAlert);
+  const setReadStatus = useSetRecoilState(readAlert);
 
   const fetchNotifications = async () => {
     const res = await getNotifications(`Bearer ${userSessionData.token}`).then(
@@ -48,7 +48,7 @@ const Notice = () => {
           label='모두 읽음'
           handleClick={async () => {
             await putNotifications(`Bearer ${userSessionData.token}`);
-            await fetchNotifications();
+            fetchNotifications();
           }}
         />
       </Header>
