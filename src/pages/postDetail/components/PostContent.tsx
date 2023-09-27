@@ -13,7 +13,6 @@ import {
   PostContentMenu,
   PostEditConfirmButtonContainer
 } from './PostContent.style';
-import PostHeader from '@components/PostPreview/PostHeader';
 import { Toast } from '@components/Toast';
 import { deletePost, putPost } from '@apis/posts';
 import { Button } from '@components/Button';
