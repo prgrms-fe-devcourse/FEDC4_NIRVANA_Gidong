@@ -2,7 +2,6 @@ import {
   SkeletonHeader,
   SkeletonAvatar,
   SkeletonUser,
-  SkeletonContent,
   SkeletonLongRectangle
 } from './Skeleton.style';
 import {
@@ -22,8 +21,18 @@ const PostDetailSkeleton = () => {
       </PostDetailSkeletonContentContainer>
       <SkeletonLongRectangle />
       <PostDetailSkeletonCommentContainer>
-        <SkeletonContent />
-        <SkeletonContent />
+        <SkeletonHeader>
+          <SkeletonAvatar />
+          <SkeletonUser />
+        </SkeletonHeader>
+        <SkeletonHeader>
+          <SkeletonAvatar />
+          <SkeletonUser />
+        </SkeletonHeader>
+        <SkeletonHeader>
+          <SkeletonAvatar />
+          <SkeletonUser />
+        </SkeletonHeader>
       </PostDetailSkeletonCommentContainer>
     </PostDetailSkeletonContainer>
   );
