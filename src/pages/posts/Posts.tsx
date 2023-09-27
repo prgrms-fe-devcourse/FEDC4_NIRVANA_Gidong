@@ -13,11 +13,11 @@ import { editPostData } from './utils/editPostData';
 import useObserver from './hooks/useObserver';
 import {
   PostsContainer,
-  StyledNoPosts,
   StyledPostsPage,
   ThemePickerContainer
 } from './Posts.style';
 import { CONCENTRATION_KEY } from '@pages/meditation/constants';
+import NoPosts from './components/NoPosts/NoPosts';
 
 const Posts = () => {
   const locate = useLocation();
@@ -80,7 +80,7 @@ const Posts = () => {
         />
       )}
       <PostsContainer ref={postsRef}>
-        {postsData.length >= 0 ? (
+        {postsData.length > 0 ? (
           postsData.map((post: EditedPost, index) => {
             const { content, likes, comments } = post;
             return (
@@ -96,7 +96,7 @@ const Posts = () => {
             );
           })
         ) : (
-          <StyledNoPosts>현재 발행된 포스트가 없습니다.</StyledNoPosts>
+          <NoPosts />
         )}
       </PostsContainer>
     </StyledPostsPage>
