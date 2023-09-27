@@ -7,6 +7,8 @@ import {
   PreviewContainer
 } from './PostPreview.style';
 import { Link } from '@components/Link';
+import { openSearch } from '@pages/layout/states/openSearch';
+import { useSetRecoilState } from 'recoil';
 
 interface PostPreviewProps {
   post: EditedPost;
@@ -25,9 +27,13 @@ const PostPreview = ({
   const previewContent = `${content.substring(0, 100)}${
     content.length > 100 ? '...' : ''
   }`;
+  const setResultShown = useSetRecoilState(openSearch);
+  const handlePreviewClick = () => {
+    setResultShown(false);
+  };
 
   return (
-    <PreviewContainer>
+    <PreviewContainer onClick={handlePreviewClick}>
       <PostHeaderContainer>
         <PostHeader
           post={post}
