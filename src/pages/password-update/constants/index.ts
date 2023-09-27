@@ -17,8 +17,7 @@ const USER_INPUT = {
   }
 };
 
-const PASSWORD_HINT =
-  '비밀번호는 8자 이상 32자 이하여야 하며\n영문자 숫자 특수기호 중 두개이상 포함해야 합니다';
+const PASSWORD_HINT = `비밀번호는 영문자, 특수문자, 숫자 중 2가지 이상을 포함한 8~32개의 문자로 이뤄져야 합니다.`;
 
 const LABEL = {
   CHANGE_PASSWORD: '변경하기'

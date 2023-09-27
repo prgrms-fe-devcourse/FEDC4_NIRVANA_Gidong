@@ -50,7 +50,8 @@ export const TimerElement = styled.button<{ timerPaused: boolean }>`
   font-size: 24px;
   font-weight: bold;
 
-  &:hover {
+  &:hover,
+  &:active {
     filter: brightness(50%);
     transition: 0.3s;
   }

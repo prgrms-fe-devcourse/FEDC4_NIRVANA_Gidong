@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const NavContainer = styled.div`
-  max-width: 500px;
+  max-width: 600px;
   width: 80%;
   height: 28px;
   position: relative;
@@ -54,7 +54,8 @@ const StyledPickerButton = styled.button`
   border: none;
   background-color: transparent;
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: ${({ theme }) => theme.color.black250};
   }
 `;

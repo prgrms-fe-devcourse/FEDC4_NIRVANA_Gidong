@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+
 import { getNotifications, putNotifications } from '@apis/notice';
+import { Button } from '@components/Button';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types/User';
 import { Notification } from '@/types/Notification';
 import NoticeList from './components/NoticeList/NoticeList';
-import { Header, NoticePage } from './Notice.style';
-import { Button } from '@components/Button';
+import { NoticePage, Header, ReadButtonContainer } from './Notice.style';
+
 
 const Notice = () => {
   const [list, setList] = useState([]);
@@ -37,16 +39,20 @@ const Notice = () => {
       <Header>
         알림창
         {list.length > 0 && (
+          <ReadButtonContainer>
           <Button
-            width={80}
-            height={30}
+              width={80}
+              height={30}
+              borderRadius={10}
+            fontSize={14}
             label='모두 읽음'
-            handleClick={async () => {
-              await putNotifications(`Bearer ${userSessionData.token}`);
-              fetchNotifications();
-            }}
-          />
+              handleClick={async () => {
+                await putNotifications(`Bearer ${userSessionData.token}`);
+                fetchNotifications();
+              }}
+            />
         )}
+        </ReadButtonContainer>
       </Header>
       {list.length < 1 && <div>알림이 없습니다.</div>}
       <NoticeList list={list} />

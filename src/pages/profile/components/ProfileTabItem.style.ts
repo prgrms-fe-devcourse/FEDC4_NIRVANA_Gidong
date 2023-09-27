@@ -5,7 +5,7 @@ interface ProfileTabsItemProps {
 }
 
 export const ProfileTabItemContainer = styled.div<ProfileTabsItemProps>`
-  height: 35px;
+  height: 100%;
   color: ${({ selected, theme }) =>
     selected ? theme.color.black : theme.color.greyLight};
   font-weight: ${({ selected }) => (selected ? 'bold' : 'normal')};
@@ -15,12 +15,8 @@ export const ProfileTabItemContainer = styled.div<ProfileTabsItemProps>`
   flex: 1;
   cursor: pointer;
   user-select: none;
-  font-size: 14px;
+  font-size: 16px;
   > strong {
     font-weight: bold;
-  }
-
-  &:hover {
-    background-color: ${({ theme }) => theme.color.white900};
   }
 `;

@@ -5,6 +5,7 @@ import { Button } from '@components/Button';
 import { Icon } from '@components/Icon';
 import SearchButton from './SearchButton';
 import {
+  PrevButtonContainer,
   SearchForm,
   SearchHeadContainer,
   SearchInput
@@ -49,17 +50,19 @@ const SearchHead = ({
 
   return (
     <SearchHeadContainer>
-      <Button
-        width={25}
-        height={25}
-        handleClick={handleShowSearchBox}>
-        <Icon
-          name='arrow_back_ios'
-          color='white'
-          size={25}
-        />
-      </Button>
-      <SearchForm onSubmit={handleSubmitSearch}>
+      <PrevButtonContainer>
+        <Button
+          width={30}
+          height={30}
+          handleClick={handleShowSearchBox}>
+          <Icon
+            name='arrow_back_ios'
+            color='white'
+            size={25}
+          />
+        </Button>
+      </PrevButtonContainer>
+      <SearchForm>
         <SearchInput
           placeholder='사용자나 게시물을 검색해보세요'
           ref={inputRef}

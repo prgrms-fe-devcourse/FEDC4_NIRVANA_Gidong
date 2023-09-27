@@ -52,7 +52,6 @@ export const ContentContainer = styled.div<ContentContainerProps>`
   text-align: center;
   font-weight: bold;
   white-space: pre-line;
-  line-height: 1.3;
   font-size: ${({ contentFontSize }) => contentFontSize}px;
   position: relative;
 `;

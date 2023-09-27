@@ -17,11 +17,11 @@ export const StyledButton = styled.button<{
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   border: ${({ theme, dark }) =>
-    dark === undefined || dark ? 0 : `1px solid ${theme.color.white800}`};
-  background-color: ${({ theme, dark, backgroundColor }) =>
-    backgroundColor
-      ? theme.color[backgroundColor]
-      : dark === true
+    dark === undefined || dark ? 0 : `1px solid ${theme.color.white500}`};
+  background-color: ${({ theme, dark }) =>
+    dark === undefined
+      ? 'transparent'
+      : dark
       ? theme.color.purpleDark
       : theme.color.white};
   color: ${({ theme, dark, textColor = 'black' }) =>
