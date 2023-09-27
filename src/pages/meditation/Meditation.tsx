@@ -1,4 +1,4 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { useState } from 'react';
 import { endButtonPushed, meditationStatus } from './states';
 import { MeditationPage } from './Meditation.style';
@@ -19,7 +19,7 @@ const Meditation = () => {
   const [selectedTheme, setSelectedTheme] = useState(
     meditationChannelInfo.get(CONCENTRATION_KEY)
   );
-  const [status, setStatus] = useRecoilState(meditationStatus);
+  const status = useRecoilValue(meditationStatus);
   const prevPosting = JSON.parse(sessionStorage.getItem('posting'));
 
   const handleCancelPrevPosting = () => {
@@ -40,7 +40,7 @@ const Meditation = () => {
 
   return (
     <>
-      <MeditationPage status={status}>
+      <MeditationPage timerPaused={status}>
         {prevPosting && (
           <PrevPostingConfirm
             prevPostingInfo={prevPosting}
