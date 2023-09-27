@@ -5,6 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import type { User } from '@/types';
 
 import { Icon } from '@components/Icon';
+import { PostHeader } from '@components/PostPreview';
 import {
   PostContentBody,
   PostContentHeader,
@@ -18,7 +19,6 @@ import { deletePost, putPost } from '@apis/posts';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
 import { appendFormData, purifyContent } from '@pages/posting/utils';
-import PostHeader from '@components/PostPreview/PostHeader';
 
 interface PostContentProps {
   author: User;
@@ -94,6 +94,7 @@ const PostContent = ({
         ['title', 'channelId', 'image', 'postId'],
         JSON.stringify(newCustomTitle),
         channelId,
+        null,
         postId
       );
       mutatePutPost({ postData: newFormData, token });

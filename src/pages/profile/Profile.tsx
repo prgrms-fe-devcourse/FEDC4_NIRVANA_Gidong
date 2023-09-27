@@ -38,7 +38,8 @@ const Profile = () => {
     refetch
   } = useQuery({
     queryKey: ['userData', profileUserId],
-    queryFn: async () => await getUser(profileUserId)
+    queryFn: async () => await getUser(profileUserId),
+    suspense: true
   });
 
   const [{ _id: myUserId }] = useSessionStorage<Pick<User, '_id'>>('userData', {
@@ -88,6 +89,7 @@ const Profile = () => {
           <ProfileMain
             fullName={isLoading ? '' : currentPageProfileData.fullName}
             tabItems={tabItems}
+            myProfile={myUserId === profileUserId}
           />
         )}
       </ProfileBodyContainer>

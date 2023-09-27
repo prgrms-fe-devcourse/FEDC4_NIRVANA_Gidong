@@ -1,7 +1,6 @@
 import { Icon } from '@components/Icon';
 import { useMutation } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-import { deleteLike, postLike } from '@apis/Like';
+import { postLike, deleteLike } from '@apis/Like';
 import {
   PostCommentHeaderContainer,
   PostCommentHeaderText,
@@ -29,8 +28,7 @@ const PostCommentHeader = ({
   userId,
   postCommentCount = 0
 }: PostCommentHeaderProps) => {
-  const [possibleMutateLike, setPossibleMutateLike] = useState(true);
-  const { mutate, isSuccess, isLoading } = useMutation(
+  const { mutate, isLoading } = useMutation(
     () => {
       return myLike ? deleteLike(myLike._id, token) : postLike(postId, token);
     },
@@ -43,20 +41,13 @@ const PostCommentHeader = ({
             userId: userId,
             postId: res.post
           });
+        refetch();
       }
     }
   );
 
-  useEffect(() => {
-    setPossibleMutateLike(true);
-  }, [myLike, isLoading]);
-
-  if (isSuccess) {
-    refetch();
-  }
   const handleLikeClick = () => {
-    if (possibleMutateLike) {
-      setPossibleMutateLike(false);
+    if (!isLoading) {
       mutate();
     }
   };

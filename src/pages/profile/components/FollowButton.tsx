@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+
 import useSessionStorage from '@hooks/useSessionStorage';
 import { deleteFollowUser, postFollowUser } from '@apis/follow';
 import { postNotifications } from '@apis/notice';
 import { Button } from '@components/Button';
-import type { User } from '@/types';
+import { User } from '@/types';
 
 interface FollowButtonProps {
   followingDataId: string; // 삭제용 - following data id
   followingUserId: string; // 팔로우용 - 팔로우할 userId
-  followedThisUser?: boolean;
-  possibleDeleteFollow: boolean;
+  followedThisUser: boolean;
+  followerTab?: boolean;
   refetch?: () => void;
   width?: number;
   height?: number;
@@ -20,11 +21,12 @@ interface FollowButtonProps {
 const FollowButton = ({
   followingDataId,
   followingUserId,
-  possibleDeleteFollow,
-  followedThisUser = true,
-  width = 80,
+  followedThisUser,
+  followerTab,
+  width = 68,
   height = 30,
   fontSize = 12,
+
   refetch
 }: FollowButtonProps) => {
   const [{ token }] = useSessionStorage<Pick<User, 'token'>>('userData', {
@@ -58,24 +60,30 @@ const FollowButton = ({
   );
 
   const handleClickFollow = () => {
-    if (!followed || possibleDeleteFollow) {
-      mutate();
+    mutate();
+  };
+  const checkFollowButtonVisibility = () => {
+    if (followerTab && followed) {
+      return false;
+    } else {
+      return true;
     }
   };
 
   return (
-    <Button
-      width={width}
-      height={height}
-      borderRadius={30}
-      label={followed ? '팔로잉' : '팔로우'}
-      fontSize={fontSize}
-      bold={true}
-      dark={followed ? false : true}
-      handleClick={handleClickFollow}
-      textColor={followed ? 'greyLight' : 'white'}
-      backgroundColor={followed ? 'white' : 'purpleDark'}
-    />
+    checkFollowButtonVisibility() && (
+      <Button
+        width={width}
+        height={height}
+        dark={followed ? false : true}
+        label={followed ? '팔로잉' : '팔로우'}
+        fontSize={fontSize}
+        bold={true}
+        handleClick={handleClickFollow}
+        textColor={followed ? 'greyLight' : 'white'}
+        backgroundColor={followed ? 'white' : 'purpleDark'}
+      />
+    )
   );
 };
 

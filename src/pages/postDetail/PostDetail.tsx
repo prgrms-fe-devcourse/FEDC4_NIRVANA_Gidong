@@ -17,7 +17,8 @@ const PostDetail = () => {
   const { isLoading, data, refetch } = useQuery({
     queryKey: ['postDetail', postId],
     queryFn: async () => getPost(postId),
-    enabled: !!postId
+    enabled: !!postId,
+    suspense: true
   });
 
   const [{ token, _id, image, fullName }] = useSessionStorage<

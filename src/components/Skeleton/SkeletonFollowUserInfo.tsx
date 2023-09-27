@@ -6,7 +6,7 @@ import {
   SkeletonUserInfoContainer
 } from './SkeletonFollowUserInfo.style';
 
-const SkeletonFollowUserInfo = () => {
+const FollowUserInfoSkeleton = () => {
   return (
     <SkeletonContainer>
       <SkeletonAvatarContainer>
@@ -19,4 +19,4 @@ const SkeletonFollowUserInfo = () => {
   );
 };
 
-export default SkeletonFollowUserInfo;
+export default FollowUserInfoSkeleton;
