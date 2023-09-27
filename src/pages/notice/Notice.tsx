@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useSetRecoilState } from 'recoil';
 
 import { getNotifications, putNotifications } from '@apis/notice';
-import { Button } from '@components/Button';
 import useSessionStorage from '@hooks/useSessionStorage';
-import { User } from '@/types/User';
-import { Notification } from '@/types/Notification';
+import { Button } from '@components/Button';
 import NoticeList from './components/NoticeList/NoticeList';
 import { NoticePage, Header, ReadButtonContainer } from './Notice.style';
+import { readAlert } from './states/readAlert';
+import { User, Notification } from '@/types';
 
 const Notice = () => {
   const [list, setList] = useState([]);
@@ -19,11 +20,15 @@ const Notice = () => {
     }
   );
 
+  const setReadStatus = useSetRecoilState(readAlert);
+
   const fetchNotifications = async () => {
     const res = await getNotifications(`Bearer ${userSessionData.token}`).then(
       (res) => res.filter((item: Notification) => !item.seen)
     );
+    setReadStatus(res.length > 0);
     setList(res);
+
     return res;
   };
 
