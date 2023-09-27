@@ -7,8 +7,7 @@ const NoticeItemContainer = styled.div`
   margin: 0 auto;
   display: flex;
   padding: 10px;
-  border-bottom: 0.5px solid ${({ theme }) => theme.color.white800};
-
+  border-bottom: 1px solid ${({ theme }) => theme.color.white800};
   &:hover,
   &:active {
     background-color: ${({ theme }) => theme.color.white900};
