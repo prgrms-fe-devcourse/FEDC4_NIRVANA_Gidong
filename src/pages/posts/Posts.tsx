@@ -27,7 +27,7 @@ const Posts = () => {
   const [offset, setOffset] = useState(0);
   const [observe] = useObserver(() => setOffset(offset + 11));
   const [channel, setChannel] = useState<ThemeInfoType>(
-    locate.state
+    locate.state?.channelInfo
       ? locate.state.channelInfo
       : meditationChannelInfo.get(CONCENTRATION_KEY)
   );
