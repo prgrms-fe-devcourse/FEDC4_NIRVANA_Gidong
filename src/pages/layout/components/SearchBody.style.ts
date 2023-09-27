@@ -8,11 +8,10 @@ export const SearchResultContainer = styled.div`
   top: 50px;
   left: 0;
   z-index: 1;
+  overflow-y: scroll;
 `;
 
-export const SearchResult = styled.div`
-  overflow: auto;
-`;
+export const SearchResult = styled.div``;
 
 export const SearchItem = styled.div`
   ${({ theme }) => theme.style.flexAlignCenter}
