@@ -21,13 +21,13 @@ export const PostContentHeader = styled.header`
 
 export const PostContentMenuIconContainer = styled.div<PostContentMenuProps>`
   ${({ theme }) => theme.style.flexCenter}
-  user-select: none;
   position: relative;
   cursor: pointer;
-  width: 50px;
-  height: 100%;
+  width: 54px;
+  height: 50px;
   border-radius: 50%;
   border-left: none;
+  margin: 0;
   z-index: 2;
   > span {
     transition: transform 0.4s ease-in-out;
@@ -42,6 +42,7 @@ export const PostContentMenuIconContainer = styled.div<PostContentMenuProps>`
 
 export const PostContentMenu = styled.div<PostContentMenuProps>`
   z-index: 1;
+
   ${({ theme }) => theme.style.flexAlignCenter}
   flex-direction: column;
   justify-content: space-around;
@@ -68,7 +69,7 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
     }
   }
 
-  & > p:first-child {
+  & > p:first-of-type {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
@@ -80,6 +81,7 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
 `;
 
 export const PostContentBody = styled.div`
+  margin-top: 10px;
   padding: 20px;
   width: 100%;
   line-height: 1.5;
