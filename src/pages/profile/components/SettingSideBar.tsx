@@ -34,14 +34,6 @@ const SettingSideBar = ({
     token: ''
   });
 
-  useEffect(() => {
-    return () => {
-      if (logoutModal) {
-        setLogoutModal(false);
-      }
-    };
-  }, [logoutModal]);
-
   const handleLogoutClick = () => {
     closeSidebar();
     setLogoutModal((prev) => !prev);
