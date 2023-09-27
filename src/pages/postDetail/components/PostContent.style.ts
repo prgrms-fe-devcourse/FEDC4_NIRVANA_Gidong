@@ -19,33 +19,6 @@ export const PostContentHeader = styled.header`
   height: 50px;
 `;
 
-export const PostContentAvatarContainer = styled.div`
-  ${({ theme }) => theme.style.flexCenter}
-  width: 50px;
-  height: 100%;
-`;
-
-export const PostContentUserInfo = styled.div`
-  ${({ theme }) => theme.style.flexJustifyCenter}
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-left: 6px;
-`;
-
-export const PostContentUserName = styled.div`
-  ${({ theme }) => theme.style.flexAlignCenter}
-  > span:first-of-type {
-    margin-right: 2px;
-  }
-  margin-bottom: 3px;
-`;
-
-export const PostContentTime = styled.div`
-  color: ${({ theme }) => theme.color.greyLight};
-  font-size: 12px;
-`;
-
 export const PostContentMenuIconContainer = styled.div<PostContentMenuProps>`
   ${({ theme }) => theme.style.flexCenter}
   user-select: none;
@@ -61,7 +34,8 @@ export const PostContentMenuIconContainer = styled.div<PostContentMenuProps>`
     transform: rotate(${(props) => (props.opened ? '-180deg' : '0deg')});
   }
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: ${({ theme }) => theme.color.white800};
   }
 `;
@@ -88,7 +62,8 @@ export const PostContentMenu = styled.div<PostContentMenuProps>`
     border-bottom: 1px solid ${({ theme }) => theme.color.white800};
     transition: all 0.3s ease;
     cursor: pointer;
-    &:hover {
+    &:hover,
+    &:active {
       background-color: ${({ theme }) => theme.color.white800};
     }
   }
@@ -119,7 +94,8 @@ export const PostEditConfirmButtonContainer = styled.div<contentEditMode>`
   > button {
     transition: all 0.2s ease-out;
     cursor: ${(props) => (props.contentEditMode ? 'pointer' : 'default')};
-    :hover {
+    :hover,
+    &:active {
       background-color: ${({ theme }) => theme.color.white800};
     }
     &:first-of-type {

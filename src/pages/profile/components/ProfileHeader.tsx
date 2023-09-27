@@ -30,10 +30,9 @@ const ProfileHeader = ({
       <ProfileHeaderButtonContainer>
         {myProfile ? (
           <Button
-            width={30}
-            height={30}
+            width={40}
+            height={40}
             bold={true}
-            fontSize={12}
             borderRadius={30}
             handleClick={handleEditClick}>
             <Icon
@@ -47,7 +46,7 @@ const ProfileHeader = ({
             <FollowButton
               followingDataId={myFollowData?._id}
               followingUserId={profileId}
-              following={myFollowData ? true : false}
+              followedThisUser={myFollowData ? true : false}
               fontSize={12}
               possibleDeleteFollow
               refetch={refetch}

@@ -3,6 +3,7 @@ import { HeaderNavSection, HeaderSearchSection } from './Header.style';
 import { PathNav, EtcNav, Search } from '@pages/layout/components';
 import { openSearch } from '../states/openSearch';
 
+
 interface HeaderProps {
   pathStatus: 'back' | 'home';
 }

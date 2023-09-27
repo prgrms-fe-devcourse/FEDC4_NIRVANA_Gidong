@@ -5,7 +5,11 @@ export const FollowUserContainer = styled.div`
   justify-content: space-between;
   padding: 0 14px;
   height: 80px;
-  border-bottom: 0.5px solid ${({ theme }) => theme.color.white800};
+  border-bottom: 1px solid ${({ theme }) => theme.color.white800};
+  &:hover,
+  &:active {
+    background-color: ${({ theme }) => theme.color.white900};
+  }
 
   & > button {
     display: inline-block;

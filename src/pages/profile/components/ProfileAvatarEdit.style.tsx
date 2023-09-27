@@ -4,8 +4,8 @@ export const EditIconContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   cursor: pointer;
   background-color: ${({ theme }) => theme.color.transparentGreyBackground};

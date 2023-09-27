@@ -1,10 +1,10 @@
 import {
-  SkeletonContainer,
-  SkeletonHeader,
   SkeletonAvatar,
-  SkeletonUser,
+  SkeletonContainer,
+  SkeletonContent,
   SkeletonContentContainer,
-  SkeletonContent
+  SkeletonHeader,
+  SkeletonUser
 } from './PostPreviewSkeleton.style';
 
 const PostPreviewSkeleton = () => {

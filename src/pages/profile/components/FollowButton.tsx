@@ -4,12 +4,12 @@ import useSessionStorage from '@hooks/useSessionStorage';
 import { deleteFollowUser, postFollowUser } from '@apis/follow';
 import { postNotifications } from '@apis/notice';
 import { Button } from '@components/Button';
-import { User } from '@/types';
+import type { User } from '@/types';
 
 interface FollowButtonProps {
   followingDataId: string; // 삭제용 - following data id
   followingUserId: string; // 팔로우용 - 팔로우할 userId
-  FollowedThisUser?: boolean;
+  followedThisUser?: boolean;
   possibleDeleteFollow: boolean;
   refetch?: () => void;
   width?: number;
@@ -21,7 +21,7 @@ const FollowButton = ({
   followingDataId,
   followingUserId,
   possibleDeleteFollow,
-  FollowedThisUser = true,
+  followedThisUser = true,
   width = 68,
   height = 30,
   fontSize = 12,
@@ -31,7 +31,7 @@ const FollowButton = ({
     token: ''
   });
 
-  const [followed, setFollowed] = useState(FollowedThisUser);
+  const [followed, setFollowed] = useState(followedThisUser);
   const [dataId, setDataId] = useState(followingDataId);
 
   const { mutate } = useMutation(
@@ -71,6 +71,7 @@ const FollowButton = ({
       label={followed ? '팔로잉' : '팔로우'}
       fontSize={fontSize}
       bold={true}
+      dark={followed ? false : true}
       handleClick={handleClickFollow}
       textColor={followed ? 'greyLight' : 'white'}
       backgroundColor={followed ? 'white' : 'purpleDark'}

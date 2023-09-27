@@ -1,29 +1,23 @@
-import { useNavigate } from 'react-router-dom';
+import { useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
-import { useRef } from 'react';
+
+import type { User } from '@/types';
+
 import { Icon } from '@components/Icon';
 import {
-  PostContentSection,
-  PostContentHeader,
-  PostContentAvatarContainer,
   PostContentBody,
+  PostContentHeader,
   PostContentMenuIconContainer,
-  PostContentTime,
-  PostContentUserInfo,
-  PostContentUserName,
+  PostContentSection,
   PostContentMenu,
   PostEditConfirmButtonContainer
 } from './PostContent.style';
 import { Toast } from '@components/Toast';
-import { User } from '@/types/User';
 import { deletePost, putPost } from '@apis/posts';
-import { UserId, UserName } from '@components/UserText';
-import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
 import { appendFormData, purifyContent } from '@pages/posting/utils';
-import { Link } from 'react-router-dom';
 
 interface PostContentProps {
   author: User;
@@ -33,7 +27,7 @@ interface PostContentProps {
   token: string;
   createdAt: string;
   content: string;
-  meditationTime: string;
+  meditationTime: number;
 }
 
 const PostContent = ({
@@ -124,24 +118,11 @@ const PostContent = ({
       )}
       <PostContentSection>
         <PostContentHeader>
-          <PostContentAvatarContainer>
-            <Link to={`/profile/${author?._id}`}>
-              <Avatar
-                src={author?.image}
-                alt={author?.fullName}
-                size={39}
-              />
-            </Link>
-          </PostContentAvatarContainer>
-          <PostContentUserInfo>
-            <PostContentUserName>
-              <UserName>{author?.fullName}</UserName>
-              <UserId email={author ? author.email : ''} />
-            </PostContentUserName>
-            <PostContentTime>
-              {createdAt} / {meditationTime}분
-            </PostContentTime>
-          </PostContentUserInfo>
+          <PostHeader
+            post={{ _id: postId, author, createdAt, meditationTime }}
+            noneProfile={false}
+            showCommentStatus={false}
+          />
           {currentUserId === author?._id && (
             <>
               <PostContentMenuIconContainer

@@ -20,7 +20,6 @@ const SkipPosting = ({ mutatePosting }: SkipPostingProps) => {
   const handleClickSkipPost = () => {
     setShowConfirm(true);
   };
-
   const handleCancelButton = () => {
     setShowConfirm(false);
   };
@@ -44,5 +43,4 @@ const SkipPosting = ({ mutatePosting }: SkipPostingProps) => {
     </>
   );
 };
-
 export default SkipPosting;

@@ -1,9 +1,10 @@
 import {
-  Label,
+  ErrorMessage,
   Input,
   InputContainer,
-  ErrorMessage,
-  SuccessMessage
+  Label,
+  SuccessMessage,
+  StyledTitle
 } from './UserInput.style';
 
 interface UserInputProps {
@@ -36,7 +37,7 @@ const UserInput = ({
   return (
     <InputContainer>
       <Label>
-        {title}
+        <StyledTitle>{title}</StyledTitle>
         {show && success && (
           <SuccessMessage color={successColor}>{successMessage}</SuccessMessage>
         )}

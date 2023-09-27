@@ -1,5 +1,5 @@
 import { FollowUserContainer } from './FollowUser.style';
-import { FollowUserInfo, FollowButton } from '@pages/profile/components';
+import { FollowButton, FollowUserInfo } from '@pages/profile/components';
 import { User } from '@/types';
 
 interface FollowUserProps {

@@ -1,5 +1,4 @@
-import { User } from '@/types';
-import { SearchEditedPost } from '@/types';
+import { SearchEditedPost, User } from '@/types';
 import isPost from '../types/typeGuard';
 
 const filterPostData = (

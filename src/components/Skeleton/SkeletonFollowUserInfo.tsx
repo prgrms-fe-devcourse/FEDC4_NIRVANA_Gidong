@@ -1,9 +1,9 @@
 import {
-  SkeletonContainer,
-  SkeletonAvatarContainer,
   SkeletonAvatar,
-  SkeletonUserInfoContainer,
-  SkeletonUserInfo
+  SkeletonAvatarContainer,
+  SkeletonContainer,
+  SkeletonUserInfo,
+  SkeletonUserInfoContainer
 } from './SkeletonFollowUserInfo.style';
 
 const FollowUserInfoSkeleton = () => {

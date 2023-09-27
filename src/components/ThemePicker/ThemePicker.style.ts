@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
 
 const NavContainer = styled.div`
-  max-width: 500px;
+  max-width: 600px;
   width: 80%;
   height: 28px;
   position: relative;
+
   > * {
     position: absolute;
     top: 50%;
@@ -20,9 +21,11 @@ const ThemePickerContainer = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   scroll-behavior: smooth;
+
   &::-webkit-scrollbar {
     display: none;
   }
+
   & > button {
     margin: 0px 5px;
     flex-shrink: 0;
@@ -30,6 +33,7 @@ const ThemePickerContainer = styled.div`
 
   & > button:last-child {
     position: relative;
+
     &:after {
       content: '';
       display: block;
@@ -50,7 +54,8 @@ const StyledPickerButton = styled.button`
   border: none;
   background-color: transparent;
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: ${({ theme }) => theme.color.black250};
   }
 `;

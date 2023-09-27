@@ -1,6 +1,6 @@
 import {
-  MeditationInfoItemSection,
   MeditationInfoItemIconContainer,
+  MeditationInfoItemSection,
   MeditationInfoItemTitleContainer
 } from './MeditationInfoItem.style';
 

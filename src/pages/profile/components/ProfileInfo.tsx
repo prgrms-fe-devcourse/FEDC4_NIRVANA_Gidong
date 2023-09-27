@@ -1,18 +1,26 @@
+import { useRecoilValue } from 'recoil';
+
+import type { Follow } from '@/types/Follow';
+
 import { Avatar } from '@components/Avatar';
 import { UserId, UserName } from '@components/UserText';
-import { useRecoilValue } from 'recoil';
-import { editModeState } from '../states/editMode';
 import { ProfileAvatarEdit } from '@pages/profile/components';
+import { editModeState } from '../states/editMode';
 import {
+  ProfileAvatarContainer,
   ProfileInfoContainer,
-  ProfileInfoNameAndBadge,
-  ProfileAvatarContainer
+  ProfileInfoNameAndBadge
 } from './ProfileInfo.style';
+import ProfileHeader from './ProfileHeader';
 
 interface ProfileInfoProps {
   fullName: string;
   email: string;
   avatarImgSrc: string;
+  myProfile: boolean;
+  profileId: string;
+  myFollowData: Follow;
+  openSidebar: () => void;
   refetch: () => void;
 }
 
@@ -20,7 +28,11 @@ const ProfileInfo = ({
   email,
   fullName,
   avatarImgSrc,
-  refetch
+  refetch,
+  myProfile,
+  profileId,
+  myFollowData,
+  openSidebar
 }: ProfileInfoProps) => {
   const editMode = useRecoilValue(editModeState);
 
@@ -28,7 +40,7 @@ const ProfileInfo = ({
     <ProfileInfoContainer>
       <ProfileAvatarContainer>
         <Avatar
-          size={70}
+          size={80}
           src={avatarImgSrc}
           alt={fullName}>
           {editMode && (
@@ -37,10 +49,19 @@ const ProfileInfo = ({
         </Avatar>
       </ProfileAvatarContainer>
       <ProfileInfoNameAndBadge>
-        <UserName>{fullName}</UserName>
+        <UserName size={20}>{fullName}</UserName>
+        <UserId
+          size={16}
+          email={email}
+        />
+        <ProfileHeader
+          myProfile={myProfile}
+          myFollowData={myFollowData}
+          profileId={profileId}
+          openSidebar={openSidebar}
+          refetch={refetch}
+        />
       </ProfileInfoNameAndBadge>
-
-      <UserId email={email} />
     </ProfileInfoContainer>
   );
 };
