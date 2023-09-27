@@ -32,13 +32,19 @@ const MeditationThemePicker = ({
   const [pickerShown, setPickerShown] = useState(true);
   const [scrollRef, showPrevButton, showNextButton] = useButtonShow();
 
-  const clickPrevButton = useCallback((scrollPixel: number) => {
-    scrollRef.current.scrollLeft -= scrollPixel;
-  }, []);
+  const clickPrevButton = useCallback(
+    (scrollPixel: number) => {
+      scrollRef.current.scrollLeft -= scrollPixel;
+    },
+    [scrollRef]
+  );
 
-  const clickNextButton = useCallback((scrollPixel: number) => {
-    scrollRef.current.scrollLeft += scrollPixel;
-  }, []);
+  const clickNextButton = useCallback(
+    (scrollPixel: number) => {
+      scrollRef.current.scrollLeft += scrollPixel;
+    },
+    [scrollRef]
+  );
 
   useEffect(() => {
     document.addEventListener(EVENT_NAME_MEDITATION_STARTED, () => {

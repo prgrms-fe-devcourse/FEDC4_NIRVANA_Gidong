@@ -22,12 +22,13 @@ const useScrollButton = () => {
   useEffect(() => {
     if (scrollRef && scrollRef.current) {
       handleButtonShow();
+      const scrollRefInstance = scrollRef.current;
       window.addEventListener('resize', handleButtonShow);
-      scrollRef?.current?.addEventListener('scroll', handleButtonShow);
+      scrollRefInstance?.addEventListener('scroll', handleButtonShow);
 
       return () => {
         window.removeEventListener('resize', handleButtonShow);
-        scrollRef?.current?.removeEventListener('scroll', handleButtonShow);
+        scrollRefInstance?.removeEventListener('scroll', handleButtonShow);
       };
     }
   }, [handleButtonShow]);

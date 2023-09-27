@@ -18,7 +18,6 @@ import {
 } from './MeditationTimeSetter.style';
 import MeditationEndButton from '@pages/meditation/components/MeditationEndButton';
 import { meditationTime, totalMeditationTime } from '@pages/meditation/states';
-import { Toast } from '@components/Toast';
 import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
 
 const MeditationTimeSetter = (themePicked: ThemeInfoType) => {

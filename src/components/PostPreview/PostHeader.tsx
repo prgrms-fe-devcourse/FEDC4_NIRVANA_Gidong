@@ -25,7 +25,7 @@ const PostHeader = ({
   totalComments,
   noneProfile
 }: PostHeaderProps) => {
-  const { image, author, createdAt, meditationTime, _id } = post;
+  const { author, createdAt, meditationTime, _id } = post;
   const iconDescription = [
     { name: 'favorite', size: 12, total: totalLikes },
     { name: 'chat', size: 12, total: totalComments }

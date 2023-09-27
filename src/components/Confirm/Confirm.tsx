@@ -17,7 +17,7 @@ interface ConfirmProps {
   nextPageLink: string;
   CancelButton: React.ReactNode | (() => JSX.Element);
   ConfirmButton: React.ReactNode | (() => JSX.Element);
-  linkState?: { [key: string]: any };
+  linkState?: { [key: string]: number | string | boolean };
 }
 
 const Confirm = ({

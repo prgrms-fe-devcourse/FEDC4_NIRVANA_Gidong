@@ -28,7 +28,7 @@ const useDebounce = <T, U>(
 
   useEffect(() => {
     run();
-  }, dependency);
+  }, [dependency, run]);
 
   useEffect(() => clear, [clear]);
 

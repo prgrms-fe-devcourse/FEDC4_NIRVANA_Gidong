@@ -71,7 +71,7 @@ const NewPost = ({
       setPosting(prevPosting.posting);
     }
     return () => clear();
-  }, []);
+  }, [clear, prevPosting.posting]);
 
   return (
     <>
