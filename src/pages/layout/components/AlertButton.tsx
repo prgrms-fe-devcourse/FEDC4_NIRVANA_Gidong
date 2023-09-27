@@ -28,22 +28,20 @@ const AlertButton = ({ handleClickAlert }: AlertButtonProps) => {
   const { token } = userSessionData;
   const [readStatus] = useRecoilState(readAlert);
 
-  const { data, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ['headerAlert', pathname],
     queryFn: async () => {
       const data = await getNotifications(`Bearer ${token}`);
       return data;
     },
-
+    onError: () => {
+      console.log('헤더 알림 에러!');
+    },
     enabled: token !== '' && !token && pathname !== '/notice',
     refetchInterval: 5000,
     cacheTime: 0,
     staleTime: 0
   });
-
-  if (isError) {
-    console.log('헤더 알림 에러!');
-  }
 
   const alertStatus = data?.filter(({ seen }) => !seen).length > 0;
 
