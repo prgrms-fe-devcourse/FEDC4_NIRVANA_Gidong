@@ -19,6 +19,7 @@ const NoticeContent = styled.div`
 `;
 
 const Message = styled.div`
+  ${({ theme }) => theme.style.flexAlignCenter};
   font-weight: 700;
   font-size: 13px;
   color: ${({ theme }) => theme.color['black']};
@@ -29,10 +30,15 @@ const MessagePreview = styled.div`
   color: ${({ theme }) => theme.color['greyLight']};
 `;
 
+const MessageText = styled.span`
+  margin-right: 2px;
+`;
+
 export {
   NoticeItemContainer,
   ProfileImage,
   NoticeContent,
   Message,
-  MessagePreview
+  MessagePreview,
+  MessageText
 };
