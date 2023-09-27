@@ -1,5 +1,7 @@
 import { AlertButton, SearchButton } from '@pages/layout/components';
 import { EtcNavContainer } from './IconNav.style';
+import { User } from '@/types';
+
 
 interface EtcNavProps {
   handleOpenSearchBox: () => void;

@@ -69,7 +69,7 @@ const Posting = () => {
     }
     console.log(location.state);
     setMeditationInfo(location.state);
-  }, []);
+  }, [location.state, navigate]);
 
   return (
     <StyledPosting>

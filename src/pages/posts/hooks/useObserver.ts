@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 const useObserver = (callback: () => void) => {
   const observerOption = useRef({ threshold: 1 });
@@ -13,7 +13,7 @@ const useObserver = (callback: () => void) => {
         }
       });
     },
-    []
+    [callback]
   );
   const observer = useRef(
     new IntersectionObserver(observerFn, observerOption.current)

@@ -1,4 +1,5 @@
-import { NOTICE_TYPE, MESSAGE_TYPE } from '../constants';
+import { MESSAGE_TYPE, NOTICE_TYPE } from '../constants';
+
 const typeToMessage = (type: string) => {
   switch (type) {
     case NOTICE_TYPE.COMMENT:

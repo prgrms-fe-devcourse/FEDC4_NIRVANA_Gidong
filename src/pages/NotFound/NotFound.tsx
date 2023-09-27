@@ -2,10 +2,10 @@ import { Link } from '@components/Link';
 import { Button } from '@components/Button';
 import { LandingMain } from '@pages/landing/Landing.style';
 import {
-  StyledAlertBackground,
-  IconContainer,
   ContentContainer,
-  NavButtonContainer
+  IconContainer,
+  NavButtonContainer,
+  StyledAlertBackground
 } from '@components/Alert/Alert.style';
 
 const NotFound = () => {

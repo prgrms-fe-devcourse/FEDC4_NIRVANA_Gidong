@@ -1,8 +1,8 @@
 import { ProfileMainSection } from './ProfileMain.style';
 import {
+  ProfileCarousel,
   ProfileHeader,
-  ProfileTabs,
-  ProfileCarousel
+  ProfileTabs
 } from '@pages/profile/components';
 import { TabItems } from '../utils/createTabItems';
 import { Follow } from '@/types/Follow';

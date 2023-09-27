@@ -7,9 +7,9 @@ import { UserId, UserName } from '@components/UserText';
 import { ProfileAvatarEdit } from '@pages/profile/components';
 import { editModeState } from '../states/editMode';
 import {
+  ProfileAvatarContainer,
   ProfileInfoContainer,
-  ProfileInfoNameAndBadge,
-  ProfileAvatarContainer
+  ProfileInfoNameAndBadge
 } from './ProfileInfo.style';
 import ProfileHeader from './ProfileHeader';
 

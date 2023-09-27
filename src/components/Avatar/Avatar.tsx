@@ -1,4 +1,5 @@
 import { AvatarContainer, AvatarImage, AvatarText } from './Avatar.style';
+
 interface AvatarProps {
   alt: string;
   src: string;

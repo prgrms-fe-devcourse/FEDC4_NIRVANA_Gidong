@@ -3,12 +3,12 @@ import { Button } from '@components/Button';
 import { Icon } from '@components/Icon';
 import {
   LandingMain,
+  LinkContainer,
   HeadingContentContainer,
   Heading,
   BottomContentContainer,
   PreviewLink,
-  PreviewSpan,
-  LinkContainer
+  PreviewSpan
 } from './Landing.style';
 
 const LandingPage = () => {

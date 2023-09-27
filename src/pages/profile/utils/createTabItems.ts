@@ -1,4 +1,4 @@
-import { User, Follow, Post } from '@/types';
+import { Follow, Post, User } from '@/types';
 import { PROFILE_TABS } from '../constants/profileTabs';
 import getTotalMeditationTime from '@/utils/getTotalMeditationTime';
 

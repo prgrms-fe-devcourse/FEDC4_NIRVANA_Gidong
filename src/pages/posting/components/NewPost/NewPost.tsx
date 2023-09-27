@@ -10,10 +10,10 @@ import useSessionStorage from '@hooks/useSessionStorage';
 import postCreateNewPost from '@apis/posting';
 import NewPostConfirm from './NewPostConfirm';
 import {
-  TextAreaContainer,
   ButtonContainer,
   PostContainer,
-  StyledTextArea
+  StyledTextArea,
+  TextAreaContainer
 } from './NewPost.style';
 
 interface MeditationInfo {
@@ -77,7 +77,7 @@ const NewPost = ({ meditationInfo, customToken }: NewPostProps) => {
       setPosting(prevPosting.posting);
     }
     return () => clear();
-  }, []);
+  }, [clear, prevPosting.posting]);
 
   return (
     <>

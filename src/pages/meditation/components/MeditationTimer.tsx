@@ -5,8 +5,8 @@ import formatTime from '@utils/formatTime';
 import {
   IconContainer,
   TimerContainer,
-  TimerElementBorder,
-  TimerElement
+  TimerElement,
+  TimerElementBorder
 } from './MeditationTimer.style';
 import {
   EVENT_NAME_MEDITATION_ENDED,

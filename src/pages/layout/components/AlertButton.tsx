@@ -45,9 +45,8 @@ const AlertButton = () => {
         height={25}
         handleClick={handleClickAlert}
         borderRadius={0}
-        border='none'
-        padding={false}
-        backgroundColor='transparent'>
+        border={'none'}
+        backgroundColor={'transparent'}>
         <Icon
           name='notifications'
           color='white'

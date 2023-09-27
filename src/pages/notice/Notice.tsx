@@ -9,6 +9,7 @@ import { Notification } from '@/types/Notification';
 import NoticeList from './components/NoticeList/NoticeList';
 import { NoticePage, Header, ReadButtonContainer } from './Notice.style';
 
+
 const Notice = () => {
   const [list, setList] = useState([]);
   const [userSessionData] = useSessionStorage<Pick<User, 'token' | '_id'>>(

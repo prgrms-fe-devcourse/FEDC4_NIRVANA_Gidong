@@ -35,6 +35,7 @@ export const PostCommentDeleteContainer = styled.div`
   height: 16px;
   display: flex;
   justify-content: flex-end;
+
   > p {
     margin-top: 8px;
     height: 20px;

@@ -1,5 +1,5 @@
 import useSessionStorage from '@hooks/useSessionStorage';
-import { User, Like } from '@/types';
+import { Like, User } from '@/types';
 
 const GetMyLike = (likes: Like[]): Like => {
   const [{ _id }] = useSessionStorage<Pick<User, '_id' | 'token'>>('userData', {

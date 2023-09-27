@@ -7,10 +7,15 @@ import type { User } from '@/types/User';
 import { Icon } from '@components/Icon';
 import PostHeader from '@components/PostPreview/PostHeader';
 import {
-  PostContentSection,
-  PostContentHeader,
   PostContentBody,
+  PostContentHeader,
+  PostContentMenu,
   PostContentMenuIconContainer,
+  PostContentAvatarContainer,
+  PostContentSection,
+  PostContentTime,
+  PostContentUserInfo,
+  PostContentUserName,
   PostContentMenu,
   PostEditConfirmButtonContainer
 } from './PostContent.style';
@@ -19,7 +24,8 @@ import { User } from '@/types/User';
 import { deletePost, putPost } from '@apis/posts';
 import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
-import { createFormData, purifyContent } from '@pages/posting/utils';
+import { appendFormData, purifyContent } from '@pages/posting/utils';
+
 
 interface PostContentProps {
   author: User;
