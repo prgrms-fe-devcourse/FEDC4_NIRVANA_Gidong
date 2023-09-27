@@ -15,7 +15,7 @@ import Posts from '@pages/posts';
 import Notice from '@pages/notice';
 import PostDetail from '@pages/postDetail/PostDetail';
 import { Suspense } from 'react';
-import { SkeletonPosting } from '@pages/posting/components/SkeletonPosting';
+import { SkeletonPosts } from '@pages/posts/components/SkeletonPosts';
 
 const PageRoutes = () => {
   return (
@@ -64,7 +64,7 @@ const PageRoutes = () => {
         <Route
           path='/posts'
           element={
-            <Suspense fallback={<SkeletonPosting />}>
+            <Suspense fallback={<SkeletonPosts />}>
               <Posts />
             </Suspense>
           }
