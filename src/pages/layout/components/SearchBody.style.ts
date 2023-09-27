@@ -7,7 +7,7 @@ export const SearchResultContainer = styled.div`
   position: absolute;
   top: 50px;
   left: 0;
-  z-index: 1;
+  z-index: 100;
 `;
 
 export const SearchResult = styled.div`
