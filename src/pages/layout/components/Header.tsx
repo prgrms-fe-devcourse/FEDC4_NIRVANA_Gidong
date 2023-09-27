@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { HeaderNavSection, HeaderSearchSection } from './Header.style';
 import { PathNav, EtcNav, Search } from '@pages/layout/components';
+import { openSearch } from '../states/openSearch';
 
 interface HeaderProps {
   pathStatus: 'back' | 'home';
 }
 
 const Header = ({ pathStatus }: HeaderProps) => {
-  const [showSearchBox, setShowSearchBox] = useState(false);
+  const [showSearchBox, setShowSearchBox] = useRecoilState(openSearch);
 
-  const handleShowSearchBox = () => {
-    setShowSearchBox((prev) => !prev);
+  const handleOpenSearchBox = () => {
+    setShowSearchBox(true);
+  };
+
+  const handleCloseSearchBox = () => {
+    setShowSearchBox(false);
   };
 
   return (
@@ -19,14 +24,14 @@ const Header = ({ pathStatus }: HeaderProps) => {
         <HeaderSearchSection>
           <Search
             showSearchBox={showSearchBox}
-            handleShowSearchBox={handleShowSearchBox}
+            handleShowSearchBox={handleCloseSearchBox}
           />
         </HeaderSearchSection>
       ) : (
         <HeaderNavSection>
           <PathNav pathStatus={pathStatus} />
           <EtcNav
-            handleShowSearchBox={handleShowSearchBox}
+            handleOpenSearchBox={handleOpenSearchBox}
             showSearchBox={showSearchBox}
           />
         </HeaderNavSection>
