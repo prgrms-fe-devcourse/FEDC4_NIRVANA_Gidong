@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const PostCommentContainer = styled.div`
   display: flex;
   width: 100%;
+  margin-bottom: 20px;
 `;
 
 export const PostCommentAvatarContainer = styled.div`
@@ -15,6 +16,7 @@ export const PostCommentAvatarContainer = styled.div`
 
 export const PostCommentUserContainer = styled.div`
   height: 20px;
+  margin-bottom: 2px;
   > span:last-of-type {
     margin-left: 5px;
   }
@@ -22,7 +24,7 @@ export const PostCommentUserContainer = styled.div`
 
 export const PostCommentContentContainer = styled.div`
   flex: 1;
-  margin-top: 7px;
+  margin-top: 4px;
   line-height: 1.5;
 `;
 
@@ -32,6 +34,8 @@ export const PostCommentDeleteContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   > p {
+    margin-top: 8px;
+    height: 20px;
     cursor: pointer;
   }
 `;

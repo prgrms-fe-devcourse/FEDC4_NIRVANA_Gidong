@@ -9,6 +9,8 @@ import {
   CommentInput,
   CommentInputForm
 } from './PostCommentInput.style';
+import { purifyContent } from '@pages/posting/utils';
+import { Toast } from '@components/Toast';
 import { Avatar } from '@components/Avatar';
 import { postComment } from '@apis/comment';
 import { useState } from 'react';
@@ -33,9 +35,11 @@ const PostCommentInput = ({
 }: PostCommentInputProps) => {
   const COMMENT_PLACEHOLDER = '댓글을 달아보세요.';
   const [commentValue, setCommentValue] = useState(null);
+  const [showCommentInputErrorToast, setShowCommentInputErrorToast] =
+    useState(false);
   const commentRef = useRef(null);
 
-  const { mutate, isSuccess } = useMutation(postComment, {
+  const { mutate } = useMutation(postComment, {
     onSuccess: (res) => {
       postNotifications(token, {
         notificationType: 'COMMENT',
@@ -43,32 +47,37 @@ const PostCommentInput = ({
         userId: userId,
         postId: res.post
       });
+      refetch();
     }
   });
 
-  if (isSuccess) refetch();
-
   const handleCommentSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    mutate(
-      {
-        postId,
-        comment: commentValue,
-        token
-      },
-      {
-        onSuccess: () => refetch()
-      }
-    );
+    mutate({
+      postId,
+      comment: purifyContent(commentValue),
+      token
+    });
     commentRef.current.value = '';
   };
 
   const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCommentValue(event.target.value);
+    if (event.target.value.length > 500) {
+      setShowCommentInputErrorToast(true);
+    } else {
+      setShowCommentInputErrorToast(false);
+      setCommentValue(event.target.value);
+    }
   };
 
   return (
     <CommentInputSection>
+      {showCommentInputErrorToast && (
+        <Toast
+          content='500자 이내로 입력해주세요.'
+          type='WARNING'
+        />
+      )}
       <CommentAvatarContainer>
         <Avatar
           src={avatarSrc ? avatarSrc : ''}
