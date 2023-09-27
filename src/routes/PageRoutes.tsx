@@ -14,6 +14,8 @@ import NotFound from '@pages/NotFound';
 import Posts from '@pages/posts';
 import Notice from '@pages/notice';
 import PostDetail from '@pages/postDetail/PostDetail';
+import { Suspense } from 'react';
+import { PostDetailSkeleton } from '@components/Skeleton';
 
 const PageRoutes = () => {
   return (
@@ -22,7 +24,11 @@ const PageRoutes = () => {
         <Route element={<Layout headerStatus={'back'} />}>
           <Route
             path='/profile/:userId'
-            element={<Profile />}
+            element={
+              <Suspense fallback={<PostDetailSkeleton />}>
+                <Profile />
+              </Suspense>
+            }
           />
           <Route
             path='/notice'
@@ -65,7 +71,11 @@ const PageRoutes = () => {
         />
         <Route
           path='/posts/:postId'
-          element={<PostDetail />}
+          element={
+            <Suspense fallback={<PostDetailSkeleton />}>
+              <PostDetail />
+            </Suspense>
+          }
         />
       </Route>
       <Route
