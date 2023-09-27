@@ -32,19 +32,22 @@ const SearchResultUser = ({
         userData.map((element: User) => {
           const { _id, fullName, image, email, isOnline } = element;
 
-        return (
-          <SearchItem key={_id}>
-            <FollowUserInfo
-              fullName={fullName}
-              image={image}
-              email={email}
-              isOnline={isOnline}
-              id={_id}
-              avatarSize={50}
-            />
-          </SearchItem>
-        );
-      })}
+          return (
+            <SearchItem key={_id}>
+              <FollowUserInfo
+                fullName={fullName}
+                image={image}
+                email={email}
+                isOnline={isOnline}
+                id={_id}
+                avatarSize={50}
+              />
+            </SearchItem>
+          );
+        })
+      ) : (
+        <SearchNoResult />
+      )}
     </>
   );
 };
