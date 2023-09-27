@@ -3,6 +3,7 @@ import { Icon } from '../Icon';
 import { Avatar } from '../Avatar';
 import {
   AvatarContainer,
+  PostInfoContainer,
   PostDetailInfoContainer,
   UserContainer,
   NameContainer,
