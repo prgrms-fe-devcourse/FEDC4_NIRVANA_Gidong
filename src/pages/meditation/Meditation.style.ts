@@ -1,9 +1,13 @@
 import styled from '@emotion/styled';
 
-export const MeditationPage = styled.div`
+interface MeditationPageProps {
+  timerPaused: boolean;
+}
+
+export const MeditationPage = styled.div<MeditationPageProps>`
   ${({ theme }) => theme.style.flexCenter};
   flex-direction: column;
-  height: 100vh;
+  height: ${({ timerPaused }) => (timerPaused ? '100vh' : '100%')};
   width: 100%;
   background: ${({ theme }) => theme.color.linearGradientPurple};
 `;

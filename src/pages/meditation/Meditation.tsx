@@ -40,7 +40,7 @@ const Meditation = () => {
 
   return (
     <>
-      <MeditationPage>
+      <MeditationPage status={status}>
         {prevPosting && (
           <PrevPostingConfirm
             prevPostingInfo={prevPosting}
