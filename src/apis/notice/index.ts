@@ -39,7 +39,7 @@ const postNotifications = async (
     notificationData,
     {
       headers: {
-        Authorization: token
+        Authorization: 'Bearer ' + token
       }
     }
   );
