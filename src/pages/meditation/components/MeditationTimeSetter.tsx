@@ -9,7 +9,7 @@ import {
   COUNTER_BUTTON_SIZE,
   EVENT_NAME_MEDITATION_ENDED,
   EVENT_NAME_MEDITATION_STARTED,
-  FIVE_MINUTES_IN_SECONDS
+  MEDITATION_TIME_UNIT
 } from '@pages/meditation/constants';
 import {
   SetTimeButton,
@@ -95,9 +95,9 @@ const MeditationTimeSetter = ({ themePicked }: MeditationTimeSetterProps) => {
       return;
     }
     if (buttonType === BUTTON_TYPE_ADD) {
-      setTime(time + FIVE_MINUTES_IN_SECONDS);
+      setTime(time + MEDITATION_TIME_UNIT);
     } else {
-      setTime(time - FIVE_MINUTES_IN_SECONDS);
+      setTime(time - MEDITATION_TIME_UNIT);
     }
   };
 
@@ -111,7 +111,7 @@ const MeditationTimeSetter = ({ themePicked }: MeditationTimeSetterProps) => {
       longClickIdRef.current = setInterval(() => {
         setTime((prevTime) => {
           if (prevTime < 1440 * 60) {
-            return prevTime + FIVE_MINUTES_IN_SECONDS;
+            return prevTime + MEDITATION_TIME_UNIT;
           } else {
             return prevTime;
           }
@@ -121,7 +121,7 @@ const MeditationTimeSetter = ({ themePicked }: MeditationTimeSetterProps) => {
       longClickIdRef.current = setInterval(() => {
         setTime((prevTime) => {
           if (prevTime > 0) {
-            prevTime -= FIVE_MINUTES_IN_SECONDS;
+            prevTime -= MEDITATION_TIME_UNIT;
           }
           return prevTime;
         });
