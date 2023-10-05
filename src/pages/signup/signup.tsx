@@ -143,6 +143,7 @@ const SignUp = () => {
         />
         <ButtonContainer>
           <Button
+            type='button'
             label='취소'
             width={125}
             height={42}
@@ -151,6 +152,7 @@ const SignUp = () => {
             handleClick={() => navigate('/')}
           />
           <Button
+            type='submit'
             label='회원가입'
             width={125}
             height={42}
