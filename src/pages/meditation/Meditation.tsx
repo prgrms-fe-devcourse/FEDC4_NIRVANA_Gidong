@@ -13,6 +13,7 @@ import {
   PrevPostingConfirm
 } from '@pages/meditation/components';
 import { CONCENTRATION_KEY } from '@pages/meditation/constants';
+import MeditationAudioPlayer from '@pages/meditation/components/MeditationAudioPlayer';
 
 const Meditation = () => {
   const [confirmCaptured, setConfirmCaptured] = useRecoilState(endButtonPushed);
@@ -49,6 +50,7 @@ const Meditation = () => {
         )}
         <MeditationLabel />
         <MeditationTimer />
+        {status.started && <MeditationAudioPlayer />}
         <MeditationTimeSetter themePicked={selectedTheme} />
         {!status.started && (
           <ThemePicker
@@ -56,6 +58,7 @@ const Meditation = () => {
             handleClickTheme={handleThemeInfo}
           />
         )}
+
         {confirmCaptured && (
           <MeditationCancelConfirm
             handleConfirmButton={handleMeditationCancel}
