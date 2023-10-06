@@ -1,14 +1,17 @@
+import { useSetRecoilState } from 'recoil';
+
 import type { EditedPost } from '@/types';
+
 import PostHeader from './PostHeader';
+import { Link } from '@components/Link';
+import { openSearch } from '@pages/layout/states/openSearch';
+import { shortenString } from '@utils/index';
 import {
   PostContent,
   PostContentContainer,
   PostHeaderContainer,
   PreviewContainer
 } from './PostPreview.style';
-import { Link } from '@components/Link';
-import { openSearch } from '@pages/layout/states/openSearch';
-import { useSetRecoilState } from 'recoil';
 
 interface PostPreviewProps {
   post: EditedPost;
@@ -24,9 +27,7 @@ const PostPreview = ({
   noneProfile = false
 }: PostPreviewProps) => {
   const { content, _id } = post;
-  const previewContent = `${content.substring(0, 100)}${
-    content.length > 100 ? '...' : ''
-  }`;
+  const previewContent = shortenString(content, 100);
   const setResultShown = useSetRecoilState(openSearch);
   const handlePreviewClick = () => {
     setResultShown(false);
