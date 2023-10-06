@@ -12,6 +12,7 @@ const style = css`
 
   #root {
     font-family: 'Pretendard Variable', sans-serif;
+    position: relative;
     width: 100%;
     height: 100%;
     max-width: 768px;
