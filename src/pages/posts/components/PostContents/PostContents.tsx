@@ -20,7 +20,11 @@ interface PostItemsProps {
 const PostItems = ({ channel }: PostItemsProps) => {
   const [postsData, setPostsData] = useState<EditedPost[]>([]);
   const [offset, setOffset] = useState(0);
-  const [observe] = useObserver(() => setOffset(offset + 11));
+  const [observe] = useObserver(() => {
+    setOffset((curr) => {
+      return curr + 10;
+    });
+  });
   const postsRef = useRef(null);
 
   const { data, isError } = useQuery({
@@ -47,7 +51,7 @@ const PostItems = ({ channel }: PostItemsProps) => {
   }, [channel.id]);
 
   useEffect(() => {
-    if (postsRef.current && postsData.length >= 10) {
+    if (postsRef.current && data.length >= 10) {
       const { lastChild } = postsRef.current;
       lastChild && observe(lastChild);
     }
@@ -57,7 +61,7 @@ const PostItems = ({ channel }: PostItemsProps) => {
     if (data) {
       setPostsData(offset === 0 ? data : [...postsData, ...data]);
     }
-  }, [data, offset, postsData]);
+  }, [data, offset]);
 
   return (
     <PostsContainer ref={postsRef}>
