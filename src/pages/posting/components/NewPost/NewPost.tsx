@@ -82,6 +82,7 @@ const NewPost = ({
       )}
       {showConfirm && (
         <NewPostConfirm
+          isLoading={isLoading}
           handleConfirmButton={handleConfirmButton}
           handleCancelButton={handleCancelButton}
         />
