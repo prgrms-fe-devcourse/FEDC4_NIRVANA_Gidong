@@ -6,7 +6,7 @@ import type { EditedPost } from '@/types';
 import { getPosts } from '@apis/posts';
 import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
 import { Toast } from '@components/Toast';
-import { PostPreview } from '@components/PostPreview';
+import { PostItems } from './components/PostsItems';
 import { ThemePicker } from '@components/ThemePicker';
 import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
 import { editPostData } from './utils/editPostData';
@@ -81,20 +81,7 @@ const Posts = () => {
       )}
       <PostsContainer ref={postsRef}>
         {postsData.length > 0 ? (
-          postsData.map((post: EditedPost, index) => {
-            const { content, likes, comments } = post;
-            return (
-              content && (
-                <PostPreview
-                  key={index}
-                  post={post}
-                  totalLikes={likes.length}
-                  totalComments={comments.length}
-                  noneProfile={false}
-                />
-              )
-            );
-          })
+          <PostItems postsData={postsData} />
         ) : (
           <NoPosts />
         )}
