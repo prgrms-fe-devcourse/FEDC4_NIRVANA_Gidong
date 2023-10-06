@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm, FormProvider } from 'react-hook-form';
 import { Button } from '@components/Button';
-import { UserInput } from '@components/UserInput';
+import { FormInput } from '@components/FormInput';
 import { Alert } from '@components/Alert';
-import { isEmailOk, isNicknameOk, isPasswordOk } from './validations';
+import {
+  SignUpValidations,
+  isEmailOk,
+  isNicknameOk,
+  isPasswordOk
+} from './validations';
 import postSignUpUser from '@apis/signup';
-import { MODAL, USER_INPUT } from './constants';
+import { MODAL, USER_INPUT, BUTTON } from './constants';
 import {
   LandingMain,
   HeadingContentContainer,
@@ -13,65 +19,42 @@ import {
 } from '@pages/landing/Landing.style';
 import { SignUpForm, ButtonContainer } from './signup.style';
 
+interface SignUpFormData {
+  email: string;
+  nickname: string;
+  password: string;
+  passwordConfirm: string;
+}
+
 const SignUp = () => {
-  const [email, setEmail] = useState<string>('');
-  const [nickname, setNickname] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const [emailErrorCatched, setEmailErrorCatched] = useState<boolean>(false);
   const [signupSucceed, setSignupSucceed] = useState<boolean>(false);
+  const methods = useForm<SignUpFormData>();
+  const { watch } = methods;
+  const [email, nickname, password, passwordConfirm] = watch([
+    'email',
+    'nickname',
+    'password',
+    'passwordConfirm'
+  ]);
 
   const navigate = useNavigate();
-  let timer = 0;
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    const { name, value } = event.target;
-
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      switch (name) {
-        case 'email':
-          setEmail(value);
-          break;
-        case 'nickname':
-          setNickname(value);
-          break;
-        case 'password':
-          setPassword(value);
-          break;
-        case 'passwordConfirm':
-          setPasswordConfirm(value);
-          break;
-        default:
-          break;
-      }
-    }, 200);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (
-      email &&
-      nickname &&
-      password &&
-      passwordConfirm &&
-      isEmailOk(email) &&
-      isNicknameOk(nickname) &&
-      isPasswordOk(password) &&
-      password === passwordConfirm
-    ) {
-      postSignUpUser({ email, password, fullName: nickname })
-        .then(() => setSignupSucceed(true))
+  const onSubmit = () => {
+    if (SignUpValidations({ email, nickname, password, passwordConfirm })) {
+      postSignUpUser({
+        email,
+        password,
+        fullName: nickname
+      })
+        .then(() => {
+          setSignupSucceed(true);
+        })
         .catch((error) => {
           console.log(error);
           setEmailErrorCatched(true);
         });
     }
-
     setEmailErrorCatched(false);
     return;
   };
@@ -97,71 +80,68 @@ const SignUp = () => {
           nextPageLink='/login'
         />
       )}
-
-      <SignUpForm onSubmit={handleSubmit}>
-        <UserInput
-          name={USER_INPUT.EMAIL.NAME}
-          placeholder={USER_INPUT.EMAIL.PLACE_HOLDER}
-          title={USER_INPUT.EMAIL.TITLE}
-          success={isEmailOk(email)}
-          errorMessage={USER_INPUT.EMAIL.ERROR_MESSAGE}
-          successMessage={USER_INPUT.EMAIL.SUCCESS_MESSAGE}
-          handleChange={handleInputChange}
-          show={email.length > 0}
-        />
-        <UserInput
-          name={USER_INPUT.NICKNAME.NAME}
-          placeholder={USER_INPUT.NICKNAME.PLACE_HOLDER}
-          title={USER_INPUT.NICKNAME.TITLE}
-          success={isNicknameOk(nickname)}
-          errorMessage={USER_INPUT.NICKNAME.ERROR_MESSAGE}
-          successMessage={USER_INPUT.NICKNAME.SUCCESS_MESSAGE}
-          handleChange={handleInputChange}
-          show={nickname.length > 0}
-        />
-        <UserInput
-          name={USER_INPUT.PASSWORD.NAME}
-          type={USER_INPUT.PASSWORD.TYPE}
-          placeholder={USER_INPUT.PASSWORD.PLACE_HOLDER}
-          title={USER_INPUT.PASSWORD.TITLE}
-          success={isPasswordOk(password)}
-          errorMessage={USER_INPUT.PASSWORD.ERROR_MESSAGE}
-          successMessage={USER_INPUT.PASSWORD.SUCCESS_MESSAGE}
-          handleChange={handleInputChange}
-          show={password.length > 0}
-        />
-        <UserInput
-          name={USER_INPUT.PASSWORD_CONFIRM.NAME}
-          type={USER_INPUT.PASSWORD_CONFIRM.TYPE}
-          placeholder={USER_INPUT.PASSWORD_CONFIRM.PLACE_HOLDER}
-          title={USER_INPUT.PASSWORD_CONFIRM.TITLE}
-          success={isPasswordOk(password) && password === passwordConfirm}
-          errorMessage={USER_INPUT.PASSWORD_CONFIRM.ERROR_MESSAGE}
-          successMessage={USER_INPUT.PASSWORD_CONFIRM.SUCCESS_MESSAGE}
-          handleChange={handleInputChange}
-          show={passwordConfirm.length > 0}
-        />
-        <ButtonContainer>
-          <Button
-            type='button'
-            label='취소'
-            width={125}
-            height={42}
-            bold={false}
-            dark={false}
-            handleClick={() => navigate('/')}
+      <FormProvider {...methods}>
+        <SignUpForm onSubmit={methods.handleSubmit(onSubmit)}>
+          <FormInput
+            name={USER_INPUT.EMAIL.NAME}
+            placeholder={USER_INPUT.EMAIL.PLACE_HOLDER}
+            title={USER_INPUT.EMAIL.TITLE}
+            errorMessage={USER_INPUT.EMAIL.ERROR_MESSAGE}
+            successMessage={USER_INPUT.EMAIL.SUCCESS_MESSAGE}
+            show={email && email.length > 0}
+            success={isEmailOk(email)}
           />
-          <Button
-            type='submit'
-            label='회원가입'
-            width={125}
-            height={42}
-            bold={false}
-            dark={true}
-            handleClick={() => handleSubmit}
+          <FormInput
+            name={USER_INPUT.NICKNAME.NAME}
+            placeholder={USER_INPUT.NICKNAME.PLACE_HOLDER}
+            title={USER_INPUT.NICKNAME.TITLE}
+            errorMessage={USER_INPUT.NICKNAME.ERROR_MESSAGE}
+            successMessage={USER_INPUT.NICKNAME.SUCCESS_MESSAGE}
+            show={nickname && nickname.length > 0}
+            success={nickname && isNicknameOk(nickname)}
           />
-        </ButtonContainer>
-      </SignUpForm>
+          <FormInput
+            name={USER_INPUT.PASSWORD.NAME}
+            type={USER_INPUT.PASSWORD.TYPE}
+            placeholder={USER_INPUT.PASSWORD.PLACE_HOLDER}
+            title={USER_INPUT.PASSWORD.TITLE}
+            errorMessage={USER_INPUT.PASSWORD.ERROR_MESSAGE}
+            successMessage={USER_INPUT.PASSWORD.SUCCESS_MESSAGE}
+            show={password && password.length > 0}
+            success={password && isPasswordOk(password)}
+          />
+          <FormInput
+            name={USER_INPUT.PASSWORD_CONFIRM.NAME}
+            type={USER_INPUT.PASSWORD_CONFIRM.TYPE}
+            placeholder={USER_INPUT.PASSWORD_CONFIRM.PLACE_HOLDER}
+            title={USER_INPUT.PASSWORD_CONFIRM.TITLE}
+            errorMessage={USER_INPUT.PASSWORD_CONFIRM.ERROR_MESSAGE}
+            successMessage={USER_INPUT.PASSWORD_CONFIRM.SUCCESS_MESSAGE}
+            show={passwordConfirm && passwordConfirm.length > 0}
+            success={passwordConfirm && password === passwordConfirm}
+          />
+          <ButtonContainer>
+            <Button
+              type='button'
+              label={BUTTON.LABEL.CANCEL}
+              width={125}
+              height={42}
+              bold={false}
+              dark={false}
+              handleClick={() => navigate('/')}
+            />
+            <Button
+              type='submit'
+              label={BUTTON.LABEL.SIGNUP}
+              width={125}
+              height={42}
+              bold={false}
+              dark={true}
+              handleClick={() => methods.handleSubmit(onSubmit)}
+            />
+          </ButtonContainer>
+        </SignUpForm>
+      </FormProvider>
     </LandingMain>
   );
 };
