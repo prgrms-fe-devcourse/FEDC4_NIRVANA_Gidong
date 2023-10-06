@@ -9,7 +9,6 @@ export const SignUpForm = styled.form`
   width: 80%;
   min-width: 300px;
   max-width: 450px;
-  min-height: 400px;
   max-height: 600px;
   padding: 25px 20px;
   border-radius: 10px;
