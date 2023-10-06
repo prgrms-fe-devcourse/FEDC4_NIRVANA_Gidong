@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { purifyContent, appendFormData } from './utils';
 import postCreateNewPost from '@apis/posting';
+import { Toast } from '@components/Toast';
+import { purifyContent, appendFormData } from './utils';
 import { NewPost } from './components/NewPost';
 import { SkipPosting } from './components/SkipPosting';
 import {
@@ -46,7 +47,7 @@ const Posting = () => {
       navigate('/posts', {
         state: {
           channelInfo: {
-            id: meditationInfo.channelId,
+            id: channelId,
             label: meditationInfo.channelLabel
           }
         }
@@ -63,7 +64,7 @@ const Posting = () => {
     const formData = appendFormData(
       formKey,
       JSON.stringify(customPosting),
-      meditationInfo.channelId,
+      channelId,
       null
     );
 
@@ -79,6 +80,12 @@ const Posting = () => {
 
   return (
     <StyledPosting>
+      {isError && (
+        <Toast
+          type={'ERROR'}
+          content='글을 발행할 수 없습니다. 잠시 후 다시 시도해주세요.'
+        />
+      )}
       <ContentContainer>
         <StyledDescription>
           <PostingHelper
