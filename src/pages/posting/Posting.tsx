@@ -65,7 +65,6 @@ const Posting = () => {
       formKey,
       JSON.stringify(customPosting),
       channelId,
-      channelId,
       null
     );
 
@@ -81,12 +80,6 @@ const Posting = () => {
 
   return (
     <StyledPosting>
-      {isError && (
-        <Toast
-          type={'ERROR'}
-          content='글을 발행할 수 없습니다. 잠시 후 다시 시도해주세요.'
-        />
-      )}
       {isError && (
         <Toast
           type={'ERROR'}
