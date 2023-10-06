@@ -1,11 +1,12 @@
 import type { EditedPost } from '@/types';
+
 import { PostPreview } from '@components/PostPreview';
 
-interface PostItemsProps {
+interface PostPreviewListProps {
   postsData: EditedPost[];
 }
 
-const PostItems = ({ postsData }: PostItemsProps) => {
+const PostPreviewList = ({ postsData }: PostPreviewListProps) => {
   return (
     <>
       {postsData.map((post: EditedPost, index) => {
@@ -26,4 +27,4 @@ const PostItems = ({ postsData }: PostItemsProps) => {
   );
 };
 
-export default PostItems;
+export default PostPreviewList;
