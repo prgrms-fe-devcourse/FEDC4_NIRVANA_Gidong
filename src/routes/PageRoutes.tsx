@@ -10,7 +10,7 @@ import LogIn from '@pages/login';
 import Posting from '@pages/posting';
 import Meditation from '@pages/meditation';
 import PasswordUpdate from '@pages/password-update';
-import NotFound from '@pages/NotFound';
+import NotFound from '@pages/notFound';
 import Posts from '@pages/posts';
 import Notice from '@pages/notice';
 import PostDetail from '@pages/postDetail/PostDetail';
