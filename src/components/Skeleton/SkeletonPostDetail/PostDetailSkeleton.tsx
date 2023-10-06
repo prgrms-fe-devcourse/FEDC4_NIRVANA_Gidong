@@ -3,12 +3,12 @@ import {
   SkeletonAvatar,
   SkeletonUser,
   SkeletonLongRectangle
-} from './Skeleton.style';
+} from '../Skeleton.style';
 import {
   PostDetailSkeletonCommentContainer,
   PostDetailSkeletonContainer,
   PostDetailSkeletonContentContainer
-} from './postDetailSkeleton.style';
+} from './PostDetailSkeleton.style';
 
 const PostDetailSkeleton = () => {
   return (

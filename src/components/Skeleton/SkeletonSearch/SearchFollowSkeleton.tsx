@@ -2,7 +2,7 @@ import {
   SkeletonUserInfoContainer,
   SkeletonUserInfoItemContainer
 } from './SearchFollowSkeleton.style';
-import SkeletonFollowUserInfo from './SkeletonFollowUserInfo';
+import { SkeletonFollowUserInfo } from '../SkeletonFollowUserInfo';
 
 const SearchFollowSkeleton = () => {
   return (
