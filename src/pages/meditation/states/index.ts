@@ -9,8 +9,3 @@ export const totalMeditationTime = atom({
   key: 'totalMeditationTime',
   default: 0
 });
-
-export const meditationStatus = atom({
-  key: 'meditationStatus',
-  default: { started: false, ended: false }
-});
