@@ -4,11 +4,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import postLogInUser from '@apis/login';
 import { Button } from '@components/Button';
 import { FormInput } from '@components/FormInput';
+import useSessionStorage from '@hooks/useSessionStorage';
+import { User } from '@/types';
 import { USER_INPUT, LABEL } from '../constants';
 import { GoToSignUp } from '../components';
 import { LoginFormContainer, ButtonContainer } from './LoginForm.style';
-import useSessionStorage from '@hooks/useSessionStorage';
-import { User } from '@/types';
 
 const LoginForm = () => {
   const methods = useForm();
