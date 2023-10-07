@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const SignUpForm = styled.form`
+export const SignUpFormContainer = styled.form`
   ${({ theme }) => theme.style.flexCenter};
   flex-direction: column;
   box-sizing: border-box;
