@@ -8,12 +8,7 @@ import {
   TimerElement,
   TimerElementBorder
 } from './MeditationTimer.style';
-import {
-  EVENT_NAME_MEDITATION_ENDED,
-  EVENT_NAME_MEDITATION_STARTED,
-  ICON_NAME_PAUSE,
-  ICON_NAME_PLAY
-} from '@pages/meditation/constants';
+import { ICON_NAME_PAUSE, ICON_NAME_PLAY } from '@pages/meditation/constants';
 import { meditationTime } from '../states';
 
 let timerId = 0;
