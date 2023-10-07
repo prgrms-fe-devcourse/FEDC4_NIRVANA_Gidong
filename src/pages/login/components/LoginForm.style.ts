@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const LoginForm = styled.form`
+export const LoginFormContainer = styled.form`
   background-color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.style.flexCenter};
   flex-direction: column;
