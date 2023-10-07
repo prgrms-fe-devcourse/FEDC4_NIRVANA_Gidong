@@ -62,7 +62,7 @@ const MeditationTimeSetter = ({
     if (meditationStatus.ended) {
       handleEndMeditation();
     }
-  }, [meditationStatus]);
+  }, [meditationStatus.started, meditationStatus.ended]);
 
   const isValidTimeControl = (
     buttonType: typeof BUTTON_TYPE_SUB | typeof BUTTON_TYPE_ADD
