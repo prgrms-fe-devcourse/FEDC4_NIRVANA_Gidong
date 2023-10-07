@@ -14,7 +14,8 @@ const USER_INPUT = {
 };
 
 const LABEL = {
-  LOG_IN: '로그인'
+  LOG_IN: '로그인',
+  SIGN_UP: '회원가입'
 };
 
 const MESSAGE = {
