@@ -12,7 +12,7 @@ import {
   PasswordUpdateFormContainer,
   ButtonContainer
 } from './PasswordUpdateForm.style';
-import isPasswordOk from '../utils/isPasswordOk';
+import isPasswordOk from '../validations';
 
 interface PasswordUpdateFormData {
   password: string;
