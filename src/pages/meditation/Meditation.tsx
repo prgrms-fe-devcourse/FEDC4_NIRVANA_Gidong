@@ -1,6 +1,4 @@
-import { useRecoilValue } from 'recoil';
 import { useState } from 'react';
-import { meditationStatus } from './states';
 import { MeditationPage } from './Meditation.style';
 import { ThemePicker } from '@components/ThemePicker';
 import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
@@ -18,7 +16,11 @@ const Meditation = () => {
   const [selectedTheme, setSelectedTheme] = useState(
     meditationChannelInfo.get(CONCENTRATION_KEY)
   );
-  const status = useRecoilValue(meditationStatus);
+  const [status, setStatus] = useState({
+    started: false,
+    paused: true,
+    ended: false
+  });
   const prevPosting = JSON.parse(sessionStorage.getItem('posting'));
 
   const handleCancelPrevPosting = () => {
@@ -31,17 +33,23 @@ const Meditation = () => {
 
   return (
     <>
-      <MeditationPage timerPaused={status}>
+      <MeditationPage meditationStatus={status}>
         {prevPosting && (
           <PrevPostingConfirm
             prevPostingInfo={prevPosting}
             handleCancelButton={handleCancelPrevPosting}
           />
         )}
-        <MeditationLabel />
-        <MeditationTimer />
+        <MeditationLabel meditationStatus={status} />
+        <MeditationTimer
+          meditationStatus={status}
+          statusSetter={setStatus}
+        />
         {status.started && <MeditationAudioPlayer />}
-        <MeditationTimeSetter themePicked={selectedTheme} />
+        <MeditationTimeSetter
+          meditationStatus={status}
+          themePicked={selectedTheme}
+        />
         {!status.started && (
           <ThemePicker
             themeInfo={meditationChannelInfo}
