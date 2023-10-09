@@ -2,11 +2,13 @@ import { Button } from '@components/Button';
 import { Confirm } from '@components/Confirm';
 
 interface NewPostConfirmProps {
+  isLoading: boolean;
   handleConfirmButton: (() => Promise<void>) | (() => void);
   handleCancelButton: () => void;
 }
 
 const NewPostConfirm = ({
+  isLoading,
   handleConfirmButton,
   handleCancelButton
 }: NewPostConfirmProps) => {
@@ -26,6 +28,7 @@ const NewPostConfirm = ({
   const ConfirmButton = () => {
     return (
       <Button
+        disabled={isLoading}
         width={120}
         height={50}
         bold={true}

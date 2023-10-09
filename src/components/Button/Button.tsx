@@ -29,7 +29,7 @@ const Button = ({
   fontSize,
   borderRadius,
   children,
-  disabled,
+  disabled = false,
   border = 'transparent',
   backgroundColor
 }: ButtonProps) => {

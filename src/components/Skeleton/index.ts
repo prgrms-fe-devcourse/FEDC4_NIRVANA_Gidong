@@ -1,9 +1,12 @@
-import PostPreviewSkeleton from './PostPreviewSkeleton';
-import SkeletonFollowUserInfo from './SkeletonFollowUserInfo';
-import ProfileSkeleton from './ProfileSkeleton';
-import PostDetailSkeleton from './PostDetailSkeleton';
-import SearchFollowSkeleton from './SearchFollowSkeleton';
-import SearchPostPreviewSkeleton from './SearchPostPreviewSkeleton';
+import { SkeletonFollowUserInfo } from './SkeletonFollowUserInfo';
+import { PostDetailSkeleton } from './SkeletonPostDetail';
+import { PostPreviewSkeleton } from './SkeletonPostPreview';
+import { SkeletonPosts } from './SkeletonPosts';
+import { ProfileSkeleton } from './SkeletonProfile';
+import {
+  SearchFollowSkeleton,
+  SearchPostPreviewSkeleton
+} from './SkeletonSearch';
 
 export {
   PostPreviewSkeleton,
@@ -11,5 +14,6 @@ export {
   PostDetailSkeleton,
   ProfileSkeleton,
   SearchFollowSkeleton,
-  SearchPostPreviewSkeleton
+  SearchPostPreviewSkeleton,
+  SkeletonPosts
 };
