@@ -11,6 +11,7 @@ import { PostPreview } from '@components/PostPreview';
 import { Toast } from '@components/Toast';
 import SearchNoResult from './SearchNoResult';
 import { editPostData } from '@pages/posts/utils/editPostData';
+import { PostPreviewItem } from './SearchResultPost.style';
 import filterPostData from '../utils/filterPostData';
 import { FILTER } from '../constants';
 
@@ -89,7 +90,7 @@ const SearchResultPost = ({
             const { _id, likes, comments } = post;
 
             return (
-              <div
+              <PostPreviewItem
                 key={_id}
                 onClick={handlePreviewClick}>
                 <PostPreview
@@ -98,7 +99,7 @@ const SearchResultPost = ({
                   totalComments={comments.length}
                   noneProfile={false}
                 />
-              </div>
+              </PostPreviewItem>
             );
           })
         ) : (

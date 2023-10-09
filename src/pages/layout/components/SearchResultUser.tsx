@@ -22,11 +22,7 @@ const SearchResultUser = ({
   const navigate = useNavigate();
   const setResultShown = useSetRecoilState(openSearch);
 
-  const {
-    data: userData,
-    isSuccess,
-    isLoading
-  } = useQuery({
+  const { data: userData, isSuccess } = useQuery({
     queryKey: ['search', searchKeyword, searchFilter],
     queryFn: async () => {
       const data = await searchUser(searchKeyword);
@@ -35,8 +31,6 @@ const SearchResultUser = ({
     suspense: true,
     enabled: searchKeyword !== '' && searchFilter === FILTER['USER']
   });
-
-  console.log(isLoading);
 
   return (
     <>
