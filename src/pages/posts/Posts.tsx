@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { meditationChannelInfo } from '@pages/meditation/models/channelInfo';
-
 import { PostContents } from './components/PostContents';
 import { ThemePicker } from '@components/ThemePicker';
 import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
@@ -16,7 +15,6 @@ const Posts = () => {
       ? locate.state.channelInfo
       : meditationChannelInfo.get(CONCENTRATION_KEY)
   );
-  const channelInfo = new Map(meditationChannelInfo);
 
   const clickThemePicker = (selected: ThemeInfoType) => {
     setChannel(selected);
@@ -26,7 +24,7 @@ const Posts = () => {
     <StyledPostsPage>
       <ThemePickerContainer>
         <ThemePicker
-          themeInfo={channelInfo}
+          themeInfo={meditationChannelInfo}
           handleClickTheme={clickThemePicker}
           dark={false}
         />
