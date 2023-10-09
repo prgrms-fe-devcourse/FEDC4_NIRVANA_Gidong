@@ -1,7 +1,7 @@
 import { useCallback, useRef } from 'react';
 
 const useObserver = (callback: () => void) => {
-  const observerOption = useRef({ threshold: 1 });
+  const observerOption = useRef({ threshold: 0.5 });
   const observerFn: IntersectionObserverCallback = useCallback(
     (entries, observer) => {
       entries.forEach((entry) => {
@@ -10,6 +10,7 @@ const useObserver = (callback: () => void) => {
         }
         if (entry.isIntersecting) {
           callback();
+          console.log('intersectioning');
         }
       });
     },
