@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { Icon } from '@components/Icon';
 import formatTime from '@utils/formatTime';
@@ -8,26 +8,30 @@ import {
   TimerElement,
   TimerElementBorder
 } from './MeditationTimer.style';
-import {
-  EVENT_NAME_MEDITATION_ENDED,
-  EVENT_NAME_MEDITATION_STARTED,
-  ICON_NAME_PAUSE,
-  ICON_NAME_PLAY
-} from '@pages/meditation/constants';
+import { ICON_NAME_PAUSE, ICON_NAME_PLAY } from '@pages/meditation/constants';
 import { meditationTime } from '../states';
 
 let timerId = 0;
 
-const MeditationTimer = () => {
+interface MeditationTimerProps {
+  meditationStatus: { started: boolean; paused: boolean; ended: boolean };
+  statusSetter: React.Dispatch<
+    React.SetStateAction<{ started: boolean; paused: boolean; ended: boolean }>
+  >;
+}
+
+const MeditationTimer = ({
+  meditationStatus,
+  statusSetter
+}: MeditationTimerProps) => {
   const [time, setTime] = useRecoilState(meditationTime);
-  const [paused, setPaused] = useState(true);
   const [hovered, setHovered] = useState(false);
 
   const startTimer = () => {
     if (time === 0) {
       return;
     }
-    setPaused(false);
+    statusSetter({ ...meditationStatus, paused: false });
 
     timerId = setInterval(() => {
       setTime((prevTime) => {
@@ -35,18 +39,19 @@ const MeditationTimer = () => {
           return prevTime - 1;
         }
         clearInterval(timerId);
-        document.dispatchEvent(new Event(EVENT_NAME_MEDITATION_ENDED));
+        statusSetter({ ...meditationStatus, paused: true, ended: true });
+        timerId = 0;
         return prevTime;
       });
     }, 1000);
 
-    document.dispatchEvent(new Event(EVENT_NAME_MEDITATION_STARTED));
+    statusSetter({ ...meditationStatus, started: true, paused: false });
   };
 
   const toggleTimer = () => {
-    if (!paused) {
+    if (!meditationStatus.paused) {
       clearInterval(timerId);
-      setPaused(true);
+      statusSetter({ ...meditationStatus, paused: true });
     } else {
       startTimer();
     }
@@ -54,20 +59,20 @@ const MeditationTimer = () => {
   useEffect(() => {
     const headerEl = document.querySelector('header');
     const footerEl = document.querySelector('footer');
-    if (paused) {
+    if (meditationStatus.paused) {
       headerEl.style.display = 'flex';
       footerEl.style.display = 'flex';
     } else {
       headerEl.style.display = 'none';
       footerEl.style.display = 'none';
     }
-  }, [paused]);
+  }, [meditationStatus.paused]);
 
   return (
     <TimerContainer>
-      <TimerElementBorder timerPaused={timerId && paused} />
+      <TimerElementBorder timerPaused={timerId && meditationStatus.paused} />
       <TimerElement
-        timerPaused={timerId && paused}
+        timerPaused={timerId && meditationStatus.paused}
         onClick={() => toggleTimer()}
         onMouseOver={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -80,7 +85,7 @@ const MeditationTimer = () => {
         <IconContainer>
           {hovered ? (
             <Icon
-              name={paused ? ICON_NAME_PLAY : ICON_NAME_PAUSE}
+              name={meditationStatus.paused ? ICON_NAME_PLAY : ICON_NAME_PAUSE}
               size={70}
               color={'white'}
             />

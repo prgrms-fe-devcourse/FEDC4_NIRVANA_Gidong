@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { SkeletonAvatar, StyledSkeleton } from './Skeleton.style';
+import { SkeletonAvatar, StyledSkeleton } from '../Skeleton.style';
 
 export const ProfileSkeletonContainer = styled.div`
   display: flex;

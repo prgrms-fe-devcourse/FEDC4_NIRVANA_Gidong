@@ -1,4 +1,4 @@
-import PostPreviewSkeleton from './PostPreviewSkeleton';
+import { PostPreviewSkeleton } from '../SkeletonPostPreview';
 
 const SearchPostPreviewSkeleton = () => {
   return (

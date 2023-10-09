@@ -51,6 +51,7 @@ const NewPost = ({
     },
     [posting]
   );
+
   const handlePostButton = () => {
     setShowConfirm(true);
   };
@@ -70,7 +71,7 @@ const NewPost = ({
     }
     return () => clear();
   }, []);
-  
+
   return (
     <>
       {posting.length >= LIMIT_LENGTH && (
@@ -81,6 +82,7 @@ const NewPost = ({
       )}
       {showConfirm && (
         <NewPostConfirm
+          isLoading={isLoading}
           handleConfirmButton={handleConfirmButton}
           handleCancelButton={handleCancelButton}
         />

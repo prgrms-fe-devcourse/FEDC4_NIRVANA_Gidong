@@ -13,6 +13,4 @@ const ThemePickerContainer = styled.div`
   ${({ theme }) => theme.style.flexCenter};
 `;
 
-const PostsContainer = styled.div``;
-
-export { StyledPostsPage, ThemePickerContainer, PostsContainer };
+export { StyledPostsPage, ThemePickerContainer };

@@ -1,37 +1,30 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
 import { useState } from 'react';
-import { endButtonPushed, meditationStatus } from './states';
 import { MeditationPage } from './Meditation.style';
 import { ThemePicker } from '@components/ThemePicker';
 import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
 import { meditationChannelInfo } from './models/channelInfo';
 import {
-  MeditationCancelConfirm,
   MeditationLabel,
   MeditationTimer,
   MeditationTimeSetter,
   PrevPostingConfirm
 } from '@pages/meditation/components';
 import { CONCENTRATION_KEY } from '@pages/meditation/constants';
+import MeditationAudioPlayer from '@pages/meditation/components/MeditationAudioPlayer';
 
 const Meditation = () => {
-  const [confirmCaptured, setConfirmCaptured] = useRecoilState(endButtonPushed);
   const [selectedTheme, setSelectedTheme] = useState(
     meditationChannelInfo.get(CONCENTRATION_KEY)
   );
-  const status = useRecoilValue(meditationStatus);
+  const [status, setStatus] = useState({
+    started: false,
+    paused: true,
+    ended: false
+  });
   const prevPosting = JSON.parse(sessionStorage.getItem('posting'));
 
   const handleCancelPrevPosting = () => {
     sessionStorage.removeItem('posting');
-  };
-
-  const handleCancelCapture = () => {
-    setConfirmCaptured(false);
-  };
-
-  const handleMeditationCancel = () => {
-    location.reload(); // 리팩토링 전 임시방편
   };
 
   const handleThemeInfo = (selected: ThemeInfoType) => {
@@ -40,26 +33,27 @@ const Meditation = () => {
 
   return (
     <>
-      <MeditationPage timerPaused={status}>
+      <MeditationPage meditationStatus={status}>
         {prevPosting && (
           <PrevPostingConfirm
             prevPostingInfo={prevPosting}
             handleCancelButton={handleCancelPrevPosting}
           />
         )}
-        <MeditationLabel />
-        <MeditationTimer />
-        <MeditationTimeSetter themePicked={selectedTheme} />
+        <MeditationLabel meditationStatus={status} />
+        <MeditationTimer
+          meditationStatus={status}
+          statusSetter={setStatus}
+        />
+        {status.started && <MeditationAudioPlayer />}
+        <MeditationTimeSetter
+          meditationStatus={status}
+          themePicked={selectedTheme}
+        />
         {!status.started && (
           <ThemePicker
             themeInfo={meditationChannelInfo}
             handleClickTheme={handleThemeInfo}
-          />
-        )}
-        {confirmCaptured && (
-          <MeditationCancelConfirm
-            handleConfirmButton={handleMeditationCancel}
-            handleCancelButton={handleCancelCapture}
           />
         )}
       </MeditationPage>

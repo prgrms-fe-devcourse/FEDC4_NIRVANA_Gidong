@@ -12,6 +12,7 @@ export const StyledButton = styled.button<{
   backgroundColor?: keyof typeof color;
   border?: keyof typeof color;
   padding?: boolean;
+  disabled?: boolean;
 }>`
   cursor: pointer;
   width: ${({ width }) => width}px;
@@ -22,8 +23,10 @@ export const StyledButton = styled.button<{
       : dark === false
       ? `1px solid ${theme.color.white500}`
       : `1px solid ${theme.color[border]}`};
-  background-color: ${({ theme, dark, backgroundColor }) =>
-    backgroundColor
+  background-color: ${({ theme, dark, backgroundColor, disabled }) =>
+    disabled
+      ? theme.color.greyLight
+      : backgroundColor
       ? theme.color[backgroundColor]
       : dark
       ? theme.color.purpleDark

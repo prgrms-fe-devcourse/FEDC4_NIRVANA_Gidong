@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { StyledSkeleton } from './Skeleton.style';
+import { StyledSkeleton } from '../Skeleton.style';
 
 const SkeletonContainer = styled.div`
   width: 100%;
