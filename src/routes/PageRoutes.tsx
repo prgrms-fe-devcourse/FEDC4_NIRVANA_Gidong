@@ -15,8 +15,11 @@ import Posts from '@pages/posts';
 import Notice from '@pages/notice';
 import PostDetail from '@pages/postDetail/PostDetail';
 import { Suspense } from 'react';
-import { SkeletonPosts } from '@components/Skeleton/SkeletonPosts';
-import { PostDetailSkeleton, ProfileSkeleton } from '@components/Skeleton';
+import {
+  SkeletonPosts,
+  PostDetailSkeleton,
+  ProfileSkeleton
+} from '@components/Skeleton';
 
 const PageRoutes = () => {
   return (
