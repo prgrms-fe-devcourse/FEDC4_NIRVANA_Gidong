@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const PasswordUpdateForm = styled.form`
+const PasswordUpdateFormContainer = styled.form`
   padding: 10px 0px;
   background-color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.style.flexCenter};
@@ -25,4 +25,4 @@ const ButtonContainer = styled.div`
   margin-top: 20px;
 `;
 
-export { PasswordUpdateForm, ButtonContainer };
+export { PasswordUpdateFormContainer, ButtonContainer };

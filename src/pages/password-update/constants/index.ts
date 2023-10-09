@@ -19,8 +19,14 @@ const USER_INPUT = {
 
 const PASSWORD_HINT = `비밀번호는 영문자, 특수문자, 숫자 중 2가지 이상을 포함한 8~32개의 문자로 이뤄져야 합니다.`;
 
+const ALERT = {
+  EMOJI: '😀',
+  CONTENT: '비밀번호가 정상적으로 변경되었습니다.',
+  BUTTON_LABEL: '확인'
+};
+
 const LABEL = {
   CHANGE_PASSWORD: '변경하기'
 };
 
-export { USER_INPUT, PASSWORD_HINT, LABEL };
+export { USER_INPUT, PASSWORD_HINT, LABEL, ALERT };
