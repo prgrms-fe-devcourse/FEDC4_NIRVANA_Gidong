@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { FollowUserContainer } from './FollowUser.style';
 import { FollowButton, FollowUserInfo } from '@pages/profile/components';
 import { User } from '@/types';
@@ -19,6 +21,10 @@ const FollowUser = ({
 }: FollowUserProps) => {
   const { _id, fullName, image, isOnline, email } = followUser;
 
+  const navigate = useNavigate();
+
+  const handleClickUser = () => navigate(`/profile/${_id}`);
+
   return (
     <FollowUserContainer>
       <FollowUserInfo
@@ -26,7 +32,7 @@ const FollowUser = ({
         image={image}
         isOnline={isOnline}
         email={email}
-        id={_id}
+        handleClickUser={handleClickUser}
       />
       {myProfile && (
         <FollowButton

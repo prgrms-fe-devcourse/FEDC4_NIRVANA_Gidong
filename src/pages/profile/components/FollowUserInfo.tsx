@@ -4,15 +4,14 @@ import {
 } from './FollowUserInfo.style';
 import { UserId, UserName } from '@components/UserText';
 import { BadgeAvatar } from '@components/Avatar';
-import { useNavigate } from 'react-router-dom';
 
 interface FollowUserInfoProps {
   fullName: string;
   image?: string;
   email: string;
   isOnline: boolean;
-  id: string;
   avatarSize?: number;
+  handleClickUser: () => void;
 }
 
 const FollowUserInfo = ({
@@ -20,16 +19,12 @@ const FollowUserInfo = ({
   isOnline,
   email,
   image,
-  id,
-  avatarSize = 40
+  avatarSize = 40,
+  handleClickUser
 }: FollowUserInfoProps) => {
-  const navigate = useNavigate();
-
-  const handleClickAvatar = () => navigate(`/profile/${id}`);
-
   return (
-    <FollowUserInfoContainer>
-      <FollowAvatarContainer onClick={handleClickAvatar}>
+    <FollowUserInfoContainer onClick={handleClickUser}>
+      <FollowAvatarContainer>
         <BadgeAvatar
           alt={fullName}
           src={image}
