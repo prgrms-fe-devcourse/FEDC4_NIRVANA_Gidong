@@ -1,47 +1,24 @@
 import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import putUpdatePassword from '@apis/password';
 import { Alert } from '@components/Alert';
 import { Button } from '@components/Button';
-import { UserInput } from '@components/UserInput';
+import { FormInput } from '@components/FormInput';
 import useSessionStorage from '@hooks/useSessionStorage';
 import { User } from '@/types';
 import { LABEL, PASSWORD_HINT, USER_INPUT } from './constants';
-import isPasswordOk from './utils/isPasswordOk';
 import { PasswordHint } from '@pages/password-update/components';
+import { LandingMain } from '@pages/landing/Landing.style';
 import { PasswordUpdateForm, ButtonContainer } from './PasswordUpdate.style';
-import {
-  Heading,
-  HeadingContentContainer,
-  LandingMain
-} from '@pages/landing/Landing.style';
+import isPasswordOk from './utils/isPasswordOk';
+
+interface PasswordUpdateFormData {
+  password: string;
+  passwordConfirm: string;
+}
 
 const PasswordUpdate = () => {
-  const [password, setPassword] = useState<string>('');
-  const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const [passwordChanged, setPasswordChanged] = useState<boolean>(false);
-  let timer = 0;
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    const { name, value } = event.target;
-
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      switch (name) {
-        case 'password':
-          setPassword(value);
-          break;
-        case 'passwordConfirm':
-          setPasswordConfirm(value);
-          break;
-        default:
-          break;
-      }
-    }, 200);
-  };
-
   const [userSessionData] = useSessionStorage<Pick<User, '_id' | 'token'>>(
     'userData',
     {
@@ -49,15 +26,12 @@ const PasswordUpdate = () => {
       token: ''
     }
   );
+  const methods = useForm<PasswordUpdateFormData>();
+  const { watch } = methods;
+  const [password, passwordConfirm] = watch(['password', 'passwordConfirm']);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (
-      password &&
-      passwordConfirm &&
-      isPasswordOk(password) &&
-      password === passwordConfirm
-    ) {
+  const onSubmit = () => {
+    if (isPasswordOk(password) && password === passwordConfirm) {
       putUpdatePassword({ password, token: `Bearer ${userSessionData.token}` })
         .then(() => setPasswordChanged(true))
         .catch((error) => console.log(error));
@@ -76,42 +50,41 @@ const PasswordUpdate = () => {
           }
         />
       )}
-
-      <PasswordUpdateForm onSubmit={handleSubmit}>
-        <PasswordHint text={PASSWORD_HINT} />
-        <UserInput
-          name={USER_INPUT.NEW_PASSWORD.NAME}
-          placeholder={USER_INPUT.NEW_PASSWORD.PLACE_HOLDER}
-          title={USER_INPUT.NEW_PASSWORD.TITLE}
-          handleChange={handleInputChange}
-          show={password.length > 0}
-          success={isPasswordOk(password)}
-          type={USER_INPUT.NEW_PASSWORD.TYPE}
-          errorMessage={USER_INPUT.NEW_PASSWORD.ERROR_MESSAGE}
-          successMessage={USER_INPUT.NEW_PASSWORD.SUCCESS_MESSAGE}
-        />
-        <UserInput
-          name={USER_INPUT.NEW_PASSWORD_CONFIRM.NAME}
-          placeholder={USER_INPUT.NEW_PASSWORD_CONFIRM.PLACE_HOLDER}
-          title={USER_INPUT.NEW_PASSWORD_CONFIRM.TITLE}
-          handleChange={handleInputChange}
-          show={passwordConfirm.length > 0}
-          success={password === passwordConfirm}
-          type={USER_INPUT.NEW_PASSWORD_CONFIRM.TYPE}
-          errorMessage={USER_INPUT.NEW_PASSWORD_CONFIRM.ERROR_MESSAGE}
-          successMessage={USER_INPUT.NEW_PASSWORD_CONFIRM.SUCCESS_MESSAGE}
-        />
-        <ButtonContainer>
-          <Button
-            label={LABEL.CHANGE_PASSWORD}
-            width={300}
-            height={45}
-            bold={false}
-            dark={true}
-            handleClick={() => handleSubmit}
+      <FormProvider {...methods}>
+        <PasswordUpdateForm onSubmit={methods.handleSubmit(onSubmit)}>
+          <PasswordHint text={PASSWORD_HINT} />
+          <FormInput
+            name={USER_INPUT.NEW_PASSWORD.NAME}
+            placeholder={USER_INPUT.NEW_PASSWORD.PLACE_HOLDER}
+            title={USER_INPUT.NEW_PASSWORD.TITLE}
+            show={password && password.length > 0}
+            success={password && isPasswordOk(password)}
+            type={USER_INPUT.NEW_PASSWORD.TYPE}
+            errorMessage={USER_INPUT.NEW_PASSWORD.ERROR_MESSAGE}
+            successMessage={USER_INPUT.NEW_PASSWORD.SUCCESS_MESSAGE}
           />
-        </ButtonContainer>
-      </PasswordUpdateForm>
+          <FormInput
+            name={USER_INPUT.NEW_PASSWORD_CONFIRM.NAME}
+            placeholder={USER_INPUT.NEW_PASSWORD_CONFIRM.PLACE_HOLDER}
+            title={USER_INPUT.NEW_PASSWORD_CONFIRM.TITLE}
+            show={password && passwordConfirm.length > 0}
+            success={passwordConfirm && password === passwordConfirm}
+            type={USER_INPUT.NEW_PASSWORD_CONFIRM.TYPE}
+            errorMessage={USER_INPUT.NEW_PASSWORD_CONFIRM.ERROR_MESSAGE}
+            successMessage={USER_INPUT.NEW_PASSWORD_CONFIRM.SUCCESS_MESSAGE}
+          />
+          <ButtonContainer>
+            <Button
+              label={LABEL.CHANGE_PASSWORD}
+              width={300}
+              height={45}
+              bold={false}
+              dark={true}
+              handleClick={() => methods.handleSubmit(onSubmit)}
+            />
+          </ButtonContainer>
+        </PasswordUpdateForm>
+      </FormProvider>
     </LandingMain>
   );
 };

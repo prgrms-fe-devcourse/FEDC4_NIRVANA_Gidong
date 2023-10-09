@@ -16,6 +16,7 @@ interface ButtonProps {
   disabled?: boolean;
   padding?: boolean;
   backgroundColor?: keyof typeof color;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const Button = ({
@@ -31,7 +32,8 @@ const Button = ({
   children,
   disabled = false,
   border = 'transparent',
-  backgroundColor
+  backgroundColor,
+  type
 }: ButtonProps) => {
   return (
     <StyledButton
@@ -45,7 +47,8 @@ const Button = ({
       fontSize={fontSize}
       borderRadius={borderRadius}
       disabled={disabled}
-      backgroundColor={backgroundColor}>
+      backgroundColor={backgroundColor}
+      type={type}>
       {label}
       {children}
     </StyledButton>

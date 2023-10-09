@@ -45,4 +45,11 @@ const MODAL = {
   }
 };
 
-export { USER_INPUT, MODAL };
+const BUTTON = {
+  LABEL: {
+    SIGNUP: '회원가입',
+    CANCEL: '취소'
+  }
+};
+
+export { USER_INPUT, MODAL, BUTTON };

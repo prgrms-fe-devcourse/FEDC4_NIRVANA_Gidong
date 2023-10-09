@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useForm, FormProvider } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import postLogInUser from '@apis/login';
 import { Button } from '@components/Button';
-import { UserInput } from '@components/UserInput';
-import { USER_INPUT } from './constants';
+import { FormInput } from '@components/FormInput';
+import { USER_INPUT, LABEL } from './constants';
 import { GoToSignUp } from './components';
 import { LoginForm, ButtonContainer } from './Login.style';
 import useSessionStorage from '@hooks/useSessionStorage';
@@ -15,8 +16,9 @@ import {
 } from '@pages/landing/Landing.style';
 
 const Login = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const methods = useForm();
+  const { watch } = methods;
+  const [email, password] = watch(['email', 'password']);
   const [errorCatched, setErrorCatched] = useState<boolean>(false);
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -41,24 +43,7 @@ const Login = () => {
     }
   }, [userSessionData.token, navigate, redirectTo, search]);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    const { name, value } = event.target;
-
-    switch (name) {
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmit = () => {
     postLogInUser({ email, password })
       .then((res) => {
         const { user, token } = res.data;
@@ -79,34 +64,34 @@ const Login = () => {
       <HeadingContentContainer>
         <Heading />
       </HeadingContentContainer>
-      <LoginForm onSubmit={handleSubmit}>
-        <UserInput
-          name={USER_INPUT.EMAIL.NAME}
-          placeholder={USER_INPUT.EMAIL.PLACE_HOLDER}
-          title={USER_INPUT.EMAIL.TITLE}
-          handleChange={handleInputChange}
-          show={errorCatched}
-          errorMessage={USER_INPUT.ERROR_MESSAGE}
-        />
-        <UserInput
-          name={USER_INPUT.PASSWORD.NAME}
-          placeholder={USER_INPUT.PASSWORD.PLACE_HOLDER}
-          title={USER_INPUT.PASSWORD.TITLE}
-          handleChange={handleInputChange}
-          type={USER_INPUT.PASSWORD.TYPE}
-        />
-        <ButtonContainer>
-          <Button
-            label='로그인'
-            width={300}
-            height={45}
-            bold={false}
-            dark={true}
-            handleClick={() => handleSubmit}
+      <FormProvider {...methods}>
+        <LoginForm onSubmit={methods.handleSubmit(onSubmit)}>
+          <FormInput
+            name={USER_INPUT.EMAIL.NAME}
+            placeholder={USER_INPUT.EMAIL.PLACE_HOLDER}
+            title={USER_INPUT.EMAIL.TITLE}
+            show={errorCatched}
+            errorMessage={USER_INPUT.ERROR_MESSAGE}
           />
-        </ButtonContainer>
-        <GoToSignUp />
-      </LoginForm>
+          <FormInput
+            name={USER_INPUT.PASSWORD.NAME}
+            placeholder={USER_INPUT.PASSWORD.PLACE_HOLDER}
+            title={USER_INPUT.PASSWORD.TITLE}
+            type={USER_INPUT.PASSWORD.TYPE}
+          />
+          <ButtonContainer>
+            <Button
+              label={LABEL.LOG_IN}
+              width={300}
+              height={45}
+              bold={false}
+              dark={true}
+              handleClick={() => methods.handleSubmit(onSubmit)}
+            />
+          </ButtonContainer>
+          <GoToSignUp />
+        </LoginForm>
+      </FormProvider>
     </LandingMain>
   );
 };
