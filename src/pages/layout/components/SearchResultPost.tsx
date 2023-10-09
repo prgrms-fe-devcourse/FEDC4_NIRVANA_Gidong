@@ -1,6 +1,8 @@
 import { useQueries, useQuery } from '@tanstack/react-query';
+import { useSetRecoilState } from 'recoil';
 
 import type { EditedPost, Post, User } from '@/types';
+import { openSearch } from '../states/openSearch';
 
 import { searchAll } from '@apis/search';
 import { getUser } from '@apis/user';
@@ -9,6 +11,7 @@ import { PostPreview } from '@components/PostPreview';
 import { Toast } from '@components/Toast';
 import SearchNoResult from './SearchNoResult';
 import { editPostData } from '@pages/posts/utils/editPostData';
+import { PostPreviewItem } from './SearchResultPost.style';
 import filterPostData from '../utils/filterPostData';
 import { FILTER } from '../constants';
 
@@ -21,6 +24,8 @@ const SearchResultPost = ({
   searchKeyword,
   searchFilter
 }: SearchResultPostProps) => {
+  const setResultShown = useSetRecoilState(openSearch);
+
   const { data: postData, isSuccess: isSuccessPostData } = useQuery({
     queryKey: ['search', searchKeyword, searchFilter],
     queryFn: async () => {
@@ -72,6 +77,10 @@ const SearchResultPost = ({
       ? editPostData(postWithUserData?.map(({ data }) => data))
       : [];
 
+  const handlePreviewClick = () => {
+    setResultShown(false);
+  };
+
   return (
     <>
       {isSuccessPostData &&
@@ -81,13 +90,16 @@ const SearchResultPost = ({
             const { _id, likes, comments } = post;
 
             return (
-              <PostPreview
-                post={post}
+              <PostPreviewItem
                 key={_id}
-                totalLikes={likes.length}
-                totalComments={comments.length}
-                noneProfile={false}
-              />
+                onClick={handlePreviewClick}>
+                <PostPreview
+                  post={post}
+                  totalLikes={likes.length}
+                  totalComments={comments.length}
+                  noneProfile={false}
+                />
+              </PostPreviewItem>
             );
           })
         ) : (

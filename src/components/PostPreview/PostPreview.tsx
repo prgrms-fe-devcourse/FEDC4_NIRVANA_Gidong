@@ -34,7 +34,7 @@ const PostPreview = ({
   };
 
   return (
-    <PreviewContainer onClick={handlePreviewClick}>
+    <PreviewContainer>
       <PostHeaderContainer>
         <PostHeader
           post={post}
