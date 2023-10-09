@@ -10,7 +10,7 @@ const NewPostConfirm = ({
   handleConfirmButton,
   handleCancelButton
 }: NewPostConfirmProps) => {
-  const CancleButton = () => {
+  const CancelButton = () => {
     return (
       <Button
         width={120}
@@ -40,7 +40,7 @@ const NewPostConfirm = ({
     <Confirm
       emoji='✏️'
       content='포스트를 발행할까요?'
-      CancelButton={<CancleButton />}
+      CancelButton={<CancelButton />}
       ConfirmButton={<ConfirmButton />}
     />
   );
