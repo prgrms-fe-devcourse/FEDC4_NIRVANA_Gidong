@@ -22,7 +22,11 @@ const SearchResultUser = ({
   const navigate = useNavigate();
   const setResultShown = useSetRecoilState(openSearch);
 
-  const { data: userData, isSuccess } = useQuery({
+  const {
+    data: userData,
+    isSuccess,
+    isLoading
+  } = useQuery({
     queryKey: ['search', searchKeyword, searchFilter],
     queryFn: async () => {
       const data = await searchUser(searchKeyword);
@@ -32,33 +36,36 @@ const SearchResultUser = ({
     enabled: searchKeyword !== '' && searchFilter === FILTER['USER']
   });
 
+  console.log(isLoading);
+
   return (
     <>
-      {isSuccess && userData.length > 0 ? (
-        userData.map((element: User) => {
-          const { _id, fullName, image, email, isOnline } = element;
+      {isSuccess &&
+        (userData.length > 0 ? (
+          userData.map((element: User) => {
+            const { _id, fullName, image, email, isOnline } = element;
 
-          const handleClickUser = () => {
-            setResultShown(false);
-            navigate(`/profile/${_id}`);
-          };
+            const handleClickUser = () => {
+              setResultShown(false);
+              navigate(`/profile/${_id}`);
+            };
 
-          return (
-            <SearchItem key={_id}>
-              <FollowUserInfo
-                fullName={fullName}
-                image={image}
-                email={email}
-                isOnline={isOnline}
-                avatarSize={50}
-                handleClickUser={handleClickUser}
-              />
-            </SearchItem>
-          );
-        })
-      ) : (
-        <SearchNoResult />
-      )}
+            return (
+              <SearchItem key={_id}>
+                <FollowUserInfo
+                  fullName={fullName}
+                  image={image}
+                  email={email}
+                  isOnline={isOnline}
+                  avatarSize={50}
+                  handleClickUser={handleClickUser}
+                />
+              </SearchItem>
+            );
+          })
+        ) : (
+          <SearchNoResult />
+        ))}
     </>
   );
 };
