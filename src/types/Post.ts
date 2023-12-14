@@ -28,6 +28,6 @@ export interface SearchEditedPost extends OmitPost {
 }
 
 export type RawTitleData = {
-  content: string;
+  title: string;
   meditationTime: number;
 };

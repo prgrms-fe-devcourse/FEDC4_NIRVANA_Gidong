@@ -5,7 +5,9 @@ const editTimeForm = (time: string) => {
 };
 
 const splitTitleData = (rawTitle: string) => {
-  const { content, meditationTime } = JSON.parse(rawTitle) as RawTitleData;
+  const { title: content, meditationTime } = JSON.parse(
+    rawTitle
+  ) as RawTitleData;
 
   return { content, meditationTime };
 };
