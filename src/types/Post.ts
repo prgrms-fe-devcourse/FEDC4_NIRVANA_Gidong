@@ -26,3 +26,8 @@ type OmitPost = Omit<Post, 'author'>;
 export interface SearchEditedPost extends OmitPost {
   author: string;
 }
+
+export type RawTitleData = {
+  content: string;
+  meditationTime: number;
+};
