@@ -18,15 +18,20 @@ import {
 import MeditationEndButton from '@pages/meditation/components/MeditationEndButton';
 import { meditationTime, totalMeditationTime } from '@pages/meditation/states';
 import { ThemeInfoType } from '@components/ThemePicker/ThemePicker';
+import { MeditationStatusType } from '@pages/meditation/types';
 
 interface MeditationTimeSetterProps {
   themePicked: ThemeInfoType;
   meditationStatus: { started: boolean; paused: boolean; ended: boolean };
+  meditationStatusSetter?: React.Dispatch<
+    React.SetStateAction<MeditationStatusType>
+  >;
 }
 
 const MeditationTimeSetter = ({
   themePicked,
-  meditationStatus
+  meditationStatus,
+  meditationStatusSetter
 }: MeditationTimeSetterProps) => {
   const [time, setTime] = useRecoilState<number>(meditationTime);
   const longClickIdRef = useRef<number>(null);
@@ -169,7 +174,7 @@ const MeditationTimeSetter = ({
         </TimeSetterContainer>
       )}
       {meditationStatus.started && !meditationStatus.ended && (
-        <MeditationEndButton />
+        <MeditationEndButton statusSetter={meditationStatusSetter} />
       )}
     </>
   );

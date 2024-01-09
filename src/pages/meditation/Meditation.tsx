@@ -48,6 +48,7 @@ const Meditation = () => {
         {status.started && <MeditationAudioPlayer />}
         <MeditationTimeSetter
           meditationStatus={status}
+          meditationStatusSetter={setStatus}
           themePicked={selectedTheme}
         />
         {!status.started && (

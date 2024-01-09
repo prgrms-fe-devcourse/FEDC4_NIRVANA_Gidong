@@ -9,15 +9,12 @@ import {
   TimerElementBorder
 } from './MeditationTimer.style';
 import { ICON_NAME_PAUSE, ICON_NAME_PLAY } from '@pages/meditation/constants';
-import { meditationTime } from '../states';
-
-let timerId = 0;
+import { intervalId, meditationTime } from '@pages/meditation/states';
+import { MeditationStatusType } from '@pages/meditation/types';
 
 interface MeditationTimerProps {
-  meditationStatus: { started: boolean; paused: boolean; ended: boolean };
-  statusSetter: React.Dispatch<
-    React.SetStateAction<{ started: boolean; paused: boolean; ended: boolean }>
-  >;
+  meditationStatus: MeditationStatusType;
+  statusSetter: React.Dispatch<React.SetStateAction<MeditationStatusType>>;
 }
 
 const MeditationTimer = ({
@@ -25,6 +22,7 @@ const MeditationTimer = ({
   statusSetter
 }: MeditationTimerProps) => {
   const [time, setTime] = useRecoilState(meditationTime);
+  const [timerId, setTimerId] = useRecoilState(intervalId);
   const [hovered, setHovered] = useState(false);
 
   const startTimer = () => {
@@ -33,17 +31,19 @@ const MeditationTimer = ({
     }
     statusSetter({ ...meditationStatus, paused: false });
 
-    timerId = setInterval(() => {
-      setTime((prevTime) => {
-        if (prevTime > 0) {
-          return prevTime - 1;
-        }
-        clearInterval(timerId);
-        statusSetter({ ...meditationStatus, paused: true, ended: true });
-        timerId = 0;
-        return prevTime;
-      });
-    }, 1000);
+    setTimerId(
+      setInterval(() => {
+        setTime((prevTime) => {
+          if (prevTime > 0) {
+            return prevTime - 1;
+          }
+          clearInterval(timerId);
+          statusSetter({ ...meditationStatus, paused: true, ended: true });
+          setTimerId(0);
+          return prevTime;
+        });
+      }, 1000)
+    );
 
     statusSetter({ ...meditationStatus, started: true, paused: false });
   };
