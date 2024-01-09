@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
+import { MeditationStatusType } from '@pages/meditation/types';
 
 interface MeditationPageProps {
-  meditationStatus: { started: boolean; paused: boolean; ended: boolean };
+  meditationStatus: MeditationStatusType;
 }
 
 export const MeditationPage = styled.div<MeditationPageProps>`
