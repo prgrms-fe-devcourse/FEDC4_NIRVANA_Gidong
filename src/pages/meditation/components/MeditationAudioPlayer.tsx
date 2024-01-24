@@ -12,7 +12,7 @@ const MeditationAudioPlayer = () => {
   // This Audio Source is Free Licensed from below site.
   // https://pixabay.com/sound-effects/search/night%20ambience/
   const audioSrc =
-    'https://drive.google.com/file/d/13kC8CorTL7nV6Zp5m9jnClsRdxWFEXZn/view?usp=sharing';
+    'https://ummaivf8xbyrne2j.public.blob.vercel-storage.com/night-ambience-17064%20(1).mp3';
 
   const togglePlaying = () => {
     if (playing) {
