@@ -9,6 +9,10 @@ import { ICON_NAME_PAUSE, ICON_NAME_PLAY } from '@pages/meditation/constants';
 const MeditationAudioPlayer = () => {
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  // This Audio Source is Free Licensed from below site.
+  // https://pixabay.com/sound-effects/search/night%20ambience/
+  const audioSrc =
+    'https://drive.google.com/file/d/13kC8CorTL7nV6Zp5m9jnClsRdxWFEXZn/view?usp=sharing';
 
   const togglePlaying = () => {
     if (playing) {
@@ -29,9 +33,7 @@ const MeditationAudioPlayer = () => {
         />
         <audio
           ref={audioRef}
-          src={
-            'https://drive.google.com/uc?export=view&id=13kC8CorTL7nV6Zp5m9jnClsRdxWFEXZn'
-          }
+          src={audioSrc}
           loop
         />
       </AudioPlayerElement>
